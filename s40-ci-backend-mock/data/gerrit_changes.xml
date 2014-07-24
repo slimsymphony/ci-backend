@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This is the data used for Gerrit Mock server
+
+This data will be handled in gerritQuery function in GerritCommand.java and
+it can be changed during the debug time and all changes will become visible
+straight away without need to restart the application server
+
+-->
+
+<changes>
+    <change>
+        <owner>
+            <name>Admin Möckkä</name>
+            <email>admin@test.com</email>
+        </owner>
+        <status>NEW</status>
+        <branch>develop</branch>
+        <topic>mock commit</topic>
+        <project>x_project</project>
+        <subject>Commit 1 www.nokia.com</subject>
+        <url>http://localhost/#/c/1/23</url>
+        <currentpatchset>
+            <ref>refs/changes/1/</ref>
+            <uploader>
+                <name>Adminhemc</name>
+                <email>admini@admin</email>
+            </uploader>
+            <files>
+                <file>/COMMIT_MSG</file>
+                <type>ADDED</type>
+            </files>
+            <files>
+                <file>test.txt</file>
+                <type>MODIFIED</type>
+            </files>
+            <parents>
+                <value>fpjwefpoj32pjfpweojf3g</value>
+            </parents>
+        </currentpatchset>
+    </change>
+    <change>
+        <owner>
+            <name>Admin Möckkä</name>
+            <email>admin@test.com</email>
+        </owner>
+        <status>NEW</status>
+        <branch>develop</branch>
+        <topic>mock commit</topic>
+        <project>x_project</project>
+        <subject>This subject is more than 255 characters long.
+            http://ci.nokia.com
+            Yes, it is. It must be at least that long subject.
+            I sure think so. Do you think this is long enough subject?
+            Not yet, it should be a little bit longer still.
+            Still not long enough, let's add some more characters to this message.
+            Now it must be long enough.
+        </subject>
+        <url>http://localhost/c/1/25</url>
+        <currentpatchset>
+            <ref>refs/changes/2/</ref>
+            <uploader>
+                <name>Adminhemc</name>
+                <email>admini@admin</email>
+            </uploader>
+            <files>
+                <file>/COMMIT_MSG</file>
+                <type>ADDED</type>
+            </files>
+            <files>
+                <file>test.txt</file>
+                <type>REMOVED</type>
+            </files>
+            <parents>
+                <value>fpjwefpoj32pjfpweojf3g</value>
+            </parents>
+        </currentpatchset>
+    </change>
+    <change>
+        <owner>
+            <name>Admin Mock</name>
+            <email>admin@test.com</email>
+        </owner>
+        <status>NEW</status>
+        <branch>toolbox</branch>
+        <topic>mock commit</topic>
+        <project>y_project</project>
+        <subject>Commit 1 ftp://europe.nokia.com</subject>
+        <url>http://localhost/</url>
+        <currentpatchset>
+            <ref>refs/changes/3/</ref>
+            <uploader>
+                <name>Adminhemc</name>
+                <email>admini@admin</email>
+            </uploader>
+            <files>
+                <file>/COMMIT_MSG</file>
+                <type>ADDED</type>
+            </files>
+            <files>
+                <file>new_file.txt</file>
+                <type>ADDED</type>
+            </files>
+            <parents>
+            </parents>
+        </currentpatchset>
+    </change>
+    <change>
+        <owner>
+            <name>User Mock</name>
+            <email>user@test.com</email>
+        </owner>
+        <status>NEW</status>
+        <branch>develop</branch>
+        <topic>mock cämmit</topic>
+        <id>12rehatrh43523543258</id>
+        <project>y_project</project>
+        <subject>Commit Testing UTF-8 äääöööååå
+            file://utf-8test@eurpe.nokia.com
+        </subject>
+        <url>http://localhost/</url>
+        <currentpatchset>
+            <ref>refs/changes/5/</ref>
+            <uploader>
+                <name>User Mock</name>
+                <email>user@test.com</email>
+            </uploader>
+            <files>
+                <file>/COMMIT_MSG</file>
+                <type>ADDED</type>
+            </files>
+            <files>
+                <file>test.txt</file>
+                <type>MODIFIED</type>
+            </files>
+        </currentpatchset>
+    </change>
+    <change>
+        <owner>
+            <name>Admin Möckkä</name>
+            <email>admin@test.com</email>
+        </owner>
+        <status>NEW</status>
+        <branch>develop</branch>
+        <topic>mock commit</topic>
+        <project>z_project</project>
+        <subject>Commit 1262642</subject>
+        <url>http://localhost/#/c/1/22523</url>
+        <currentpatchset>
+            <ref>refs/changes/1526/</ref>
+            <uploader>
+                <name>Adminhemc</name>
+                <email>admini@admin</email>
+            </uploader>
+            <files>
+                <file>/COMMIT_MSG</file>
+                <type>ADDED</type>
+            </files>
+            <files>
+                <file>test.txt</file>
+                <type>MODIFIED</type>
+            </files>
+        </currentpatchset>
+    </change>
+    <change>
+        <owner>
+            <name>Admin Möckkä</name>
+            <email>admin@test.com</email>
+        </owner>
+        <status>DRAFT</status>
+        <branch>develop</branch>
+        <topic>mock draft commit</topic>
+        <project>x_project</project>
+        <subject>Draft Commit 1 www.nokia.com</subject>
+        <url>http://localhost/#/c/1/23</url>
+        <currentpatchset>
+            <ref>refs/draft/1/</ref>
+            <uploader>
+                <name>Adminhemc</name>
+                <email>admini@admin</email>
+            </uploader>
+            <files>
+                <file>/COMMIT_MSG</file>
+                <type>ADDED</type>
+            </files>
+            <files>
+                <file>test.txt</file>
+                <type>MODIFIED</type>
+            </files>
+            <parents>
+                <value>qwe324werdfdsfe4324eqe</value>
+            </parents>
+        </currentpatchset>
+    </change>
+</changes>

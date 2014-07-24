@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <composite:attribute name="build"/>
+        <composite:attribute name="bean"/>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation xmlns:ci="http://java.sun.com/jsf/composite/comp">
+        <div class="buildPlotItem" style="position:absolute; min-width: 180px; max-width: 10%;
+             border: 1px solid black; padding: 5px; z-index:100; overflow:hidden; cursor:pointer;" id="build_#{cc.attrs.build.id}">
+            <h:form styleClass="buildPlotItemForm">
+                <h:inputHidden value="#{cc.attrs.bean.getBuildChildIds(cc.attrs.build)}" id="children"/>
+                <h:panelGrid id="buildPlotItemTable" border="0" columns="2">
+                    <h:outputLabel for="jobVerification" value="Verification:" rendered="#{cc.attrs.build.buildVerificationConf != null and
+                                                                                           cc.attrs.build.buildVerificationConf.verificationDisplayName != null and
+                                                                                           cc.attrs.build.buildVerificationConf.verificationDisplayName != ''}"/>
+                    <h:outputText id="jobVerification" value="#{cc.attrs.build.buildVerificationConf.verificationDisplayName}"
+                                  rendered="#{cc.attrs.build.buildVerificationConf != null and
+                                              cc.attrs.build.buildVerificationConf.verificationDisplayName != null and
+                                              cc.attrs.build.buildVerificationConf.verificationDisplayName != ''}"/>
+                    <h:outputLabel for="jobName" value="Name:" rendered="#{cc.attrs.build.buildVerificationConf == null or
+                                                                           cc.attrs.build.buildVerificationConf.verificationDisplayName == null or
+                                                                           cc.attrs.build.buildVerificationConf.verificationDisplayName == ''}"/>
+                    <h:outputText id="jobName" value="#{build.jobDisplayName}" rendered="#{cc.attrs.build.buildVerificationConf == null or
+                                                        cc.attrs.build.buildVerificationConf.verificationDisplayName == null or
+                                                        cc.attrs.build.buildVerificationConf.verificationDisplayName == ''}"/>
+                    <h:outputLabel for="jobProduct" value="Product:"
+                                   rendered="#{cc.attrs.build.buildVerificationConf != null and
+                                               cc.attrs.build.buildVerificationConf.productDisplayName != null and
+                                               cc.attrs.build.buildVerificationConf.productDisplayName != ''}"/>
+                    <h:outputText id="jobProduct" value="#{cc.attrs.build.buildVerificationConf.productDisplayName}"
+                                  rendered="#{cc.attrs.build.buildVerificationConf != null and
+                                              cc.attrs.build.buildVerificationConf.productDisplayName != null and
+                                              cc.attrs.build.buildVerificationConf.productDisplayName != ''}"/>
+
+                    <h:outputLabel for="buildDuration" value="Duration:"/>
+                    <ci:buildDuration id="buildDuration" attrId="buildPlotDuration" styleClass="updateable"
+                                      value="#{cc.attrs.build}"/>
+
+                    <h:outputLabel for="buildInfo" value="Status:"/>
+                    <ci:buildInfo id="buildInfo" attrId="buildPlotInfo" styleClass="updateable"
+                                  status="#{cc.attrs.build.status}" phase="#{cc.attrs.build.phase}"/>
+                </h:panelGrid>
+
+                <h:outputLink value="/secure/pages/buildArtifacts.xhtml">
+                    <h:graphicImage id="artifactsIcon" value="/resources/images/box.png" styleClass="actionButton"/>
+                    <f:param name="buildGroupId" value="#{buildBean.buildGroup.id}"/>
+                    <f:param name="buildId" value="#{buildBean.buildGroup.id}"/>
+                    <pe:tooltip for="artifactsIcon" value="Show build artifacts" />
+                </h:outputLink>
+                <h:outputLink value="#{cc.attrs.build.url}/consoleText" target="_blank">
+                    <h:graphicImage id="consoleOutputIcon" value="/resources/images/terminal.png" styleClass="actionButton"/>
+                    <pe:tooltip for="consoleOutputIcon" value="Show console output" myPosition="top right" atPosition="bottom center"/>
+                </h:outputLink>
+                <h:graphicImage value="/resources/images/build_type_mandatory.png"
+                                rendered="#{cc.attrs.build.buildVerificationConf.cardinality == 'MANDATORY'}"
+                                styleClass="verificationMandatory actionButton"/>
+                <h:graphicImage value="/resources/images/build_type_optional.png"
+                                rendered="#{cc.attrs.build.buildVerificationConf.cardinality == 'OPTIONAL'}"
+                                styleClass="verificationOptional actionButton"/>
+                <pe:tooltip value="Mandatory verification" forSelector=".verificationMandatory"/>
+                <pe:tooltip value="Optional verification" forSelector=".verificationOptional"/>
+            </h:form>
+        </div>
+    </cc:implementation>
+</html>

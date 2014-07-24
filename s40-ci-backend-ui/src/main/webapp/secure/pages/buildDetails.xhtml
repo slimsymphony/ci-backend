@@ -1,0 +1,399 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+
+        <ui:composition template="../template/layout.xhtml">
+            <ui:define name="contentTitle">Build #{buildBean.buildGroup.id}</ui:define>
+
+            <ui:define name="contentMenu">
+                <h:form id="releaseButtonForm">
+                    <p:commandLink id="release" value="" actionListener="#{buildBean.release}" styleClass="contentmenuRelease"
+                                   rendered="#{buildBean.showReleaseButton()}"/>
+                    <pe:tooltip for="release" value="Release" myPosition="top right" atPosition="bottom center"/>
+                </h:form>
+                <h:form id="retriggerButtonForm">
+                    <p:commandLink id="retrigger" value="" action="#{buildBean.retrigger}"
+                                   styleClass="contentmenuRetrigger" rendered="#{buildBean.isOwnBuild}"/>
+                    <pe:tooltip for="retrigger" value="Retrigger verification" myPosition="top right" atPosition="bottom center"/>
+                </h:form>
+                <ci:helpButton id="helpButton" page="buildDetails"/>
+            </ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="#{buildBean.project.displayName}" outcome="projectDetails">
+                    <f:param name="projectId" value="#{buildBean.project.id}"/>
+                </h:link>
+                <h:link value="#{buildBean.job.displayName}" outcome="verificationDetails">
+                    <f:param name="verificationId" value="#{buildBean.job.id}"/>
+                </h:link>
+                <h:link value="Build #{buildBean.buildGroup.id}" outcome="buildDetails" styleClass="active">
+                    <f:param name="buildId" value="#{buildBean.buildGroup.id}"/>
+                </h:link>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="buildPollerForm">
+                    <p:poll id="buildPoller" partialSubmit="true" stop="#{buildBean.pollStop}" interval="30" listener="#{buildBean.updateBuildGroup}"
+                            update=":buildDetailsTable,@(.updateable)" process="@this" onerror="window.location.reload()">
+                        <f:param name="buildId" value="#{buildBean.buildGroup.id}"/>
+                    </p:poll>
+                </h:form>
+
+                <h:outputText value="You do not have permission to this project" rendered="#{buildBean.buildGroup == null}"/>
+
+                <p:panelGrid id="buildDetailsTable" columns="2" rendered="#{buildBean.buildGroup != null}">
+                    <h:outputLabel for="buildPatchsetRevision" value="Patchset Revision:" rendered="#{buildBean.patchsetRevision != null}"/>
+                    <h:outputText id="buildPatchsetRevision" value="#{buildBean.patchsetRevision}" rendered="#{buildBean.patchsetRevision != null}"/>
+                    <h:outputLabel for="buildRefSpec" value="Refspec:" rendered="#{buildBean.buildGroup.gerritRefSpec != null}"/>
+                    <h:outputText id="buildRefSpec" value="#{buildBean.buildGroup.gerritRefSpec}" rendered="#{buildBean.buildGroup.gerritRefSpec != null}"/>
+                    <h:outputLabel for="buildCreated" value="Created:"/>
+                    <ci:outputTextTimeStamp id="buildCreated" value="#{buildBean.buildGroup.created}"/>
+                    <h:outputLabel for="buildStartTime" value="Start time:"/>
+                    <ci:outputTextTimeStamp id="buildStartTime" value="#{buildBean.buildGroup.startTime}"/>
+                    <h:outputLabel for="buildEndTime" value="End time:"/>
+                    <ci:outputTextTimeStamp id="buildEndTime" value="#{buildBean.buildGroup.endTime}"/>
+                    <h:outputLabel for="buildDuration" value="Duration:"/>
+                    <ci:buildDuration id="buildDuration" value="#{buildBean.buildGroup}"/>
+                    <h:outputLabel for="buildStatus" value="Status:"/>
+                    <ci:buildInfo id="buildInfo" status="#{buildBean.buildGroup.status}" phase="#{buildBean.buildGroup.phase}"/>
+                    <h:outputLabel for="buildUrl" value="Jenkins URL:" rendered="#{buildBean.buildGroup.url != null}"/>
+                    <h:outputLink id="buildUrl" value="#{buildBean.buildGroup.url}/build_result/all" rendered="#{buildBean.buildGroup.url != null}">
+                        Build results URL
+                    </h:outputLink>
+                    <h:outputLabel for="releaseDate" value="Released:" rendered="#{buildBean.released}"/>
+                    <ci:outputTextTimeStamp id="releaseDate" value="#{buildBean.buildGroup.release.releaseTime}" rendered="#{buildBean.released}"/>
+                </p:panelGrid>
+
+                <p:tabView id="viewSelect" rendered="#{buildBean.buildGroup != null}">
+                    <p:tab id="tableView" title="Table view">
+                        <h:form id="buildGroupForm">
+                            <p:dataTable id="subBuild" value="#{buildBean.buildGroupVerifications}" var="build">
+                                <f:facet name="header">
+                                    <h:outputText value="Verifications"/>
+                                </f:facet>
+                                <p:column>
+                                    <f:facet name="header">Verification</f:facet>
+                                    <h:outputText value="#{build.jobDisplayName}"
+                                                  rendered="#{build.buildVerificationConf == null or
+                                                              build.buildVerificationConf.verificationDisplayName == null or
+                                                              build.buildVerificationConf.verificationDisplayName == ''}"/>
+                                    <h:outputText value="#{build.buildVerificationConf.verificationDisplayName} "
+                                                  rendered="#{build.buildVerificationConf != null and
+                                                              build.buildVerificationConf.verificationDisplayName != null and
+                                                              build.buildVerificationConf.verificationDisplayName != ''}"/>
+                                    <h:graphicImage id="desc" value="/resources/images/iconic/gray_light/info_6x12.png" styleClass="actionButton"
+                                                    style="margin-bottom: 1px;"
+                                                    rendered="#{buildBean.verificationDescriptions.get(build.buildVerificationConf.verificationName) != null}"/>
+                                    <pe:tooltip for="desc" hideEffectLength="0" showEffectLength="0"
+                                                value="#{buildBean.verificationDescriptions.get(build.buildVerificationConf.verificationName)}"
+                                                myPosition="top left" atPosition="bottom center"
+                                                rendered="#{buildBean.verificationDescriptions.get(build.buildVerificationConf.verificationName) != null}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">Product</f:facet>
+                                    <h:outputText value="#{build.buildVerificationConf.productDisplayName}"
+                                                  rendered="#{build.buildVerificationConf != null and
+                                                              build.buildVerificationConf.productDisplayName != null and
+                                                              build.buildVerificationConf.productDisplayName != ''}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">Custom Parameters</f:facet>
+                                    <h:outputText value="#{buildBean.getCustomParameterString(build)}"
+                                                  rendered="#{buildBean.getCustomParameterString(build) != null}"/>
+                                </p:column>
+                                <p:column style="width: 30px; text-align: center;">
+                                    <f:facet name="header">Type</f:facet>
+                                    <h:graphicImage value="/resources/images/build_type_mandatory.png"
+                                                    rendered="#{build.buildVerificationConf.cardinality == 'MANDATORY'}"
+                                                    styleClass="verificationMandatory"/>
+                                    <h:graphicImage value="/resources/images/build_type_optional.png"
+                                                    rendered="#{build.buildVerificationConf.cardinality=='OPTIONAL'}"
+                                                    styleClass="verificationOptional"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">Duration</f:facet>
+                                    <ci:buildDuration attrId="buildDuration" styleClass="updateable"
+                                                      value="#{build}"/>
+                                </p:column>
+                                <p:column style="width: 120px;">
+                                    <f:facet name="header">Status</f:facet>
+                                    <ci:buildInfo attrId="buildInfo" styleClass="updateable"
+                                                  status="#{build.status}" phase="#{build.phase}"/>
+                                </p:column>
+                                <p:column style="width: 90px;">
+                                    <f:facet name="header">Classification</f:facet>
+                                    <ci:buildClassificationInfo classifiable="#{buildBean.isClassifiable(build)}"
+                                                                classified="#{buildBean.classified(build)}"
+                                                                classifiedOk="#{buildBean.classifiedOk(build)}"
+                                                                phase="#{build.phase}"
+                                                                styleClass="updateable"/>
+                                </p:column>
+                                <p:column style="width: 140px; text-align: center;">
+                                    <f:facet name="header">Actions</f:facet>
+
+                                    <h:outputLink value="/secure/pages/buildArtifacts.xhtml"
+                                                  rendered="#{httpSessionBean.loggedIn and not httpSessionBean.sysUser.nextUser}">
+                                        <h:graphicImage id="artifactsIcon" value="/resources/images/box.png" styleClass="actionButton updateable"
+                                                        style="display: #{build.phase != 'FINISHED' ? 'none' : 'inline-block'}"/>
+                                        <f:param name="buildGroupId" value="#{buildBean.buildGroup.id}"/>
+                                        <f:param name="buildId" value="#{build.id}"/>
+                                        <pe:tooltip for="artifactsIcon" value="Show build artifacts" />
+                                    </h:outputLink>
+
+                                    <h:outputLink value="/secure/pages/buildTestResults.xhtml"
+                                                  rendered="#{httpSessionBean.loggedIn and not httpSessionBean.sysUser.nextUser and build.buildVerificationConf != null and
+                                                              not empty build.buildVerificationConf.testResultTypes}">
+                                        <h:graphicImage id="testResultsIcon" value="/resources/images/report.png" styleClass="actionButton updateable"
+                                                        style="display: #{build.phase != 'FINISHED' ? 'none' : 'inline-block'}"/>
+                                        <f:param name="buildGroupId" value="#{buildBean.buildGroup.id}"/>
+                                        <f:param name="buildId" value="#{build.id}"/>
+                                        <pe:tooltip for="testResultsIcon" value="Show test results" />
+                                    </h:outputLink>
+
+                                    <h:outputLink value="#{build.url}/consoleText" target="_blank" styleClass="updateable"
+                                                  rendered="#{httpSessionBean.loggedIn and not httpSessionBean.sysUser.nextUser}">
+                                        <h:graphicImage id="consoleOutputIcon" value="/resources/images/terminal.png" styleClass="actionButton updateable"
+                                                        style="display: #{build.url == null ? 'none' : 'inline-block'}"/>
+                                        <pe:tooltip for="consoleOutputIcon" value="Show console output" myPosition="top right" atPosition="bottom center"/>
+                                    </h:outputLink>
+
+                                    <h:outputLink value="/secure/pages/buildMetrics.xhtml"
+                                                  rendered="#{httpSessionBean.loggedIn and not httpSessionBean.sysUser.nextUser}">
+                                        <h:graphicImage id="metrics" value="/resources/images/chart_bar.png" styleClass="actionButton updateable"
+                                                        style="display: #{build.phase != 'FINISHED' ? 'none' : 'inline-block'}"/>
+                                        <f:param name="buildId" value="#{build.id}"/>
+                                        <pe:tooltip for="metrics" value="Show build metrics" myPosition="top right" atPosition="bottom center"/>
+                                    </h:outputLink>
+                                    <h:outputLink value="/secure/pages/buildClassification.xhtml" styleClass="updateable"
+                                                  rendered="#{not httpSessionBean.sysUser.nextUser and buildBean.isClassifiable(build)}">
+                                        <h:graphicImage id="review" value="/resources/images/review.png" styleClass="actionButton"
+                                                        style="display: #{build.phase != 'FINISHED' ? 'none' : 'inline-block'}"/>
+                                        <f:param name="buildId" value="#{build.id}"/>
+                                        <pe:tooltip for="review" value="Show build classification" myPosition="top right" atPosition="bottom center"/>
+                                    </h:outputLink>
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
+                    </p:tab>
+                    <p:tab id="plotView" title="Graph view">
+                        <div id="buildPlot">
+                            <ci:buildGroupPlotItem buildGroup="#{buildBean.buildGroup}" bean="#{buildBean}"/>
+                            <ui:repeat var="build" value="#{buildBean.buildGroupVerifications}">
+                                <ci:buildPlotItem build="#{build}" bean="#{buildBean}"/>
+                            </ui:repeat>
+                        </div>
+                    </p:tab>
+                    <p:tab id="timingView" title="Timing view">
+                        <h:form id="buildGroupTimingForm">
+                            <p:dataTable id="subBuildTiming" value="#{buildBean.buildEventTimings}" var="buildEventTiming">
+                                <f:facet name="header">
+                                    <h:outputText value="Event Timings"/>
+                                </f:facet>
+                                <p:column style="width: 250px;">
+                                    <f:facet name="header">Job</f:facet>
+                                    <h:outputText value="#{buildEventTiming.jobName}"
+                                                  rendered="#{buildEventTiming != null}"/>
+                                </p:column>
+                                <p:column style="width: 250px;">
+                                    <f:facet name="header">Host</f:facet>
+                                    <h:outputText styleClass="updateable" value="#{buildEventTiming.executor}"
+                                                  rendered="#{buildEventTiming != null}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">Total</f:facet>
+                                    <p:progressBar value="#{buildEventTiming.totalPercentage}" labelTemplate="#{buildEventTiming.getTotalTimeSpanFmtedStr}({value}%)" displayOnly="true"
+                                                   styleClass="updateable event-total-timespan" rendered="#{buildEventTiming != null}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">SCM</f:facet>
+                                    <p:progressBar value="#{buildEventTiming.scmPercentage}" labelTemplate="#{buildEventTiming.getScmTimeSpanFmtedStr}({value}%)" displayOnly="true"
+                                                   styleClass="updateable event-scm-timespan" rendered="#{buildEventTiming != null}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">Build</f:facet>
+                                    <p:progressBar value="#{buildEventTiming.buildPercentage}" labelTemplate="#{buildEventTiming.getBuildTimeSpanFmtedStr}({value}%)" displayOnly="true"
+                                                   styleClass="updateable event-build-timespan" rendered="#{buildEventTiming != null}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">Test</f:facet>
+                                    <p:progressBar value="#{buildEventTiming.testPercentage}" labelTemplate="#{buildEventTiming.getTestTimeSpanFmtedStr}({value}%)" displayOnly="true"
+                                                   styleClass="updateable event-test-timespan" rendered="#{buildEventTiming != null}"/>
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
+                    </p:tab>
+                </p:tabView>
+
+                <h:form id="lazyLoadDetailParamsForm">
+                    <p:remoteCommand name="fetchBuildDetailParams" process="@this" update="buildDetailParamsPanel"
+                                     actionListener="#{buildBean.initBuildResultDetailsParams()}" autoRun="true" async="true"/>
+                    <p:panel id="buildDetailParamsPanel" rendered="#{buildBean.buildGroup != null}"
+                             style="display: #{buildBean.buildResultDetailsParams == null ? 'block' :
+                                               buildBean.buildResultDetailsParams.size() > 0 ? 'block' : 'none'}">
+                        <h:graphicImage value="/resources/images/loading.gif" styleClass="actionButton"
+                                        rendered="#{buildBean.buildResultDetailsParams == null}"/>
+                        <h:outputText id="loadingChangesText" value="Loading build result details, please wait..."
+                                      rendered="#{buildBean.buildResultDetailsParams == null}"/>
+                        <p:dataTable id="buildResultDetails" value="#{buildBean.buildResultDetailsParams}"
+                                     var="resultDetailsParam" rendered="#{buildBean.buildResultDetailsParams != null}">
+                            <f:facet name="header">
+                                <h:outputText value="Build Result Details"/>
+                            </f:facet>
+                            <p:column>
+                                <f:facet name="header">Verification</f:facet>
+                                <h:outputText value="#{resultDetailsParam.buildVerificationConf.verificationDisplayName}"
+                                              rendered="#{resultDetailsParam.buildVerificationConf != null and
+                                                          resultDetailsParam.buildVerificationConf.verificationDisplayName != null and
+                                                          resultDetailsParam.buildVerificationConf.verificationDisplayName != ''}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">Product</f:facet>
+                                <h:outputText value="#{resultDetailsParam.buildVerificationConf.productDisplayName}"
+                                              rendered="#{resultDetailsParam.buildVerificationConf != null and
+                                                          resultDetailsParam.buildVerificationConf.productDisplayName != null and
+                                                          resultDetailsParam.buildVerificationConf.productDisplayName != ''}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">Name</f:facet>
+                                <h:outputText value="#{resultDetailsParam.displayName}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">Value</f:facet>
+                                <ci:autoLinkOutputText value="#{resultDetailsParam.paramValue}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">Description</f:facet>
+                                <h:outputText value="#{resultDetailsParam.description}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </p:panel>
+                </h:form>
+                <h:form id="lazyLoadChangesForm">
+                    <p:remoteCommand name="fetchChanges" process="@this" update="changePanel"
+                                     actionListener="#{buildBean.initChanges()}" autoRun="true" async="true"/>
+                    <p:panel header="Changes" id="changePanel"
+                             rendered="#{buildBean.buildGroup != null}">
+                        <h:graphicImage value="/resources/images/loading.gif" styleClass="actionButton"
+                                        rendered="#{buildBean.gitGerritChanges == null and buildBean.changes == null }"/>
+                        <h:outputText id="loadingChangesText" value="Loading changes, please wait..."
+                                      rendered="#{buildBean.gitGerritChanges == null and buildBean.changes == null }"/>
+                        <h:outputText value="No changes in this build"
+                                      rendered="#{builBean.changes.size() == 0 and buildBean.gitGerritChanges.size() == 0}"/>
+                        <ui:repeat value="#{buildBean.changes}" var="change" varStatus="iteration">
+                            <h4><h:outputText value="#{iteration.index + 1}. #{change.changeItem.optString('msg')}"/></h4>
+                            <h5><ci:autoLinkOutputText value="Commit #{change.changeItem.optString('id')} by #{change.author}"/></h5>
+                            <ci:autoLinkOutputText value="#{change.changeItem.optString('comment')}" style="white-space: pre;"/>
+                            <h5>Date:</h5>
+                            <h:outputText value="#{change.changeItem.optString('date')}"/>
+                            <h5>Files:</h5>
+                            <ui:repeat value="#{change.paths}" var="path" rendered="#{change.paths != null}">
+                                <h:outputLabel for="outputFile" value="*" rendered="#{path.optString('editType') == 'edit'}"/>
+                                <h:outputLabel for="outputFile" value="+" rendered="#{path.optString('editType') == 'add'}"/>
+                                <h:outputLabel for="outputFile" value="-" rendered="#{path.optString('editType') == 'delete'}"/>
+                                <h:outputText id="outputFile" value="#{path.optString('file')}"/>
+                                <br/>
+                            </ui:repeat>
+                            <p:separator rendered="#{!iteration.last}"/>
+                        </ui:repeat>
+                        <p:separator rendered="#{buildBean.changes != null}"/>
+                        <ui:repeat value="#{buildBean.gitGerritChanges}" var="change" varStatus="iteration">
+                            <h4>
+                                <ci:autoLinkOutputText value="#{iteration.index + 1}. #{change.subject}"/>
+                                <h:outputLink value="#{change.url}" rendered="#{change.url != null}" target="_blank">
+                                    <h:graphicImage id="gerritCommitIcon" value="/resources/images/gerrit.png" styleClass="actionButton"/>
+                                    <pe:tooltip for="gerritCommitIcon" value="Link to change in Gerrit" />
+                                </h:outputLink>
+                            </h4>
+                            <h5>
+                                <h:outputLink value="/secure/pages/changeDetails.xhtml">
+                                    <h:outputText value="#{change.commitId}"/>
+                                    <f:param name="commitId" value="#{change.commitId}"/>
+                                </h:outputLink>
+                                <h:outputText value=" by #{change.authorName}"/>
+                            </h5>
+                            <ci:autoLinkOutputText value="#{change.message}" style="white-space: pre;"
+                                                   rendered="#{change.message != change.subject and change.message != null}"/>
+
+                            <h5>
+                                <h:panelGroup>
+                                    <h:outputText value="Changed files "/>
+                                    <p:selectBooleanButton value="#{showChangedFiles}" onLabel="Hide" offLabel="Show">
+                                        <p:ajax update="changedFiles" />
+                                    </p:selectBooleanButton>
+                                </h:panelGroup>
+                            </h5>
+                            <h:panelGroup id="changedFiles">
+                                <ul>
+                                    <ui:repeat value="#{buildBean.getAddedFiles(change)}" var="c" rendered="#{showChangedFiles}">
+                                        <li>
+                                            <h:outputText value="A #{c.filePath}" style="color: darkgreen;"/>
+                                        </li>
+                                    </ui:repeat>
+                                    <ui:repeat value="#{buildBean.getModifiedFiles(change)}" var="c" rendered="#{showChangedFiles}">
+                                        <li>
+                                            <h:outputText value="M #{c.filePath}" style="color: blue;"/>
+                                        </li>
+                                    </ui:repeat>
+                                    <ui:repeat value="#{buildBean.getRemovedFiles(change)}" var="c" rendered="#{showChangedFiles}">
+                                        <li>
+                                            <h:outputText value="D #{c.filePath}" style="color: crimson;"/>
+                                        </li>
+                                    </ui:repeat>
+                                    <ui:repeat value="#{buildBean.getRenamedFiles(change)}" var="c" rendered="#{showChangedFiles}">
+                                        <li>
+                                            <h:outputText value="R #{c.filePath}" style="color: cadetblue"/>
+                                        </li>
+                                    </ui:repeat>
+                                </ul>
+                            </h:panelGroup>
+                            <h5>Date:</h5>
+                            <h:outputText value="#{change.commitTime}"/>
+                            <h5>Status:</h5>
+                            <h:outputText value="#{change.status}"/>
+                            <ui:repeat value="#{buildBean.getParentChanges(change)}" var="parent">
+                                <h5>Parent Commit:</h5>
+                                <h:outputLink value="/secure/pages/changeDetails.xhtml">
+                                    <h:outputText value="#{parent.commitId} - #{parent.subject}"/>
+                                    <f:param name="commitId" value="#{parent.commitId}"/>
+                                </h:outputLink>
+                                <h:outputLink value="#{parent.url}" rendered="#{parent.url != null}" target="_blank">
+                                    <h:graphicImage id="gerritParentIcon" value="/resources/images/gerrit.png" styleClass="actionButton"/>
+                                    <pe:tooltip for="gerritParentIcon" value="Link to change in Gerrit" />
+                                </h:outputLink>
+                            </ui:repeat>
+                            <ui:repeat value="#{buildBean.getChildChanges(change)}" var="child">
+                                <h5>Child Commit:</h5>
+                                <h:outputLink value="/secure/pages/changeDetails.xhtml">
+                                    <h:outputText value="#{child.commitId} - #{child.subject}"/>
+                                    <f:param name="commitId" value="#{child.commitId}"/>
+                                </h:outputLink>
+                                <h:outputLink value="#{child.url}" rendered="#{child.url != null}" target="_blank">
+                                    <h:graphicImage id="gerritChildIcon" value="/resources/images/gerrit.png" styleClass="actionButton"/>
+                                    <pe:tooltip for="gerritChildIcon" value="Link to change in Gerrit" />
+                                </h:outputLink>
+                            </ui:repeat>
+                            <p:separator rendered="#{!iteration.last}"/>
+                        </ui:repeat>
+                    </p:panel>
+                </h:form>
+
+                <script type="text/javascript" src="#{request.contextPath}/secure/resources/js/jquery.jsPlumb-1.3.16-all-min.js"/>
+                <script type="text/javascript" src="#{request.contextPath}/secure/resources/js/buildPlot.js"/>
+                <pe:tooltip value="Mandatory verification" forSelector=".verificationMandatory"
+                            shared="true" showEffect="fade" hideEffect="fade" myPosition="top right" atPosition="bottom center"/>
+                <pe:tooltip value="Optional verification" forSelector=".verificationOptional"
+                            shared="true" showEffect="fade" hideEffect="fade" myPosition="top right" atPosition="bottom center"/>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,297 @@
+#adminToolbar .ui-toolbar .ui-separator {
+    padding-bottom: 3px;
+}
+
+#content .ui-messages {
+    margin-top: 0;
+}
+
+.ui-panel .ui-panel-titlebar {
+    height: 20px !important;
+}
+
+.disabledVerification > .ui-chkbox-box {
+    background: silver;
+    border: solid 1px gray;
+}
+
+
+.ui-datagrid-no-border>.ui-datagrid-content {
+    border: none;
+}
+
+.ui-picklist {
+    margin-top: 15px;
+}
+
+.ui-inputtext {
+    width: 300px
+}
+
+.ui-messages-warn, .ui-message-warn {
+    background-color: #414141;
+    border-color: #b3b3b3;
+}
+
+.ui-messages-info, .ui-message-info {
+    background-color: #f1f1f1;
+    border-color: #b3b3b3;
+}
+
+.ui-messages-fatal, .ui-message-fatal {
+    color: #FF2E2A;
+    background-color: #353535;
+    border-color: #b3b3b3;
+}
+
+.ui-dialog-content .ui-datatable table {
+    table-layout: auto;
+}
+
+.ui-tabs.ui-tabs-top > .ui-tabs-nav {
+    overflow: auto;
+    padding: 0;
+    height: 30px;
+}
+
+.ui-tabs .ui-helper-clearfix::after {
+    content: none;
+}
+
+.ui-timeline-container {
+    border: 2px solid #999;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+    -webkit-box-shadow: 2px 2px 2px 0px rgba(220, 220, 220, 1);
+    box-shadow: 2px 2px 2px 0px rgba(220, 220, 220, 1);
+}
+
+.ui-timeline-frame {
+    background-color: #fffdf6;
+}
+
+.ui-dashboard-column {
+    width:50%;
+    min-width: 300px;
+    padding-bottom: 0px;
+}
+
+.myToolboxBoard .ui-dashboard-column {
+    width: 100%;
+    float: none;
+}
+
+.myToolboxBoard .ui-dashboard-column .ui-panel {
+    padding: 0;
+    margin-bottom: 15px;
+    float: none;
+}
+
+.myToolboxBoard .ui-dashboard-column .ui-panel .ui-panel-titlebar {
+    border: 0;
+}
+
+.myToolboxBoard .ui-dashboard-column .ui-panel .ui-panel-content .ui-datatable {
+    margin: -0.5em -1em;
+}
+
+.myToolboxBoard .ui-dashboard-column .ui-datatable .ui-datatable-header {
+    display: none;
+}
+
+.myToolboxBoard .ui-dashboard-column .ui-datatable .ui-widget-header {
+    border-bottom: 0;
+    border-left: 0;
+    border-right: 0;
+}
+
+.myToolboxBoard .ui-dashboard-column .ui-datatable th:last-child,
+.myToolboxBoard .ui-dashboard-column .ui-datatable .ui-datatable-even td:last-child,
+.myToolboxBoard .ui-dashboard-column .ui-datatable .ui-datatable-odd td:last-child {
+    border-right: 0;
+}
+
+.myToolboxBoard .ui-dashboard-column .ui-datatable .ui-datatable-even td:first-child,
+.myToolboxBoard .ui-dashboard-column .ui-datatable th:first-child,
+.myToolboxBoard .ui-dashboard-column .ui-datatable .ui-datatable-odd td:first-child,
+.myToolboxBoard .ui-dashboard-column .ui-datatable ui-datatable-empty-message td:first-child {
+    border-left: 1px solid transparent;
+}
+
+.ui-picklist {
+    width: 600px;
+    border-spacing: 0;
+}
+
+.ui-picklist .ui-picklist-list {
+    width: 280px;
+}
+
+.ui-widget-header {
+    font-weight: normal;
+}
+.ui-toolbar{
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FEFEFE, endColorstr=#EFEFEF);
+    background: -webkit-gradient(linear, left top, left bottom, from(#FEFEFE), to(#EFEFEF));
+    background: -moz-linear-gradient(top,  #FEFEFE,  #EFEFEF);
+    border: 1px solid #c9c9c9;
+}
+
+.ui-toolbar {
+    padding: 8px;
+}
+
+.ui-toolbar .ui-separator {
+    margin-top: -2px;
+}
+
+.ui-toolbar a {
+    margin-right: 7px;
+}
+
+.ui-toolbar .ui-icon-grip-dotted-vertical {
+    background-image: url('../images/menu_arrow_blue.png');
+    background-position: 0 0;
+}
+
+.ui-widget-header {
+    font-weight: normal;
+}
+
+.ui-tooltip {
+    font-size: 1.1em;
+    padding: 0px;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+}
+
+.ui-tooltip-content {
+    border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    -webkit-border-radius: 0 !important;
+    padding: 10px;
+}
+
+.ui-tooltip-shadow .ui-tooltip-content {
+    filter: "progid:DXImageTransform.Microsoft.Shadow(enabled=false)";
+}
+
+.ui-autocomplete .ui-button {
+    margin-top: -3px;
+}
+
+.ui-selectonemenu .ui-selectonemenu-trigger .ui-icon {
+    margin-top: 6px;
+}
+
+.ui-tooltip, .qtip {
+    word-wrap: break-word;
+    max-width: none;
+}
+
+.event-scm-timespan .ui-progressbar-value {
+    background: #FFFACD;
+}
+
+.event-build-timespan .ui-progressbar-value {
+    background: #F0FFF0;
+}
+
+.event-test-timespan .ui-progressbar-value {
+    background: #FFE4E1;
+}
+
+.event-total-timespan .ui-progressbar-value {
+    background: #E6E6FA;
+}
+
+.event-scm-timespan .ui-progressbar-label {
+    font-weight: normal;
+}
+
+.event-build-timespan .ui-progressbar-label {
+    font-weight: normal;
+}
+
+.event-test-timespan .ui-progressbar-label {
+    font-weight: normal;
+}
+
+.event-total-timespan .ui-progressbar-label {
+    font-weight: normal;
+}
+
+.overlay .jqplot-target, .overlay .ui-timeline-container {
+    width: 97% !important;
+    height: 90% !important;
+}
+
+.overlay .ui-timeline-container .ui-timeline-frame {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.ui-picklist .ui-picklist-filter {
+    width: 98%;
+    padding-right: 0;
+}
+
+.metrics-checkboxmenu .ui-selectcheckboxmenu {
+    vertical-align: middle;
+}
+
+.metrics-checkboxmenu .ui-chkbox {
+    vertical-align: middle;
+}
+.ui-treetable-data tr:hover td {
+    background-color: #f9f9f9;
+}
+
+.ui-dialog .ui-dialog-content {
+    padding: 10px 20px 20px 20px;
+}
+
+.ui-dialog-content {
+    max-height: 600px;
+    overflow: auto;
+}
+
+.ui-dialog .ui-dialog-titlebar-close {
+    margin-top: 10px;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+    padding: 10px;
+}
+
+.ui-datatable table td {
+    white-space: normal;
+}
+
+.ui-datatable .ui-column-filter {
+    display: inline-block;
+    margin: 0 0 0 10px;
+}
+
+.ui-datatable .ui-datatable-header {
+    text-align: left;
+}
+
+.ui-dashboard-column .ui-panel .ui-panel-titlebar {
+    cursor: move;
+}
+
+.advancedTriggeringOptionsPanel {
+    width: 310px;
+    margin-top: 20px;
+}
+
+.advancedTriggeringOptionsPanel .ui-panel-content {
+    padding: 0 !important;
+}
+
+.introjs-disabled {
+    display: none;
+}

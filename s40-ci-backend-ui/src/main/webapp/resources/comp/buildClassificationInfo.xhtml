@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <composite:attribute name="classifiable"/>
+        <composite:attribute name="classified"/>
+        <composite:attribute name="classifiedOk"/>
+        <composite:attribute name="phase"/>
+        <composite:attribute name="styleClass"/>
+        <composite:attribute name="attrId"/>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <h:panelGroup layout="block" id="cl_#{cc.attrs.attrId}" styleClass="#{cc.attrs.styleClass}">
+            <h:outputText id="classOkText" value="OK"
+                          rendered="#{cc.attrs.classifiedOk and cc.attrs.classified and cc.attrs.classifiable}"
+                          style="display: #{cc.attrs.phase != 'FINISHED' ? 'none' : 'inline-block'}"/>
+            <h:graphicImage id="classOk" value="/resources/images/build_success.png" styleClass="actionButton"
+                            rendered="#{cc.attrs.classifiedOk and cc.attrs.classified and cc.attrs.classifiable}"
+                            style="display: #{cc.attrs.phase != 'FINISHED' ? 'none' : 'inline-block'}"/>
+            <h:outputText id="classFailText" value="NOT OK"
+                          rendered="#{cc.attrs.classifiedOk == false and cc.attrs.classified and cc.attrs.classifiable}"
+                          style="display: #{cc.attrs.phase != 'FINISHED' ? 'none' : 'inline-block'}"/>
+            <h:graphicImage id="classFail" value="/resources/images/build_failure.png" styleClass="actionButton"
+                            rendered="#{cc.attrs.classifiedOk == false and cc.attrs.classified and cc.attrs.classifiable}"
+                            style="display: #{cc.attrs.phase != 'FINISHED' ? 'none' : 'inline-block'}"/>
+            <h:graphicImage id="notClassified" value="/resources/images/build_unstable.png" styleClass="actionButton"
+                            rendered="#{cc.attrs.classified == false and cc.attrs.classifiable}"
+                            style="display: #{cc.attrs.phase != 'FINISHED' ? 'none' : 'inline-block'}"/>
+            <h:outputText id="notClassifiedText" value="NOT CLASSIFIED"
+                          rendered="#{cc.attrs.classified == false and cc.attrs.classifiable}"
+                          style="display: #{cc.attrs.phase != 'FINISHED' ? 'none' : 'inline-block'}"/>
+        </h:panelGroup>
+    </cc:implementation>
+</html>

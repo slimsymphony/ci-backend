@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <composite:attribute name="status"/>
+        <composite:attribute name="phase"/>
+        <composite:attribute name="styleClass"/>
+        <composite:attribute name="attrId"/>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <h:panelGroup layout="block" id="bi_#{cc.attrs.attrId}" styleClass="#{cc.attrs.styleClass}">
+            <h:graphicImage value="/resources/images/loading.gif" styleClass="actionButton" rendered="#{cc.attrs.phase == 'STARTED' or cc.attrs.phase == 'CONFIGURED'}"/>
+            <h:outputText id="buildStatus" value="#{cc.attrs.phase}"/>
+            <h:graphicImage value="/resources/images/build_success.png" styleClass="actionButton" title="Success" rendered="#{cc.attrs.status == 'SUCCESS' and cc.attrs.phase == 'FINISHED'}"/>
+            <h:graphicImage value="/resources/images/build_unstable.png" styleClass="actionButton" title="Unstable" rendered="#{cc.attrs.status == 'UNSTABLE'}"/>
+            <h:graphicImage value="/resources/images/build_failure.png" styleClass="actionButton" title="Failure" rendered="#{cc.attrs.status == 'FAILURE'}"/>
+            <h:graphicImage value="/resources/images/build_not_built.png" styleClass="actionButton" title="Not built" rendered="#{cc.attrs.status == 'NOT_BUILT'}"/>
+            <h:graphicImage value="/resources/images/build_aborted.png" styleClass="actionButton" title="Aborted" rendered="#{cc.attrs.status == 'ABORTED'}"/>
+        </h:panelGroup>
+    </cc:implementation>
+</html>

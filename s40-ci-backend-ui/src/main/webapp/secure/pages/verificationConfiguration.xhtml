@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+
+    <body>
+        <ui:composition template="../template/layout.xhtml">
+
+            <ui:define name="contentTitle">#{jobBean.verification.displayName} configuration</ui:define>
+            <ui:define name="contentMenu">
+                <ci:configureButton page="/secure/pages/verificationEditor.xhtml?verificationId=#{jobBean.verification.id}"
+                                    tooltip="Configure verification" rendered="#{(httpSessionBean.admin or (jobBean.toolboxOrDraftVerification and httpSessionBean.loggedIn))}"/>
+                <ci:helpButton id="helpButton" page="verificationConfiguration"/>
+            </ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="#{jobBean.project.displayName}" outcome="projectDetails">
+                    <f:param name="projectId" value="#{jobBean.project.id}"/>
+                </h:link>
+                <h:link value="#{jobBean.verification.displayName}" outcome="verificationDetails">
+                    <f:param name="verificationId" value="#{jobBean.verification.id}"/>
+                </h:link>
+                <h:link value="Configuration" outcome="verificationConfiguration"
+                        styleClass="active">
+                    <f:param name="verificationId" value="#{jobBean.verification.id}"/>
+                </h:link>
+            </ui:define>
+
+            <ui:define name="content">
+                <ci:announcement model="#{jobBean.announcementModel}"/>
+                <h:outputText value="You do not have permission to the requested resource. However, this might be due to access control information synchronization delay from Gerrit. Please refresh the page approximately after one minute. If the problem persists, please contact I_EXT_S40_CI20_SUPPORT@nokia.com." rendered="#{jobBean.verification == null}"/>
+                <h:outputText value="This verification has no build configurations" rendered="#{jobBean.hasVerifications() == false}"/>
+
+                <p:dataTable id="preVerificationsTable" var="preVerification" value="#{jobBean.preVerifications}"
+                             rendered="#{not empty jobBean.preVerifications and jobBean.verification != null}" style="margin-bottom: 20px;">
+
+                    <f:facet name="header">Pre-build verifications</f:facet>
+                    <p:column>
+                        <h:outputText value="#{preVerification.displayName}"/>
+                    </p:column>
+                </p:dataTable>
+
+                <p:dataTable id="enabledVerificationsTable" var="verification" value="#{jobBean.enabledVerifications}"
+                             rendered="#{not empty jobBean.enabledVerifications and jobBean.verification != null}" style="margin-bottom: 20px;">
+                    <f:facet name="header">Build verifications</f:facet>
+                    <p:column sortBy="#{verification.verification.displayName}">
+                        <f:facet name="header">Verification</f:facet>
+                        <h:outputText value="#{verification.verification.displayName}"/>
+                    </p:column>
+                    <p:column sortBy="#{verification.product.displayName}">
+                        <f:facet name="header">Product</f:facet>
+                        <h:outputText value="#{verification.product.displayName}"/>
+                    </p:column>
+                    <p:column sortBy="#{verification.cardinality}">
+                        <f:facet name="header">Cardinality</f:facet>
+                        <h:graphicImage value="/resources/images/build_type_mandatory.png"
+                                        rendered="#{verification.cardinality == 'MANDATORY'}"
+                                        styleClass="verificationMandatory actionButton"/>
+                        <h:graphicImage value="/resources/images/build_type_optional.png"
+                                        rendered="#{verification.cardinality == 'OPTIONAL'}"
+                                        styleClass="verificationOptional actionButton"/>
+                        <pe:tooltip value="Mandatory verification" forSelector=".verificationMandatory"
+                                    shared="true" showEffect="fade" hideEffect="fade" myPosition="top right" atPosition="bottom center"/>
+                        <pe:tooltip value="Optional verification" forSelector=".verificationOptional"
+                                    shared="true" showEffect="fade" hideEffect="fade" myPosition="top right" atPosition="bottom center"/>
+                    </p:column>
+                </p:dataTable>
+
+                <p:dataTable id="enabledCustomVerificationsTable" var="verification" value="#{jobBean.enabledCustomVerifications}"
+                             rendered="#{not empty jobBean.enabledCustomVerifications and jobBean.verification != null}" style="margin-bottom: 20px;">
+                    <f:facet name="header">Build custom verifications</f:facet>
+                    <p:column sortBy="#{verification.customVerification.verification.displayName}">
+                        <f:facet name="header">Verification</f:facet>
+                        <h:outputText value="#{verification.customVerification.verification.displayName}"/>
+                    </p:column>
+                    <p:column sortBy="#{verification.customVerification.description}">
+                        <f:facet name="header">Description</f:facet>
+                        <h:outputText value="#{verification.customVerification.description}"/>
+                    </p:column>
+                    <p:column sortBy="#{verification.product.displayName}">
+                        <f:facet name="header">Product</f:facet>
+                        <h:outputText value="#{verification.product.displayName}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Custom parameters</f:facet>
+                        <h:outputText value="#{jobBean.getCustomParameterString(verification)}"/>
+                    </p:column>
+                    <p:column sortBy="#{verification.cardinality}">
+                        <f:facet name="header">Cardinality</f:facet>
+                        <h:graphicImage value="/resources/images/build_type_mandatory.png"
+                                        rendered="#{verification.cardinality == 'MANDATORY'}"
+                                        styleClass="verificationMandatory actionButton"/>
+                        <h:graphicImage value="/resources/images/build_type_optional.png"
+                                        rendered="#{verification.cardinality == 'OPTIONAL'}"
+                                        styleClass="verificationOptional actionButton"/>
+                        <pe:tooltip value="Mandatory verification" forSelector=".verificationMandatory"
+                                    shared="true" showEffect="fade" hideEffect="fade" myPosition="top right" atPosition="bottom center"/>
+                        <pe:tooltip value="Optional verification" forSelector=".verificationOptional"
+                                    shared="true" showEffect="fade" hideEffect="fade" myPosition="top right" atPosition="bottom center"/>
+                    </p:column>
+                </p:dataTable>
+
+                <p:dataTable id="postVerificationsTable" var="postVerification" value="#{jobBean.postVerifications}"
+                             rendered="#{not empty jobBean.postVerifications and jobBean.verification != null}" style="margin-bottom: 20px;">
+                    <f:facet name="header">Post-build verifications</f:facet>
+                    <p:column>
+                        <h:outputText value="#{postVerification.displayName}"/>
+                    </p:column>
+                </p:dataTable>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <composite:attribute name="reports"/>
+        <composite:attribute name="showScoreInput"/>
+        <composite:attribute name="minInt"/>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <h4>Gerrit reporting</h4>
+        <h:dataTable id="gerritReportingTable" value="#{cc.attrs.reports}" var="report" class="reportingTable" columnClasses="topBorder, topBorder">
+            <h:column>
+                <p:selectBooleanCheckbox value="#{report.enabled}"/>
+                <h:outputText value="#{report.title.stringValue}"/>
+            </h:column>
+            <h:column>
+                <h:panelGrid id="gerritReport" columns="2">
+                    <h:outputLabel for="gerritVerifiedScoreInput" value="Verified" rendered="#{cc.attrs.showScoreInput}"/>
+                    <p:selectOneMenu id="gerritVerifiedScoreInput" value="#{report.action.verifiedScore}" rendered="#{cc.attrs.showScoreInput}" style="width: 50px;">
+                        <f:selectItem itemLabel="" itemValue="#{cc.attrs.minInt}"/>
+                        <f:selectItem itemLabel="-1" itemValue="-1"/>
+                        <f:selectItem itemLabel="0" itemValue="0"/>
+                        <f:selectItem itemLabel="+1" itemValue="1"/>
+                    </p:selectOneMenu>
+                    <h:outputLabel for="gerritReviewScoreInput" value="Code-Review" rendered="#{cc.attrs.showScoreInput}"/>
+                    <p:selectOneMenu id="gerritReviewScoreInput" value="#{report.action.reviewScore}" rendered="#{cc.attrs.showScoreInput}" style="width: 50px;">
+                        <f:selectItem itemLabel="" itemValue="#{cc.attrs.minInt}"/>
+                        <f:selectItem itemLabel="-2" itemValue="-2"/>
+                        <f:selectItem itemLabel="-1" itemValue="-1"/>
+                        <f:selectItem itemLabel="0" itemValue="0"/>
+                        <f:selectItem itemLabel="+1" itemValue="1"/>
+                        <f:selectItem itemLabel="+2" itemValue="2"/>
+                    </p:selectOneMenu>
+                    <h:outputLabel for="gerritMessageInput" value="Message"/>
+                    <p:inputTextarea id="gerritMessageInput" value="#{report.action.message}" label="message" rows="6" cols="50"/>
+                </h:panelGrid>
+            </h:column>
+        </h:dataTable>
+    </cc:implementation>
+</html>

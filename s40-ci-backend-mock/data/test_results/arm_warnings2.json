@@ -1,0 +1,97 @@
+{
+    "path" : ".",
+    "warnings" : [
+        {
+            "path" : "aqua_ds_3968", 
+            "warnings" : [
+                {
+                    "path" : "include",
+                    "warnings" : [
+                        {
+                            "file" : "os_vmm.h",
+                            "lineNumber" : "381",
+                            "warningID" : "C4005",
+                            "warningMsg" : "'__OS_FILE__' : macro redefinition"
+                        },
+                        {   
+                            "file" : "os_vmm.h",
+                            "lineNumber" : "512",
+                            "warningID" : "C4023",
+                            "warningMsg" : "'__UINT16__' : macro redefinition"
+                        }
+                    ]
+                },    
+                {
+                    "file" : "some_include.h",
+                    "lineNumber" : "100",
+                    "warningID" : "C2432",
+                    "warningMsg" : "This is in the aqua_ds_3968 folder"
+                },
+                {
+                    "file" : "some_include2.h",
+                    "lineNumber" : "101",
+                    "warningID" : "C2632",
+                    "warningMsg" : "This is in the aqua_ds_3968 folder"
+                }
+            ]
+        },
+        {
+            "path" : "s40_sw",
+            "warnings" : [
+                {
+                    "path" : "common_sw",
+                    "warnings" : [
+                        {
+                            "path" : "middleware",
+                            "warnings" : [
+                                {
+                                    "path" : "SQLite",
+                                    "warnings" : [
+                                        {
+                                            "path" : "s40vfs",
+                                            "warnings" : [
+                                                {
+                                                    "file" : "sqlite3_vfs.c",
+                                                    "lineNumber" : "207",
+                                                    "warningID" : "C4244",
+                                                    "warningMsg" : "'function' : conversion from 'sqlite_int64' to 'int32', possible loss of data"
+                                                },
+                                                {
+                                                    "file" : "sqlite3_vfs.c",
+                                                    "lineNumber" : "356",
+                                                    "warningID" : "C4244",
+                                                    "warningMsg" : "'function' : conversion from 'sqlite_int64' to 'int32', possible loss of data"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "path" : "call_core_sw",
+                                    "warnings" : [
+                                        {
+                                            "path" : "ccs",
+                                            "warnings" : [
+                                                {
+                                                    "path" : "dtmf",
+                                                    "warnings" : [
+                                                        {
+                                                            "file" : "ccs_dtmf_000.csm",
+                                                            "lineNumber" : "204",
+                                                            "warningID" : "C4244",
+                                                            "warningMsg" : "'=' : conversion from 'uint32' to 'uint8', possible loss of data"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

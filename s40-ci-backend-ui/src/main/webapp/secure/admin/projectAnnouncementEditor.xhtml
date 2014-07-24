@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+
+    <body>
+
+        <ui:composition template="../template/editorLayout.xhtml">
+            <ui:define name="contentTitle">Project announcement</ui:define>
+            <ui:param name="backingBean" value="#{projectAnnouncementBean}"/>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="Admin" outcome="admin"/>
+                <h:link value="CI Info" outcome="info"/>
+                <h:link value="Edit project announcement #{backingBean.id}" outcome="projectAnnouncementEditor" styleClass="active"
+                        rendered="#{not empty backingBean.id}">
+                    <f:param name="id" value="#{backingBean.id}"/>
+                </h:link>
+                <h:link value="Add new project announcement" outcome="projectAnnouncementEditor" styleClass="active" rendered="#{empty backingBean.id}"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <h:panelGrid id="announcementEditTable" columns="2">
+                        <h:outputLabel for="announcementMessageInput" value="Message"/>
+                        <p:inputTextarea id="announcementMessageInput" value="#{backingBean.announcement.message}" required="true" label="message"
+                                         rows="5" cols="40"/>
+                        <h:outputLabel for="announcementTypeInput" value="Type"/>
+                        <p:selectOneMenu id="announcementTypeInput" value="#{backingBean.announcement.type}" required="true">
+                            <f:selectItems value="#{backingBean.announcement.type.values()}"/>
+                        </p:selectOneMenu>
+                        <h:outputLabel for="announcementProjectInput" value="Project"/>
+                        <p:selectOneMenu id="announcementProjectInput" value="#{backingBean.announcement.project}" converter="ProjectConverter" required="true">
+                            <f:selectItem itemLabel="Not Set" itemValue=""/>
+                            <f:selectItems value="#{projectsBean.projects}" var="projectValue" itemLabel="#{projectValue.displayName}"
+                                           itemValue="#{projectValue}"/>
+                        </p:selectOneMenu>
+                        <f:facet name="footer">
+                            <p:commandButton id="announcementSaveButton" value="Save" action="#{backingBean.save}" ajax="false"/>
+                            <p:commandButton id="announcementCancelButton" value="Cancel" action="#{backingBean.cancelEdit}" ajax="false" immediate="true"/>
+                        </f:facet>
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

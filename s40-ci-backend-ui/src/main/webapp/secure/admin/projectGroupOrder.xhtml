@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+
+    <body>
+
+        <ui:composition template="../template/editorLayout.xhtml">
+            <ui:define name="contentTitle">Project group order</ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="Admin" outcome="admin"/>
+                <h:link value="Project groups" outcome="projectGroups"/>
+                <h:link value="Project group order" outcome="projectGroupOrder" styleClass="active"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <p:orderList id="projectGroupsTable" value="#{projectGroupsOrderBean.projectGroups}" var="p"
+                                 itemValue="#{p}" converter="ProjectGroupConverter">
+                        <f:facet name="caption">
+                            <h:outputText value="Group name"/>
+                        </f:facet>
+                        <p:column>
+                            <h:outputText value="#{p.name}"/>
+                        </p:column>
+                    </p:orderList>
+                    <p:commandButton id="projectGroupSaveButton" value="Save" action="#{projectGroupsOrderBean.save}"
+                                     ajax="false"/>
+                    <p:commandButton id="projectGroupCancelButton" value="Cancel" action="#{projectGroupsOrderBean.cancelEdit}"
+                                     ajax="false" immediate="true"/>
+
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

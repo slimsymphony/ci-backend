@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+
+    <body>
+
+        <ui:composition template="../template/editorLayout.xhtml">
+            <ui:define name="contentTitle">Release info</ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="Admin" outcome="admin"/>
+                <h:link value="CI Info" outcome="info"/>
+                <h:link value="Edit #{releaseInfoBean.releaseInfo.version}" outcome="releaseInfoEditor" styleClass="active"
+                        rendered="#{not empty releaseInfoBean.releaseInfo.id}">
+                    <f:param name="release" value="#{releaseInfoBean.releaseInfo.id}"/>
+                </h:link>
+                <h:link value="Add new release" outcome="releaseInfoEditor" styleClass="active" rendered="#{empty releaseInfoBean.releaseInfo.id}"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="releaseInfoEditorForm">
+                    <h:panelGrid id="releaseInfoTable" columns="2">
+                        <h:outputLabel for="releaseVersion" value="Version"/>
+                        <p:inputText id="pageName" value="#{releaseInfoBean.releaseInfo.version}"
+                                     label="releaseVersion"/>
+
+                        <h:outputLabel for="releaseDate" value="Release date"/>
+                        <p:calendar id="releaseDate" value="#{releaseInfoBean.releaseInfo.releaseDate}"/>
+
+                        <h:outputLabel for="releaseContent" value="Content"/>
+                        <p:editor id="releaseContent" value="#{releaseInfoBean.releaseInfo.info}" width="600" height="400"/>
+
+                        <f:facet name="footer">
+                            <p:commandButton id="releaseInfoSaveButton" value="Save" action="#{releaseInfoBean.save}"
+                                             ajax="false"/>
+                            <p:commandButton id="releaseInfoCancelButton" value="Cancel" action="#{releaseInfoBean.cancelEdit}"
+                                             ajax="false" immediate="true"/>
+                        </f:facet>
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

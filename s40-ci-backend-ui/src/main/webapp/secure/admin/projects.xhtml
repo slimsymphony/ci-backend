@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+
+        <ui:composition template="./../template/adminLayout.xhtml">
+
+            <ui:define name="contentTitle">Projects</ui:define>
+
+            <ui:define name="contentMenu">
+                <ci:addButton page="/secure/admin/projectEditor.xhtml" tooltip="Add new project"/>
+            </ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="Admin" outcome="admin"/>
+                <h:link value="Projects" outcome="projects" styleClass="active"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <ui:param name="groupedProjectModel" value="#{projectsAdminBean.getGroupedProjectModel()}"/>
+                <h:form>
+                    <p:dataGrid styleClass="ui-datagrid-no-border" var="projectGroupUiLabel" value="#{groupedProjectModel.projectGroupUiLabels}" columns="1" rows="#{groupedProjectModel.projectGroupUiLabels.size()}">
+                        <p:column>
+
+                            <h3 class="contentTitleText">#{projectGroupUiLabel.groupCaption}</h3>
+                            <p:dataTable id="projectsTable" value="#{groupedProjectModel.groupedProjects.get(projectGroupUiLabel)}"
+                                         var="p">
+                                <p:column sortBy="#{p.displayName}">
+                                    <f:facet name="header">Display Name</f:facet>
+                                    <h:outputLink value="/secure/admin/projectEditor.xhtml">
+                                        <h:outputText value="#{p.displayName}"/>
+                                        <f:param name="projectId" value="#{p.id}"/>
+                                    </h:outputLink>
+                                </p:column>
+                                <p:column sortBy="#{p.name}">
+                                    <f:facet name="header">Name</f:facet>
+                                    <h:outputText value="#{p.name}"/>
+                                </p:column>
+                                <p:column sortBy="#{p.configurationResponsible}">
+                                    <f:facet name="header">CI configuration responsible</f:facet>
+                                    <h:outputText value="#{p.configurationResponsible}"/>
+                                </p:column>
+                                <p:column sortBy="#{p.testingResponsible}">
+                                    <f:facet name="header">CI testing responsible</f:facet>
+                                    <h:outputText value="#{p.testingResponsible}"/>
+                                </p:column>
+                                <p:column sortBy="#{p.description}">
+                                    <f:facet name="header">Description</f:facet>
+                                    <h:outputText value="#{p.description}" escape="false"/>
+                                </p:column>
+                                <p:column sortBy="#{p.created}">
+                                    <f:facet name="header">Created</f:facet>
+                                    <h:outputText value="#{p.created}"/>
+                                </p:column>
+                                <p:column sortBy="#{p.createdBy}">
+                                    <f:facet name="header">Created by</f:facet>
+                                    <ci:userLoginNameLink id="createdBy" value="#{p.createdBy}"/>
+                                </p:column>
+                                <p:column sortBy="#{p.modified}">
+                                    <f:facet name="header">Modified</f:facet>
+                                    <ci:outputTextTimeStamp value="#{p.modified}"/>
+                                </p:column>
+                                <p:column sortBy="#{p.modifiedBy}">
+                                    <f:facet name="header">Modified by</f:facet>
+                                    <ci:userLoginNameLink id="modifiedBy" value="#{p.modifiedBy}"/>
+                                </p:column>
+                                <p:column styleClass="actionColumn">
+                                    <f:facet name="header">Actions</f:facet>
+                                    <h:outputLink value="/secure/admin/projectEditor.xhtml">
+                                        <h:graphicImage id="editProject" value="/resources/images/wrench.png"
+                                                        styleClass="actionButton"/>
+                                        <f:param name="projectId" value="#{p.id}"/>
+                                        <pe:tooltip for="editProject" value="Edit project" myPosition="top right" atPosition="bottom center"/>
+                                    </h:outputLink>
+                                    <ci:deleteBtnWithConfirmDlg id="deleteProject" actionListener="#{projectsAdminBean.delete(p)}"
+                                                                entityLabel="#{p.displayName}" tooltip="Delete project"/>
+                                </p:column>
+                            </p:dataTable>
+                        </p:column>
+                    </p:dataGrid>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

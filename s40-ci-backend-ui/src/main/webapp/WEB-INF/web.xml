@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <distributable/>
+    <module-name>s40ci-backend-ui</module-name>
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>${ui.project.stage}</param-value>
+    </context-param>
+    <context-param>
+        <param-name>com.ocpsoft.pretty.BASE_PACKAGES</param-name>
+        <param-value>com.nokia.ci.ui</param-value>
+    </context-param>
+    <context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>#{httpSessionBean.theme}</param-value>
+    </context-param>
+    <context-param>
+        <param-name>com.sun.faces.externalizeJavaScript</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>com.sun.faces.enableThreading</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>600</session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>login.xhtml</welcome-file>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+    <!-- TODO: These error mappings should be replaced with proper error handler -->
+    <error-page>
+        <exception-type>java.lang.IllegalStateException</exception-type>
+        <location>/secure/pages/projects.xhtml</location>
+    </error-page>
+    <error-page>
+        <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+        <location>/secure/pages/projects.xhtml</location>
+    </error-page>
+    <error-page>
+        <error-code>401</error-code>
+        <location>/login.xhtml</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/notFoundError.xhtml</location>
+    </error-page>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/login.xhtml</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/error.xhtml</location>
+    </error-page>
+    <error-page>
+        <error-code>501</error-code>
+        <location>/notFoundError.xhtml</location>
+    </error-page>
+
+    <!-- Security configuration -->
+    <security-constraint>
+        <display-name>Authorized pages</display-name>
+        <web-resource-collection>
+            <web-resource-name>AuthorizedPages</web-resource-name>
+            <description>Normal content pages</description>
+            <url-pattern>/page/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>Authentication needed</description>
+            <role-name>SYSTEM_ADMIN</role-name>
+            <role-name>PROJECT_ADMIN</role-name>
+            <role-name>USER</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>Old-style Authorized pages</display-name>
+        <web-resource-collection>
+            <web-resource-name>AuthorizedPages</web-resource-name>
+            <description>Normal content pages</description>
+            <url-pattern>/secure/pages/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>Authentication needed</description>
+            <role-name>SYSTEM_ADMIN</role-name>
+            <role-name>PROJECT_ADMIN</role-name>
+            <role-name>USER</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>System Administration Pages</display-name>
+        <web-resource-collection>
+            <web-resource-name>AdminPages</web-resource-name>
+            <description>System Configurations And Information</description>
+            <url-pattern>/admin/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>Admin Only</description>
+            <role-name>SYSTEM_ADMIN</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>Old-style System Administration Pages</display-name>
+        <web-resource-collection>
+            <web-resource-name>AdminPages</web-resource-name>
+            <description>System Configurations And Information</description>
+            <url-pattern>/secure/admin/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>Admin Only</description>
+            <role-name>SYSTEM_ADMIN</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>Composition Components</display-name>
+        <web-resource-collection>
+            <web-resource-name>CompositionComponents</web-resource-name>
+            <description/>
+            <url-pattern>/resources/comp/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>Authentication needed</description>
+            <role-name>SYSTEM_ADMIN</role-name>
+            <role-name>PROJECT_ADMIN</role-name>
+            <role-name>USER</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>Project Administration Pages</display-name>
+        <web-resource-collection>
+            <web-resource-name>ProjectAdminPages</web-resource-name>
+            <description>Project Configurations And Information</description>
+            <url-pattern>/admin/</url-pattern>
+            <url-pattern>/admin/projects/*</url-pattern>
+            <url-pattern>/admin/branches/*</url-pattern>
+            <url-pattern>/admin/jobs/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>Project Admin and Admin Only</description>
+            <role-name>PROJECT_ADMIN</role-name>
+            <role-name>SYSTEM_ADMIN</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>sso secured pages</web-resource-name>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <user-data-constraint>
+            <transport-guarantee>${transport-guarantee}</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    <security-role>
+        <description>System administrator</description>
+        <role-name>SYSTEM_ADMIN</role-name>
+    </security-role>
+    <security-role>
+        <description>Project administrator</description>
+        <role-name>PROJECT_ADMIN</role-name>
+    </security-role>
+    <security-role>
+        <description>Normal user</description>
+        <role-name>USER</role-name>
+    </security-role>
+
+    <!-- Page load counter filter -->
+    <filter>
+        <filter-name>CounterFilter</filter-name>
+        <filter-class>com.nokia.ci.ui.filter.CounterFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CounterFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- UTF-8 Encoding filter -->
+    <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>com.nokia.ci.ui.filter.CharacterEncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- PrettyFaces configuration -->
+    <filter>
+        <filter-name>Pretty Filter</filter-name>
+        <filter-class>com.ocpsoft.pretty.PrettyFilter</filter-class>
+        <async-supported>true</async-supported>
+    </filter>
+    <filter-mapping>
+        <filter-name>Pretty Filter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>ERROR</dispatcher>
+        <dispatcher>ASYNC</dispatcher>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>PrimeFaces FileUpload Filter</filter-name>
+        <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>PrimeFaces FileUpload Filter</filter-name>
+        <servlet-name>Faces Servlet</servlet-name>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+</web-app>

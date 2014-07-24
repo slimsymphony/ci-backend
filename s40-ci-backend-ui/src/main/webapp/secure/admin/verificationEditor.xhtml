@@ -1,0 +1,317 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+
+    <body>
+
+        <ui:composition template="../template/editorLayout.xhtml">
+            <ui:define name="contentTitle">Verification #{verificationBean.verification.displayName}</ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="Admin" outcome="admin"/>
+                <h:link value="Verifications" outcome="verifications"/>
+                <h:link value="Edit #{verificationBean.verification.displayName}" outcome="admin/verificationEditor" styleClass="active"
+                        rendered="#{not empty verificationBean.verification.id}">
+                    <f:param name="verificationId" value="#{verificationBean.verification.id}"/>
+                </h:link>
+                <h:link value="Add new verification" outcome="verificationEditor" styleClass="active" rendered="#{empty verificationBean.verification.id}"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="verificationForm">
+                    <h:panelGrid id="verificationDetailTable" columns="1">
+                        <h:panelGrid id="verificationDetailsTable" columns="2">
+                            <h:outputLabel for="verificationTypeInput" value="Type"/>
+                            <p:selectOneMenu id="verificationTypeInput" value="#{verificationBean.verification.type}">
+                                <p:ajax event="change" update="@form" process="verificationTypeInput"/>
+                                <f:selectItems value="#{verificationBean.verificationTypeValues}" />
+                            </p:selectOneMenu>
+                            <h:outputLabel for="verificationDisplayNameInput" value="Display name"/>
+                            <p:inputText id="verificationDisplayNameInput" value="#{verificationBean.verification.displayName}" label="displayName"/>
+                            <h:outputLabel for="verificationNameInput" value="Name"/>
+                            <p:inputText id="verificationNameInput" value="#{verificationBean.verification.name}" label="name"/>
+                            <h:outputLabel for="verificationParentStatusThreshold" value="Parent status threshold"/>
+                            <p:selectOneMenu id="verificationParentStatusThreshold" value="#{verificationBean.verification.parentStatusThreshold}">
+                                <f:selectItems value="#{verificationBean.buildStatusValues}" />
+                            </p:selectOneMenu>
+
+                            <h:outputLabel for="targetPlatformInput" value="Target platform"/>
+                            <p:selectOneMenu id="targetPlatformInput" value="#{verificationBean.verification.targetPlatform}" >
+                                <f:selectItems value="#{verificationBean.verificationTargetPlatformValues}" />
+                            </p:selectOneMenu>
+
+                            <h:outputLabel for="testResultTypeInput" value="Test result types"/>
+                            <p:selectManyCheckbox value="#{verificationBean.testResultTypes}" layout="pageDirection"
+                                                  id="testResultTypeInput">
+                                <f:selectItems value="#{verificationBean.testResultTypeValues}"/>
+                            </p:selectManyCheckbox>
+                            <h:outputLabel for="testResultIndexFile" value="Test result index file:"/>
+                            <p:inputText id="testResultIndexFile" value="#{verificationBean.verification.testResultIndexFile}" label="indexFile"/>
+
+                            <h:outputLabel for="verificationDescriptionInput" value="Description"/>
+                            <p:inputTextarea id="verificationDescriptionInput" value="#{verificationBean.verification.description}"
+                                             rows="5" cols="40"/>
+                        </h:panelGrid>
+
+                        <p:pickList id="parentPickList" value="#{verificationBean.parentVerifications}" var="parentVerification" converter="VerificationConverter"
+                                    itemLabel="#{parentVerification.displayName}" itemValue="#{parentVerification}" rendered="#{verificationBean.verification.type == 'NORMAL'}">
+                            <f:facet name="sourceCaption">Available Parent Verifications</f:facet>
+                            <f:facet name="targetCaption">Selected Parent Verifications</f:facet>
+                        </p:pickList>
+                        <p:pickList id="labelPickList" value="#{verificationBean.slaveLabelsDualList}" var="slaveLabel" converter="SlaveLabelConverter"
+                                    itemLabel="#{slaveLabel.name}" itemValue="#{slaveLabel}">
+                            <f:facet name="sourceCaption">Available Labels</f:facet>
+                            <f:facet name="targetCaption">Selected Labels</f:facet>
+                        </p:pickList>
+                        <p:spacer width="0" height="15" />
+                        <p:dataTable id="inputParamTable" value="#{verificationBean.verification.inputParams}" var="inputParam">
+                            <f:facet name="header">
+                                <h:outputText value="Input Parameters"/>
+                            </f:facet>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Parameter Key"/>
+                                </f:facet>
+                                <p:commandLink value="#{inputParam.paramKey}" oncomplete="inputParamDlg.show();" update=":inputParamDialog"
+                                               actionListener="#{verificationBean.selectInputParam(inputParam)}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Parameter Value"/>
+                                </f:facet>
+                                <h:outputText value="#{inputParam.paramValue}"/>
+                            </p:column>
+                            <p:column styleClass="actionColumn">
+                                <f:facet name="header">Actions</f:facet>
+                                <p:commandLink oncomplete="inputParamDlg.show();" actionListener="#{verificationBean.selectInputParam(inputParam)}" update=":inputParamDialog">
+                                    <h:graphicImage value="/resources/images/wrench.png" styleClass="actionButton"/>
+                                </p:commandLink>
+                                <p:commandLink actionListener="#{verificationBean.deleteInputParam(inputParam)}" update="@form">
+                                    <h:graphicImage value="/resources/images/bin_closed.png" styleClass="actionButton"/>
+                                </p:commandLink>
+                            </p:column>
+                            <f:facet name="footer">
+                                <p:commandLink id="showDialogButton" value="Add New Input Parameter" oncomplete="inputParamDlg.show();" update=":inputParamDialog"
+                                               actionListener="#{verificationBean.addInputParam()}"/>
+                            </f:facet>
+                        </p:dataTable>
+
+                        <p:spacer width="0" height="15" />
+                        <p:dataTable id="customParamTable" value="#{verificationBean.verification.customParams}" var="customParam"
+                                     rendered="#{verificationBean.verification.type == 'NORMAL'}">
+                            <f:facet name="header">
+                                <h:outputText value="Custom Parameters"/>
+                            </f:facet>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Display Name"/>
+                                </f:facet>
+                                <p:commandLink value="#{customParam.displayName}" oncomplete="customParamDlg.show();" update=":customParamDialog"
+                                               actionListener="#{verificationBean.selectCustomParam(customParam)}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Parameter Key"/>
+                                </f:facet>
+                                <h:outputText value="#{customParam.paramKey}"/>
+                            </p:column>
+                            <p:column styleClass="actionColumn">
+                                <f:facet name="header">Actions</f:facet>
+                                <p:commandLink oncomplete="customParamDlg.show();" actionListener="#{verificationBean.selectCustomParam(customParam)}" update=":customParamDialog">
+                                    <h:graphicImage value="/resources/images/wrench.png" styleClass="actionButton"/>
+                                </p:commandLink>
+                                <p:commandLink actionListener="#{verificationBean.deleteCustomParam(customParam)}" update="@form">
+                                    <h:graphicImage value="/resources/images/bin_closed.png" styleClass="actionButton"/>
+                                </p:commandLink>
+                            </p:column>
+                            <f:facet name="footer">
+                                <p:commandLink id="showDialogButton" value="Add New Custom Parameter" oncomplete="customParamDlg.show();" update=":customParamDialog"
+                                               actionListener="#{verificationBean.addCustomParam()}"/>
+                            </f:facet>
+                        </p:dataTable>
+
+                        <p:spacer width="0" height="15" />
+                        <p:dataTable id="resultDetailsParamTable" value="#{verificationBean.verification.resultDetailsParams}" var="resultDetailsParam">
+                            <f:facet name="header">
+                                <h:outputText value="Result Details Parameters"/>
+                            </f:facet>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Display Name"/>
+                                </f:facet>
+                                <p:commandLink value="#{resultDetailsParam.displayName}" oncomplete="resultDetailsParamDlg.show();" update=":resultDetailsParamDialog"
+                                               actionListener="#{verificationBean.selectResultDetailsParam(resultDetailsParam)}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Parameter Key"/>
+                                </f:facet>
+                                <h:outputText value="#{resultDetailsParam.paramKey}"/>
+                            </p:column>
+                            <p:column styleClass="actionColumn">
+                                <f:facet name="header">Actions</f:facet>
+                                <p:commandLink oncomplete="resultDetailsParamDlg.show();" actionListener="#{verificationBean.selectResultDetailsParam(resultDetailsParam)}" update=":resultDetailsParamDialog">
+                                    <h:graphicImage value="/resources/images/wrench.png" styleClass="actionButton"/>
+                                </p:commandLink>
+                                <p:commandLink actionListener="#{verificationBean.deleteResultDetailsParam(resultDetailsParam)}" update="@form">
+                                    <h:graphicImage value="/resources/images/bin_closed.png" styleClass="actionButton"/>
+                                </p:commandLink>
+                            </p:column>
+                            <f:facet name="footer">
+                                <p:commandLink id="showDialogButton" value="Add New Result Details Parameter" oncomplete="resultDetailsParamDlg.show();" update=":resultDetailsParamDialog"
+                                               actionListener="#{verificationBean.addResultDetailsParam()}"/>
+                            </f:facet>
+                        </p:dataTable>
+
+                        <p:spacer width="0" height="15" />
+                        <p:dataTable id="verificationFailureReasonsTable" value="#{verificationBean.verification.failureReasons}" var="failureReason">
+                            <f:facet name="header">
+                                <h:outputText value="Failure Reasons"/>
+                            </f:facet>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Name"/>
+                                </f:facet>
+                                <p:commandLink value="#{failureReason.name}" oncomplete="failureReasonDlg.show();" update=":failureReasonDialog"
+                                               actionListener="#{verificationBean.selectFailureReason(failureReason)}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="description"/>
+                                </f:facet>
+                                <h:outputText value="#{failureReason.description}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="severity"/>
+                                </f:facet>
+                                <h:outputText value="#{failureReason.severity}"/>
+                            </p:column>
+                            <p:column styleClass="actionColumn">
+                                <f:facet name="header">Actions</f:facet>
+                                <p:commandLink oncomplete="failureReasonDlg.show();" actionListener="#{verificationBean.selectFailureReason(failureReason)}" update=":failureReasonDialog">
+                                    <h:graphicImage value="/resources/images/wrench.png" styleClass="actionButton"/>
+                                </p:commandLink>
+                                <p:commandLink actionListener="#{verificationBean.deleteFailureReason(failureReason)}" update="@form">
+                                    <h:graphicImage value="/resources/images/bin_closed.png" styleClass="actionButton"/>
+                                </p:commandLink>
+                            </p:column>
+                            <f:facet name="footer">
+                                <p:commandLink id="showDialogButton" value="Add New Failure Reason" oncomplete="failureReasonDlg.show();" update=":failureReasonDialog"
+                                               actionListener="#{verificationBean.addFailureReason()}"/>
+                            </f:facet>
+                        </p:dataTable>
+
+                        <p:spacer width="0" height="15" />
+                        <f:facet name="footer">
+                            <p:commandButton id="verificationSaveButton" value="Save" action="#{verificationBean.save}" ajax="false"/>
+                            <p:commandButton id="verificationCancelButton" value="Cancel" action="#{verificationBean.cancelEdit}" ajax="false" immediate="true"/>
+                        </f:facet>
+                    </h:panelGrid>
+                </h:form>
+
+                <p:dialog id="customParamDialog" header="Custom parameter" widgetVar="customParamDlg" resizable="false" modal="true">
+                    <h:form id="customParamDialogForm">
+                        <h:panelGrid id="customParamDialogTable" columns="2" style="margin-bottom:10px">
+                            <h:outputLabel for="paramDisplayName" value="Display name:" />
+                            <p:inputText id="paramDisplayName" value="#{verificationBean.selectedCustomParam.displayName}" required="true"
+                                         requiredMessage="Please fill in parameter display name!"/>
+                            <h:outputLabel for="paramKey" value="Parameter Key:"/>
+                            <p:inputText id="paramKey" value="#{verificationBean.selectedCustomParam.paramKey}" required="true"
+                                         requiredMessage="Please fill in parameter key!"/>
+                            <h:outputText value=""/>
+                            <p:dataTable id="customParamValueTable" value="#{verificationBean.selectedCustomParam.customParamValues}" var="paramValue">
+                                <p:column headerText="Values">
+                                    <h:inputText value="#{paramValue.paramValue}"/>
+                                    <p:commandLink actionListener="#{verificationBean.deleteCustomParamValue(paramValue)}" update="@form">
+                                        <h:graphicImage value="/resources/images/bin_closed.png" styleClass="actionButton"/>
+                                    </p:commandLink>
+                                </p:column>
+                                <f:facet name="footer">
+                                    <p:commandLink value="Add New Value" actionListener="#{verificationBean.addCustomParamValue()}" update="@form"/>
+                                </f:facet>
+                            </p:dataTable>
+                        </h:panelGrid>
+
+                        <p:commandButton id="saveParamButton" value="Save" update=":verificationForm:customParamTable,customParamDialogTable"
+                                         oncomplete="if (!args.validationFailed) { customParamDlg.hide(); }"
+                                         actionListener="#{verificationBean.saveCustomParam}"/>
+                        <p:commandButton id="cancelParamButton" value="Cancel" onclick="customParamDlg.hide();" actionListener="#{verificationBean.cancelEditCustomParam}"/>
+                    </h:form>
+                </p:dialog>
+
+                <p:dialog id="inputParamDialog" header="Input parameter" widgetVar="inputParamDlg" resizable="false" modal="true">
+                    <h:form id="inputParamDialogForm">
+                        <h:panelGrid id="inputParamDialogTable" columns="2" style="margin-bottom:10px">
+                            <h:outputLabel for="inputParamKey" value="Parameter Key:"/>
+                            <h:panelGroup>
+                                <p:inputText id="inputParamKey" value="#{verificationBean.selectedInputParam.paramKey}"
+                                             required="true" requiredMessage="Please fill in the input param key!"/>
+                                <p:message for="inputParamKey"/>
+                            </h:panelGroup>
+                            <h:outputLabel for="inputParamValue" value="Parameter Value:"/>
+                            <p:inputText id="inputParamValue" value="#{verificationBean.selectedInputParam.paramValue}"
+                                         required="true" requiredMessage="Please fill in the input param value!"/>
+                        </h:panelGrid>
+
+                        <p:commandButton id="saveInputParamButton" value="Save" update=":verificationForm:inputParamTable,inputParamDialogTable"
+                                         oncomplete="if (!args.validationFailed) { inputParamDlg.hide(); }"
+                                         actionListener="#{verificationBean.saveInputParam()}"/>
+                        <p:commandButton id="cancelParamButton" value="Cancel" onclick="inputParamDlg.hide();"/>
+                    </h:form>
+                </p:dialog>
+
+                <p:dialog id="resultDetailsParamDialog" header="Result Details Parameter" widgetVar="resultDetailsParamDlg" resizable="false" modal="true">
+                    <h:form id="resultDetailsParamDialogForm">
+                        <h:panelGrid id="resultDetailsParamDialogTable" columns="2" style="margin-bottom:10px">
+                            <h:outputLabel for="resultDetailsParamDisplayName" value="Display Name:" />
+                            <p:inputText id="resultDetailsParamDisplayName" value="#{verificationBean.selectedResultDetailsParam.displayName}"
+                                         required="true" requiredMessage="Please fill in the display name!"/>
+                            <h:outputLabel for="resultDetailsParamKey" value="Parameter Key:"/>
+                            <h:panelGroup>
+                                <p:inputText id="resultDetailsParamKey" value="#{verificationBean.selectedResultDetailsParam.paramKey}"
+                                             required="true" requiredMessage="Please fill in the param key!"/>
+                                <p:message for="resultDetailsParamKey"/>
+                            </h:panelGroup>
+                            <h:outputLabel for="resultDetailsParamDesc" value="Description:"/>
+                            <p:inputTextarea id="resultDetailsParamDesc" value="#{verificationBean.selectedResultDetailsParam.description}" rows="6" cols="45"/>
+                        </h:panelGrid>
+
+                        <p:commandButton id="saveResultDetailsParamButton" value="Save" update=":verificationForm:resultDetailsParamTable,resultDetailsParamDialogTable"
+                                         oncomplete="if (!args.validationFailed) { resultDetailsParamDlg.hide(); }"
+                                         actionListener="#{verificationBean.saveResultDetailsParam()}"/>
+                        <p:commandButton id="cancelParamButton" value="Cancel" onclick="resultDetailsParamDlg.hide();"/>
+                    </h:form>
+                </p:dialog>
+
+                <p:dialog id="failureReasonDialog" header="Failure Reason" widgetVar="failureReasonDlg" resizable="false" modal="true">
+                    <h:form id="failureReasonDialogForm">
+                        <h:panelGrid id="failureReasonDialogTable" columns="2" style="margin-bottom:10px">
+                            <h:outputLabel for="failureReasonName" value="Name:" />
+                            <p:inputText id="failureReasonName" value="#{verificationBean.selectedFailureReason.name}"
+                                         required="true" requiredMessage="Please fill in the reason name!"/>
+                            <h:outputLabel for="failureReasonDescription" value="Description:"/>
+                            <p:inputTextarea id="failureReasonDescription" value="#{verificationBean.selectedFailureReason.description}" rows="6" cols="45"/>
+                            <h:outputLabel for="failureReasonSeverity" value="Severity:"/>
+                            <p:selectOneMenu id="failureReasonSeverity" value="#{verificationBean.selectedFailureReason.severity}">
+                                <f:selectItems value="#{verificationBean.severityValues}"/>
+                            </p:selectOneMenu>
+                        </h:panelGrid>
+                        <p:commandButton id="saveFailureReasonButton" value="Save" update=":verificationForm:verificationFailureReasonsTable,failureReasonDialogTable"
+                                         oncomplete="if (!args.validationFailed) { failureReasonDlg.hide(); }"
+                                         actionListener="#{verificationBean.saveFailureReason()}"/>
+                        <p:commandButton id="cancelFailureReasonButton" value="Cancel" onclick="failureReasonDlg.hide();"/>
+                    </h:form>
+                </p:dialog>
+
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

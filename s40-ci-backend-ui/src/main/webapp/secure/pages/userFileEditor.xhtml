@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+
+    <body>
+
+        <ui:composition template="../template/editorLayout.xhtml">
+            <ui:define name="contentTitle">User file #{userFileEditorBean.editedUserFile.id}</ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="User settings" outcome="userSettings"/>
+                <h:link value="Edit file #{userFileEditorBean.editedUserFile.name}" outcome="userFileEditor" styleClass="active">
+                    <f:param name="userFileId" value="#{userFileEditorBean.editedUserFile.id}"/>
+                </h:link>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:outputText value="No permission. You are not the owner of current file to edit." rendered="#{!userFileEditorBean.ownThisFile}"/>
+                <h:form id="userFilesEditorForm" rendered="#{userFileEditorBean.ownThisFile}">
+                    <h:panelGrid id="userFilesEditorTable" columns="1">
+                        <h:panelGrid columns="2" style="margin-bottom: 10px">
+                            <h:graphicImage id="addUserFile" value="/resources/images/iconic/green/list_nested_24x21.png" styleClass="actionButton"/>
+                            <h:outputText style="font-weight: bold" id="titleTxt" value="Edit User Files" />
+                        </h:panelGrid>
+                        <h:panelGrid id="userFilesEditTable" columns="2">
+                            <h:outputLabel for="fileName" value="File name"/>
+                            <p:inputText id="fileName" value="#{userFileEditorBean.editedUserFile.name}" label="Filename" required="true"/>
+                            <h:outputLabel for="mimeType" value="MIME type"/>
+                            <p:inputText id="mimeType" value="#{userFileEditorBean.editedUserFile.mimeType}" label="MIMEType" maxlength="5" required="true"/>
+
+                            <h:outputLabel for="ownershipScope" value="Ownership scope"/>
+                            <p:selectOneMenu id="ownershipScope" value="#{userFileEditorBean.editedUserFile.ownershipScope}">
+                                <f:selectItems value="#{userFileEditorBean.ownershipScopeValues}" />
+                            </p:selectOneMenu>
+                            <h:outputLabel for="accessScope" value="Access scope"/>
+                            <p:selectOneMenu id="accessScope" value="#{userFileEditorBean.editedUserFile.accessScope}">
+                                <f:selectItems value="#{userFileEditorBean.accessScopeValues}" />
+                            </p:selectOneMenu>
+                        </h:panelGrid>
+
+                        <p:focus for="fileName"/>
+
+                        <f:facet name="footer">
+                            <p:commandButton id="userFileSaveButton" value="Save" action="#{userFileEditorBean.saveEditedUserFile}" ajax="false"/>
+                            <p:commandButton id="userFileCancelButton" value="Cancel" action="#{userFileEditorBean.cancelEdit}" ajax="false" immediate="true"/>
+                        </f:facet>
+
+                    </h:panelGrid>
+                </h:form>
+
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

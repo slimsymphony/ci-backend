@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+        <ui:composition xmlns:ci="http://java.sun.com/jsf/composite/comp">
+            <div id="mainmenuContainer">
+                <h:form id="mainmenuForm">
+                    <ci:pageTutorial step="1" value="This is the main menu. You can easily find all main pages of the CI UI here. If you ever need help please refer to
+                                     the help page." position="right" id="mainmenu">
+                        <h:link id="homeMenuLink" outcome="/secure/pages/myToolbox.xhtml" value="Home" styleClass="mainmenuHome"/>
+                        <h:link id="projectsMenuLink" outcome="/secure/pages/projects.xhtml" value="Projects" styleClass="mainmenuProjects"/>
+                        <h:link id="metricsMenuLink" outcome="/secure/pages/systemMetrics.xhtml" value="Metrics" styleClass="mainmenuMetrics"/>
+                        <h:link id="helpMenuLink" outcome="/secure/pages/info.xhtml" value="Help" styleClass="mainmenuHelp"/>
+                        <h:commandLink id="supportMenuLink" action="#{httpSessionBean.restartTutorial()}" value="Tutorial" styleClass="mainmenuInfo"/>
+                        <ui:insert name="mainmenuExtraItems"></ui:insert>
+                        <h:link id="adminMenuLink" outcome="/secure/admin/admin.xhtml" value="Admin"
+                                rendered="#{httpSessionBean.admin or httpSessionBean.projectAdmin}"
+                                styleClass="mainmenuAdmin"/>
+                    </ci:pageTutorial>
+                </h:form>
+            </div>
+        </ui:composition>
+    </body>
+</html>

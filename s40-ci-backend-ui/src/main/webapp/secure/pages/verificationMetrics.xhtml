@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+
+    <body>
+        <ui:composition template="../template/layout.xhtml">
+            <ui:define name="contentTitle">#{jobBean.verification.displayName} metrics</ui:define>
+
+            <ui:define name="contentMenu">
+                <ci:helpButton id="helpButton" page="verificationMetrics"/>
+            </ui:define>
+
+            <ui:define name="head">
+                <script type="text/javascript" src="#{request.contextPath}/secure/resources/js/metricsUIUtils.js"/>
+                <script type="text/javascript">
+                    window.onload = initWindowParams;
+                    window.onresize = updateMetricsUnits;
+                </script>
+            </ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="#{jobBean.project.displayName}" outcome="projectDetails">
+                    <f:param name="projectId" value="#{jobBean.project.id}"/>
+                </h:link>
+                <h:link value="#{jobBean.verification.displayName}" outcome="verificationDetails">
+                    <f:param name="verificationId" value="#{jobBean.verification.id}"/>
+                </h:link>
+                <h:link value="Metrics" outcome="verificationMetrics"
+                        styleClass="active">
+                    <f:param name="verificationId" value="#{jobBean.verification.id}"/>
+                </h:link>
+            </ui:define>
+
+            <ui:define name="content">
+                <ci:announcement model="#{jobBean.announcementModel}"/>
+
+                <h:outputText value="You do not have permission to the requested resource. However, this might be due to access control information synchronization delay from Gerrit. Please refresh the page approximately after one minute. If the problem persists, please contact I_EXT_S40_CI20_SUPPORT@nokia.com." rendered="#{jobBean.verification == null}"/>
+
+                <h:form id="dashboardForm">
+                    <p:remoteCommand name="updateChartSize" update="@(.jobMetricsChart)" />
+                </h:form>
+                <p:dashboard id="metricsDashboard" model="#{jobMetricsDashboardBean.model}" style="min-height: 1550px;">
+                    <p:ajax event="reorder"/>
+
+                    <p:panel id="#{jobMetricsDurationBean.renderDiv}" styleClass="metricsPanel" header="#{jobMetricsDurationBean.header}" closable="false" toggleable="true"
+                             rendered="#{jobMetricsDurationBean.isRendered}">
+                        <ci:jobDurationChart id="jobDurationChart" pinCommand="#{jobMetricsDurationBean.pinToMyToolbox}" verificationId="#{jobBean.verification.id}"/>
+                    </p:panel>
+
+                    <p:panel id="#{jobMetricsPassrateBean.renderDiv}" styleClass="metricsPanel" header="#{jobMetricsPassrateBean.header}" closable="false" toggleable="true"
+                             rendered="#{jobMetricsPassrateBean.isRendered}">
+                        <ci:jobPassrateChart id="jobPassrateChart" pinCommand="#{jobMetricsPassrateBean.pinToMyToolbox}" verificationId="#{jobBean.verification.id}"/>
+                    </p:panel>
+
+                    <p:panel id="#{jobMetricsPassratePieBean.renderDiv}" styleClass="metricsPanel" header="#{jobMetricsPassratePieBean.header}" closable="false"
+                             toggleable="true" rendered="#{jobMetricsPassratePieBean.isRendered}">
+                        <ci:jobPassratePieChart id="jobPassratePieChart" pinCommand="#{jobMetricsPassratePieBean.pinToMyToolbox}" verificationId="#{jobBean.verification.id}"/>
+                    </p:panel>
+
+                    <p:panel id="#{jobMetricsBreakTimeBean.renderDiv}" styleClass="metricsPanel" header="#{jobMetricsBreakTimeBean.header}" closable="false" toggleable="true"
+                             rendered="#{jobMetricsBreakTimeBean.isRendered}">
+                        <ci:jobBreaktimeChart id="jobBreaktimeChart" pinCommand="#{jobMetricsBreakTimeBean.pinToMyToolbox}" verificationId="#{jobBean.verification.id}"/>
+                    </p:panel>
+
+                    <p:panel id="#{jobMetricsBreakTimeTlBean.renderDiv}" styleClass="metricsPanel" header="#{jobMetricsBreakTimeTlBean.header}" closable="false" toggleable="true"
+                             rendered="#{jobMetricsBreakTimeTlBean.isRendered}" style="padding-bottom: 13px;">
+                        <ci:jobBreaktimeTlChart id="jobBreaktimeTlChart" pinCommand="#{jobMetricsBreakTimeTlBean.pinToMyToolbox}" verificationId="#{jobBean.verification.id}"/>
+                    </p:panel>
+
+                    <p:panel id="#{jobMetricsHistoryTlBean.renderDiv}" styleClass="metricsPanel" header="#{jobMetricsHistoryTlBean.header}" closable="false" toggleable="true"
+                             rendered="#{jobMetricsHistoryTlBean.isRendered}" style="padding-bottom: 13px;">
+                        <ci:jobHistoryTlChart id="jobHistoryTlChart" pinCommand="#{jobMetricsHistoryTlBean.pinToMyToolbox}" verificationId="#{jobBean.verification.id}"/>
+                    </p:panel>
+
+                </p:dashboard>
+
+                <script type="text/javascript" src="#{request.contextPath}/secure/resources/js/jqplotExport.js"/>
+                <script type="text/javascript" src="#{request.contextPath}/secure/resources/js/fullscreenMetrics.js"/>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

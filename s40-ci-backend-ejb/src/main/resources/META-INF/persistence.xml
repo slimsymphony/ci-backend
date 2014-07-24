@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+    <persistence-unit name="NokiaCI-PU" transaction-type="JTA">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <jta-data-source>${persistence.jta-data-source}</jta-data-source>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <properties>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="${show.sql}"/>
+            <property name="hibernate.default_schema" value="${persistence.default_schema}"/>
+            <property name="hibernate.jdbc.batch_size" value="100"/>
+            <property name="hibernate.order_inserts" value="true"/>
+            <property name="hibernate.search.default.directory_provider" value="${lucene.directory_provider}"/>
+            <property name="hibernate.search.default.infinispan.cachemanager_jndiname" value="java:jboss/infinispan/cache/lucene/lucene-cache"/>
+            <property name="​hibernate.search.default.exclusive_index_use" value="false"/>
+            <!-- RAM buffer size for Hibernate Search Indexwriter. default: 16 -->
+            <property name="hibernate.search.default.indexwriter.ram_buffer_size" value="128"/>
+            <!-- Index reader interval for indexing to memory. default: 128 -->
+            <property name="hibernate.search.default.indexwriter.term_index_interval" value="32"/>
+            <!-- This value is in bytes (10485760 => 10MB) -->
+            <property name="hibernate.search.infinispan.chunk_size" value="10485760"/>
+            <!-- These value are in MB and should not be bigger than the chunk_size to avoid fragmentation, default: unlimited -->
+            <property name="hibernate.search.default.indexwriter.merge_max_size" value="10"/>
+            <property name="hibernate.search.default.indexwriter.merge_max_optimize_size" value="10"/>
+        </properties>
+    </persistence-unit>
+</persistence>

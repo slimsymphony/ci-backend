@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+
+        <ui:composition template="./../template/adminLayout.xhtml">
+
+            <ui:define name="contentTitle">Toolbox</ui:define>
+
+            <ui:define name="content">
+                <div id="adminItems">
+                    <h:link outcome="/secure/admin/projects.xhtml" value="Projects">
+                        <h:graphicImage value="/resources/images/iconic/red/layers_32x28.png"/>
+                    </h:link>
+                    <h:link outcome="/secure/admin/branches.xhtml" value="Branches">
+                        <h:graphicImage value="/resources/images/iconic/red/fork_28x32.png"/>
+                    </h:link>
+                    <h:link outcome="/secure/admin/jobs.xhtml" value="Jobs">
+                        <h:graphicImage value="/resources/images/iconic/red/target_32x32.png"/>
+                    </h:link>
+                    <h:link outcome="/secure/admin/products.xhtml" value="Products" rendered="#{httpSessionBean.admin}">
+                        <h:graphicImage value="/resources/images/iconic/red/iphone_24x32.png"/>
+                    </h:link>
+                    <h:link outcome="/secure/admin/verifications.xhtml" value="Verifications" rendered="#{httpSessionBean.admin}">
+                        <h:graphicImage value="/resources/images/iconic/red/arrow_up_alt1_32x32.png"/>
+                    </h:link>
+                    <h:link outcome="/secure/admin/servers.xhtml" value="Servers" rendered="#{httpSessionBean.admin}">
+                        <h:graphicImage value="/resources/images/iconic/red/cloud_32x20.png"/>
+                    </h:link>
+                    <h:link outcome="/secure/admin/slaves.xhtml" value="Slaves" rendered="#{httpSessionBean.admin}">
+                        <h:graphicImage value="/resources/images/iconic/red/link_32x32.png"/>
+                    </h:link>
+                    <h:link outcome="/secure/admin/gerrits.xhtml" value="Gerrits" rendered="#{httpSessionBean.admin}">
+                        <h:graphicImage value="/resources/images/iconic/red/spin_alt_32x32.png"/>
+                    </h:link>
+                    <h:link outcome="/secure/admin/users.xhtml" value="Users" rendered="#{httpSessionBean.admin}">
+                        <h:graphicImage value="/resources/images/iconic/red/user_24x32.png"/>
+                    </h:link>
+                    <h:link outcome="/secure/admin/sysConfigs.xhtml" value="System configuration" rendered="#{httpSessionBean.admin}">
+                        <h:graphicImage value="/resources/images/iconic/red/cog_32x32.png"/>
+                    </h:link>
+                    <h:link outcome="/secure/admin/projectGroups.xhtml" value="Project groups" rendered="#{httpSessionBean.admin}">
+                        <h:graphicImage value="/resources/images/iconic/red/folder_fill_32x32.png"/>
+                    </h:link>
+                    <h:link outcome="/secure/admin/templates.xhtml" value="Templates" rendered="#{httpSessionBean.admin}">
+                        <h:graphicImage value="/resources/images/iconic/red/document_stroke_32x32.png"/>
+                    </h:link>
+                    <h:link outcome="/secure/admin/incidents.xhtml" value="Incidents" rendered="#{httpSessionBean.admin}">
+                        <h:graphicImage value="/resources/images/iconic/red/rain_32x28.png"/>
+                    </h:link>
+                    <h:link outcome="/secure/admin/announcements.xhtml" value="Announcements" rendered="#{httpSessionBean.admin}">
+                        <h:graphicImage value="/resources/images/iconic/red/chat_alt_fill_32x32.png"/>
+                    </h:link>
+                    <h:link outcome="/secure/admin/info.xhtml" value="CI Info" rendered="#{httpSessionBean.admin}">
+                        <h:graphicImage value="/resources/images/iconic/red/info_16x32.png"/>
+                    </h:link>
+                    <h:link outcome="/secure/admin/systemMetrics.xhtml" value="System metrics" rendered="#{httpSessionBean.admin}">
+                        <h:graphicImage value="/resources/images/iconic/red/image_32x32.png"/>
+                    </h:link>
+                </div>
+                <div class="clearFix"/>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

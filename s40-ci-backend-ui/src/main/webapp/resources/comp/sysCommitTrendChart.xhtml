@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <composite:attribute name="id" default="sysCommitTrendChart"/>
+        <composite:attribute name="pinCommand" method-signature="void pinToMyToolbox()"/>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation xmlns:ci="http://java.sun.com/jsf/composite/comp">
+        <h:form id="sysCommitTrendChartForm">
+            <h:outputText value="Projects: " />
+            <span class="metrics-checkboxmenu" >
+                <p:selectCheckboxMenu value="#{sysMetricsCommitTrendBean.selectedProjects}" label="Projects" filter="true" filterMatchMode="startsWith" panelStyle="vertical-align:middle;">  
+                    <f:selectItems value="#{sysMetricsCommitTrendBean.projects}" />  
+                </p:selectCheckboxMenu>
+                <h:outputText value=" ShowSum: " />  
+                <p:selectBooleanCheckbox value="#{sysMetricsCommitTrendBean.showSum}" />
+            </span>
+            <h:outputText value=" From: " />  
+            <p:calendar value="#{sysMetricsCommitTrendBean.startDate}" size="5"/>
+            <h:outputText value=" To: " />  
+            <p:calendar value="#{sysMetricsCommitTrendBean.endDate}" size="5"/>
+            <h:outputText value=" Scale: " />
+            <p:autoComplete dropdown="true" value="#{sysMetricsCommitTrendBean.selectedScale}" size="8"  
+                            completeMethod="#{sysMetricsCommitTrendBean.completeScaleOptions}"/>
+            <p:spacer width="5"/>
+            <p:commandLink id="commitTrendLineChartCmd" update="commitTrendLineChart" actionListener="#{sysMetricsCommitTrendBean.updateDataModel}">
+                <p:graphicImage value="/resources/images/refresh_icon.png" />
+            </p:commandLink >
+            <p:commandLink id="exportCommitTrendLineChart" styleClass="exportJqplot">
+                <p:graphicImage value="/resources/images/picture.png"/>
+            </p:commandLink>
+            <p:commandLink id="fullscreenCommitTrendLineChart" styleClass="fullscreenToggle fullscreenBtn"/>
+            <p:commandLink id="permalinkCommitTrendLineChart" styleClass="permalinkChart" actionListener="#{sysMetricsCommitTrendBean.openPermalink}">
+                <p:graphicImage value="/resources/images/page_go.png"/>
+            </p:commandLink>
+            <p:commandLink id="helpCommitTrendLineChart">
+                <p:graphicImage id="helpIconCommitTrendLineChart" value="/resources/images/question.png"/>
+            </p:commandLink>
+            <p:commandLink id="pinCommitTrendLineChart" actionListener="#{cc.attrs.pinCommand}" style="float: right;" rendered="#{cc.attrs.pinCommand != null}">
+                <h:graphicImage id="pinIconCommitTrendLineChart" value="/resources/images/iconic/gray_light/pin_12x12.png" styleClass="actionButton"/>
+                <pe:tooltip for="pinIconCommitTrendLineChart" value="Pin to My toolbox" myPosition="top right" atPosition="bottom center"/>
+            </p:commandLink>
+            <pe:tooltip for="permalinkCommitTrendLineChart" value="Permalink" />
+            <pe:tooltip for="exportCommitTrendLineChart" value="Export image" />
+            <pe:tooltip for="commitTrendLineChartCmd" value="Get/Refresh data" />
+            <pe:tooltip for="fullscreenCommitTrendLineChart" value="Toggle fullscreen"/>
+            <pe:tooltip showEvent="mouseover" for="helpIconCommitTrendLineChart" value="Help"/>
+            <pe:tooltip showEvent="click" for="helpCommitTrendLineChart" value="This metrics is to visualize the commit count trend for each project you selected."/>
+
+            <p:lineChart id="commitTrendLineChart" styleClass="jobMetricsChart" value="#{sysMetricsCommitTrendBean.dataModel}" legendPosition="ne"  
+                         minY="0" style="width:100%;height:380px" animate="true" extender="minFormatExt">
+                <p:ajax event="itemSelect" listener="#{sysMetricsCommitTrendBean.itemSelect}" update="" />
+            </p:lineChart>
+        </h:form>
+    </cc:implementation>
+</html>

@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+        <ui:composition template="../template/layout.xhtml">
+
+            <ui:define name="contentTitle">Project #{projectBean.project.displayName}</ui:define>
+
+            <ui:define name="contentMenu">
+                <h:link id="gerritTrigger" outcome="gerritTrigger" rendered="#{httpSessionBean.loggedIn}" value="" styleClass="contentmenuPlay">
+                    <f:param name="projectId" value="#{projectBean.project.id}"/>
+                    <pe:tooltip for="gerritTrigger" value="Gerrit trigger" myPosition="top right" atPosition="bottom center"/>
+                </h:link>
+                <ci:addButton page="/secure/pages/verificationEditor.xhtml?projectId=#{projectBean.project.id}"
+                              tooltip="Add new verification" rendered="#{httpSessionBean.loggedIn}"/>
+                <ci:configureButton page="/secure/admin/projectEditor.xhtml?projectId=#{projectBean.project.id}"
+                                    tooltip="Configure project" rendered="#{httpSessionBean.admin}"/>
+                <ci:helpButton id="helpButton" page="projectDetails"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <ci:announcement model="#{projectBean.announcementModel}"/>
+
+                <h:outputText value="You do not have permission to the requested resource. However, this might be due to access control information synchronization delay from Gerrit. Please refresh the page approximately after one minute. If the problem persists, please contact I_EXT_S40_CI20_SUPPORT@nokia.com." rendered="#{projectBean.project == null}"/>
+
+                <p:panelGrid id="projectDetailsTable" columns="2" rendered="#{projectBean.project != null}">
+                    <h:outputLabel for="projectConfigurationResponsible" value="CI configuration responsible:"/>
+                    <ci:autoLinkOutputText id="projectConfigurationResponsible" value="#{projectBean.project.configurationResponsible}"/>
+                    <h:outputLabel for="projectTestingResponsible" value="CI testing responsible:"/>
+                    <ci:autoLinkOutputText id="projectTestingResponsible" value="#{projectBean.project.testingResponsible}"/>
+                    <h:outputLabel for="projectContactList" value="Contact list for info sharing:"/>
+                    <ci:autoLinkOutputText id="projectContactList" value="#{projectBean.project.contactList}"/>
+                    <h:outputLabel for="projectDescription" value="Description:"/>
+                    <h:outputText id="projectDescription" value="#{projectBean.project.description}" escape="false"/>
+                    <h:outputLabel for="projectCreated" value="Created:"/>
+                    <ci:outputTextTimeStamp id="projectCreated" value="#{projectBean.project.created}"/>
+                    <h:outputLabel for="projectCreatedBy" value="Created by:"/>
+                    <ci:userLoginNameLink id="projectCreatedBy" value="#{projectBean.project.createdBy}"/>
+                    <h:outputLabel for="projectModified" value="Modified:"/>
+                    <ci:outputTextTimeStamp id="projectModified" value="#{projectBean.project.modified}"/>
+                    <h:outputLabel for="projectModifiedBy" value="Modified by:"/>
+                    <ci:userLoginNameLink id="projectModifiedBy" value="#{projectBean.project.modifiedBy}"/>
+                    <h:outputLabel for="projectLinks" value="External links:"/>
+                    <ui:repeat value="#{projectBean.links}" var="link">
+                        <h:outputLink value="#{link.url}" target="_blank">
+                            <h:outputText id="projectLinks" value="#{link.description}"/>
+                        </h:outputLink><br />
+                    </ui:repeat>
+                </p:panelGrid>
+
+                <h:form id="projectDetailsForm">
+                    <input type="hidden" name="cachedProjectId" value="#{projectBean.project.id}" />
+                </h:form>
+                <ci:jobDatatable id="jobDataTableComp" model="#{projectBean.jobs}" rendered="#{projectBean.project != null}"
+                                 pinCommand="#{projectBean.pinToMyToolbox()}"/>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

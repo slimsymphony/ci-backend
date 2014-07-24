@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+
+        <ui:composition template="./../template/layout.xhtml">
+            <ui:define name="contentTitle">Gerrit trigger</ui:define>
+
+            <ui:define name="contentMenu">
+                <ci:helpButton id="helpButton" page="gerritTrigger"/>
+            </ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="#{gerritTriggerBean.project.displayName}" outcome="projectDetails" rendered="#{not empty gerritTriggerBean.projectId}">
+                    <f:param name="projectId" value="#{gerritTriggerBean.projectId}"/>
+                </h:link>
+                <h:link value="Gerrit trigger" outcome="gerritTrigger" styleClass="active"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="gerritTriggerForm">
+                    <h:panelGrid id="gerritTriggerTable" columns="2">
+                        <h:outputLabel for="selectedGerrit" value="Gerrit" rendered="#{!httpSessionBean.projectAdmin}"/>
+                        <h:outputText id="selectedGerrit" value="#{gerritTriggerBean.selectedGerrit.url}"
+                                      rendered="#{!httpSessionBean.projectAdmin}"/>
+                        <h:outputLabel for="project" value="Project"
+                                       rendered="#{gerritTriggerBean.project != null and !httpSessionBean.projectAdmin}"/>
+                        <h:outputText id="project" value="#{gerritTriggerBean.project.gerritProject}"
+                                      rendered="#{gerritTriggerBean.project != null and !httpSessionBean.projectAdmin}"/>
+                        <h:outputLabel for="selectGerrit" value="Gerrit" rendered="#{httpSessionBean.projectAdmin}"/>
+                        <p:selectOneMenu id="selectGerrit" value="#{gerritTriggerBean.selectedGerrit}"
+                                         converter="GerritConverter" rendered="#{httpSessionBean.projectAdmin}">
+                            <f:selectItem itemLabel="All" itemValue="#{null}"/>
+                            <f:selectItems value="#{gerritTriggerBean.gerrits}" var="gerrit" itemLabel="#{gerrit.url}"
+                                           itemValue="#{gerrit}"/>
+                        </p:selectOneMenu>
+
+                        <h:outputLabel for="queryString" value="Search"/>
+                        <h:inputText id="queryString" value="#{gerritTriggerBean.query}" size="250"/>
+
+                        <f:facet name="footer">
+                            <p:commandButton id="gerritSearchButton" value="Search" actionListener="#{gerritTriggerBean.search}" ajax="true"
+                                             update="queryResults" onstart="gerritQueryResults.clearFilters();"/>
+                        </f:facet>
+                    </h:panelGrid>
+
+                    <p:dataTable id="queryResults" var="result" value="#{gerritTriggerBean.details}" rowKey="#{result.id}"
+                                 selection="#{gerritTriggerBean.selectedDetails}" selectionMode="multiple" style="margin-top:20px;"
+                                 filteredValue="#{gerritTriggerBean.filteredDetails}" widgetVar="gerritQueryResults"
+                                 paginator="true" rows="20"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,20,50">
+                        <f:facet name="header">Results</f:facet>
+
+                        <p:column headerText="Change Nr.">
+                            #{result.number}
+                        </p:column>
+
+                        <p:column headerText="Patch Set">
+                            #{result.currentPatchSet.number}
+                        </p:column>
+
+                        <p:column headerText="Subject" filterBy="#{result.subject}" filterMatchMode="contains">
+                            #{result.subject}
+                        </p:column>
+
+                        <p:column headerText="Owner" filterBy="#{result.owner.name}" filterMatchMode="contains">
+                            #{result.owner.name}
+                        </p:column>
+
+                        <p:column headerText="Revision" filterBy="#{result.currentPatchSet.revision}" filterMatchMode="contains">
+                            #{result.currentPatchSet.revision}
+                        </p:column>
+
+                        <p:column headerText="Project" filterBy="#{result.project}" filterMatchMode="contains"
+                                  sortBy="#{result.project}">
+                            #{result.project}
+                        </p:column>
+
+                        <p:column headerText="Branch" filterBy="#{result.branch}" filterMatchMode="contains"
+                                  sortBy="#{result.branch}">
+                            #{result.branch}
+                        </p:column>
+
+                        <p:column headerText="Created" sortBy="#{result.createdOn}">
+                            <ci:outputTextTimeStamp id="changeCreated" value="#{result.createdOn}" type="time"/>
+                        </p:column>
+
+                        <p:column headerText="Updated" sortBy="#{result.lastUpdated}">
+                            <ci:outputTextTimeStamp id="changeLastUpdated" value="#{result.lastUpdated}" type="time"/>
+                        </p:column>
+
+                        <f:facet name="footer">
+                            <p:commandButton value="Trigger Selected" action="#{gerritTriggerBean.trigger}" ajax="true"
+                                             update="queryResults"/>
+                        </f:facet>
+
+                    </p:dataTable>
+
+                </h:form>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

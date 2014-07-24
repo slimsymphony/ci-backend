@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <composite:attribute name="id" default="sysSlaveTrendChart"/>
+        <composite:attribute name="pinCommand" method-signature="void pinToMyToolbox()"/>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation xmlns:ci="http://java.sun.com/jsf/composite/comp">
+        <h:form id="sysSlaveTrendChartForm">
+            <h:outputText value="Pool: " />
+            <p:autoComplete dropdown="true" value="#{sysMetricsSlaveTrendBean.selectedSlavePool}" size="8" scrollHeight="200"
+                            completeMethod="#{sysMetricsSlaveTrendBean.completeSlavePoolOptions}"/>
+            <h:outputText value=" Label: " />
+            <p:autoComplete dropdown="true" value="#{sysMetricsSlaveTrendBean.selectedSlaveLabel}" size="8" scrollHeight="200"
+                            completeMethod="#{sysMetricsSlaveTrendBean.completeSlaveLabelOptions}"/>
+            <h:outputText value=" Machine: " />
+            <p:autoComplete dropdown="true" value="#{sysMetricsSlaveTrendBean.selectedSlaveMachine}" size="8" scrollHeight="200"
+                            completeMethod="#{sysMetricsSlaveTrendBean.completeSlaveMachineOptions}"/>
+            <h:outputText value=" From " />
+            <p:calendar value="#{sysMetricsSlaveTrendBean.startDate}" pattern="MM/dd/yyyy HH:mm" size="5"/>
+            <h:outputText value=" To: " />
+            <p:calendar value="#{sysMetricsSlaveTrendBean.endDate}" pattern="MM/dd/yyyy HH:mm" size="5"/>
+            <h:outputText value=" Scale: " />
+            <p:autoComplete dropdown="true" value="#{sysMetricsSlaveTrendBean.selectedScale}" size="8"
+                            completeMethod="#{sysMetricsSlaveTrendBean.completeScaleOptions}"/>
+            <p:spacer width="5"/>
+            <p:commandLink id="slaveTrendLineChartCmd" update="slaveTrendLineChart" actionListener="#{sysMetricsSlaveTrendBean.updateDataModel}">
+                <p:graphicImage value="/resources/images/refresh_icon.png" />
+            </p:commandLink >
+            <p:commandLink id="exportSlaveTrendLineChart" styleClass="exportJqplot">
+                <p:graphicImage value="/resources/images/picture.png"/>
+            </p:commandLink>
+            <p:commandLink id="fullscreenSlaveTrendLineChart" styleClass="fullscreenToggle fullscreenBtn"/>
+            <p:commandLink id="permalinkSlaveTrendLineChart" styleClass="permalinkChart" 
+                           actionListener="#{sysMetricsSlaveTrendBean.openPermalink}">
+                <p:graphicImage value="/resources/images/page_go.png"/>
+            </p:commandLink>
+            <p:commandLink id="helpSlaveTrendLineChart">
+                <p:graphicImage id="helpIconSlaveTrendLineChart" value="/resources/images/question.png"/>
+            </p:commandLink>
+            <p:commandLink id="pinSlaveTrendLineChart" actionListener="#{cc.attrs.pinCommand}" style="float: right;" rendered="#{cc.attrs.pinCommand != null}">
+                <h:graphicImage id="pinIconSlaveTrendLineChart" value="/resources/images/iconic/gray_light/pin_12x12.png" styleClass="actionButton"/>
+                <pe:tooltip for="pinIconSlaveTrendLineChart" value="Pin to My toolbox" myPosition="top right" atPosition="bottom center"/>
+            </p:commandLink>
+            <pe:tooltip for="permalinkSlaveTrendLineChart" value="Permalink" />
+            <pe:tooltip for="exportSlaveTrendLineChart" value="Export image" />
+            <pe:tooltip for="slaveTrendLineChartCmd" value="Get/Refresh data" />
+            <pe:tooltip for="fullscreenSlaveTrendLineChart" value="Toggle fullscreen"/>
+            <pe:tooltip showEvent="mouseover" for="helpIconSlaveTrendLineChart" value="Help"/>
+            <pe:tooltip showEvent="click" for="helpSlaveTrendLineChart" value="This metrics is to visualize the statistical trend for load balancer slaves."/>
+
+            <p:lineChart id="slaveTrendLineChart" styleClass="jobMetricsChart" value="#{sysMetricsSlaveTrendBean.dataModel}" legendPosition="ne"
+                         minY="0" style="width:100%;height:380px" animate="true" extender="minFormatExt">
+                <p:ajax event="itemSelect" listener="#{sysMetricsSlaveTrendBean.itemSelect}" update="" />
+            </p:lineChart>
+            <p:messages id="sysSlaveTrendChartMessages" for="sysSlaveTrendChartForm" autoUpdate="true" showDetail="true" closable="true"/>
+         </h:form>
+    </cc:implementation>
+</html>

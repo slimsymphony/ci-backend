@@ -1,0 +1,12 @@
+## YAML Template.
+---
+branch:
+  - id: 1
+    name: branch 1
+    project_id: 1
+  - id: 2
+    name: branch 2
+    project_id: 1
+  - id: 3
+    name: branch 3
+    project_id: 2

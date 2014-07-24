@@ -1,0 +1,215 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+
+        <ui:composition template="./../template/adminLayout.xhtml">
+            <ui:define name="contentTitle">Slaves</ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="Admin" outcome="admin"/>
+                <h:link value="Slaves" outcome="slaves" styleClass="active"/>
+            </ui:define>
+
+            <ui:define name="contentMenu">
+                <ci:addButton page="/secure/admin/slaveMachineEditor.xhtml" tooltip="Add new slavemachine" rendered="true"/>
+                <h:form id="disableSlaveForm">
+                    <p:commandLink id="showDisableSlaveDialog" value="" oncomplete="disableSlaveDlg.show();" update=":disableSlaveDialog" immediate="true" styleClass="contentmenuDenied"/>
+                    <pe:tooltip for="showDisableSlaveDialog" value="Disable slavemachine (V)" myPosition="top right" atPosition="bottom center"/>
+                    <p:hotkey bind="v" onsuccess="disableSlaveDlg.show()"/>
+                </h:form>
+                <h:form id="detachMasterForm">
+                    <p:commandLink id="showDetachFromMasterDialog" value="" oncomplete="detachFromMasterDlg.show();" update=":detachFromMasterDialog" immediate="true" styleClass="contentmenuUnlock"/>
+                    <pe:tooltip for="showDetachFromMasterDialog" value="Detach from master (D)" myPosition="top right" atPosition="bottom center"/>
+                    <p:hotkey bind="d" onsuccess="detachFromMasterDlg.show()"/>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="slavesForm" onkeypress="return event.keyCode !== 13;">
+                    <p:dataTable id="slaveMachinesTable" value="#{slavesBean.slaveMachines}" var="slaveMachine" widgetVar="slaveMachinesTableWidget"
+                                 emptyMessage="No slave machines found with given criteria" filterEvent="enter" filteredValue="#{slavesBean.filteredValues}"
+                                 paginator="true" rows="20"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,20,50" style="text-align: left">
+                        <f:facet name="header">
+                            <p:outputPanel>
+                                <h:outputText value="Search fields: " />
+                                <p:inputText id="globalFilter" onkeyup="slaveMachinesTableWidget.filter(this.value, 'slaveMachinesTable')" style="width:150px" />
+                            </p:outputPanel>
+                        </f:facet>
+                        <p:ajax event="rowToggle" listener="#{slavesBean.initExpandedSlaveInstances(slaveMachine)}" update=":slavesForm:slaveMachinesTable" />
+                        <p:column style="width:50px">
+                            <p:rowToggler />
+                        </p:column>
+                        <p:column style="width: 560px;" filterBy="#{slaveMachine.url}" filterMatchMode="contains" filterStyle="display: none; visibility: hidden;">
+                            <f:facet name="header">Slave machines</f:facet>
+                            <h:outputLink value="/secure/admin/slaveMachineEditor.xhtml">
+                                <h:outputText value="#{slaveMachine.url}:#{slaveMachine.port}"/>
+                                <f:param name="editFromSlaveMachineId" value="#{slaveMachine.id}"/>
+                            </h:outputLink>
+                            <h:outputText id="disabledText" style="font-weight: bold; color: red" value=" #{slaveMachineEditorBean.statusText(slaveMachine)}"/>
+                            <pe:tooltip for="disabledText" value="Skipped by loadbalancer" myPosition="top right" atPosition="bottom center"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Attached / Maximum slave instances</f:facet>
+                            <h:outputText value="#{slavesBean.slaveInstanceCount(slaveMachine)}"/>
+                            / <h:outputText value="#{slaveMachine.maxSlaveInstanceAmount}"/>
+                        </p:column>
+                        <p:column sortBy="#{slaveMachine.created}" filterBy="#{slaveMachine.created}" filterMatchMode="contains" filterStyle="display: none; visibility: hidden;">
+                            <f:facet name="header">Created</f:facet>
+                            <h:outputText value="#{slaveMachine.created}"/>
+                        </p:column>
+                        <p:column sortBy="#{slaveMachine.createdBy}" filterBy="#{slaveMachine.createdBy}" filterMatchMode="contains" filterStyle="display: none; visibility: hidden;">
+                            <f:facet name="header">Created by</f:facet>
+                            <ci:userLoginNameLink id="createdBy" value="#{slaveMachine.createdBy}"/>
+                        </p:column>
+                        <p:column sortBy="#{slaveMachine.modified}" filterBy="#{slaveMachine.modified}" filterMatchMode="contains" filterStyle="display: none; visibility: hidden;">
+                            <f:facet name="header">Modified</f:facet>
+                            <ci:outputTextTimeStamp value="#{slaveMachine.modified}"/>
+                        </p:column>
+                        <p:column sortBy="#{slaveMachine.modifiedBy}" filterBy="#{slaveMachine.modifiedBy}" filterMatchMode="contains" filterStyle="display: none; visibility: hidden;">
+                            <f:facet name="header">Modified by</f:facet>
+                            <ci:userLoginNameLink id="modifiedBy" value="#{slaveMachine.modifiedBy}"/>
+                        </p:column>
+                        <p:column styleClass="actionColumn">
+                            <f:facet name="header">Actions</f:facet>
+                            <h:outputLink value="/secure/admin/slaveInstanceEditor.xhtml">
+                                <h:graphicImage id="addSlaveInstance" value="/resources/images/iconic/green/plus_16x16.png" styleClass="actionButton"/>
+                                <f:param name="addSlaveInstanceId" value="#{slaveMachine.id}"/>
+                                <pe:tooltip for="addSlaveInstance" value="Add slave instance" myPosition="top right" atPosition="bottom center"/>
+                            </h:outputLink>
+                            <h:outputLink value="/secure/admin/slaveMachineEditor.xhtml">
+                                <h:graphicImage id="copySlaveMachine" value="/resources/images/new_window.png" styleClass="actionButton"/>
+                                <f:param name="copyFromSlaveMachineId" value="#{slaveMachine.id}"/>
+                                <pe:tooltip for="copySlaveMachine" value="Copy slave machine" myPosition="top right" atPosition="bottom center"/>
+                            </h:outputLink>
+                            <h:outputLink value="/secure/admin/slaveMachineEditor.xhtml">
+                                <h:graphicImage id="editSlaveMachine" value="/resources/images/wrench.png" styleClass="actionButton"/>
+                                <f:param name="editFromSlaveMachineId" value="#{slaveMachine.id}"/>
+                                <pe:tooltip for="editSlaveMachine" value="Edit slave machine" myPosition="top right" atPosition="bottom center"/>
+                            </h:outputLink>
+
+                            <ci:deleteBtnWithConfirmDlg id="deleteSlaveMachine" actionListener="#{slavesBean.delete(slaveMachine)}"
+                                                        entityLabel="#{slaveMachine.url}:#{slaveMachine.port}" tooltip="Delete slave machine"/>
+
+                        </p:column>
+
+                        <p:rowExpansion>
+                            <p:dataTable id="slaveInstancesTable" value="#{slavesBean.querySlaveInstances(slaveMachine)}" var="slaveInstance" style="border-bottom: 1px solid black">
+                                <p:column style="width:50px" />
+                                <p:column style="width: 280px;">
+                                    <f:facet name="header">Id</f:facet>
+                                    <h:outputText value="#{slaveInstance.id}"/>
+                                </p:column>
+                                <p:column style="width: 280px;">
+                                    <f:facet name="header">Optional hostname</f:facet>
+                                    <h:outputText value="#{slaveInstance.url}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">Current master</f:facet>
+                                    <h:outputText value="#{slaveInstance.currentMaster}"/>
+                                    <h:commandLink actionListener="#{slavesBean.detachCurrentMaster(slaveInstance)}" rendered="#{!empty slaveInstance.currentMaster}">
+                                        <h:graphicImage id="detachCurrentMaster" value="/resources/images/unlock_fill.png"
+                                                        styleClass="actionButton"/>
+                                        <pe:tooltip for="detachCurrentMaster" value="Detach current master" myPosition="top right" atPosition="bottom center"/>
+                                    </h:commandLink>
+                                </p:column>
+
+                                <p:column style="width: 280px;">
+                                    <f:facet name="header">Slave pools</f:facet>
+                                    <ui:repeat value="#{slaveInstance.slavePools}" var="slavePool" >
+                                        #{slavePool.name} <br/>
+                                    </ui:repeat>
+                                    <h:outputText value="#{slavePool.name}"/>
+                                </p:column>
+
+                                <p:column style="width: 280px;">
+                                    <f:facet name="header">Slave labels</f:facet>
+                                    <ui:repeat value="#{slaveInstance.slaveLabels}" var="slaveLabel" >
+                                        #{slaveLabel.name} <br/>
+                                    </ui:repeat>
+                                    <h:outputText value="#{slaveLabel.name}"/>
+                                </p:column>
+
+                                <p:column styleClass="actionColumn">
+                                    <f:facet name="header">Actions</f:facet>
+
+                                    <p:commandLink id="copyFromSlaveInstanceLink" type="button" actionListener="#{slavesBean.setSelectedSlaveInstance(slaveInstance)}"
+                                                   oncomplete="copyInstancesDlg.show();" update=":copyInstancesDialog">
+                                        <h:graphicImage id="copyFromSlaveInstance" value="/resources/images/new_window.png" styleClass="actionButton"/>
+                                        <pe:tooltip for="copyFromSlaveInstance" value="Copy slave instance" myPosition="top right"
+                                                    atPosition="bottom center"/>
+                                    </p:commandLink>
+
+                                    <h:outputLink value="/secure/admin/slaveInstanceEditor.xhtml">
+                                        <h:graphicImage id="editSlaveInstance" value="/resources/images/wrench.png" styleClass="actionButton"/>
+                                        <f:param name="editFromSlaveInstanceId" value="#{slaveMachine.id}_#{slaveInstance.id}"/>
+                                        <pe:tooltip for="editSlaveInstance" value="Edit slave instance" myPosition="top right" atPosition="bottom center"/>
+                                    </h:outputLink>
+
+                                    <ci:deleteBtnWithConfirmDlg id="deleteSlaveInstance" actionListener="#{slavesBean.deleteSlaveInstance(slaveInstance.id)}"
+                                                                entityLabel="Slave instance id: #{slaveInstance.id}: #{slaveInstance.url}" tooltip="Delete slave instance"/>
+                                </p:column>
+
+                            </p:dataTable>
+                        </p:rowExpansion>
+
+                    </p:dataTable>
+
+                </h:form>
+
+                <p:dialog id="detachFromMasterDialog" header="Detach all slave instances from master" widgetVar="detachFromMasterDlg" resizable="false" modal="true">
+                    <h:form id="detachFromMasterForm">
+                        <h:panelGrid id="panelGrid" columns="2" style="margin-bottom:10px">
+                            <h:outputLabel for="selectMaster" value="Master:" />
+                            <h:selectOneMenu id="selectMaster" value="#{slavesBean.selectedMaster}" style="width: 250px;">
+                                <f:selectItems value="#{slavesBean.getAllCurrentMasters()}" var="master" itemValue="#{master}" itemLabel="#{master}"/>
+                                <f:ajax event="change" render="panelGrid"/>
+                            </h:selectOneMenu>
+                        </h:panelGrid>
+                        <p:commandButton id="detachFromMasterSubmitButton" value="Detach" update=":slavesForm" oncomplete="detachFromMasterDlg.hide();" actionListener="#{slavesBean.detachAllSlaveInstancesFromMaster()}" ajax="true"/>
+                        <p:commandButton id="detachFromMasterCancelButton" value="Cancel" onclick="detachFromMasterDlg.hide()"/>
+                    </h:form>
+                </p:dialog>
+
+                <p:dialog id="disableSlaveDialog" header="Disable Slave Machine" widgetVar="disableSlaveDlg" resizable="false" modal="true">
+                    <h:form id="disableASlaveForm">
+                        <h:panelGrid id="slavePanelGrid" columns="2" style="margin-bottom:10px">
+                            <h:outputLabel for="selectSlave" value="Slave Machine:" />
+                            <h:selectOneMenu id="selectSlave" value="#{slavesBean.selectedSlave}" style="width: 250px;">
+                                <f:selectItems value="#{slavesBean.querySlaveMachinesList()}" var="curSlave" itemValue="#{curSlave}" itemLabel="#{curSlave}"/>
+                                <f:ajax event="change" render="slavePanelGrid"/>
+                            </h:selectOneMenu>
+                        </h:panelGrid>
+                        <p:commandButton id="disableSlaveSubmitButton" value="Disable" oncomplete="window.location.reload();"
+                                         actionListener="#{slavesBean.disableSlaveMachine()}"/>
+                        <p:commandButton id="disableSlaveCancelButton" value="Cancel" onclick="disableSlaveDlg.hide()"/>
+                    </h:form>
+                </p:dialog>
+
+                <p:dialog id="copyInstancesDialog" header="Copy Slave Instance" widgetVar="copyInstancesDlg" resizable="false" modal="true">
+                    <h:form id="copyInstancesDialogForm">
+                        <h:panelGrid id="copyInstancesPanelGrid" columns="2" style="margin-bottom:10px">
+                            <h:outputLabel for="copyInput" value="Number of copies to be created:" />
+                            <p:spinner id="copyInput" value="#{slavesBean.createInstanceCopies}" min="0" max="10" maxlength="2" size="2" />
+                        </h:panelGrid>
+                        <p:commandButton id="copyInstancesSubmitButton" value="Copy" update=":slavesForm:slaveMachinesTable" actionListener="#{slavesBean.copySlaveInstances()}"
+                                         ajax="true" onsuccess="copyInstancesDlg.hide();" />
+                        <p:commandButton id="copyInstancesCancelButton" value="Cancel" onclick="copyInstancesDlg.hide()"/>
+                    </h:form>
+                </p:dialog>
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
+

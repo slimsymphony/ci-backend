@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+    <body>
+
+        <ui:composition template="../template/editorLayout.xhtml">
+            <ui:define name="contentTitle">Branch #{branchBean.branch.displayName}</ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="Admin" outcome="admin"/>
+                <h:link value="Branches" outcome="branches"/>
+                <h:link value="Edit #{branchBean.branch.displayName}" outcome="branchEditor" styleClass="active"
+                        rendered="#{not empty branchBean.branchId}">
+                    <f:param name="branchId" value="#{branchBean.branchId}"/>
+                </h:link>
+                <h:link value="Add new branch" outcome="branchEditor" styleClass="active" rendered="#{empty branchBean.branchId}"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="branchEditorForm">
+                    <h:panelGrid id="branchEditorTable" columns="1">
+                        <h:panelGrid id="branchEditTable" columns="2">
+                            <h:outputLabel for="projectSelectInput" value="Project"/>
+                            <p:selectOneMenu id="projectSelectInput" value="#{branchBean.selectedProject}"
+                                             converter="ProjectConverter">
+                                <f:selectItem itemLabel="No project" itemValue="#{null}" itemDisabled="#{not httpSessionBean.admin}"/>
+                                <f:selectItems value="#{branchBean.projects}" var="project" itemLabel="#{project.displayName}"
+                                               itemValue="#{project}"/>
+                            </p:selectOneMenu>
+                            <h:outputLabel for="branchTypeInput" value="Type"/>
+                            <p:selectOneMenu id="branchTypeInput" value="#{branchBean.branch.type}">
+                                <f:selectItems value="#{branchBean.branch.type.values()}" />
+                                <p:ajax event="change" update="@form" listener="#{branchBean.branchTypeChanged}"/>
+                            </p:selectOneMenu>
+                            <h:outputLabel for="displayNameInput" value="Display Name"/>
+                            <p:inputText id="displayNameInput" value="#{branchBean.branch.displayName}" label="Display Name"/>
+                            <h:outputLabel for="branchNameInput" value="Name"/>
+                            <p:inputText id="branchNameInput" value="#{branchBean.branch.name}" label="Name"/>
+
+                            <h:outputLabel for="branchTemplateInput" value="Template" rendered="#{branchBean.showTemplate()}"/>
+                            <p:selectOneMenu id="branchTemplateInput" value="#{branchBean.branch.template}" converter="TemplateConverter" rendered="#{branchBean.showTemplate()}">
+                                <f:selectItem itemLabel="NONE" itemValue="#{null}"/>
+                                <f:selectItems value="#{branchBean.templates}" var="template" itemLabel="#{template.name}"/>
+                            </p:selectOneMenu>
+
+                            <h:outputLabel for="gitRepositoryPathInput" value="Git Repository Path" rendered="#{branchBean.branchUsingGit}"/>
+                            <h:panelGrid id="gitRepositoryPathTable" columns="2" rendered="#{branchBean.branchUsingGit}">
+                                <p:inputText id="gitRepositoryPathInput" value="#{branchBean.branch.gitRepositoryPath}"
+                                             label="Git Repository Path">
+                                    <p:ajax event="keyup" update="gitRepositoryStatus" listener="#{branchBean.gitRepositoryPathChanged}"/>
+                                </p:inputText>
+                                <h:outputText id="gitRepositoryStatus" value="#{branchBean.gitRepositoryStatus}"/>
+                            </h:panelGrid>
+                        </h:panelGrid>
+                        <p:pickList id="jobsPickList" value="#{branchBean.jobs}" var="job" converter="JobConverter"
+                                    itemLabel="#{job.displayName}" itemValue="#{job}">
+                            <f:facet name="sourceCaption">Unassigned Jobs</f:facet>
+                            <f:facet name="targetCaption">Selected Jobs</f:facet>
+                        </p:pickList>
+                        <p:pickList id="serversPickList" value="#{branchBean.servers}" var="server" converter="ServerConverter"
+                                    itemLabel="#{server.url}:#{server.port}" itemValue="#{server}">
+                            <f:facet name="sourceCaption">Available Servers</f:facet>
+                            <f:facet name="targetCaption">Selected Servers</f:facet>
+                        </p:pickList>
+                        <h4>Enabled verifications</h4>
+                        <h:panelGrid columns="2">
+                            <p:commandButton value="Select all" ajax="true" actionListener="#{branchBean.selectAllVerifications}" process="@this"
+                                             update="branchVerificationConf"/>
+                            <p:commandButton value="Clear all" ajax="true" actionListener="#{branchBean.clearAllVerifications}" process="@this"
+                                             update="branchVerificationConf"/>
+                        </h:panelGrid>
+                        <ci:verificationConfMatrix id="branchVerificationConf" products="#{branchBean.products}"
+                                                   verificationConfRows="#{branchBean.verificationConfRows}" optionalMandatory="false"/>
+
+                        <f:facet name="footer">
+                            <p:commandButton id="branchSaveButton" value="Save" action="#{branchBean.save}" ajax="false"/>
+                            <p:commandButton id="branchCancelButton" value="Cancel" action="#{branchBean.cancelEdit}" ajax="false" immediate="true"/>
+                        </f:facet>
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+
+    <body>
+
+        <ui:composition template="../template/editorLayout.xhtml">
+            <ui:define name="contentTitle">Slave instance #{slaveInstanceEditorBean.editedSlaveInstance.id}</ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="Admin" outcome="admin"/>
+                <h:link value="Slaves" outcome="slaves"/>
+                <h:link value="Edit #{slaveInstanceEditorBean.editFromSlaveInstance}" outcome="slaveInstanceEditor" styleClass="active"
+                        rendered="#{not empty slaveInstanceEditorBean.editFromSlaveInstance}">
+                    <f:param name="editFromSlaveInstanceId" value="#{slaveInstanceEditorBean.editFromSlaveInstance}"/>
+                </h:link>
+                <h:link value="Add new slave instance" outcome="slaveInstanceEditor" styleClass="active"
+                        rendered="#{empty slaveInstanceEditorBean.editedSlaveInstance.id}">
+                    <f:param name="addSlaveInstanceId" value="#{slaveInstanceEditorBean.addSlaveInstance}"/>
+                </h:link>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="slaveEditorForm">
+                    <h:panelGrid id="slavesEditorTable" columns="1">
+                        <h:panelGrid columns="2" style="margin-bottom: 10px">
+                            <h:graphicImage id="addSlaveInstance" value="/resources/images/iconic/green/list_nested_24x21.png" styleClass="actionButton"/>
+                            <h:outputText style="font-weight: bold" id="selectedInstanceActionTxt" value="#{slaveInstanceEditorBean.selectedInstanceActionTxt}" />
+                        </h:panelGrid>
+                        <h:panelGrid id="slavesEditTable" columns="2">
+                            <h:outputLabel for="hostName" value="Host Slave machine"/>
+                            <p:inputText disabled="#{slaveInstanceEditorBean.editHostDisabled}" id="hostName" value="#{slaveInstanceEditorBean.editedSlaveInstance.slaveMachine.url}" label="Host Slave machine" required="true"/>
+                            <h:outputLabel for="hostPort" value="Port"/>
+                            <p:inputText disabled="#{slaveInstanceEditorBean.editHostDisabled}" id="hostPort" value="#{slaveInstanceEditorBean.editedSlaveInstance.slaveMachine.port}" label="Port" maxlength="5" required="true">
+                                <f:validateLength minimum="2"/>
+                            </p:inputText>
+                            <h:outputLabel for="optionalHostName" value="Optional hostname"/>
+                            <p:inputText id="optionalHostName" value="#{slaveInstanceEditorBean.editedSlaveInstance.url}" label="Optional hostname">
+                                <pe:tooltip for="optionalHostName" value="This overrides Host Slave machine. Used when loadbalacing virtual machines." myPosition="top left" atPosition="bottom center"/>
+                            </p:inputText>
+                            <h:outputLabel for="currentMasterName" value="Attached to master CIServer"/>
+                            <p:inputText disabled="#{slaveInstanceEditorBean.editMasterDisabled}" id="currentMasterName" value="#{slaveInstanceEditorBean.editedSlaveInstance.currentMaster}" label="Attached to master CIServer (url:port)"/>
+                            <h:outputLabel for="copyThisSlave" value="Number of instances to be created" rendered="#{slaveInstanceEditorBean.editedSlaveInstance.id == null}"/>
+                            <p:spinner id="copyThisSlave" value="#{slaveInstanceEditorBean.amountOfCopiesToCreate}" min="1" max="10" maxlength="2" size="2" rendered="#{slaveInstanceEditorBean.editedSlaveInstance.id == null}" />
+                        </h:panelGrid>
+
+                        <p:pickList id="slavePoolMenu" value="#{slaveInstanceEditorBean.slavePoolsDualList}" var="slavePool" converter="SlavePoolConverter"
+                                    itemLabel="#{slavePool.name}" itemValue="#{slavePool}" showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains">
+                            <f:facet name="sourceCaption">Available Slave pools</f:facet>
+                            <f:facet name="targetCaption">Selected Slave pools</f:facet>
+                            <p:column style="width:75%">#{slavePool.name}</p:column>
+                            <p:column style="width:25%">
+                                <p:commandLink id="showEditSlavePoolDialogLink" oncomplete="editSlavePoolDlg.show();" update=":editSlavePoolDialog" actionListener="#{slaveInstanceEditorBean.editSelectedSlavePool}">
+                                    <h:graphicImage id="editSlavePoolImage" value="/resources/images/wrench.png" styleClass="actionButton"/>
+                                    <pe:tooltip for="editSlavePoolImage" value="Edit slave pool" myPosition="top right" atPosition="bottom center"/>
+                                    <f:param name="editFromSlavePoolId" value="#{slavePool.id}"/>
+                                </p:commandLink>
+                                <ci:deleteBtnWithConfirmDlg id="deletePool" actionListener="#{slaveInstanceEditorBean.deleteSlavePool}" entityLabel="#{slavePool.name}" tooltip="Delete slave pool" update="slavePoolMenu">
+                                    <f:param name="slavePoolId" value="#{slavePool.id}"/>
+                                </ci:deleteBtnWithConfirmDlg>
+                            </p:column>
+                        </p:pickList>
+                        <p:commandLink id="showSlavePoolDialogLink" value="Add new slave pool" oncomplete="addSlavePoolDlg.show();" update=":addSlavePoolDialog" immediate="true"/>
+
+                        <p:pickList id="slaveLabelMenu" value="#{slaveInstanceEditorBean.slaveLabelsDualList}" var="slaveLabel" converter="SlaveLabelConverter"
+                                    itemLabel="#{slaveLabel.name}" itemValue="#{slaveLabel}" showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains">
+                            <f:facet name="sourceCaption">Available Slave labels</f:facet>
+                            <f:facet name="targetCaption">Selected Slave labels</f:facet>
+                            <p:column style="width:75%">#{slaveLabel.name}</p:column>
+                            <p:column style="width:25%">
+                                <p:commandLink id="showEditSlaveLabelDialogLink" oncomplete="editSlaveLabelDlg.show();" update=":editSlaveLabelDialog" actionListener="#{slaveInstanceEditorBean.editSelectedSlaveLabel}">
+                                    <h:graphicImage id="editSlaveLabelImage" value="/resources/images/wrench.png" styleClass="actionButton"/>
+                                    <pe:tooltip for="editSlaveLabelImage" value="Edit slave label" myPosition="top right" atPosition="bottom center"/>
+                                    <f:param name="editFromSlaveLabelId" value="#{slaveLabel.id}"/>
+                                </p:commandLink>
+                                <ci:deleteBtnWithConfirmDlg id="deleteLabel" actionListener="#{slaveInstanceEditorBean.deleteSlaveLabel}" entityLabel="#{slaveLabel.name}" tooltip="Delete slave label" update="slaveLabelMenu">
+                                    <f:param name="slaveLabelId" value="#{slaveLabel.id}"/>
+                                </ci:deleteBtnWithConfirmDlg>
+                            </p:column>
+                        </p:pickList>
+                        <p:commandLink id="showSlaveLabelDialogLink" value="Add new slave label" oncomplete="addSlaveLabelDlg.show();" update=":addSlaveLabelDialog" immediate="true"/>
+
+                        <p:focus for="hostName"/>
+
+                        <f:facet name="footer">
+                            <p:commandButton id="slaveSaveButton" value="Save" action="#{slaveInstanceEditorBean.saveEditedSlaveInstance}" ajax="false"/>
+                            <p:commandButton id="slaveCancelButton" value="Cancel" action="#{slaveInstanceEditorBean.cancelEdit}" ajax="false" immediate="true"/>
+                        </f:facet>
+
+                    </h:panelGrid>
+                </h:form>
+
+                <p:dialog id="addSlavePoolDialog" header="Add new slave pool" widgetVar="addSlavePoolDlg" resizable="false" modal="true">
+                    <h:form id="addSlavePoolForm">
+                        <h:panelGrid columns="2" style="margin-bottom:10px">
+                            <h:outputLabel for="newSlavePoolName" value="Name:" />
+                            <p:inputText id="newSlavePoolName" value="#{slaveInstanceEditorBean.addedSlavePool.name}">
+                                <f:validateLength minimum="3"/>
+                            </p:inputText>
+                            <h:outputLabel for="newSlavePoolReservedLimit" value="Limit for reserved slaves:" />
+                            <p:inputText id="newSlavePoolReservedLimit" value="#{slaveInstanceEditorBean.addedSlavePool.reservedSlaveInstancesLimit}">
+                                <f:validateLongRange minimum="-1" maximum="1000000" />
+                            </p:inputText>
+                        </h:panelGrid>
+                        <p:commandButton id="slavePoolSubmitButton" value="Submit" update=":slaveEditorForm:slavePoolMenu" oncomplete="addSlavePoolDlg.hide();" actionListener="#{slaveInstanceEditorBean.saveAddedSlavePool}" ajax="true"/>
+                        <p:commandButton id="slavePoolCancelButton" value="Cancel" onclick="addSlavePoolDlg.hide()"/>
+                    </h:form>
+                </p:dialog>
+
+                <p:dialog id="editSlavePoolDialog" header="Edit slave pool" widgetVar="editSlavePoolDlg" resizable="false" modal="true">
+                    <h:form id="editSlavePoolForm">
+                        <h:panelGrid columns="2" style="margin-bottom:10px">
+                            <h:outputLabel for="editedSlavePoolName" value="Name:" />
+                            <p:inputText id="editedSlavePoolName" value="#{slaveInstanceEditorBean.editedSlavePool.name}">
+                                <f:validateLength minimum="3"/>
+                            </p:inputText>
+                            <h:outputLabel for="editedSlavePoolReservedLimit" value="Limit for reserved slaves:" />
+                            <p:inputText id="editedSlavePoolReservedLimit" value="#{slaveInstanceEditorBean.editedSlavePool.reservedSlaveInstancesLimit}">
+                                <f:validateLongRange minimum="-1" maximum="1000000" />
+                            </p:inputText>
+                        </h:panelGrid>
+                        <p:commandButton id="editSlavePoolSubmitButton" value="Submit" update=":slaveEditorForm:slavePoolMenu" oncomplete="editSlavePoolDlg.hide();" actionListener="#{slaveInstanceEditorBean.saveEditedSlavePool}" ajax="true"/>
+                        <p:commandButton id="editSlavePoolCancelButton" value="Cancel" onclick="editSlavePoolDlg.hide()"/>
+                    </h:form>
+                </p:dialog>
+
+                <p:dialog id="addSlaveLabelDialog" header="Add new slave label" widgetVar="addSlaveLabelDlg" resizable="false" modal="true">
+                    <h:form id="addSlaveLabelForm">
+                        <h:panelGrid columns="2" style="margin-bottom:10px">
+                            <h:outputLabel for="newSlaveLabelName" value="Name:" />
+                            <p:inputText id="newSlaveLabelName" value="#{slaveInstanceEditorBean.addedSlaveLabel.name}">
+                                <f:validateLength minimum="3"/>
+                            </p:inputText>
+                        </h:panelGrid>
+                        <p:commandButton id="slaveLabelSubmitButton" value="Submit" update=":slaveEditorForm:slaveLabelMenu" oncomplete="addSlaveLabelDlg.hide();" actionListener="#{slaveInstanceEditorBean.saveAddedSlaveLabel}" ajax="true"/>
+                        <p:commandButton id="slaveLabelCancelButton" value="Cancel" onclick="addSlaveLabelDlg.hide()"/>
+                    </h:form>
+                </p:dialog>
+
+                <p:dialog id="editSlaveLabelDialog" header="Edit slave label" widgetVar="editSlaveLabelDlg" resizable="false" modal="true">
+                    <h:form id="editSlaveLabelForm">
+                        <h:panelGrid columns="2" style="margin-bottom:10px">
+                            <h:outputLabel for="editedSlaveLabelName" value="Name:" />
+                            <p:inputText id="editedSlaveLabelName" value="#{slaveInstanceEditorBean.editedSlaveLabel.name}">
+                                <f:validateLength minimum="3"/>
+                            </p:inputText>
+                        </h:panelGrid>
+                        <p:commandButton id="editSlaveLabelSubmitButton" value="Submit" update=":slaveEditorForm:slaveLabelMenu" oncomplete="editSlaveLabelDlg.hide();" actionListener="#{slaveInstanceEditorBean.saveEditedSlaveLabel}" ajax="true"/>
+                        <p:commandButton id="editSlaveLabelCancelButton" value="Cancel" onclick="editSlaveLabelDlg.hide()"/>
+                    </h:form>
+                </p:dialog>
+
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

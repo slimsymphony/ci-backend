@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+
+        <ui:composition template="./../template/adminLayout.xhtml">
+
+            <ui:define name="contentTitle">Project groups</ui:define>
+
+            <ui:define name="contentMenu">
+                <ci:addButton page="/secure/admin/projectGroupEditor.xhtml" tooltip="Add new group"/>
+                <h:link id="projectGroupOrder" value="" outcome="projectGroupOrder" styleClass="contentmenuOrder">
+                    <pe:tooltip for="projectGroupOrder" value="Choose order" myPosition="top right" atPosition="bottom center"/>
+                </h:link>
+            </ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="Admin" outcome="admin"/>
+                <h:link value="Project groups" outcome="projectGroups" styleClass="active"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="projectGroupsTableForm" onkeypress="return event.keyCode !== 13;">
+                    <p:dataTable id="projectGroupsTable" value="#{projectGroupsBean.projectGroups}" var="p"
+                                 filteredValue="#{projectGroupsBean.filteredValues}"  paginator="true" rows="20"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,20,50">
+                        <p:column sortBy="#{p.name}" filterBy="#{p.name}" filterMatchMode="contains">
+                            <f:facet name="header">Name</f:facet>
+                            <h:outputLink value="/secure/admin/projectGroupEditor.xhtml">
+                                <h:outputText value="#{p.name}"/>
+                                <f:param name="projectGroupId" value="#{p.id}"/>
+                            </h:outputLink>
+                        </p:column>
+                        <p:column sortBy="#{p.description}" filterBy="#{p.description}" filterMatchMode="contains">
+                            <f:facet name="header">Description</f:facet>
+                            <ci:outputTextTimeStamp value="#{p.description}"/>
+                        </p:column>
+                        <p:column sortBy="#{p.created}">
+                            <f:facet name="header">Created</f:facet>
+                            <h:outputText value="#{p.created}"/>
+                        </p:column>
+                        <p:column sortBy="#{p.createdBy}">
+                            <f:facet name="header">Created by</f:facet>
+                            <ci:userLoginNameLink id="createdBy" value="#{p.createdBy}"/>
+                        </p:column>
+                        <p:column sortBy="#{p.modified}">
+                            <f:facet name="header">Modified</f:facet>
+                            <ci:outputTextTimeStamp value="#{p.modified}"/>
+                        </p:column>
+                        <p:column sortBy="#{p.modifiedBy}">
+                            <f:facet name="header">Modified by</f:facet>
+                            <ci:userLoginNameLink id="modifiedBy" value="#{p.modifiedBy}"/>
+                        </p:column>
+                        <p:column styleClass="actionColumn">
+                            <f:facet name="header">Actions</f:facet>
+                            <h:outputLink value="/secure/admin/projectGroupEditor.xhtml">
+                                <h:graphicImage id="editProjectGroup" value="/resources/images/wrench.png" styleClass="actionButton"/>
+                                <f:param name="projectGroupId" value="#{p.id}"/>
+                                <pe:tooltip for="editProjectGroup" value="Edit project group" myPosition="top right" atPosition="bottom center"/>
+                            </h:outputLink>
+                            <ci:deleteBtnWithConfirmDlg id="deleteProjectGroup" actionListener="#{projectGroupsBean.delete(p)}"
+                                                        entityLabel="#{p.name}" tooltip="Delete project group"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+    <cc:interface>
+        <composite:attribute name="page"/>
+    </cc:interface>
+
+    <cc:implementation>
+        <h:link id="help" value="" outcome="help" styleClass="contentmenuHelp" rendered="#{infoBean.hasHelpTopic(cc.attrs.page)}">
+            <f:param name="page" value="#{cc.attrs.page}"/>
+            <pe:tooltip for="help" value="Help (H)" myPosition="top right" atPosition="bottom center"/>
+            <h:form id="helpHotkey">
+                <p:hotkey bind="h" action="#{hotkeyController.gotoPage('/secure/pages/help?page='.concat(cc.attrs.page))}"/>
+            </h:form>
+        </h:link>
+        <h:link id="helpAdd" value="" outcome="/secure/admin/helpTopicEditor.xhtml" styleClass="contentmenuHelpAdd"
+                rendered="#{infoBean.hasHelpTopic(cc.attrs.page) == false and httpSessionBean.admin}">
+            <f:param name="pageToAdd" value="#{cc.attrs.page}"/>
+            <pe:tooltip for="helpAdd" value="Add help page" myPosition="top right" atPosition="bottom center"/>
+        </h:link>
+    </cc:implementation>
+</html>

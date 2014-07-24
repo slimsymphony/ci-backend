@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+        <ui:composition>
+            <h:form id="hotkeyForm">
+                <p:hotkey bind="p" action="#{hotkeyController.gotoPage('/secure/pages/projects')}" />
+                <p:hotkey bind="x" action="#{hotkeyController.gotoPage('/secure/admin/projects')}" rendered="#{httpSessionBean.admin}" />
+                <p:hotkey bind="i" action="#{hotkeyController.gotoPage('/secure/pages/info')}" />
+                <p:hotkey bind="m" action="#{hotkeyController.gotoPage('/secure/pages/metrics')}" />
+                <p:hotkey bind="t" action="#{hotkeyController.gotoPage('/secure/pages/myToolbox')}" />
+            </h:form>
+        </ui:composition>
+    </body>
+</html>

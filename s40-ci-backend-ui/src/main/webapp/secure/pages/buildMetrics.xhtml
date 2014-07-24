@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+
+    <body>
+        <ui:composition template="../template/layout.xhtml">
+            <ui:define name="contentTitle">Build #{buildMetricsDashboardBean.buildId} metrics</ui:define>
+
+            <ui:define name="contentMenu">
+                <ci:helpButton id="helpButton" page="buildMetrics"/>
+            </ui:define>
+
+            <ui:define name="head">
+                <script type="text/javascript" src="#{request.contextPath}/secure/resources/js/metricsUIUtils.js"/>
+                <script type="text/javascript">
+                    window.onload = initWindowParams;
+                    window.onresize = updateMetricsUnits;
+                </script>
+            </ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="#{buildMetricsDashboardBean.project.displayName}" outcome="projectDetails">
+                    <f:param name="projectId" value="#{buildMetricsDashboardBean.project.id}"/>
+                </h:link>
+                <h:link value="#{buildMetricsDashboardBean.job.displayName}" outcome="verificationDetails">
+                    <f:param name="verificationId" value="#{buildMetricsDashboardBean.job.id}"/>
+                </h:link>
+                <h:link value="Build #{buildMetricsDashboardBean.bg.id}" outcome="buildDetails">
+                    <f:param name="buildId" value="#{buildMetricsDashboardBean.bg.id}"/>
+                </h:link>
+                <h:link value="Metrics #{buildMetricsDashboardBean.build.id}" outcome="buildMetrics" styleClass="active">
+                    <f:param name="buildId" value="#{buildMetricsDashboardBean.build.id}"/>
+                </h:link>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="dashboardForm">
+                    <p:remoteCommand name="updateChartSize" update="@(.jobMetricsChart)" />
+                </h:form>
+
+                <p:dashboard id="metricsDashboard" model="#{buildMetricsDashboardBean.model}" style="min-height: 2900px;">
+                    <p:ajax event="reorder"/>
+
+                    <p:panel id="#{buildMetricsMemConsumTrendBean.renderDiv}" styleClass="metricsPanel" header="#{buildMetricsMemConsumTrendBean.header}" closable="false" toggleable="true"
+                             rendered="#{buildMetricsMemConsumTrendBean.isRendered}">
+                        <ci:buildMemConsumTrendChart id="buildMemConsumTrendChart" pinCommand="#{buildMetricsMemConsumTrendBean.pinToMyToolbox}" buildId="#{buildMetricsDashboardBean.buildId}"/>
+                    </p:panel>
+
+                    <p:panel id="#{buildMetricsMemConsumStatusBean.renderDiv}" styleClass="metricsPanel" header="#{buildMetricsMemConsumStatusBean.header}" closable="false" toggleable="true"
+                             rendered="#{buildMetricsMemConsumStatusBean.isRendered}">
+                        <ci:buildMemConsumStatusChart id="buildMemConsumStatusChart" pinCommand="#{buildMetricsMemConsumStatusBean.pinToMyToolbox}" buildId="#{buildMetricsDashboardBean.buildId}"/>
+                    </p:panel>
+
+                    <p:panel id="#{buildMetricsPassrateBean.renderDiv}" styleClass="metricsPanel" header="#{buildMetricsPassrateBean.header}" closable="false" toggleable="true"
+                             rendered="#{buildMetricsPassrateBean.isRendered}">
+                        <ci:buildPassrateChart id="buildPassrateChart" pinCommand="#{buildMetricsPassrateBean.pinToMyToolbox}" buildId="#{buildMetricsDashboardBean.buildId}"/>
+                    </p:panel>
+
+                    <p:panel id="#{buildMetricsPassratePieBean.renderDiv}" styleClass="metricsPanel" header="#{buildMetricsPassratePieBean.header}" closable="false"
+                             toggleable="true" rendered="#{buildMetricsPassratePieBean.isRendered}">
+                        <ci:buildPassratePieChart id="buildPassratePieChart" pinCommand="#{buildMetricsPassratePieBean.pinToMyToolbox}" buildId="#{buildMetricsDashboardBean.buildId}"/>
+                    </p:panel>
+
+                    <p:panel id="#{buildMetricsCaseCountTrendBean.renderDiv}" styleClass="metricsPanel" header="#{buildMetricsCaseCountTrendBean.header}" closable="false" toggleable="true"
+                             rendered="#{buildMetricsCaseCountTrendBean.isRendered}">
+                        <ci:buildCaseCountTrendChart id="buildCaseCountTrendChart" pinCommand="#{buildMetricsCaseCountTrendBean.pinToMyToolbox}" buildId="#{buildMetricsDashboardBean.buildId}"/>
+                    </p:panel>
+
+                    <p:panel id="#{buildMetricsCaseCountStatusBean.renderDiv}" styleClass="metricsPanel" header="#{buildMetricsCaseCountStatusBean.header}" closable="false" toggleable="true"
+                             rendered="#{buildMetricsCaseCountStatusBean.isRendered}">
+                        <ci:buildCaseCountStatusChart id="buildCaseCountStatusChart" pinCommand="#{buildMetricsCaseCountStatusBean.pinToMyToolbox}" buildId="#{buildMetricsDashboardBean.buildId}"/>
+                    </p:panel>
+
+                    <p:panel id="#{buildMetricsCoverageTrendBean.renderDiv}" styleClass="metricsPanel" header="#{buildMetricsCoverageTrendBean.header}" closable="false" toggleable="true"
+                             rendered="#{buildMetricsCoverageTrendBean.isRendered}">
+                        <ci:buildCoverageTrendChart id="buildCoverageTrendChart" pinCommand="#{buildMetricsCoverageTrendBean.pinToMyToolbox}" buildId="#{buildMetricsDashboardBean.buildId}"/>
+                    </p:panel>
+
+                    <p:panel id="#{buildMetricsCoverageStatusBean.renderDiv}" styleClass="metricsPanel" header="#{buildMetricsCoverageStatusBean.header}" closable="false" toggleable="true"
+                             rendered="#{buildMetricsCoverageStatusBean.isRendered}">
+                        <ci:buildCoverageStatusChart id="buildCoverageStatusChart" pinCommand="#{buildMetricsCoverageStatusBean.pinToMyToolbox}" buildId="#{buildMetricsDashboardBean.buildId}"/>
+                    </p:panel>
+
+                    <p:panel id="#{buildMetricsTestTriggerrateBean.renderDiv}" styleClass="metricsPanel" header="#{buildMetricsTestTriggerrateBean.header}" closable="false" toggleable="true"
+                             rendered="#{buildMetricsTestTriggerrateBean.isRendered}">
+                        <ci:buildTestTriggerrateChart id="buildTestTriggerrateChart" pinCommand="#{buildMetricsTestTriggerrateBean.pinToMyToolbox}" buildId="#{buildMetricsDashboardBean.buildId}"/>
+                    </p:panel>
+
+                    <p:panel id="#{buildMetricsFailureReasonCountBean.renderDiv}" styleClass="metricsPanel" header="#{buildMetricsFailureReasonCountBean.header}" closable="false" toggleable="true"
+                             rendered="#{buildMetricsFailureReasonCountBean.isRendered}">
+                        <ci:buildFailureReasonCountChart id="buildFailureReasonCountChart" pinCommand="#{buildMetricsFailureReasonCountBean.pinToMyToolbox}" buildId="#{buildMetricsDashboardBean.buildId}"/>
+                    </p:panel>
+
+                    <p:panel id="#{buildMetricsFailureReasonRatioBean.renderDiv}" styleClass="metricsPanel" header="#{buildMetricsFailureReasonRatioBean.header}" closable="false" toggleable="true"
+                             rendered="#{buildMetricsFailureReasonRatioBean.isRendered}">
+                        <ci:buildFailureReasonRatioChart id="buildFailureReasonRatioChart" pinCommand="#{buildMetricsFailureReasonRatioBean.pinToMyToolbox}" buildId="#{buildMetricsDashboardBean.buildId}"/>
+                    </p:panel>
+                </p:dashboard>
+
+                <script type="text/javascript" src="#{request.contextPath}/secure/resources/js/jqplotExport.js"/>
+                <script type="text/javascript" src="#{request.contextPath}/secure/resources/js/fullscreenMetrics.js"/>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

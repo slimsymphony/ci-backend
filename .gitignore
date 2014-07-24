@@ -1,0 +1,37 @@
+# FILES
+*.bak
+*.class
+s40-ci-backend-ejb/src/test/java/com/ci/jenkins/NonCommitTests.java
+s40-ci-backend-ejb/transaction.log
+s40-ci-backend-ui/transaction.log
+
+#netbeans custom maven targets configuration
+nbactions.xml
+nb-configuration.xml
+
+#idea files
+*.iws
+*.iml
+*.ipr
+
+#dia runtime backups
+*.dia~
+
+#maven version plugin backup files
+*.versionsBackup
+
+# FOLDERS
+*/target
+/.gitk-tmp.*/
+
+/.settings/
+/s40-ci-backend-client/.settings/
+/s40-ci-backend-ear/.settings/
+/s40-ci-backend-ejb/.settings/
+/s40-ci-backend-web/.settings/
+/s40-ci-backend-it/.settings/
+/s40-ci-backend-ui/.settings/
+/s40-ci-backend-uitest/.settings/
+
+*.project
+*.classpath

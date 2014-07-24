@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <composite:attribute name="id" default="jobPassrateChart"/>
+        <composite:attribute name="verificationId"/>
+        <composite:attribute name="pinCommand" method-signature="void pinToMyToolbox()"/>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation xmlns:ci="http://java.sun.com/jsf/composite/comp">
+        <h:form id="jobPassrateChartForm">
+            <h:outputText value="From: " />
+            <p:calendar value="#{jobMetricsPassrateBean.startDate}" size="5"/>
+            <h:outputText value=" To: " />
+            <p:calendar value="#{jobMetricsPassrateBean.endDate}" size="5"/>
+            <h:outputText value=" Scale: " />
+            <p:autoComplete dropdown="true" value="#{jobMetricsPassrateBean.selectedScale}" size="8"
+                            completeMethod="#{jobMetricsPassrateBean.completeScaleOptions}"/>
+            <p:spacer width="5"/>
+            <p:commandLink id="passrateLineChartCmd" update="passrateLineChart" actionListener="#{jobMetricsPassrateBean.updateDataModel}">
+                <p:graphicImage value="/resources/images/refresh_icon.png" />
+                <f:param name="verificationId" value="#{cc.attrs.verificationId}"/>
+            </p:commandLink >
+            <p:commandLink id="exportPassrateLineChart" styleClass="exportJqplot">
+                <p:graphicImage value="/resources/images/picture.png"/>
+            </p:commandLink>
+            <p:commandLink id="fullscreenPassrateLineChart" styleClass="fullscreenToggle fullscreenBtn"/>
+            <p:commandLink id="permalinkPassrateLineChart" styleClass="permalinkChart" actionListener="#{jobMetricsPassrateBean.openPermalink}">
+                <p:graphicImage value="/resources/images/page_go.png"/>
+                <f:param name="verificationId" value="#{cc.attrs.verificationId}"/>
+            </p:commandLink>
+            <p:commandLink id="helpPassrateLineChart">
+                <p:graphicImage id="helpIconPassrateLineChart" value="/resources/images/question.png"/>
+            </p:commandLink>
+            <p:commandLink id="pinPassrateLineChart" actionListener="#{cc.attrs.pinCommand}" style="float: right;" rendered="#{cc.attrs.pinCommand != null}">
+                <h:graphicImage id="pinIconPassrateLineChart" value="/resources/images/iconic/gray_light/pin_12x12.png" styleClass="actionButton"/>
+                <pe:tooltip for="pinIconPassrateLineChart" value="Pin to My toolbox" myPosition="top right" atPosition="bottom center"/>
+            </p:commandLink>
+            <pe:tooltip for="permalinkPassrateLineChart" value="Permalink"/>
+            <pe:tooltip for="exportPassrateLineChart" value="Export image"/>
+            <pe:tooltip for="passrateLineChartCmd" value="Get/Refresh data"/>
+            <pe:tooltip for="fullscreenPassrateLineChart" value="Toggle fullscreen"/>
+            <pe:tooltip showEvent="mouseover" for="helpIconPassrateLineChart" value="Help"/>
+            <pe:tooltip showEvent="click" for="helpPassrateLineChart" value="This metrics is to visualize the passrate(passed vs. failed) of current verification."/>
+
+            <p:lineChart id="passrateLineChart" value="#{jobMetricsPassrateBean.dataModel}" legendPosition="ne" stacked="true" fill="true"
+                         style="width:100%;height:380px" minY="0" animate="true" extender="cntFormatExt" styleClass="jobMetricsChart">
+                <p:ajax event="itemSelect" listener="#{jobMetricsPassrateBean.itemSelect}" update=""/>
+            </p:lineChart>
+         </h:form>
+    </cc:implementation>
+</html>

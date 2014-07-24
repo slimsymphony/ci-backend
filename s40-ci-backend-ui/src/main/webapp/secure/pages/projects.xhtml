@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+        <ui:composition template="../template/layout.xhtml">
+            <ui:define name="contentTitle">Projects</ui:define>
+
+            <ui:define name="contentMenu">
+                <h:link id="gerritTrigger" outcome="gerritTrigger" rendered="#{httpSessionBean.projectAdmin}" value="" styleClass="contentmenuPlay">
+                    <pe:tooltip for="gerritTrigger" value="Gerrit trigger" myPosition="top right" atPosition="bottom center"/>
+                </h:link>
+                <ci:helpButton id="helpButton" page="projects"/>
+                <ci:addButton page="/secure/admin/projectEditor.xhtml" tooltip="Add new project" rendered="#{httpSessionBean.projectAdmin}"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <ui:param name="groupedProjectModel" value="#{projectsBean.getGroupedProjectModel()}" />
+
+                <p:accordionPanel multiple="true" id="projectGroupTabs" value="#{projectsBean.groupedProjectModel.projectGroupUiLabels}"
+                                  var="projectGroupUiLabel" widgetVar="projectsAccordion" activeIndex="">
+                    <p:tab id="projectGroup" title="#{projectGroupUiLabel.groupCaption}">
+                        <h:form>
+                            <p:dataTable value="#{groupedProjectModel.groupedProjects.get(projectGroupUiLabel)}" var="p">
+                                <p:column sortBy="#{p.displayName}">
+                                    <f:facet name="header">Name</f:facet>
+                                    <h:outputLink value="/secure/pages/projectDetails.xhtml">
+                                        <h:outputText value="#{p.displayName}"/>
+                                        <f:param name="projectId" value="#{p.id}"/>
+                                    </h:outputLink>
+                                </p:column>
+                                <p:column sortBy="#{p.configurationResponsible}">
+                                    <f:facet name="header">CI configuration responsible</f:facet>
+                                    <ci:autoLinkOutputText value="#{p.configurationResponsible}"/>
+                                </p:column>
+                                <p:column sortBy="#{p.description}">
+                                    <f:facet name="header">Description</f:facet>
+                                    <h:outputText value="#{p.description}" escape="false"/>
+                                </p:column>
+                                <p:column styleClass="actionColumn" style="width: 80px; text-align: center;">
+                                    <f:facet name="header">Actions</f:facet>
+                                    <h:outputLink value="/secure/pages/projectDetails.xhtml">
+                                        <h:graphicImage id="projectDetails" value="/resources/images/page_go.png" styleClass="actionButton"/>
+                                        <f:param name="projectId" value="#{p.id}"/>
+                                        <pe:tooltip for="projectDetails" value="Show project details" myPosition="top right" atPosition="bottom center"/>
+                                    </h:outputLink>
+                                    <h:outputLink value="/secure/admin/projectEditor.xhtml" rendered="#{httpSessionBean.admin}">
+                                        <h:graphicImage id="editProject" value="/resources/images/wrench.png" styleClass="actionButton"/>
+                                        <f:param name="projectId" value="#{p.id}"/>
+                                        <pe:tooltip for="editProject" value="Edit project" myPosition="top right" atPosition="bottom center"/>
+                                    </h:outputLink>
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
+                    </p:tab>
+                </p:accordionPanel>
+                <script type="text/javascript" src="#{request.contextPath}/secure/resources/js/projectsAccordionPanel.js"/>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

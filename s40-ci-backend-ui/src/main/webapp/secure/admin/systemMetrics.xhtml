@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+
+        <ui:composition template="./../template/adminLayout.xhtml">
+
+            <ui:define name="contentTitle">System metrics</ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="Admin" outcome="admin"/>
+                <h:link value="System metrics" outcome="systemMetrics" styleClass="active"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h3 class="contentTitleText">Operating system</h3>
+                <h:form id="systemInfoForm">
+                    <p:poll interval="3" update="@form" listener="#{systemMetricsBean.updateData()}"/>
+                    <p:panelGrid id="OSDetailsTable" columns="2">
+                        <h:outputLabel for="OSName" value="Operating system:"/>
+                        <h:outputText id="OSName" value="#{systemMetricsBean.OSName}"/>
+                        <h:outputLabel for="OSVersion" value="Operating system version:"/>
+                        <h:outputText id="OSVersion" value="#{systemMetricsBean.OSVersion}"/>
+                        <h:outputLabel for="OSArch" value="Operating system architecture:"/>
+                        <h:outputText id="OSArch" value="#{systemMetricsBean.OSArchitecture}"/>
+                        <h:outputLabel for="processors" value="Number of processors:"/>
+                        <h:outputText id="processors" value="#{systemMetricsBean.availableProcessors}"/>
+                        <h:outputLabel for="uptime" value="CI uptime:"/>
+                        <h:outputText id="uptime" value="#{systemMetricsBean.uptime}"/>
+                    </p:panelGrid>
+
+                    <h3 class="contentTitleText">Memory usage</h3>
+                    <p:lineChart id="memoryUsage" value="#{systemMetricsBean.memoryModel}" legendPosition="se" style="height:400px;margin-top:10px"/>
+
+                    <h3 class="contentTitleText">System load</h3>
+                    <p:lineChart id="systemLoad" value="#{systemMetricsBean.systemLoadModel}" legendPosition="se" style="height:400px;margin-top:10px"/>
+
+                    <h3 class="contentTitleText">Thread count</h3>
+                    <p:lineChart id="threadUsage" value="#{systemMetricsBean.threadModel}" legendPosition="se" style="height:400px;margin-top:10px"/>
+                </h:form>
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

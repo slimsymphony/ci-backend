@@ -1,0 +1,23 @@
+## YAML Template.
+---
+job:
+  - id: 1
+    name: job_1
+    displayname: Job 1
+    triggertype: AUTOMATIC
+  - id: 2
+    name: job_2
+    displayname: Job 2
+    triggertype: POLL
+  - id: 3
+    name: job_3
+    displayname: Job 3
+    triggertype: MANUAL
+  - id: 4
+    name: job_4
+    displayname: Job 4
+    triggertype: MANUAL
+  - id: 5
+    name: job_5
+    displayname: Job 5
+    triggertype: SCHEDULE

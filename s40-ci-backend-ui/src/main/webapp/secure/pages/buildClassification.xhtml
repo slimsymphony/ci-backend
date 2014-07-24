@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+
+        <ui:composition template="../template/layout.xhtml">
+            <ui:define name="contentTitle">Build classification</ui:define>
+
+            <ui:define name="contentMenu">
+                <h:link id="testResults" value="" outcome="buildTestResults" styleClass="contentmenuReport"
+                        rendered="#{buildClassificationBean.buildGroupId != null}">
+                    <f:param name="buildGroupId" value="#{buildClassificationBean.buildGroupId}"/>
+                    <f:param name="buildId" value="#{buildClassificationBean.build.id}"/>
+                    <pe:tooltip for="testResults" value="Build test results" myPosition="top right" atPosition="bottom center"/>
+                </h:link>
+                <ci:helpButton id="helpButton" page="buildClassification"/>
+            </ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="#{buildClassificationBean.project.displayName}" outcome="projectDetails">
+                    <f:param name="projectId" value="#{buildClassificationBean.project.id}"/>
+                </h:link>
+                <h:link value="#{buildClassificationBean.job.displayName}" outcome="verificationDetails">
+                    <f:param name="verificationId" value="#{buildClassificationBean.job.id}"/>
+                </h:link>
+                <h:link value="Build #{buildClassificationBean.bg.id}" outcome="buildDetails">
+                    <f:param name="buildId" value="#{buildClassificationBean.bg.id}"/>
+                </h:link>
+                <h:link value="Classification #{buildClassificationBean.build.id}" outcome="buildClassification" styleClass="active">
+                    <f:param name="buildId" value="#{buildClassificationBean.build.id}"/>
+                </h:link>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="buildFailureForm">
+                    <ci:navigationPreviousNext nextRendered="#{buildClassificationBean.nextClassifableBuild != null}"
+                                               nextTarget="/secure/pages/buildClassification.xhtml?buildId=#{buildClassificationBean.nextClassifableBuild.id}"
+                                               nextText="Next classifable build"
+                                               prevRendered="#{buildClassificationBean.prevClassifableBuild != null}"
+                                               prevTarget="/secure/pages/buildClassification.xhtml?buildId=#{buildClassificationBean.prevClassifableBuild.id}"
+                                               prevText="Previous classifable build"/>
+
+                    <p:panelGrid id="buildDetailsTable" columns="2" rendered="#{buildClassificationBean.build != null}">
+                        <h:outputLabel for="buildProduct" value="Product:"/>
+                        <h:outputText id="buildProduct" value="#{buildClassificationBean.build.buildVerificationConf.productName}"/>
+                        <h:outputLabel for="buildProductRM" value="Product RM-Code:"/>
+                        <h:outputText id="buildProductRM" value="#{buildClassificationBean.build.buildVerificationConf.productRmCode}"/>
+                        <h:outputLabel for="buildVerification" value="Verification:"/>
+                        <h:outputText id="buildVerification" value="#{buildClassificationBean.build.buildVerificationConf.verificationDisplayName}"/>
+                    </p:panelGrid>
+
+                    <ci:njunitDatatable testsuites="#{buildClassificationBean.testSuites}" build="#{buildClassificationBean.build}"
+                                        filterList="#{buildClassificationBean.filteredCases}"/>
+
+                    <h3 class="contentTitleText">Errors to be classified</h3>
+                    <p:dataTable id="buildFailures" value="#{buildClassificationBean.buildFailures}" var="model">
+                        <f:facet name="header">
+                            <h:outputText value="Build failures"/>
+                        </f:facet>
+                        <p:column>
+                            <f:facet name="header">Test name</f:facet>
+                            <h:outputText value="#{model.failure.testcaseName}" rendered="#{empty model.url}"/>
+                            <h:outputLink target="_blank" value="#{model.url}" rendered="#{not empty model.url}">
+                                <h:outputText value="#{model.failure.testcaseName}"/>
+                            </h:outputLink>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Type</f:facet>
+                            <h:outputText value="#{model.failure.type}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Message</f:facet>
+                            <h:outputText value="#{model.failure.message}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Reason</f:facet>
+                            <h:selectOneMenu id="buildFailureReason" value="#{model.reason}" converter="VerificationFailureReasonConverter"
+                                             rendered="#{httpSessionBean.sysUser.buildClassificationAllowed}">
+                                <f:selectItem itemLabel="Not analyzed" itemValue="#{null}"/>
+                                <f:selectItems value="#{buildClassificationBean.failureReasons}" var="reason" itemValue="#{reason}" itemLabel="#{reason.name}"/>
+                                <p:ajax update="reasonDesc"/>
+                            </h:selectOneMenu>
+                            <h:outputText value="#{model.reason.name}"
+                                          rendered="#{httpSessionBean.sysUser.buildClassificationAllowed == false}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Description</f:facet>
+                            <h:outputText id="reasonDesc" value="#{buildClassificationBean.getReasonDescription(model)}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Comment</f:facet>
+                            <p:inputTextarea rows="2" cols="20" value="#{model.comment}" autoResize="false"
+                                             rendered="#{httpSessionBean.sysUser.buildClassificationAllowed}"/>
+                            <h:outputText value="#{model.comment}"
+                                          rendered="#{httpSessionBean.sysUser.buildClassificationAllowed == false}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Checked by</f:facet>
+                            <ci:userLoginNameLink value="#{model.failure.failureReason.checkUser}"
+                                                  rendered="#{model.failure != null and model.failure.failureReason != null}"/>
+                        </p:column>
+                    </p:dataTable>
+                    <h:panelGrid columns="1" rendered="#{httpSessionBean.sysUser.buildClassificationAllowed}">
+                        <f:facet name="footer">
+                            <p:commandButton id="reviewSaveButton" value="Save" action="#{buildClassificationBean.save}" ajax="false"/>
+                            <p:commandButton id="reviewCancelButton" value="Cancel" action="#{buildClassificationBean.cancelEdit}" ajax="false" immediate="true"/>
+                        </f:facet>
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

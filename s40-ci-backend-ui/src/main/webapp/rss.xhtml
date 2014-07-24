@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<rss version="2.0" 
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html" 
+     xmlns:ui="http://java.sun.com/jsf/facelets">
+    <channel>
+        <title>#{rssBean.title}</title>
+        <description>#{rssBean.description}</description>
+        <link>#{rssBean.link}</link>
+        <ttl>#{rssBean.ttl}</ttl>
+
+        <ui:repeat value="#{rssBean.buildGroups}" var="buildGroup">
+            <item>
+                <title>
+                    <h:outputText value="Build #{buildGroup.buildGroup.id} #{buildGroup.buildGroup.status}" rendered="#{buildGroup.buildGroup.phase == 'FINISHED'}"/>
+                    <h:outputText value="Build #{buildGroup.buildGroup.id} #{buildGroup.buildGroup.phase}" rendered="#{buildGroup.buildGroup.phase != 'FINISHED'}"/>
+                </title>
+                <description>
+                    <h:outputText value="#{rssBean.getBuildDescription(buildGroup)}"/>
+                </description>
+                <pubDate>
+                    <h:outputText value="#{buildGroup.buildGroup.startTime}">
+                        <f:convertDateTime pattern="EEE, d MMM yyy HH:mm:ss Z"/>
+                    </h:outputText>
+                </pubDate>
+                <link><h:outputText value="#{rssBean.buildURL(buildGroup)}"/></link>
+                <guid isPermaLink="true"><h:outputText value="#{rssBean.buildURL(buildGroup)}"/></guid>
+            </item>
+        </ui:repeat>
+
+    </channel>
+</rss>

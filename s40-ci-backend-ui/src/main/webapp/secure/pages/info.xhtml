@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+        <ui:composition template="../template/layout.xhtml">
+            <ui:define name="contentTitle">Help</ui:define>
+
+            <ui:define name="content">
+                <h3 class="contentTitleText">Support</h3>
+                <p>More information about the S40 CI 2.0 from <a href="http://wikis.in.nokia.com/S40CI/S40CI20">S40 CI 2.0 wiki.</a></p>
+                <p>Found a bug ? New feature request for the system? <a href="https://linux.nokia.com/nagzilla/enter_bug.cgi?product=S40%20CI%202.0">Report a bug with Nagzilla.</a></p>
+                <p>Questions, comments, feedback? Please, send <a href="mailto:I_EXT_S40_CI20_SUPPORT@nokia.com">email to us.</a></p>
+                <p>Stay tuned and join us also on <a href="https://socialcast.nokia.com/groups/s40ci20" target="_blank">Socialcast</a>!</p>
+
+                <hr/>
+                <h3 class="contentTitleText">Help topics</h3>
+                <h:outputText value="No help topics yet" rendered="#{empty infoBean.helpTopics}"/>
+                <ul>
+                    <ui:repeat value="#{infoBean.helpTopics}" var="topic">
+                        <li>
+                            <h:outputLink value="/secure/pages/help.xhtml" rendered="#{not empty topic.page}">
+                                <f:param name="page" value="#{topic.page}"/>
+                                <h:outputText value="#{topic.topic}"/>
+                            </h:outputLink>
+                            <h:outputLink value="/secure/pages/help.xhtml" rendered="#{empty topic.page}">
+                                <f:param name="id" value="#{topic.id}"/>
+                                <h:outputText value="#{topic.topic}"/>
+                            </h:outputLink>
+                        </li>
+                    </ui:repeat>
+                </ul>
+
+                <hr/>
+                <h3 class="contentTitleText">FAQ</h3>
+                <h:outputText value="No FAQs yet" rendered="#{empty infoBean.faqs}"/>
+                <ul>
+                    <ui:repeat value="#{infoBean.faqs}" var="faq">
+                        <li>
+                            <h:outputLink value="/secure/pages/faq.xhtml">
+                                <f:param name="id" value="#{faq.id}"/>
+                                <h:outputText value="#{faq.question}"/>
+                            </h:outputLink>
+                        </li>
+                    </ui:repeat>
+                </ul>
+
+                <hr/>
+                <h3 class="contentTitleText">CI UI hotkeys</h3>
+                <ul>
+                    <ui:fragment><li>P - Projects page</li></ui:fragment>
+                    <ui:fragment><li>T - My toolbox</li></ui:fragment>
+                    <ui:fragment rendered="#{httpSessionBean.admin}"><li>X - Admin section</li></ui:fragment>
+                    <ui:fragment><li>H - Help page for current page (if available)</li></ui:fragment>
+                    <ui:fragment><li>I - Info, this page</li></ui:fragment>
+                    <ui:fragment><li>M - Global metrics</li></ui:fragment>
+                    <ui:fragment><li>A - Add new instance (project, verification, etc.) if available</li></ui:fragment>
+                    <ui:fragment><li>C - Configure current instance (project, verification, etc.) if available</li></ui:fragment>
+                    <ui:fragment><li>Backspace / left arrow - Back to parent</li></ui:fragment>
+                </ul>
+                <hr/>
+                <ui:repeat value="#{infoBean.releaseInfo}" var="release">
+                    <h3 class="contentTitleText"><h:outputText value="What's new in CI #{release.version}?"/></h3>
+                    <p>Release date: <h:outputText value="#{release.releaseDate}">
+                            <f:convertDateTime pattern="dd.MM.yyyy"/>
+                        </h:outputText></p>
+                    <h:outputText value="#{release.info}" escape="false"/>
+                </ui:repeat>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

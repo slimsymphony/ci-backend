@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-web>
+    <context-root>/</context-root>
+    <security-domain>java:/jaas/CiDbAuth</security-domain>
+    <!-- 
+        Security information replication in Cluster environment.
+        This feature is not working in 7.1.1-Final version of Jboss. BUG: https://issues.jboss.org/browse/AS7-4681
+        Enable if needed with later releases.
+    -->
+    <!--valve>
+        <class-name>org.apache.catalina.authenticator.SingleSignOn</class-name>
+    </valve-->
+</jboss-web>

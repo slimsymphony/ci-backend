@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+        <ui:composition template="../template/layout.xhtml">
+
+            <ui:define name="head">
+                <link rel="alternate" type="application/rss+xml"
+                      href="#{request.contextPath}/rss/user/#{httpSessionBean.sysUser.id}/#{httpSessionBean.sysUser.secretKey}/"
+                      title="My builds RSS feed"/>
+            </ui:define>
+
+            <ui:define name="head">
+                <script type="text/javascript" src="#{request.contextPath}/secure/resources/js/metricsUIUtils.js"/>
+                <script type="text/javascript">
+                    window.onload = initWindowParams;
+                    window.onresize = updateMetricsUnits;
+                </script>
+            </ui:define>
+
+            <ui:define name="contentTitle">My toolbox</ui:define>
+
+            <ui:define name="contentMenu">
+                <h:link id="gerritTrigger" outcome="gerritTrigger" rendered="#{httpSessionBean.projectAdmin}" value="" styleClass="contentmenuPlay">
+                    <pe:tooltip for="gerritTrigger" value="Gerrit trigger" myPosition="top right" atPosition="bottom center"/>
+                </h:link>
+                <h:link id="rss" target="_blank" type="application/rss+xml" value="" outcome="/rss.xhtml" styleClass="contentmenuRss">
+                    <f:param name="userId" value="#{httpSessionBean.sysUser.id}"/>
+                    <f:param name="secretKey" value="#{httpSessionBean.sysUser.secretKey}"/>
+                    <pe:tooltip for="rss" value="My builds RSS" myPosition="top right" atPosition="bottom center"/>
+                </h:link>
+                <h:link id="userSettings" value="" outcome="userSettings" styleClass="contentmenuConfigure">
+                    <pe:tooltip for="userSettings" value="My settings" myPosition="top right" atPosition="bottom center"/>
+                </h:link>
+                <ci:helpButton id="helpButton" page="toolbox"/>
+                <h:form id="addToolboxForm">
+                    <ci:pageTutorial step="5" position="left" value="You can easily create your own verifications by clicking this button.
+                                     This ends our tutorial. If you need help please refer to the help page or contact support!">
+                        <p:commandLink id="addNewToolbox" value="" oncomplete="projectsDlg.show();" update=":displayProjectForm"
+                                       styleClass="contentmenuAdd"/>
+                        <pe:tooltip for="addNewToolbox" value="Add new toolbox verification (A)" myPosition="top right" atPosition="bottom center"/>
+                        <p:hotkey bind="a" oncomplete="projectsDlg.show()"/>
+                    </ci:pageTutorial>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="hidden">
+                <p:dialog id="displayProject" header="Choose a project" widgetVar="projectsDlg" resizable="false" modal="true">
+                    <ui:param name="groupedProjectModel" value="#{projectsBean.getGroupedProjectModel()}"/>
+                    <h:form id="displayProjectForm">
+                        <h:panelGrid id="panelGrid" columns="2" style="margin-bottom:10px">
+                            <h:outputText value="Project Groups:"/>
+                            <br/>
+                            <h:selectOneMenu id="projectGroup" value="#{myToolboxBean.userPrjGroup}" style="width: 250px;">
+                                <f:selectItem itemLabel="" noSelectionOption="true"/>
+                                <f:selectItems value="#{groupedProjectModel.projectGroupUiLabels}" var="prjGroup" itemValue="#{prjGroup.id}"
+                                               itemLabel="#{prjGroup.groupCaption}"/>
+                                <f:ajax event="change" listener="#{myToolboxBean.clearUserProject()}" render="panelGrid"/>
+                            </h:selectOneMenu>
+                            <br/>
+                            <h:outputText value="Projects:"/>
+                            <br/>
+                            <h:selectOneMenu id="selectProject" value="#{myToolboxBean.userProject}" style="width: 250px;">
+                                <f:selectItem itemLabel="" noSelectionOption="true"/>
+                                <f:selectItems value="#{groupedProjectModel.getProjectsOfGroup(myToolboxBean.userPrjGroup)}"
+                                               var="project" itemValue="#{project.id}" itemLabel="#{project.displayName}"/>
+                                <f:ajax event="change" render="panelGrid"/>
+                            </h:selectOneMenu>
+                            <br/>
+                            <p:button value="OK" outcome="verificationEditor" rendered="#{httpSessionBean.loggedIn}"
+                                      disabled="#{myToolboxBean.userProject == null or myToolboxBean.userProject == 0}">
+                                <f:param name="projectId" value="#{myToolboxBean.userProject}"/>
+                            </p:button>
+                        </h:panelGrid>
+                    </h:form>
+                </p:dialog>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="updateChartSizeForm">
+                    <p:remoteCommand name="updateChartSize" update="@(.jobMetricsChart)" autoRun="true"/>
+                </h:form>
+
+                <h:panelGroup layout="block" rendered="#{empty myToolboxBean.widgets}">
+                    <h3>It's quite lonely here...</h3>
+                    <h:outputLink value="/secure/pages/userSettings.xhtml">
+                        <h:outputText value="You can add widgets from 'My settings' page or by finding components marked with pin icon: "/>
+                        <h:graphicImage id="pinIcon" value="/resources/images/iconic/gray_light/pin_12x12.png" styleClass="actionButton"/>
+                    </h:outputLink>
+                </h:panelGroup>
+                <p:dashboard id="myToolboxBoard" binding="#{myToolboxBean.board}" styleClass="myToolboxBoard">
+                    <p:ajax event="reorder" listener="#{myToolboxBean.handleReorder}"/>
+                </p:dashboard>
+
+                <h:form id="welcomeForm" rendered="#{httpSessionBean.sysUser.showTutorials}">
+                    <p:dialog id="welcomeDialog" header="Welcome to CI UI!" modal="true" visible="true"
+                              width="400" widgetVar="welcomeDlg" closeOnEscape="true">
+                        <p:ajax event="close" listener="#{httpSessionBean.hideTutorials()}" rendered="@none"/>
+                        <h:panelGrid columns="1" cellpadding="5">
+                            <h:outputText value="Hi and welcome to CI UI! This is interactive tutorial guiding you through the main components of the UI.
+                                          You can always restart the tutorial from the left side menu!" />
+                            <f:facet name="footer">
+                                <h:commandButton id="startTutorial" value="Start tutorial"
+                                                 onclick="startTutorial();">
+                                    <f:ajax execute="@form" render="@none"/>
+                                </h:commandButton>
+                                <h:commandButton id="hideTutorial" value="Not this time"
+                                                 onclick="welcomeDlg.hide();">
+                                    <f:ajax execute="@form" render="@none"/>
+                                </h:commandButton>
+                            </f:facet>
+                        </h:panelGrid>
+
+                    </p:dialog>
+                </h:form>
+
+                <script type="text/javascript" src="#{request.contextPath}/secure/resources/js/jqplotExport.js"/>
+                <script type="text/javascript" src="#{request.contextPath}/secure/resources/js/fullscreenMetrics.js"/>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

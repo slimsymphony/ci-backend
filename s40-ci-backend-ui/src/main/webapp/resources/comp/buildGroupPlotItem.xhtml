@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <composite:attribute name="buildGroup" type="com.nokia.ci.ejb.model.BuildGroup"/>
+        <composite:attribute name="bean"/>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation xmlns:ci="http://java.sun.com/jsf/composite/comp">
+        <div class="buildPlotItem" style="position:absolute; min-width: 180px; max-width: 10%;
+             border: 1px solid black; padding: 5px; z-index:100; overflow:hidden; cursor:pointer;" id="buildgroup">
+            <h:form styleClass="buildPlotItemForm">
+                <h:inputHidden value="#{cc.attrs.bean.getStartNodeBuildIds}" id="children"/>
+                <h:panelGrid id="buildPlotItemTable" border="0" columns="2">
+                    <h:outputLabel for="jobName" value="Name:"/>
+                    <h:outputText id="jobName" value="#{cc.attrs.buildGroup.jobDisplayName}"/>
+
+                    <h:outputLabel for="buildDuration" value="Duration:"/>
+                    <ci:buildDuration id="buildDuration" attrId="buildPlotDuration" styleClass="updateable" 
+                                      value="#{cc.attrs.buildGroup}"/>
+
+                    <h:outputLabel for="buildInfo" value="Status:"/>
+                    <ci:buildInfo id="buildInfo" attrId="buildPlotInfo" styleClass="updateable"
+                                  status="#{cc.attrs.buildGroup.status}" phase="#{cc.attrs.buildGroup.phase}"/>
+                </h:panelGrid>                
+
+                <h:outputLink value="/secure/pages/buildArtifacts.xhtml">
+                    <h:graphicImage id="artifactsIcon" value="/resources/images/box.png" styleClass="actionButton"/>
+                    <f:param name="rootBuildId" value="#{buildBean.buildGroup.id}"/>
+                    <f:param name="buildId" value="#{buildBean.buildGroup.id}"/>
+                    <pe:tooltip for="artifactsIcon" value="Show build artifacts" />
+                </h:outputLink>
+                <h:outputLink value="#{cc.attrs.buildGroup.url}/consoleText" target="_blank">
+                    <h:graphicImage id="consoleOutputIcon" value="/resources/images/terminal.png" styleClass="actionButton"/>
+                    <pe:tooltip for="consoleOutputIcon" value="Show console output" myPosition="top right" atPosition="bottom center"/>
+                </h:outputLink>
+            </h:form>
+        </div>
+    </cc:implementation>
+</html>

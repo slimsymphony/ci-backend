@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+
+        <ui:composition template="./../template/adminLayout.xhtml">
+
+            <ui:define name="contentTitle">System configurations</ui:define>
+
+            <ui:define name="contentMenu">
+                <ci:addButton page="/secure/admin/sysConfigEditor.xhtml" tooltip="Add new config"/>
+            </ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="Admin" outcome="admin"/>
+                <h:link value="System configuration" outcome="sysConfigs" styleClass="active"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="sysConfigForm" onkeypress="return event.keyCode !== 13;">
+                    <p:panelGrid id="buildDetailsTable" columns="2">
+                        <f:facet name="header">System tools</f:facet>
+                        <h:outputLabel for="optimizeIndex" value="Optimize search index:"/>
+                        <p:commandButton id="optimizeIndex" value="Run now" actionListener="#{sysConfigsBean.optimizeSearchIndex}"/>
+                        <h:outputLabel for="bgReaper" value="Build group reaper:"/>
+                        <p:commandButton id="bgReaper" value="Run now" actionListener="#{sysConfigsBean.reapBuildGroups}"/>
+                        <h:outputLabel for="userReaper" value="Sys user reaper:"/>
+                        <p:commandButton id="userReaper" value="Run now" actionListener="#{sysConfigsBean.reapSysUsers}"/>
+                    </p:panelGrid>
+                    <br/>
+                    <p:dataTable var="sysConfig" value="#{sysConfigsBean.sysConfigs}" id="sysConfigsDataTable"
+                                 filteredValue="#{sysConfigsBean.filteredValues}" paginator="true" rows="20"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,20,50">
+                        <f:facet name="header">System configuration values</f:facet>
+                        <p:column headerText="Key" sortBy="#{sysConfig.configKey}"
+                                  filterBy="#{sysConfig.configKey}" filterMatchMode="contains">
+                            <h:outputText value="#{sysConfig.configKey}" />
+                        </p:column>
+
+                        <p:column headerText="Value" sortBy="#{sysConfig.configValue}"
+                                  filterBy="#{sysConfig.configValue}" filterMatchMode="contains">
+                            <h:outputText value="#{sysConfig.configValue}" />
+                        </p:column>
+
+                        <p:column headerText="Description" sortBy="#{sysConfigsBean.getSysConfigDesc(sysConfig)}"
+                                  filterBy="#{sysConfigsBean.getSysConfigDesc(sysConfig)}" filterMatchMode="contains">
+                            <h:outputText value="#{sysConfigsBean.getSysConfigDesc(sysConfig)}" />
+                        </p:column>
+
+                        <p:column sortBy="#{sysConfig.created}">
+                            <f:facet name="header">Created</f:facet>
+                            <h:outputText value="#{sysConfig.created}"/>
+                        </p:column>
+                        <p:column sortBy="#{sysConfig.createdBy}">
+                            <f:facet name="header">Created by</f:facet>
+                            <ci:userLoginNameLink id="createdBy" value="#{sysConfig.createdBy}"/>
+                        </p:column>
+                        <p:column sortBy="#{sysConfig.modified}">
+                            <f:facet name="header">Modified</f:facet>
+                            <ci:outputTextTimeStamp value="#{sysConfig.modified}"/>
+                        </p:column>
+                        <p:column sortBy="#{sysConfig.modifiedBy}">
+                            <f:facet name="header">Modified by</f:facet>
+                            <ci:userLoginNameLink id="modifiedBy" value="#{sysConfig.modifiedBy}"/>
+                        </p:column>
+
+                        <p:column headerText="Actions">
+                            <h:outputLink value="/secure/admin/sysConfigEditor.xhtml">
+                                <h:graphicImage id="editSysconfig" value="/resources/images/wrench.png" styleClass="actionButton"/>
+                                <f:param name="sysConfigId" value="#{sysConfig.id}"/>
+                                <p:tooltip for="editSysconfig" value="Edit System Configuration" />
+                            </h:outputLink>
+                            <ci:deleteBtnWithConfirmDlg id="deleteSysConfig" actionListener="#{sysConfigsBean.delete(sysConfig)}"
+                                                        entityLabel="#{sysConfig.configKey}" tooltip="Delete system config"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

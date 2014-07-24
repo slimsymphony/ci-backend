@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+        <ui:composition template="../template/layout.xhtml">
+            <ui:define name="contentTitle">FAQ ##{faqBean.faq.id}</ui:define>
+
+            <ui:define name="contentMenu">
+                <h:link id="editFaq" value="" outcome="/secure/admin/faqEditor.xhtml" styleClass="contentmenuConfigure" rendered="#{httpSessionBean.admin}">
+                    <f:param value="#{faqBean.faq.id}" name="id"/>
+                    <pe:tooltip for="editFaq" value="Edit FAQ" myPosition="top right" atPosition="bottom center"/>
+                </h:link>
+                <ci:backButton page="/secure/pages/info.xhtml" tooltip="Back to CI UI info"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h3 class="contentTitleText">#{faqBean.faq.question}</h3>
+                <div id="helpContent">
+                    <h:outputText value="#{faqBean.faq.answer}" escape="false"/>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+    </body>
+</html>

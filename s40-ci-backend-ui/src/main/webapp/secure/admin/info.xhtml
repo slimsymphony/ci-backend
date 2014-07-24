@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+
+        <ui:composition template="./../template/adminLayout.xhtml">
+
+            <ui:define name="contentTitle">CI UI info</ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="Admin" outcome="admin"/>
+                <h:link value="CI Info" outcome="info" styleClass="active"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h3 class="contentTitleText">CI Help topics</h3>
+                <h:form>
+                    <h:link value="Create help topic" outcome="helpTopicEditor"/>
+                </h:form>
+
+                <h:form>
+                    <p:dataTable var="t" value="#{infoBean.helpTopics}" id="helpTopicsDataTable" editable="true">
+                        <p:column sortBy="#{t.topic}">
+                            <f:facet name="header">Topic</f:facet>
+                            <h:outputLink value="/secure/admin/helpTopicEditor.xhtml">
+                                <h:outputText value="#{t.topic}"/>
+                                <f:param name="page" value="#{t.id}"/>
+                            </h:outputLink>
+                        </p:column>
+                        <p:column sortBy="#{t.page}">
+                            <f:facet name="header">Page</f:facet>
+                            <h:outputText value="#{t.page}"/>
+                        </p:column>
+                        <p:column sortBy="#{t.created}">
+                            <f:facet name="header">Created</f:facet>
+                            <h:outputText value="#{t.created}"/>
+                        </p:column>
+                        <p:column sortBy="#{t.createdBy}">
+                            <f:facet name="header">Created by</f:facet>
+                            <ci:userLoginNameLink id="createdBy" value="#{t.createdBy}"/>
+                        </p:column>
+                        <p:column sortBy="#{t.modified}">
+                            <f:facet name="header">Modified</f:facet>
+                            <ci:outputTextTimeStamp value="#{t.modified}"/>
+                        </p:column>
+                        <p:column sortBy="#{t.modifiedBy}">
+                            <f:facet name="header">Modified by</f:facet>
+                            <ci:userLoginNameLink id="modifiedBy" value="#{t.modifiedBy}"/>
+                        </p:column>
+                        <p:column styleClass="actionColumn">
+                            <f:facet name="header">Actions</f:facet>
+                            <h:outputLink value="/secure/admin/helpTopicEditor.xhtml">
+                                <h:graphicImage id="editHelpTopic" value="/resources/images/wrench.png"
+                                                styleClass="actionButton"/>
+                                <f:param name="page" value="#{t.id}"/>
+                                <pe:tooltip for="editHelpTopic" value="Edit help topic" myPosition="top right" atPosition="bottom center"/>
+                            </h:outputLink>
+                            <ci:deleteBtnWithConfirmDlg id="deleteHelpTopic" actionListener="#{infoBean.delete(t)}"
+                                                        entityLabel="#{t.page}" tooltip="Delete help topic"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+
+                <h3 class="contentTitleText">CI FAQ</h3>
+                <h:form>
+                    <h:link value="Create FAQ" outcome="faqEditor"/>
+                </h:form>
+
+                <h:form>
+                    <p:dataTable var="t" value="#{infoBean.faqs}" id="faqDataTable" editable="true">
+                        <p:column sortBy="#{t.id}">
+                            <f:facet name="header">ID</f:facet>
+                            <h:outputLink value="/secure/admin/faqEditor.xhtml">
+                                <h:outputText value="#{t.id}"/>
+                                <f:param name="id" value="#{t.id}"/>
+                            </h:outputLink>
+                        </p:column>
+                        <p:column sortBy="#{t.question}">
+                            <f:facet name="header">Question</f:facet>
+                            <h:outputText value="#{t.question}"/>
+                        </p:column>
+                        <p:column styleClass="actionColumn">
+                            <f:facet name="header">Actions</f:facet>
+                            <h:outputLink value="/secure/admin/faqEditor.xhtml">
+                                <h:graphicImage id="editHelpTopic" value="/resources/images/wrench.png"
+                                                styleClass="actionButton"/>
+                                <f:param name="id" value="#{t.id}"/>
+                                <pe:tooltip for="editHelpTopic" value="Edit FAQ" myPosition="top right" atPosition="bottom center"/>
+                            </h:outputLink>
+                            <ci:deleteBtnWithConfirmDlg id="deleteHelpTopic" actionListener="#{infoBean.delete(t)}"
+                                                        entityLabel="#{t.id}" tooltip="Delete FAQ"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+
+                <h3 class="contentTitleText">CI Release information</h3>
+                <h:form>
+                    <h:link value="Create release info" outcome="releaseInfoEditor"/>
+                </h:form>
+
+                <h:form>
+                    <p:dataTable var="t" value="#{infoBean.releaseInfo}" id="releaseInfoDataTable" editable="true">
+                        <p:column sortBy="#{t.version}">
+                            <f:facet name="header">Version</f:facet>
+                            <h:outputLink value="/secure/admin/releaseInfoEditor.xhtml">
+                                <h:outputText value="#{t.version}"/>
+                                <f:param name="version" value="#{t.id}"/>
+                            </h:outputLink>
+                        </p:column>
+                        <p:column sortBy="#{t.releaseDate}">
+                            <f:facet name="header">Release date</f:facet>
+                            <h:outputText value="#{t.releaseDate}">
+                                <f:convertDateTime pattern="dd.MM.yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{t.created}">
+                            <f:facet name="header">Created</f:facet>
+                            <h:outputText value="#{t.created}"/>
+                        </p:column>
+                        <p:column sortBy="#{t.createdBy}">
+                            <f:facet name="header">Created by</f:facet>
+                            <ci:userLoginNameLink id="createdBy" value="#{t.createdBy}"/>
+                        </p:column>
+                        <p:column sortBy="#{t.modified}">
+                            <f:facet name="header">Modified</f:facet>
+                            <ci:outputTextTimeStamp value="#{t.modified}"/>
+                        </p:column>
+                        <p:column sortBy="#{t.modifiedBy}">
+                            <f:facet name="header">Modified by</f:facet>
+                            <ci:userLoginNameLink id="modifiedBy" value="#{t.modifiedBy}"/>
+                        </p:column>
+                        <p:column styleClass="actionColumn">
+                            <f:facet name="header">Actions</f:facet>
+                            <h:outputLink value="/secure/admin/releaseInfoEditor.xhtml">
+                                <h:graphicImage id="editReleaseInfo" value="/resources/images/wrench.png"
+                                                styleClass="actionButton"/>
+                                <f:param name="release" value="#{t.id}"/>
+                                <pe:tooltip for="editReleaseInfo" value="Edit release info" myPosition="top right" atPosition="bottom center"/>
+                            </h:outputLink>
+                            <ci:deleteBtnWithConfirmDlg id="deleteReleaseInfo" actionListener="#{infoBean.delete(t)}"
+                                                        entityLabel="#{t.version}" tooltip="Delete release info"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

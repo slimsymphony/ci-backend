@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+        <ui:composition template="../template/layout.xhtml">
+
+            <ui:define name="head">
+                <link rel="alternate" type="application/rss+xml"
+                      href="#{request.contextPath}/rss/verification/#{jobBean.verification.id}/#{httpSessionBean.sysUser.secretKey}/"
+                      title="Verification RSS feed"/>
+            </ui:define>
+
+            <ui:define name="contentTitle">#{jobBean.verification.displayName}</ui:define>
+
+            <ui:define name="contentMenu" rendered="#{jobBean.verification != null}">
+                <h:link id="rss" target="_blank" type="application/rss+xml" value="" outcome="/rss.xhtml" styleClass="contentmenuRss">
+                    <f:param name="verificationId" value="#{jobBean.verification.id}"/>
+                    <f:param name="secretKey" value="#{httpSessionBean.sysUser.secretKey}"/>
+                    <pe:tooltip for="rss" value="Verification RSS" myPosition="top right" atPosition="bottom center"/>
+                </h:link>
+                <h:link id="info" value="" outcome="verificationConfiguration" styleClass="contentmenuInfo">
+                    <f:param name="verificationId" value="#{jobBean.verification.id}"/>
+                    <pe:tooltip for="info" value="Verification configuration" myPosition="top right" atPosition="bottom center"/>
+                </h:link>
+                <h:link id="metrics" value="" outcome="verificationMetrics" styleClass="contentmenuMetrics">
+                    <f:param name="verificationId" value="#{jobBean.verification.id}"/>
+                    <pe:tooltip for="metrics" value="Verification metrics" myPosition="top right" atPosition="bottom center"/>
+                </h:link>
+                <h:link id="share" value="" outcome="verificationShare"
+                        rendered="#{jobBean.toolboxOrDraftVerification}" styleClass="contentmenuShare">
+                    <f:param name="verificationId" value="#{jobBean.verification.id}"/>
+                    <pe:tooltip for="share" value="Copy/share verification" myPosition="top right" atPosition="bottom center"/>
+                </h:link>
+                <h:link id="start" value="" outcome="verificationStart"
+                        rendered="#{httpSessionBean.admin or jobBean.toolboxOrDraftVerification or
+                                    httpSessionBean.hasAdminAccessToProject(jobBean.verification.branch.project.id)}" styleClass="contentmenuPlay">
+                    <f:param name="verificationId" value="#{jobBean.verification.id}"/>
+                    <pe:tooltip for="start" value="Start verification" myPosition="top right" atPosition="bottom center"/>
+                </h:link>
+                <ci:configureButton page="/secure/pages/verificationEditor.xhtml?verificationId=#{jobBean.verification.id}"
+                                    tooltip="Configure verification" rendered="#{httpSessionBean.admin or jobBean.toolboxOrDraftVerification or
+                                                                                 httpSessionBean.hasAdminAccessToProject(jobBean.verification.branch.project.id)}"/>
+                <ci:helpButton id="helpButton" page="verificationDetails"/>
+            </ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="#{jobBean.project.displayName}" outcome="projectDetails">
+                    <f:param name="projectId" value="#{jobBean.project.id}"/>
+                </h:link>
+                <h:link value="#{jobBean.verification.displayName}" outcome="verificationDetails" styleClass="active">
+                    <f:param name="verificationId" value="#{jobBean.verification.id}"/>
+                </h:link>
+            </ui:define>
+
+            <ui:define name="content">
+                <ci:announcement model="#{jobBean.announcementModel}"/>
+
+                <h:outputText value="You do not have permission to the requested resource. However, this might be due to access control information synchronization delay from Gerrit. Please refresh the page approximately after one minute. If the problem persists, please contact I_EXT_S40_CI20_SUPPORT@nokia.com." rendered="#{jobBean.verification == null}"/>
+
+                <h:form id="buildsForm" rendered="#{jobBean.verification != null}">
+                    <p:panelGrid id="projectDetailsTable" columns="2">
+                        <h:outputLabel for="contactPerson" value="Contact person:"/>
+                        <ci:autoLinkOutputText id="contactPerson" value="#{jobBean.verification.contactPerson}"/>
+                        <h:outputLabel for="lifespan" value="Estimated lifespan:"/>
+                        <ci:outputTextDate id="lifespan" value="#{jobBean.verification.lifespan}"/>
+                        <h:outputLabel for="verificationType" value="Branch Type:"/>
+                        <h:outputText id="verificationType" value="#{jobBean.verification.branch.type.desc}"/>
+                        <h:outputLabel for="nextRunCounter" value="Next run in:" rendered="#{jobBean.nextRunCounter != null}"/>
+                        <h:outputText id="nextRunCounter" value="#{jobBean.nextRunCounter}" rendered="#{jobBean.nextRunCounter != null}"/>
+                        <h:outputLabel for="verificationCreated" value="Created:"/>
+                        <ci:outputTextTimeStamp id="verificationCreated" value="#{jobBean.verification.created}"/>
+                        <h:outputLabel for="verificationCreatedBy" value="Created by:"/>
+                        <ci:userLoginNameLink id="verificationCreatedBy" value="#{jobBean.verification.createdBy}"/>
+                        <h:outputLabel for="verificationModified" value="Modified:"/>
+                        <ci:outputTextTimeStamp id="verificationModified" value="#{jobBean.verification.modified}"/>
+                        <h:outputLabel for="verificationModifiedBy" value="Modified by:"/>
+                        <ci:userLoginNameLink id="verificationModifiedBy" value="#{jobBean.verification.modifiedBy}"/>
+                    </p:panelGrid>
+                    <br/>
+                </h:form>
+
+                <ci:buildDatatable model="#{jobBean.lazyDataModel}" id="buildsTable" rendered="#{jobBean.verification != null}"
+                                   pinCommand="#{jobBean.pinToMyToolbox()}" rows="10" updateInterval="20"/>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

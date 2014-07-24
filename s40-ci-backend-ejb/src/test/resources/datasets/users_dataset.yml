@@ -1,0 +1,61 @@
+## YAML Template.
+---
+sys_config:
+  - id: 1
+    configkey: ALLOW_LOGIN
+    configvalue: TRUE
+  - id: 2
+    configkey: ALLOW_NEXT_USERS
+    configvalue: FALSE
+
+gerrit: 
+  - id: 1
+    URL: localhost
+    port: 1338
+    privatekeypath: ../../../../../s40-ci-backend-mock/keys/id_dsa
+    sshusername: account
+    listenstream: 0
+    projectaccesshost: localhost
+    projectaccessport: 1340
+    
+project:
+  - id: 1
+    name: project_x
+    displayname: Project X
+    gerritproject: x_project
+    gerrit_id: 1
+  - id: 2
+    name: project_y
+    displayname: Project Y
+    gerritproject: y_project
+    gerrit_id: 1
+  - id: 3
+    name: project_z
+    displayname: Project Z
+    gerritproject: z_project
+    gerrit_id: 1
+    
+sys_user:
+  - id: 1
+    loginname: admin
+    realname: Admin Man
+    userrole: SYSTEM_ADMIN
+    systemmetricsallowed: 1
+  - id: 2
+    loginname: user
+    realname: Normal User
+    userrole: USER
+    systemmetricsallowed: 0
+  - id: 3
+    loginname: e1234next
+    realname: Mister Next
+    userrole: USER
+    systemmetricsallowed: 0
+    
+project_user_access:
+  - projectaccess_id: 1
+    useraccess_id: 2
+  - projectaccess_id: 2
+    useraccess_id: 2
+  - projectaccess_id: 3
+    useraccess_id: 2

@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+
+        <ui:composition template="./../template/adminLayout.xhtml">
+
+            <ui:define name="contentTitle">Verifications</ui:define>
+
+            <ui:define name="contentMenu">
+                <ci:addButton page="/secure/admin/verificationEditor.xhtml" tooltip="Add new verification"/>
+            </ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="Admin" outcome="admin"/>
+                <h:link value="Verifications" outcome="verifications" styleClass="active"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="verificationsTableForm" onkeypress="return event.keyCode !== 13;">
+                    <p:dataTable id="verificationsTable" value="#{verificationsBean.verifications}" var="v"
+                                 filteredValue="#{verificationsBean.filteredValues}" paginator="true" rows="20"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,20,50">
+                        <p:column sortBy="#{v.displayName}" filterBy="#{v.displayName}" filterMatchMode="contains">
+                            <f:facet name="header">Display Name</f:facet>
+                            <h:outputLink value="/secure/admin/verificationEditor.xhtml">
+                                <h:outputText value="#{v.displayName}"/>
+                                <f:param name="verificationId" value="#{v.id}"/>
+                            </h:outputLink>
+                        </p:column>
+                        <p:column sortBy="#{v.name}" filterBy="#{v.name}" filterMatchMode="contains">
+                            <f:facet name="header">Name</f:facet>
+                            <h:outputText value="#{v.name}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Labels</f:facet>
+                            <ui:repeat value="#{verificationBean.querySlaveLabels(v.id)}" var="slaveLabel" >
+                                <h:outputText value="#{slaveLabel.name}"/> <br/>
+                            </ui:repeat>
+                        </p:column>
+                        <p:column sortBy="#{v.created}">
+                            <f:facet name="header">Created</f:facet>
+                            <h:outputText value="#{v.created}"/>
+                        </p:column>
+                        <p:column sortBy="#{v.createdBy}">
+                            <f:facet name="header">Created by</f:facet>
+                            <ci:userLoginNameLink id="createdBy" value="#{v.createdBy}"/>
+                        </p:column>
+                        <p:column sortBy="#{v.modified}">
+                            <f:facet name="header">Modified</f:facet>
+                            <ci:outputTextTimeStamp value="#{v.modified}"/>
+                        </p:column>
+                        <p:column sortBy="#{v.modifiedBy}">
+                            <f:facet name="header">Modified by</f:facet>
+                            <ci:userLoginNameLink id="modifiedBy" value="#{v.modifiedBy}"/>
+                        </p:column>
+                        <p:column styleClass="actionColumn">
+                            <f:facet name="header">Actions</f:facet>
+                            <h:outputLink value="/secure/admin/verificationEditor.xhtml">
+                                <h:graphicImage id="editVerification" value="/resources/images/wrench.png" styleClass="actionButton"/>
+                                <f:param name="verificationId" value="#{v.id}"/>
+                                <pe:tooltip for="editVerification" value="Edit verification" myPosition="top right" atPosition="bottom center"/>
+                            </h:outputLink>
+                            <ci:deleteBtnWithConfirmDlg id="deleteVerification" actionListener="#{verificationsBean.delete(v)}"
+                                                        entityLabel="#{v.displayName}" tooltip="Delete verification"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

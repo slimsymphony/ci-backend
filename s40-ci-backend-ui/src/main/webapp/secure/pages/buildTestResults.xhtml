@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+
+        <ui:composition template="../template/layout.xhtml">
+
+            <ui:define name="contentTitle">#{buildTestResultsBean.build.buildVerificationConf.productDisplayName} #{buildTestResultsBean.build.buildVerificationConf.verificationDisplayName} test results</ui:define>
+
+            <ui:define name="contentMenu">
+                <h:link id="artifacts" value="" outcome="buildArtifacts" styleClass="contentmenuDownload" rendered="#{buildTestResultsBean.buildGroupId != null}">
+                    <f:param name="buildGroupId" value="#{buildTestResultsBean.buildGroupId}"/>
+                    <f:param name="buildId" value="#{buildTestResultsBean.build.id}"/>
+                    <pe:tooltip for="artifacts" value="Build artifacts" myPosition="top right" atPosition="bottom center"/>
+                </h:link>
+                <ci:helpButton id="helpButton" page="buildTestResults"/>
+            </ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="#{buildTestResultsBean.project.displayName}" outcome="projectDetails">
+                    <f:param name="projectId" value="#{buildTestResultsBean.project.id}"/>
+                </h:link>
+                <h:link value="#{buildTestResultsBean.job.displayName}" outcome="verificationDetails">
+                    <f:param name="verificationId" value="#{buildTestResultsBean.job.id}"/>
+                </h:link>
+                <h:link value="Build #{buildTestResultsBean.bg.id}" outcome="buildDetails">
+                    <f:param name="buildId" value="#{buildTestResultsBean.bg.id}"/>
+                </h:link>
+                <h:link value="Test results #{buildTestResultsBean.build.id}" outcome="buildTestResults" styleClass="active">
+                    <f:param name="buildId" value="#{buildTestResultsBean.build.id}"/>
+                    <f:param name="buildGroupId" value="#{buildTestResultsBean.buildGroupId}"
+                             rendered="#{not empty buildTestResultsBean.buildGroupId}"/>
+                    <f:param name="verificationId" value="#{buildTestResultsBean.verificationId}"
+                             rendered="#{not empty buildTestResultsBean.verificationId}"/>
+                </h:link>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="testResultForm">
+                    <p:messages id="errorMessages" autoUpdate="true" showDetail="true"/>
+                    <h:panelGroup layout="block" style="float: right; margin: 10px;">
+                        <p:selectOneMenu value="#{buildTestResultsBean.diffBg}" converter="BuildGroupConverter"
+                                         rendered="#{not empty buildTestResultsBean.testSuites or
+                                                     buildTestResultsBean.memUsageTree != null or
+                                                     buildTestResultsBean.warningsTree != null}">
+                            <p:ajax event="change" listener="#{buildTestResultsBean.diffSelected}" update="@form"/>
+                            <f:selectItem itemLabel="Select build to diff" itemValue="#{null}"/>
+                            <f:selectItems value="#{buildTestResultsBean.diffableBuildGroups}" var="bg" itemLabel="Diff build #{bg.id} (#{bg.startTime})" itemValue="#{bg}"/>
+                        </p:selectOneMenu>
+                        <h:outputLink value="/secure/pages/buildTestResults.xhtml"
+                                      rendered="#{buildTestResultsBean.diffBg != null and buildTestResultsBean.diffBuild != null}">
+                            <h:graphicImage id="testResultsIcon" value="/resources/images/report.png" styleClass="actionButton"
+                                            style="margin-bottom: 20px;"/>
+                            <f:param name="buildGroupId" value="#{buildTestResultsBean.diffBg.id}"/>
+                            <f:param name="buildId" value="#{buildTestResultsBean.diffBuild.id}"/>
+                            <pe:tooltip for="testResultsIcon" value="Show diff build test results" myPosition="top right" atPosition="bottom center"/>
+                        </h:outputLink>
+                        <h:outputLink value="/secure/pages/buildDetails.xhtml"
+                                      rendered="#{buildTestResultsBean.diffBg != null and buildTestResultsBean.diffBuild != null}">
+                            <h:graphicImage id="buildTestResults" value="/resources/images/page_go.png" styleClass="actionButton"
+                                            style="margin-bottom: 20px;"/>
+                            <f:param name="buildId" value="#{buildTestResultsBean.diffBg.id}"/>
+                            <pe:tooltip for="buildTestResults" value="Show diff build details" myPosition="top right" atPosition="bottom center"/>
+                        </h:outputLink>
+                    </h:panelGroup>
+
+                    <h:outputText value="Could not fetch build test result file, please try again later"
+                                  rendered="#{empty buildTestResultsBean.testSuites and
+                                              buildTestResultsBean.memUsageTree == null and
+                                              buildTestResultsBean.warningsTree == null and
+                                              empty buildTestResultsBean.linkUrl}"/>
+
+                    <p:outputPanel style="display:block; padding-top: 40px;" rendered="#{not empty buildTestResultsBean.testSuites}">
+                        <ci:njunitDatatable testsuites="#{buildTestResultsBean.testSuites}" build="#{buildTestResultsBean.build}"
+                                            diffBuild="#{buildTestResultsBean.diffBuild}" filterList="#{buildTestResultsBean.filteredCases}"/>
+                    </p:outputPanel>
+
+                    <p:outputPanel style="display:block; padding-top: 40px;" rendered="#{buildTestResultsBean.memUsageTree != null}">
+                        <h3 class="contentTitleText">Memory usage report</h3>
+                        <p:treeTable value="#{buildTestResultsBean.memUsageTree}" var="mem">
+                            <p:column sortBy="#{mem.component}">
+                                <f:facet name="header">Component</f:facet>
+                                <h:outputText value="#{mem.component}" rendered="#{mem.component != null}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">Area</f:facet>
+                                <h:outputText value="#{mem.area}" rendered="#{mem.area != null}"/>
+                            </p:column>
+                            <p:column sortBy="#{mem.rom}">
+                                <f:facet name="header">ROM</f:facet>
+                                <h:outputText value="#{mem.rom}" rendered="#{mem.rom != null}"/>
+                            </p:column>
+                            <p:column sortBy="#{mem.ram}">
+                                <f:facet name="header">RAM</f:facet>
+                                <h:outputText value="#{mem.ram}" rendered="#{mem.ram != null}"/>
+                            </p:column>
+                            <p:column sortBy="#{mem.diffRom}" rendered="#{buildTestResultsBean.diffBuild != null}">
+                                <f:facet name="header">Diff ROM</f:facet>
+                                <h:outputText value="+-0" rendered="#{mem.diffRom != null and mem.diffRom == 0}"/>
+                                <h:outputText value="+#{mem.diffRom}" rendered="#{mem.diffRom != null and mem.diffRom gt 0}" style="color: #125B92"/>
+                                <h:outputText value="#{mem.diffRom}" rendered="#{mem.diffRom != null and mem.diffRom lt 0}" style="color: coral"/>
+                            </p:column>
+                            <p:column sortBy="#{mem.diffRam}" rendered="#{buildTestResultsBean.diffBuild != null}">
+                                <f:facet name="header">Diff RAM</f:facet>
+                                <h:outputText value="+-0" rendered="#{mem.diffRam != null and mem.diffRam == 0}"/>
+                                <h:outputText value="+#{mem.diffRam}" rendered="#{mem.diffRam != null and mem.diffRam gt 0}" style="color: #125B92"/>
+                                <h:outputText value="#{mem.diffRam}" rendered="#{mem.diffRam != null and mem.diffRam lt 0}" style="color: coral"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">Owner</f:facet>
+                                <h:outputText value="#{mem.owner_name} (#{mem.owner_email})" rendered="#{mem.owner_email != null and mem.owner_email != ''}"/>
+                            </p:column>
+                        </p:treeTable>
+                    </p:outputPanel>
+
+                    <p:outputPanel style="display:block; padding-top: 40px;" rendered="#{buildTestResultsBean.warningsTree != null}">
+                        <h3 class="contentTitleText">Warnings report</h3>
+                        <h:outputText value="New warnings: #{buildTestResultsBean.warningModel.newWarnings}"
+                                      rendered="#{buildTestResultsBean.diffBuild != null}"/><br/>
+                        <h:outputText value="Fixed warnings: #{buildTestResultsBean.warningModel.fixedWarnings}"
+                                      rendered="#{buildTestResultsBean.diffBuild != null}"/>
+
+                        <p:treeTable value="#{buildTestResultsBean.warningsTree}" var="warning">
+                            <p:column sortBy="#{warning.filePath}">
+                                <f:facet name="header">File/Path</f:facet>
+                                <h:outputText value="#{warning.file}" rendered="#{warning.file != null}"/>
+                            </p:column>
+                            <p:column sortBy="#{warning.lineNumber}">
+                                <f:facet name="header">Line number</f:facet>
+                                <h:outputText value="#{warning.lineNumber}" rendered="#{warning.lineNumber != null}"/>
+                            </p:column>
+                            <p:column sortBy="#{warning.warningID}">
+                                <f:facet name="header">Warning ID</f:facet>
+                                <h:outputText value="#{warning.warningID}" rendered="#{warning.warningID != null}"/>
+                            </p:column>
+                            <p:column sortBy="#{warning.warningMsg}">
+                                <f:facet name="header">Message</f:facet>
+                                <h:outputText value="#{warning.warningMsg}" rendered="#{warning.warningMsg != null}"/>
+                            </p:column>
+                        </p:treeTable>
+                    </p:outputPanel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

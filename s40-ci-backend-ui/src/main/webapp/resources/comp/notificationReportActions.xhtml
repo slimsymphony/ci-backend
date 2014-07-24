@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <composite:attribute name="reports"/>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <h4>Notifications</h4>
+        <h:dataTable id="notificationReportingTable" value="#{cc.attrs.reports}" var="report" class="reportingTable" columnClasses="topBorder, topBorder">
+            <h:column>
+                <p:selectBooleanCheckbox value="#{report.enabled}"/>
+                <h:outputText value="#{report.title.stringValue}"/>
+            </h:column>
+            <h:column>
+                <h:panelGrid id="notificationReport" columns="2">
+                    <h:outputLabel for="notificationRecipientsInput" value="Recipients"/>
+                    <p:inputText id="notificationRecipientsInput" value="#{report.action.recipients}" label="recipients"/>
+                    <h:outputLabel for="notificationSubjectInput" value="Subject"/>
+                    <p:inputText id="notificationSubjectInput" value="#{report.action.subject}" label="subject" maxlength="200"/>
+                    <h:outputLabel for="notificationMessageInput" value="Message"/>
+                    <p:inputTextarea id="notificationMessageInput" value="#{report.action.message}" label="message" rows="6" cols="50"/>
+                    <h:outputLabel for="notifyCommitAuthorsInput" value="Send also to commit authors"/>
+                    <p:selectBooleanCheckbox id="notifyCommitAuthorsInput" value="#{report.action.useChangeAuthors}"/>
+                </h:panelGrid>
+            </h:column>
+        </h:dataTable>
+    </cc:implementation>
+</html>

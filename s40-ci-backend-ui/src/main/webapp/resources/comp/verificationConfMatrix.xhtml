@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="products"/>
+        <cc:attribute name="verificationConfRows"/>
+        <cc:attribute name="optionalMandatory"/>
+        <cc:attribute name="deleteListener" method-signature="void deleteListener(com.nokia.ci.ui.model.VerificationConfRow)"/>
+        <cc:attribute name="deleteUpdate"/>
+        <cc:attribute name="deleteOnComplete"/>
+        <cc:attribute name="editListener" method-signature="void editListener(com.nokia.ci.ui.model.VerificationConfRow)"/>
+        <cc:attribute name="editUpdate"/>
+        <cc:attribute name="editOnComplete"/>
+        <cc:attribute name="optionsListener" method-signature="void optionsListener(com.nokia.ci.ui.model.VerificationConfRow, com.nokia.ci.ui.model.VerificationConfCell)"/>
+        <cc:attribute name="optionsUpdate"/>
+        <cc:attribute name="optionsOnComplete"/>
+        <cc:attribute name="selectAllListener" method-signature="void selectAllListener()"/>
+        <cc:attribute name="clearAllListener" method-signature="void clearAllListener()"/>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <div id="#{cc.clientId}">
+            <table id="confMatrixTable">
+                <thead>
+                    <th></th>
+                    <ui:repeat value="#{cc.attrs.products}" var="product">
+                        <th>
+                            <h:outputText value="#{product.displayName}"/>
+                        </th>
+                    </ui:repeat>
+                    <th></th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    <ui:repeat value="#{cc.attrs.verificationConfRows}" var="row">
+                        <tr>
+                            <td>
+                                <h:outputText value="#{row.rowLabel}" style="font-weight: bold"/>
+                            </td>
+                            <ui:repeat value="#{row.cells}" var="cell">
+                                <td style="text-align: center">
+                                    <p:selectBooleanCheckbox styleClass="verificationConfSelect" value="#{cell.selected}" rendered="#{cell.enabled}"/>
+                                    <p:selectBooleanCheckbox id="disabledVerificationCheckbox" value="#{cell.selected}" rendered="#{!cell.enabled}"
+                                                             styleClass="disabledVerification" disabled="#{!cell.enabled}"/>
+                                    <p:tooltip for="disabledVerificationCheckbox" value="This verification is disabled and can not be used in build process."
+                                               showEffect="fade" hideEffect="fade" rendered="#{!cell.enabled}"/>
+                                               
+                                    <h:panelGroup layout="block" styleClass="verificationConfMandatory" style="display: inline-block; margin-left: 3px;"
+                                               rendered="#{cell.cardinality == 'MANDATORY' and cc.attrs.optionalMandatory and !cell.enabled and cell.template and cell.selected}"/>
+                                    <h:panelGroup layout="block" styleClass="verificationConfOptional" style="display: inline-block; margin-left: 3px;"
+                                               rendered="#{cell.cardinality == 'OPTIONAL' and cc.attrs.optionalMandatory and !cell.enabled and cell.template and cell.selected}"/>
+                                    <h:link id="verificationMandatory" value="" styleClass="verificationExtraButton verificationConfSelectable verificationConfMandatory"
+                                            rendered="#{cell.cardinality == 'MANDATORY' and cc.attrs.optionalMandatory and cell.enabled}"/>
+                                    <h:link id="verificationOptional" value="" styleClass="verificationExtraButton verificationConfSelectable verificationConfOptional"
+                                            rendered="#{cell.cardinality == 'OPTIONAL' and cc.attrs.optionalMandatory and cell.enabled}"/>
+
+
+                                    <h:inputHidden id="cellValue" value="#{cell.cardinality}" rendered="#{cell.enabled}"/>
+
+                                    <p:commandLink oncomplete="#{cc.attrs.optionsOnComplete}" actionListener="#{cc.attrs.optionsListener}" update="#{cc.attrs.optionsUpdate}"
+                                                   rendered="#{row.indevice and cc.attrs.optionalMandatory and cell.enabled and not empty cell.rmCode}" styleClass="verificationExtraButton verificationDeviceConf">
+                                        <h:graphicImage value="/resources/images/wrench.png"/>
+                                    </p:commandLink>
+                                </td>
+                            </ui:repeat>
+                            <td>
+                                <p:commandLink oncomplete="#{cc.attrs.editOnComplete}" actionListener="#{cc.attrs.editListener}" update="#{cc.attrs.editUpdate}"
+                                               rendered="#{row.custom}">
+                                    <h:graphicImage value="/resources/images/wrench.png" styleClass="actionButton"/>
+                                </p:commandLink>
+                                <p:commandLink actionListener="#{cc.attrs.deleteListener}" update="#{cc.attrs.deleteUpdate}" rendered="#{row.custom and !row.template}"
+                                               oncomplete="#{cc.attrs.deleteOnComplete}">
+                                    <h:graphicImage value="/resources/images/bin_closed.png" styleClass="actionButton"/>
+                                </p:commandLink>
+                            </td>
+                            <td>
+                                <h:outputText value="#{row.customParameterString}" rendered="#{row.custom}"/>
+                            </td>
+                        </tr>
+                    </ui:repeat>
+                    <pe:tooltip value="Toggle mandatory/optional verification" forSelector=".verificationConfSelectable"
+                                shared="true" myPosition="top right" atPosition="bottom center" hideDelay="100" hideEffectLength="0"
+                                showEffectLength="0"/>
+                    <pe:tooltip value="In-device options" forSelector=".verificationDeviceConf"
+                                shared="true" myPosition="top right" atPosition="bottom center" hideDelay="100" hideEffectLength="0"
+                                showEffectLength="0"/>
+                </tbody>
+            </table>
+        </div>
+    </cc:implementation>
+</html>

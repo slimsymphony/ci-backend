@@ -1,0 +1,571 @@
+<pretty-config xmlns="http://ocpsoft.org/prettyfaces/3.3.3"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://ocpsoft.org/prettyfaces/3.3.3
+               http://ocpsoft.org/xml/ns/prettyfaces/ocpsoft-pretty-faces-3.3.3.xsd">
+
+    <!-- Login -->
+    <url-mapping id="login">
+        <pattern value="/login/" />
+        <view-id value="/login.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="notFoundError">
+        <pattern value="/error/notFoundError/" />
+        <view-id value="/notFoundError.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="unauthorizedError">
+        <pattern value="/error/unauthorizedError/" />
+        <view-id value="/unauthorizedError.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="queryParamError">
+        <pattern value="/error/queryParamError/" />
+        <view-id value="/queryParamError.xhtml" />
+    </url-mapping>
+
+    <!-- RSS feeds -->
+    <url-mapping id="verificationRSS">
+        <pattern value="/rss/verification/#{verificationId}/#{secretKey}/" />
+        <view-id value="/rss.xhtml" />
+    </url-mapping>
+    <url-mapping id="userRSS">
+        <pattern value="/rss/user/#{userId}/#{secretKey}/" />
+        <view-id value="/rss.xhtml" />
+    </url-mapping>
+
+    <!-- Normal user pages -->
+    <url-mapping id="help">
+        <pattern value="/page/help/#{page}/" />
+        <view-id value="/secure/pages/help.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="helpId">
+        <pattern value="/page/help/#{id}/" />
+        <view-id value="/secure/pages/help.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="faq">
+        <pattern value="/page/faq/#{id}/" />
+        <view-id value="/secure/pages/faq.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="search">
+        <pattern value="/page/search/" />
+        <view-id value="/secure/pages/search.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="userSettings">
+        <pattern value="/page/my/settings/" />
+        <view-id value="/secure/pages/userSettings.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="info">
+        <pattern value="/page/info/" />
+        <view-id value="/secure/pages/info.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="bookmarks">
+        <pattern value="/page/my/bookmarks/" />
+        <view-id value="/secure/pages/bookmarkedVerifications.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="bookmarkEditor">
+        <pattern value="/page/bookmarks/edit/#{verificationId}" />
+        <view-id value="/secure/pages/verificationBookmarkEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="change">
+        <pattern value="/page/change/#{commitId}" />
+        <view-id value="/secure/pages/changeDetails.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="userInfo">
+        <pattern value="/page/user/#{userLogin}" />
+        <view-id value="/secure/pages/userDetails.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="build">
+        <pattern value="/page/build/#{buildId}" />
+        <view-id value="/secure/pages/buildDetails.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="buildRetrigger">
+        <pattern value="/page/build/#{buildId}/trigger/#{retriggered}" />
+        <view-id value="/secure/pages/buildDetails.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="buildTestResults">
+        <pattern value="/page/build/test_results/#{buildGroupId}/#{buildId}" />
+        <view-id value="/secure/pages/buildTestResults.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="buildArtifact">
+        <pattern value="/page/build/artifacts/#{buildGroupId}/#{buildId}" />
+        <view-id value="/secure/pages/buildArtifacts.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="buildClassification">
+        <pattern value="/page/build/classification/#{buildId}" />
+        <view-id value="/secure/pages/buildClassification.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="buildArtifactVerification">
+        <pattern value="/page/verification/#{verificationId}/build/artifacts/#{buildId}" />
+        <view-id value="/secure/pages/buildArtifacts.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="gerritTriggerGlobal">
+        <pattern value="/page/gerrit/trigger/" />
+        <view-id value="/secure/pages/gerritTrigger.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="gerritTrigger">
+        <pattern value="/page/gerrit/trigger/#{projectId}" />
+        <view-id value="/secure/pages/gerritTrigger.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="job">
+        <pattern value="/page/verification/#{verificationId}" />
+        <view-id value="/secure/pages/verificationDetails.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="jobMetricsPermaLinkScaleResult">
+        <pattern value="/page/verification/metrics/#{verificationId}/#{chart}/#{startDate}/#{endDate}/#{scale}/#{result}/" />
+        <view-id value="/secure/pages/verificationMetrics.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="jobMetricsPermaLinkScale">
+        <pattern value="/page/verification/metrics/#{verificationId}/#{chart}/#{startDate}/#{endDate}/#{scale}/" />
+        <view-id value="/secure/pages/verificationMetrics.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="jobMetricsPermaLink">
+        <pattern value="/page/verification/metrics/#{verificationId}/#{chart}/#{startDate}/#{endDate}/" />
+        <view-id value="/secure/pages/verificationMetrics.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="systemMetricsPermaLinkScaleProjects">
+        <pattern value="/page/metrics/#{chart}/#{startDate}/#{endDate}/#{scale}/#{projects}/#{showsum}/" />
+        <view-id value="/secure/pages/systemMetrics.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="systemMetricsPermaLinkScaleProjectsVeritypes">
+        <pattern value="/page/metrics/#{chart}/#{startDate}/#{endDate}/#{scale}/#{projects}/#{showsum}/#{veritypes}/" />
+        <view-id value="/secure/pages/systemMetrics.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="systemMetricsPermaLinkScaleProjectsHangtimes">
+        <pattern value="/page/metrics/#{chart}/#{startDate}/#{endDate}/#{scale}/#{projects}/#{placeholder1}/#{placeholder2}/#{hangtimetype}/" />
+        <view-id value="/secure/pages/systemMetrics.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="systemMetricsPermaLinkScaleSlaveOptions">
+        <pattern value="/page/metrics/#{chart}/#{startDate}/#{endDate}/#{scale}/#{placeholder0}/#{placeholder1}/#{placeholder2}/#{placeholder3}/#{pool}/#{label}/#{machine}/" />
+        <view-id value="/secure/pages/systemMetrics.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="jobMetrics">
+        <pattern value="/page/verification/metrics/#{verificationId}/" />
+        <view-id value="/secure/pages/verificationMetrics.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="systemMetrics">
+        <pattern value="/page/metrics/" />
+        <view-id value="/secure/pages/systemMetrics.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="buildMetricsPermaLinkScale">
+        <pattern value="/page/build/metrics/#{buildId}/#{chart}/#{startDate}/#{endDate}/#{scale}/" />
+        <view-id value="/secure/pages/buildMetrics.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="buildMetricsPermaLinkScaleComponent">
+        <pattern value="/page/build/metrics/#{buildId}/#{chart}/#{startDate}/#{endDate}/#{placeholder1}/#{componentname}/" />
+        <view-id value="/secure/pages/buildMetrics.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="buildMetricsPermaLinkScaleReasons">
+        <pattern value="/page/build/metrics/#{buildId}/#{chart}/#{startDate}/#{endDate}/#{scale}/#{placeholder1}/#{reasons}/" />
+        <view-id value="/secure/pages/buildMetrics.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="buildMetricsPermaLink">
+        <pattern value="/page/build/metrics/#{buildId}/#{chart}/#{startDate}/#{endDate}/" />
+        <view-id value="/secure/pages/buildMetrics.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="buildMetrics">
+        <pattern value="/page/build/metrics/#{buildId}/" />
+        <view-id value="/secure/pages/buildMetrics.xhtml" />
+    </url-mapping>
+
+
+
+    <url-mapping id="oldMetrics">
+        <pattern value="/page/metrics/old/" />
+        <view-id value="/secure/pages/metrics.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="jobConfiguration">
+        <pattern value="/page/verification/configuration/#{verificationId}/" />
+        <view-id value="/secure/pages/verificationConfiguration.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="jobEditorAdd">
+        <pattern value="/page/verification/add/#{projectId}" />
+        <view-id value="/secure/pages/verificationEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="jobEditorEdit">
+        <pattern value="/page/verification/edit/#{verificationId}" />
+        <view-id value="/secure/pages/verificationEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="jobShare">
+        <pattern value="/page/verification/share/#{verificationId}" />
+        <view-id value="/secure/pages/verificationShare.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="jobStart">
+        <pattern value="/page/verification/start/#{verificationId}" />
+        <view-id value="/secure/pages/verificationStart.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="myToolbox">
+        <pattern value="/page/my/toolbox/" />
+        <view-id value="/secure/pages/myToolbox.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="project">
+        <pattern value="/page/project/#{projectId}" />
+        <view-id value="/secure/pages/projectDetails.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="projectsUser">
+        <pattern value="/page/projects/" />
+        <view-id value="/secure/pages/projects.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="userFileEditor">
+        <pattern value="/my/settings/userfile/edit/#{userFileId}" />
+        <view-id value="/secure/pages/userFileEditor.xhtml" />
+    </url-mapping>
+
+    <!-- Admin pages -->
+    <url-mapping id="adminFrontPage">
+        <pattern value="/admin/" />
+        <view-id value="/secure/admin/admin.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="adminJobEditorAdd">
+        <pattern value="/admin/jobs/add/" />
+        <view-id value="/secure/admin/jobEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="adminJobEditorEdit">
+        <pattern value="/admin/jobs/edit/#{jobId}" />
+        <view-id value="/secure/admin/jobEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="branchAdd">
+        <pattern value="/admin/branches/add/" />
+        <view-id value="/secure/admin/branchEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="branchEdit">
+        <pattern value="/admin/branches/edit/#{branchId}" />
+        <view-id value="/secure/admin/branchEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="branchEditFromProject">
+        <pattern value="/admin/branches/edit/#{branchId}/project/#{projectId}" />
+        <view-id value="/secure/admin/branchEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="branchAddFromProject">
+        <pattern value="/admin/branches/add/#{projectId}" />
+        <view-id value="/secure/admin/branchEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="branches">
+        <pattern value="/admin/branches/" />
+        <view-id value="/secure/admin/branches.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="gerritAdd">
+        <pattern value="/admin/gerrits/add/" />
+        <view-id value="/secure/admin/gerritEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="gerritEdit">
+        <pattern value="/admin/gerrits/edit/#{gerritId}" />
+        <view-id value="/secure/admin/gerritEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="gerrits">
+        <pattern value="/admin/gerrits/" />
+        <view-id value="/secure/admin/gerrits.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="globalAnnouncementAdd">
+        <pattern value="/admin/announcements/global/add/" />
+        <view-id value="/secure/admin/globalAnnouncementEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="globalAnnouncementEdit">
+        <pattern value="/admin/announcements/global/edit/#{announcementId}" />
+        <view-id value="/secure/admin/globalAnnouncementEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="announcements">
+        <pattern value="/admin/announcements/" />
+        <view-id value="/secure/admin/announcements.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="jobAnnouncementAdd">
+        <pattern value="/admin/announcements/job/add/" />
+        <view-id value="/secure/admin/jobAnnouncementEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="jobAnnouncementEdit">
+        <pattern value="/admin/announcements/job/edit/#{announcementId}" />
+        <view-id value="/secure/admin/jobAnnouncementEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="projectAnnouncementAdd">
+        <pattern value="/admin/announcements/project/add/" />
+        <view-id value="/secure/admin/projectAnnouncementEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="projectAnnouncementEdit">
+        <pattern value="/admin/announcements/project/edit/#{announcementId}" />
+        <view-id value="/secure/admin/projectAnnouncementEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="jobs">
+        <pattern value="/admin/jobs/" />
+        <view-id value="/secure/admin/jobs.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="productAdd">
+        <pattern value="/admin/products/add/" />
+        <view-id value="/secure/admin/productEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="productEdit">
+        <pattern value="/admin/products/edit/#{productId}" />
+        <view-id value="/secure/admin/productEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="products">
+        <pattern value="/admin/products/" />
+        <view-id value="/secure/admin/products.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="templateAdd">
+        <pattern value="/admin/templates/add/" />
+        <view-id value="/secure/admin/templateEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="templateEdit">
+        <pattern value="/admin/templates/edit/#{templateId}" />
+        <view-id value="/secure/admin/templateEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="templates">
+        <pattern value="/admin/templates/" />
+        <view-id value="/secure/admin/templates.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="projectEditorAdd">
+        <pattern value="/admin/projects/add/" />
+        <view-id value="/secure/admin/projectEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="projectEditorEdit">
+        <pattern value="/admin/projects/edit/#{projectId}" />
+        <view-id value="/secure/admin/projectEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="projectGroupAdd">
+        <pattern value="/admin/project/groups/add/" />
+        <view-id value="/secure/admin/projectGroupEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="projectGroupEdit">
+        <pattern value="/admin/project/groups/edit/#{projectGroupId}" />
+        <view-id value="/secure/admin/projectGroupEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="projectGroups">
+        <pattern value="/admin/project/groups/" />
+        <view-id value="/secure/admin/projectGroups.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="projectGroupsOrder">
+        <pattern value="/admin/project/groups/order/" />
+        <view-id value="/secure/admin/projectGroupOrder.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="projectsAdmin">
+        <pattern value="/admin/projects/" />
+        <view-id value="/secure/admin/projects.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="serverAdd">
+        <pattern value="/admin/servers/add/" />
+        <view-id value="/secure/admin/serverEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="serverEdit">
+        <pattern value="/admin/servers/edit/#{serverId}" />
+        <view-id value="/secure/admin/serverEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="servers">
+        <pattern value="/admin/servers/" />
+        <view-id value="/secure/admin/servers.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="slaveCopy">
+        <pattern value="/admin/slaves/slavemachine/copy/#{copyFromSlaveMachineId}" />
+        <view-id value="/secure/admin/slaveMachineEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="slaveEdit">
+        <pattern value="/admin/slaves/slavemachine/edit/#{editFromSlaveMachineId}" />
+        <view-id value="/secure/admin/slaveMachineEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="slaveAdd">
+        <pattern value="/admin/slaves/slavemachine/add/" />
+        <view-id value="/secure/admin/slaveMachineEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="slaveInstanceCopy">
+        <pattern value="/admin/slaves/slaveinstance/copy/#{copyFromSlaveInstanceId}" />
+        <view-id value="/secure/admin/slaveInstanceEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="slaveInstanceEdit">
+        <pattern value="/admin/slaves/slaveinstance/edit/#{editFromSlaveInstanceId}" />
+        <view-id value="/secure/admin/slaveInstanceEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="slaveInstanceAdd">
+        <pattern value="/admin/slaves/slaveinstance/add/" />
+        <view-id value="/secure/admin/slaveInstanceEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="slaves">
+        <pattern value="/admin/slaves/" />
+        <view-id value="/secure/admin/slaves.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="sysConfigEdit">
+        <pattern value="/admin/system/configs/edit/#{sysConfigId}" />
+        <view-id value="/secure/admin/sysConfigEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="sysConfigAdd">
+        <pattern value="/admin/system/configs/add/" />
+        <view-id value="/secure/admin/sysConfigEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="sysConfigs">
+        <pattern value="/admin/system/configs/" />
+        <view-id value="/secure/admin/sysConfigs.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="sysMetrics">
+        <pattern value="/admin/system/metrics/" />
+        <view-id value="/secure/admin/systemMetrics.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="user">
+        <pattern value="/admin/user/#{userId}" />
+        <view-id value="/secure/admin/userEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="userGroupEdit">
+        <pattern value="/admin/user/groups/edit/#{groupId}" />
+        <view-id value="/secure/admin/userGroupEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="userGroupAdd">
+        <pattern value="/admin/user/groups/add/" />
+        <view-id value="/secure/admin/userGroupEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="userGroups">
+        <pattern value="/admin/user/groups/" />
+        <view-id value="/secure/admin/userGroups.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="users">
+        <pattern value="/admin/users/" />
+        <view-id value="/secure/admin/users.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="verificationEdit">
+        <pattern value="/admin/verifications/edit/#{verificationId}" />
+        <view-id value="/secure/admin/verificationEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="verificationAdd">
+        <pattern value="/admin/verifications/add/" />
+        <view-id value="/secure/admin/verificationEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="verifications">
+        <pattern value="/admin/verifications/" />
+        <view-id value="/secure/admin/verifications.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="adminInfo">
+        <pattern value="/admin/info/" />
+        <view-id value="/secure/admin/info.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="helpTopicEditorAdd">
+        <pattern value="/admin/info/help/add/" />
+        <view-id value="/secure/admin/helpTopicEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="helpTopicEditorAdd">
+        <pattern value="/admin/info/help/add/#{pageToAdd}/" />
+        <view-id value="/secure/admin/helpTopicEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="helpTopicEditorEdit">
+        <pattern value="/admin/info/help/edit/#{page}" />
+        <view-id value="/secure/admin/helpTopicEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="faqEditorAdd">
+        <pattern value="/admin/info/faq/add/" />
+        <view-id value="/secure/admin/faqEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="faqEditorEdit">
+        <pattern value="/admin/info/faq/edit/#{id}" />
+        <view-id value="/secure/admin/faqEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="releaseInfoEditorAdd">
+        <pattern value="/admin/info/release/add/" />
+        <view-id value="/secure/admin/releaseInfoEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="releaseInfoEditorEdit">
+        <pattern value="/admin/info/release/#{version}" />
+        <view-id value="/secure/admin/releaseInfoEditor.xhtml" />
+    </url-mapping>
+
+    <url-mapping id="incidents">
+        <pattern value="/admin/incidents/" />
+        <view-id value="/secure/admin/incidents.xhtml" />
+    </url-mapping>
+
+</pretty-config>

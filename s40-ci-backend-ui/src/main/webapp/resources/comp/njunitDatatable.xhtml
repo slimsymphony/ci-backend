@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+    <cc:interface>
+        <composite:attribute name="testsuites"/>
+        <composite:attribute name="build"/>
+        <composite:attribute name="diffBuild" default="#{null}"/>
+        <composite:attribute name="filterList"/>
+    </cc:interface>
+
+    <cc:implementation>
+        <h:panelGroup layout="block" rendered="#{not empty cc.attrs.testsuites}">
+            <h3 class="contentTitleText">Test suite summary</h3>
+            <p:dataTable var="suite" value="#{cc.attrs.testsuites}">
+                <p:column>
+                    <f:facet name="header">Suite</f:facet>
+                    <h:outputText value="#{suite.name}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">Test cases</f:facet>
+                    <h:outputText value="#{suite.numTestcases}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">Success</f:facet>
+                    <h:outputText value="#{suite.numSuccess} succesful cases"/>
+                    <p:progressBar value="#{suite.successPercent}" displayOnly="true" labelTemplate="{value} %"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">Failed</f:facet>
+                    <h:outputText value="#{suite.numFailures} failed cases"/>
+                    <p:progressBar value="#{suite.failPercent}" displayOnly="true" labelTemplate="{value} %"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">NA</f:facet>
+                    <h:outputText value="#{suite.numNA} NA cases"/>
+                    <p:progressBar value="#{suite.NApercent}" displayOnly="true" labelTemplate="{value} %"/>
+                </p:column>
+                <p:column rendered="#{not empty cc.attrs.diffBuild}">
+                    <f:facet name="header">Diff test cases</f:facet>
+                    <h:outputText value="#{suite.diffTestcases}"/>
+                </p:column>
+                <p:column rendered="#{not empty cc.attrs.diffBuild}">
+                    <f:facet name="header">Diff success</f:facet>
+                    <p:progressBar value="#{suite.diffSuccessPercent}" displayOnly="true" labelTemplate="#{suite.diffSuccess} ({value} %)"/>
+                </p:column>
+                <p:column rendered="#{not empty cc.attrs.diffBuild}">
+                    <f:facet name="header">Diff failed</f:facet>
+                    <p:progressBar value="#{suite.diffFailPercent}" displayOnly="true" labelTemplate="#{suite.diffFailures} ({value} %)"/>
+                </p:column>
+                <p:column rendered="#{not empty cc.attrs.diffBuild}">
+                    <f:facet name="header">Diff NA</f:facet>
+                    <p:progressBar value="#{suite.diffNAPercent}" displayOnly="true" labelTemplate="#{suite.diffNA} ({value} %)"/>
+                </p:column>
+            </p:dataTable>
+            <h3 class="contentTitleText">Detailed test suite reports</h3>
+            <p:accordionPanel value="#{cc.attrs.testsuites}" var="suite" dynamic="true" activeIndex="-1">
+                <p:tab title="#{suite.name}">
+                    <p:dataTable var="prop" value="#{suite.propertyKeys}" rendered="#{suite.properties.size() > 0}" style="margin-bottom: 20px;">
+                        <f:facet name="header">Properties</f:facet>
+                        <p:column>
+                            <f:facet name="header">Property</f:facet>
+                            <h:outputText value="#{prop}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Value</f:facet>
+                            <h:outputText value="#{suite.properties[prop]}"/>
+                        </p:column>
+                    </p:dataTable>
+
+                    <p:dataTable var="testCase" value="#{suite.testCases}" paginator="true" rows="10"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,20,50" filteredValue="#{cc.attrs.filterList}">
+                        <f:facet name="header">Test cases</f:facet>
+                        <p:column style="max-width: 50%; word-break: break-word;"
+                                  filterBy="#{testCase.name}" filterMatchMode="contains">
+                            <f:facet name="header">Name</f:facet>
+                            <h:graphicImage value="/resources/images/build_success.png" styleClass="actionButton" title="Success"
+                                            rendered="#{empty testCase.failures and empty testCase.notAllowed}"/>
+                            <h:graphicImage value="/resources/images/build_failure.png" styleClass="actionButton" title="Failure"
+                                            rendered="#{not empty testCase.failures and empty testCase.notAllowed}"/>
+                            <h:graphicImage value="/resources/images/build_unstable.png" styleClass="actionButton" title="NA"
+                                            rendered="#{empty testCase.failures and not empty testCase.notAllowed}"/>
+                            <h:outputText value="#{testCase.name}" rendered="#{empty testCase.relativePath}"/>
+                            <h:outputLink target="_blank" value="#{cc.attrs.build.url}/artifact/test_results/#{testCase.relativePath}"
+                                          rendered="#{not empty testCase.relativePath}">
+                                <h:outputText value="#{testCase.name}"/>
+                            </h:outputLink>
+                            <h:outputLink target="_blank" value="#{cc.attrs.diffBuild.url}/artifact/test_results/#{testCase.diffRelativePath}"
+                                          rendered="#{not empty testCase.diffRelativePath and not empty cc.attrs.diffBuild}" style="margin-left: 3px;">
+                                <h:outputText value="[DIFF]"/>
+                            </h:outputLink>
+                        </p:column>
+                        <p:column filterBy="#{testCase.classname}" filterMatchMode="contains">
+                            <f:facet name="header">Class name</f:facet>
+                            <h:outputText value="#{testCase.classname}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Failures</f:facet>
+                            <ui:repeat rendered="#{not empty testCase.failures}" value="#{testCase.failures}" var="failure">
+                                <h:outputText value="#{failure.type}: #{failure.message}"/>
+                            </ui:repeat>
+                        </p:column>
+                        <p:column rendered="#{not empty cc.attrs.diffBuild}">
+                            <f:facet name="header">Diff failures</f:facet>
+                            <ui:repeat rendered="#{testCase.diffFailures.size() > 0}" value="#{testCase.diffFailures}" var="failure">
+                                <h:outputText value="#{failure.type}: #{failure.message}"/>
+                            </ui:repeat>
+                        </p:column>
+                    </p:dataTable>
+                </p:tab>
+            </p:accordionPanel>
+        </h:panelGroup>
+    </cc:implementation>
+</html>

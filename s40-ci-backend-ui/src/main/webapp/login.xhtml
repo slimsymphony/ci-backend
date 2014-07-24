@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <f:view encoding="UTF-8">
+
+        <f:loadBundle basename="com.nokia.ci.ui.props.buildInfo" var="buildInfo"/>
+
+        <h:head>
+            <f:facet name="first">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+                <title>Nokia CI Web UI</title>
+                <link href="#{request.contextPath}/resources/css/default.css" rel="stylesheet" type="text/css" />
+            </f:facet>
+            <h:outputScript library="primefaces" name="jquery/jquery.js"/>
+            <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/images/favicon.ico"/>
+            <link href="#{request.contextPath}/resources/css/themeOverride.css" rel="stylesheet" type="text/css" />
+            <ui:insert name="head"></ui:insert>
+        </h:head>
+
+        <h:body>
+            <div id="bodyContainer">
+                <div id="top">
+                    <div id="logo">
+                    </div>
+                </div>
+
+                <h:form id="login">
+                    <div id="loginDiv">
+                        <h3>Login to CI 2.0 Web UI</h3>
+                        <noscript>
+                            <ci:warningMessage summary="Javascript missing"
+                                               message="You are missing javascript support. Please enable it for the best CI Web UI experience!"/>
+                        </noscript>
+                        <p:messages id="loginMessages" autoUpdate="true" showDetail="true"/>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel for="usernameInput" value="Username"/>
+                            <p:inputText maxlength="255" id="usernameInput" value="#{loginBean.username}" label="username" tabindex="1" style="width: 150px"/>
+                            <h:outputLabel for="passwordInput" value="Password"/>
+                            <p:password maxlength="255" id="passwordInput" value="#{loginBean.password}" label="password" feedback="false" tabindex="2" style="width: 150px"/>
+                            <h:inputHidden id="previousPage" value="#{loginBean.previousPage}" />
+                            <script type="text/javascript" >
+                                function getPreviousPage() {
+                                    document.getElementById('login:previousPage').value = window.location.pathname + window.location.search + window.location.hash;
+                                }
+                            </script>
+                            <f:facet name="footer">
+                                <p:commandButton id="loginButton" value="Login" action="#{loginBean.login}" ajax="false" tabindex="3" onclick="getPreviousPage();" />
+                            </f:facet>
+                        </h:panelGrid>
+                        <p:focus for="usernameInput"/>
+                    </div>
+                </h:form>
+
+                <div id="bottom">
+                    <ui:insert name="bottom">
+                        <div id="footer" style="margin-top:50px;">
+                            Nokia CI v#{buildInfo.buildVersion}<br/>
+                            Copyright (c) 2010 - 2012 Nokia. All rights reserved.
+                        </div>
+                    </ui:insert>
+                </div>
+            </div>
+        </h:body>
+    </f:view>
+</html>

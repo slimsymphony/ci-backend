@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <composite:attribute name="model" required="true" type="org.primefaces.model.LazyDataModel"/>
+        <composite:attribute name="pinCommand" method-signature="void pinToMyToolbox()"/>
+        <composite:attribute name="id" default="buildsTable"/>
+        <composite:attribute name="rows" default="5"/>
+        <composite:attribute name="updateInterval" default="30"/>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation xmlns:ci="http://java.sun.com/jsf/composite/comp">
+        <h:form id="buildDatatableForm">
+            <p:poll id="buildsPoller_#{cc.attrs.id}" interval="#{cc.attrs.updateInterval}"
+                    update="#{cc.attrs.id}" process="@this" onerror="window.location.reload()"/>
+
+            <p:dataTable id="#{cc.attrs.id}" value="#{cc.attrs.model}" var="extendedBuildGroup" paginator="true" rows="#{cc.attrs.rows}"
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                         rowsPerPageTemplate="5,10,15,20" lazy="true">
+
+                <f:facet name="header">
+                    <h:outputText value="Builds"/>
+                    <p:commandLink actionListener="#{cc.attrs.pinCommand}" style="float: right;" rendered="#{cc.attrs.pinCommand != null}">
+                        <h:graphicImage id="pinIcon" value="/resources/images/iconic/gray_light/pin_12x12.png" styleClass="actionButton"/>
+                        <pe:tooltip for="pinIcon" value="Pin to My toolbox" myPosition="top right" atPosition="bottom center"/>
+                    </p:commandLink>
+                </f:facet>
+
+                <p:column sortBy="#{extendedBuildGroup.buildGroup.startTime}" style="width: 170px;">
+                    <f:facet name="header">Start Time</f:facet>
+                    <ci:outputTextTimeStamp styleClass="buildStartTimeSpacing" id="buildStartTime" value="#{extendedBuildGroup.buildGroup.startTime}"/>
+                </p:column>
+
+                <p:column sortBy="#{extendedBuildGroup.buildGroup.endTime - extendedBuildGroup.buildGroup.startTime}" style="width: 180px;">
+                    <f:facet name="header">Duration</f:facet>
+                    <ci:buildDuration id="buildDuration" value="#{extendedBuildGroup.buildGroup}"/>
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">Verified HEAD</f:facet>
+                    <h:outputLink value="/secure/pages/changeDetails.xhtml" rendered="#{extendedBuildGroup.lastChange != null}">
+                        <h:outputText id="buildCommitId"
+                                      value="#{extendedBuildGroup.lastChange.subject} (#{extendedBuildGroup.lastChange.commitId})"/>
+                        <f:param name="commitId" value="#{extendedBuildGroup.lastChange.commitId}"/>
+                    </h:outputLink>
+                    <h:outputLink value="#{extendedBuildGroup.lastChange.url}"
+                                  rendered="#{extendedBuildGroup.lastChange != null and extendedBuildGroup.lastChange.url != null}"
+                                  target="_blank">
+                        <h:graphicImage id="gerritIcon" value="/resources/images/gerrit.png" styleClass="actionButton"/>
+                        <pe:tooltip for="gerritIcon" value="Gerrit change" myPosition="top right" atPosition="bottom center"/>
+                    </h:outputLink>
+                    <h:outputText value="#{extendedBuildGroup.buildGroup.gerritPatchSetRevision}" rendered="#{extendedBuildGroup.lastChange == null}"/>
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">Author(s)</f:facet>
+                    <ci:autoLinkOutputText id="buildAuthor" value="#{extendedBuildGroup.authorsString}"/>
+                </p:column>
+
+                <p:column sortBy="#{extendedBuildGroup.buildGroup.phase}" style="width: 120px;">
+                    <f:facet name="header">Status</f:facet>
+                    <ci:buildInfo id="buildInfo" status="#{extendedBuildGroup.buildGroup.status}" phase="#{extendedBuildGroup.buildGroup.phase}"/>
+                </p:column>
+
+                <p:column styleClass="actionColumn" style="width: 110px; text-align: center;">
+                    <f:facet name="header">Actions</f:facet>
+                    <h:outputLink value="/secure/pages/buildDetails.xhtml">
+                        <h:graphicImage id="buildDetails" value="/resources/images/page_go.png" styleClass="actionButton"/>
+                        <f:param name="buildId" value="#{extendedBuildGroup.buildGroup.id}"/>
+                        <pe:tooltip for="buildDetails" value="Show build details" myPosition="top right" atPosition="bottom center"/>
+                    </h:outputLink>
+                    <p:commandLink oncomplete="testResultsDlg.show();" actionListener="#{buildDatatableBean.updateBuildGroupVerifications(extendedBuildGroup.buildGroup)}"
+                                   update=":#{cc.attrs.id}:testResultView" rendered="#{httpSessionBean.loggedIn and not httpSessionBean.sysUser.nextUser and buildDatatableBean.isTestResultsAvailable(extendedBuildGroup.buildGroup)}">
+                        <h:graphicImage id="testResultsIcon" value="/resources/images/phone.png" styleClass="actionButton"/>
+                        <pe:tooltip for="testResultsIcon" value="Show test results" myPosition="top right" atPosition="bottom center"/>
+                    </p:commandLink>
+                    <p:commandLink actionListener="#{buildDatatableBean.retriggerBuild(extendedBuildGroup.buildGroup)}" rendered="#{buildDatatableBean.isOwnBuild(extendedBuildGroup.buildGroup)}">
+                        <h:graphicImage id="retriggerBuildIcon" value="/resources/images/iconic/gray_light/loop_alt1_16x12.png" styleClass="actionButton"/>
+                        <pe:tooltip for="retriggerBuildIcon" value="Retrigger build" myPosition="top right" atPosition="bottom center"/>
+                    </p:commandLink>
+                </p:column>-->
+
+            </p:dataTable>
+        </h:form>
+
+        <p:dialog id="testResultView" header="In Device Test Results" widgetVar="testResultsDlg" height="350">
+            <h:form id="displayTestResultsForm">
+                <p:dataTable id="subBuild" var="build" value="#{buildDatatableBean.buildGroupVerifications}">
+                    <f:facet name="header">
+                        <h:outputText value="Verifications"/>
+                    </f:facet>
+                    <p:column>
+                        <f:facet name="header">Verification</f:facet>
+                        <h:outputText value="#{build.jobDisplayName}"
+                                      rendered="#{build.buildVerificationConf == null or
+                                                  build.buildVerificationConf.verificationDisplayName == null or
+                                                  build.buildVerificationConf.verificationDisplayName == ''}"/>
+                        <h:outputText value="#{build.buildVerificationConf.verificationDisplayName}"
+                                      rendered="#{build.buildVerificationConf != null and
+                                                  build.buildVerificationConf.verificationDisplayName != null and
+                                                  build.buildVerificationConf.verificationDisplayName != ''}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Product</f:facet>
+                        <h:outputText value="#{build.buildVerificationConf.productDisplayName}"
+                                      rendered="#{build.buildVerificationConf != null and
+                                                  build.buildVerificationConf.productDisplayName != null and
+                                                  build.buildVerificationConf.productDisplayName != ''}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Custom Parameters</f:facet>
+                        <h:outputText value="#{buildDatatableBean.getCustomParameterStringForBuild(build)}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Actions</f:facet>
+
+                        <h:outputLink value="/secure/pages/buildArtifacts.xhtml"
+                                      rendered="#{httpSessionBean.loggedIn and not httpSessionBean.sysUser.nextUser}">
+                            <h:graphicImage id="artifactsIcon" value="/resources/images/box.png" styleClass="actionButton updateable"
+                                            style="display: #{build.phase != 'FINISHED' ? 'none' : 'inline-block'}"/>
+                            <f:param name="buildGroupId" value="#{build.buildGroup.id}"/>
+                            <f:param name="buildId" value="#{build.id}"/>
+                            <pe:tooltip for="artifactsIcon" value="Show build artifacts" />
+                        </h:outputLink>
+
+                        <h:outputLink value="/secure/pages/buildTestResults.xhtml"
+                                      rendered="#{httpSessionBean.loggedIn and not httpSessionBean.sysUser.nextUser and build.buildVerificationConf != null and
+                                                  not empty build.buildVerificationConf.testResultTypes}">
+                            <h:graphicImage id="testResultsIcon" value="/resources/images/phone.png" styleClass="actionButton updateable"
+                                            style="display: #{build.phase != 'FINISHED' ? 'none' : 'inline-block'}"/>
+                            <f:param name="buildGroupId" value="#{build.buildGroup.id}"/>
+                            <f:param name="buildId" value="#{build.id}"/>
+                            <pe:tooltip for="testResultsIcon" value="Show in device test results" />
+                        </h:outputLink>
+
+                        <h:outputLink value="#{build.url}/consoleText" target="_blank" styleClass="updateable"
+                                      rendered="#{httpSessionBean.loggedIn and not httpSessionBean.sysUser.nextUser}">
+                            <h:graphicImage id="consoleOutputIcon" value="/resources/images/terminal.png" styleClass="actionButton updateable"
+                                            style="display: #{build.url == null ? 'none' : 'inline-block'}"/>
+                            <pe:tooltip for="consoleOutputIcon" value="Show console output" myPosition="top right" atPosition="bottom center"/>
+                        </h:outputLink>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </p:dialog>
+    </cc:implementation>
+</html>

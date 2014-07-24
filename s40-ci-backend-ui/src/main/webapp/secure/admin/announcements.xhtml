@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+
+        <ui:composition template="./../template/adminLayout.xhtml">
+
+            <ui:define name="contentTitle">Announcements</ui:define>
+            <ui:define name="breadCrumbMenu">
+                <h:link value="Admin" outcome="admin"/>
+                <h:link value="Announcements" outcome="announcements" styleClass="active"/>
+            </ui:define>
+            <ui:define name="content">
+                <h3 class="contentTitleText">Global announcements</h3>
+                <h:form>
+                    <h:link value="Create New Announcement" outcome="globalAnnouncementEditor"/>
+                </h:form>
+
+                <h:form>
+                    <p:dataTable var="p" value="#{globalAnnouncementsBean.announcements}" id="announcementDataTable" editable="true">
+                        <p:column sortBy="#{p.message}">
+                            <f:facet name="header">Message</f:facet>
+                            <h:outputLink value="/secure/admin/globalAnnouncementEditor.xhtml">
+                                <h:outputText value="#{p.message}"/>
+                                <f:param name="announcementId" value="#{p.id}"/>
+                            </h:outputLink>
+                        </p:column>
+                        <p:column sortBy="#{p.type}">
+                            <f:facet name="header">Type</f:facet>
+                            <h:outputText value="#{p.type}"/>
+                        </p:column>
+                        <p:column sortBy="#{p.created}">
+                            <f:facet name="header">Created</f:facet>
+                            <ci:outputTextTimeStamp value="#{p.created}"/>
+                        </p:column>
+                        <p:column sortBy="#{p.createdBy}">
+                            <f:facet name="header">Created by</f:facet>
+                            <ci:userLoginNameLink id="createdBy" value="#{p.createdBy}"/>
+                        </p:column>
+                        <p:column styleClass="actionColumn">
+                            <f:facet name="header">Actions</f:facet>
+                            <h:outputLink value="/secure/admin/globalAnnouncementEditor.xhtml">
+                                <h:graphicImage id="editAnnouncement" value="/resources/images/wrench.png"
+                                                styleClass="actionButton"/>
+                                <f:param name="announcementId" value="#{p.id}"/>
+                                <pe:tooltip for="editAnnouncement" value="Edit announcement" myPosition="top right" atPosition="bottom center"/>
+                            </h:outputLink>
+                            <ci:deleteBtnWithConfirmDlg id="deleteGlobalAnnouncement" actionListener="#{globalAnnouncementsBean.delete(p)}"
+                                                        entityLabel="#{p.message}" tooltip="Delete announcement"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+
+                <h3 class="contentTitleText">Project announcements</h3>
+                <h:form>
+                    <h:link value="Create New Announcement" outcome="projectAnnouncementEditor"/>
+                </h:form>
+
+                <h:form>
+
+                    <p:dataTable var="p" value="#{projectAnnouncementsBean.announcements}" id="announcementDataTable" editable="true">
+                        <p:column sortBy="#{p.message}">
+                            <f:facet name="header">Message</f:facet>
+                            <h:outputLink value="/secure/admin/projectAnnouncementEditor.xhtml">
+                                <h:outputText value="#{p.message}"/>
+                                <f:param name="announcementId" value="#{p.id}"/>
+                            </h:outputLink>
+                        </p:column>
+                        <p:column sortBy="#{p.type}">
+                            <f:facet name="header">Type</f:facet>
+                            <h:outputText value="#{p.type}"/>
+                        </p:column>
+                        <p:column sortBy="#{p.project.displayName}">
+                            <f:facet name="header">Project</f:facet>
+                            <h:outputText value="#{p.project.displayName}"/>
+                        </p:column>
+                        <p:column sortBy="#{p.created}">
+                            <f:facet name="header">Created</f:facet>
+                            <ci:outputTextTimeStamp value="#{p.created}"/>
+                        </p:column>
+                        <p:column sortBy="#{p.createdBy}">
+                            <f:facet name="header">Created by</f:facet>
+                            <ci:userLoginNameLink id="createdBy" value="#{p.createdBy}"/>
+                        </p:column>
+                        <p:column styleClass="actionColumn">
+                            <f:facet name="header">Actions</f:facet>
+                            <h:outputLink value="/secure/admin/projectAnnouncementEditor.xhtml">
+                                <h:graphicImage id="editAnnouncement" value="/resources/images/wrench.png"
+                                                styleClass="actionButton"/>
+                                <f:param name="announcementId" value="#{p.id}"/>
+                                <pe:tooltip for="editAnnouncement" value="Edit announcement" myPosition="top right" atPosition="bottom center"/>
+                            </h:outputLink>
+                            <ci:deleteBtnWithConfirmDlg id="deleteProjectAnnouncement" actionListener="#{projectAnnouncementsBean.delete(p)}"
+                                                        entityLabel="#{p.message}" tooltip="Delete announcement"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+
+                <h3 class="contentTitleText">Job announcements</h3>
+                <h:form>
+                    <h:link value="Create New Announcement" outcome="jobAnnouncementEditor"/>
+                </h:form>
+
+                <h:form>
+
+                    <p:dataTable var="p" value="#{jobAnnouncementsBean.announcements}" id="announcementDataTable" editable="true">
+                        <p:column sortBy="#{p.message}">
+                            <f:facet name="header">Message</f:facet>
+                            <h:outputLink value="/secure/admin/jobAnnouncementEditor.xhtml">
+                                <h:outputText value="#{p.message}"/>
+                                <f:param name="announcementId" value="#{p.id}"/>
+                            </h:outputLink>
+                        </p:column>
+                        <p:column sortBy="#{p.type}">
+                            <f:facet name="header">Type</f:facet>
+                            <h:outputText value="#{p.type}"/>
+                        </p:column>
+                        <p:column sortBy="#{p.job.displayName}">
+                            <f:facet name="header">Job</f:facet>
+                            <h:outputText value="#{p.job.displayName}"/>
+                        </p:column>
+                        <p:column sortBy="#{p.created}">
+                            <f:facet name="header">Created</f:facet>
+                            <ci:outputTextTimeStamp value="#{p.created}"/>
+                        </p:column>
+                        <p:column sortBy="#{p.createdBy}">
+                            <f:facet name="header">Created by</f:facet>
+                            <ci:userLoginNameLink id="createdBy" value="#{p.createdBy}"/>
+                        </p:column>
+                        <p:column styleClass="actionColumn">
+                            <f:facet name="header">Actions</f:facet>
+                            <h:outputLink value="/secure/admin/jobAnnouncementEditor.xhtml">
+                                <h:graphicImage id="editAnnouncement" value="/resources/images/wrench.png"
+                                                styleClass="actionButton"/>
+                                <f:param name="announcementId" value="#{p.id}"/>
+                                <pe:tooltip for="editAnnouncement" value="Edit announcement" myPosition="top right" atPosition="bottom center"/>
+                            </h:outputLink>
+                            <ci:deleteBtnWithConfirmDlg id="deleteJobAnnouncement" actionListener="#{jobAnnouncementsBean.delete(p)}"
+                                                        entityLabel="#{p.message}" tooltip="Delete announcement"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+        <ui:composition template="../template/layout.xhtml">
+            <ui:define name="contentTitle">#{helpBean.helpTopic.topic}</ui:define>
+
+            <ui:define name="contentMenu">
+                <h:link id="editTopic" value="" outcome="/secure/admin/helpTopicEditor.xhtml" styleClass="contentmenuConfigure" rendered="#{httpSessionBean.admin}">
+                    <f:param value="#{helpBean.helpTopic.id}" name="page"/>
+                    <pe:tooltip for="editTopic" value="Edit help topic" myPosition="top right" atPosition="bottom center"/>
+                </h:link>
+                <ci:backButton page="/secure/pages/info.xhtml" tooltip="Back to CI UI info" rendered="#{empty helpBean.helpTopic.page}"/>
+                <ci:backButton page="/secure/pages/#{helpBean.helpTopic.page}.xhtml" tooltip="Back to page" rendered="#{not empty helpBean.helpTopic.page}"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <div id="helpContent">
+                    <h:outputText value="#{helpBean.helpTopic.content}" escape="false"/>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+    </body>
+</html>

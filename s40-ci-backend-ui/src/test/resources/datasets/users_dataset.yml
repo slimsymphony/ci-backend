@@ -1,0 +1,17 @@
+## YAML Template.
+---
+sys_config:
+  - id: 1
+    configkey: ALLOW_LOGIN
+    configvalue: TRUE
+sys_user:
+  - id: 1
+    loginname: admin
+    realname: Admin Man
+    userrole: SYSTEM_ADMIN
+    systemmetricsallowed: 1
+  - id: 2
+    loginname: user
+    realname: Normal User
+    userrole: USER
+    systemmetricsallowed: 0

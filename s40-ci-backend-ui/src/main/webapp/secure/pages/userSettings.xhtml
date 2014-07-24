@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+        <ui:composition template="../template/editorLayout.xhtml">
+            <ui:define name="contentTitle">My settings</ui:define>
+
+            <ui:define name="contentMenu">
+                <ci:helpButton id="helpButton" page="userSettings"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <p:tabView id="userSettingsTabView" dynamic="true" cache="false">
+                    <p:tab id="generalSettingsTab" title="General Settings">
+                        <h:form id="userSettingsForm" enctype="multipart/form-data">
+                            <p:graphicImage value="#{request.contextPath}/resources/images/userDefaultImage_big.png"
+                                            rendered="#{empty httpSessionBean.sysUser.userImage.fileUuid or not httpSessionBean.uploadingEnabled}" styleClass="userImageBig"/>
+                            <p:graphicImage value="#{userFileStreamBean.getFileStream(httpSessionBean.sysUser.userImage.fileUuid)}"
+                                            rendered="#{not empty httpSessionBean.sysUser.userImage.fileUuid and httpSessionBean.uploadingEnabled}"
+                                            styleClass="userImageBig" />
+                            <h3 class="contentTitleText">Basic info</h3>
+                            <p:panelGrid id="userDetailsTable" columns="2">
+                                <h:outputLabel for="userLoginName" value="Login name:"/>
+                                <h:outputText id="userLoginName" value="#{userSettingsBean.user.loginName}"/>
+                                <h:outputLabel for="userRealName" value="Real name:"/>
+                                <h:outputText id="userRealName" value="#{userSettingsBean.user.realName}"/>
+                                <h:outputLabel for="userEmail" value="E-mail:"/>
+                                <h:outputText id="userEmail" value="#{userSettingsBean.user.email}"/>
+                                <h:outputLabel for="userRole" value="User role:"/>
+                                <h:outputText id="userRole" value="#{userSettingsBean.user.userRole}"/>
+                                <h:outputLabel for="nextUser" value="Account type:"/>
+                                <h:outputText id="nextUser" value="#{userSettingsBean.user.nextUser ? 'Nokia External' : 'Nokia Internal'}"/>
+                            </p:panelGrid>
+
+                            <h3 class="contentTitleText">Settings</h3>
+
+                            <h:panelGrid id="userSettingsTable" columns="2">
+                                <h:outputLabel for="timezoneSelect" value="Timezone:"/>
+                                <p:selectOneMenu id="timezoneSelect" value="#{userSettingsBean.selectedTimezone}">
+                                    <f:selectItems value="#{userSettingsBean.getTimezones()}" var="tz"
+                                                   itemLabel="#{tz}"
+                                                   itemValue="#{tz}"/>
+                                </p:selectOneMenu>
+                                <h:outputLabel for="defaultPage" value="Start page after login:"/>
+                                <p:selectOneMenu id="defaultPage" value="#{userSettingsBean.user.defaultPage}">
+                                    <f:selectItem itemLabel="My Toolbox" itemValue="myToolbox"/>
+                                    <f:selectItem itemLabel="Projects" itemValue="projects"/>
+                                </p:selectOneMenu>
+                                <h:outputLabel for="receiveEmail" value="Receive email notifications:"/>
+                                <p:selectBooleanCheckbox id="receiveEmail" value="#{userSettingsBean.receiveEmail}"/>
+
+                                <h:outputLabel value="Theme:" />
+                                <p:themeSwitcher style="width:165px" id="defaultSwitcher" value="#{userSettingsBean.theme}">
+                                    <f:selectItems value="#{userSettingsBean.themes}" />
+                                </p:themeSwitcher>
+
+                                <h:outputLabel value="Profile image: " rendered="#{httpSessionBean.uploadingEnabled}"/>
+                                <p:fileUpload mode="advanced" auto="true" invalidFileMessage="Invalid file type!"
+                                              invalidSizeMessage="This image is too big, please use smaller than 500kb files!"
+                                              allowTypes="/(\.|\/)(gif|jpe?g|png)$/" sizeLimit="500000"
+                                              fileUploadListener="#{userSettingsBean.handleImageUpload}"
+                                              update="@form" process="@form" rendered="#{httpSessionBean.uploadingEnabled}"/>
+
+                                <h:outputLabel value="My widgets:"/>
+                                <p:selectManyCheckbox value="#{userSettingsBean.selectedWidgets}" layout="pageDirection"
+                                                      converter="WidgetConverter">
+                                    <f:selectItems value="#{userSettingsBean.myWidgets}" var="widget" itemValue="#{widget}"
+                                                   itemLabel="#{widget.header}"/>
+                                </p:selectManyCheckbox>
+
+                                <f:facet name="footer">
+                                    <p:commandButton id="settingsSaveButton" value="Save" action="#{userSettingsBean.save}"
+                                                     ajax="false"/>
+                                    <p:commandButton id="settingsCancelButton" value="Cancel" action="#{userSettingsBean.cancelEdit}"
+                                                     ajax="false" immediate="true"/>
+                                </f:facet>
+                            </h:panelGrid>
+                        </h:form>
+                    </p:tab>
+
+                    <p:tab id="myFilesTab" title="My files" rendered="#{httpSessionBean.uploadingEnabled}">
+                        <h:form id="myFilesForm" onkeypress="return event.keyCode !== 13;">
+                            <p:dataTable id="myFilesDataTable" value="#{userSettingsBean.myFiles}" var="userFile"
+                                         filteredValue="#{userSettingsBean.myFilesFiltered}"  paginator="true" rows="20"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,20,50">
+                                <f:facet name="header">
+                                    <h:outputText value="My uploaded files"/>
+                                </f:facet>
+                                <p:column sortBy="#{userFile.name}" filterBy="#{userFile.name}" filterMatchMode="contains">
+                                    <f:facet name="header">File Name</f:facet>
+                                    <p:commandLink ajax="false">
+                                        <h:outputText value="#{userFile.name}"/>
+                                        <p:fileDownload value="#{userFileStreamBean.getFileStream(userFile.uuid)}" contentDisposition="attachment"/>
+                                    </p:commandLink>
+                                </p:column>
+                                <p:column sortBy="#{userFile.uuid}" filterBy="#{userFile.uuid}" filterMatchMode="contains">
+                                    <f:facet name="header">UUID</f:facet>
+                                    <h:outputText value="#{userFile.uuid}"/>
+                                </p:column>
+                                <p:column sortBy="#{userFile.fileSize}" filterBy="#{userFile.fileSize}" filterMatchMode="contains">
+                                    <f:facet name="header">Size</f:facet>
+                                    <h:outputText value="#{userFile.fileSize} B"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">Ownership Scope</f:facet>
+                                    <h:outputText value="#{userFile.ownershipScope}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">Access Scope</f:facet>
+                                    <h:outputText value="#{userFile.accessScope}"/>
+                                </p:column>
+                                <p:column style="width: 140px; text-align: center;">
+                                    <f:facet name="header">Actions</f:facet>
+                                    <p:commandLink ajax="false">
+                                        <h:graphicImage id="downloadIcon" value="/resources/images/box.png" styleClass="actionButton"/>
+                                        <p:fileDownload value="#{userFileStreamBean.getFileStream(userFile.uuid)}" contentDisposition="attachment"/>
+                                        <pe:tooltip for="downloadIcon" value="Download file" myPosition="top right" atPosition="bottom center"/>
+                                    </p:commandLink>
+                                    <h:outputLink value="/secure/pages/userFileEditor.xhtml">
+                                        <h:graphicImage id="editUserFile" value="/resources/images/wrench.png" styleClass="actionButton"/>
+                                        <f:param name="userFileId" value="#{userFile.id}"/>
+                                        <pe:tooltip for="editUserFile" value="Edit user file" myPosition="top right" atPosition="bottom center"/>
+                                    </h:outputLink>
+
+                                    <ci:deleteBtnWithConfirmDlg id="deleteUserFile" actionListener="#{userSettingsBean.deleteUserFile(userFile)}"
+                                                                update="myFilesDataTable" entityLabel="#{userFile.name}" tooltip="Delete user file"/>
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
+                    </p:tab>
+
+                    <p:tab id="globalFilesTab" title="Global files" rendered="#{httpSessionBean.uploadingEnabled}">
+                        <h:form id="globalFilesForm" onkeypress="return event.keyCode !== 13;">
+                            <p:dataTable id="globalFilesDataTable" value="#{userSettingsBean.globalFiles}" var="userFile"
+                                         filteredValue="#{userSettingsBean.globalFilesFiltered}"  paginator="true" rows="20"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,20,50">
+                                <f:facet name="header">
+                                    <h:outputText value="Globally shared files"/>
+                                </f:facet>
+                                <p:column sortBy="#{userFile.name}" filterBy="#{userFile.name}" filterMatchMode="contains">
+                                    <f:facet name="header">File Name</f:facet>
+                                    <p:commandLink ajax="false">
+                                        <h:outputText value="#{userFile.name}"/>
+                                        <p:fileDownload value="#{userFileStreamBean.getFileStream(userFile.uuid)}" contentDisposition="attachment"/>
+                                    </p:commandLink>
+                                </p:column>
+                                <p:column sortBy="#{userFile.uuid}" filterBy="#{userFile.uuid}" filterMatchMode="contains">
+                                    <f:facet name="header">UUID</f:facet>
+                                    <h:outputText value="#{userFile.uuid}"/>
+                                </p:column>
+                                <p:column sortBy="#{userFile.fileSize}" filterBy="#{userFile.fileSize}" filterMatchMode="contains">
+                                    <f:facet name="header">Size</f:facet>
+                                    <h:outputText value="#{userFile.fileSize} B"/>
+                                </p:column>
+                                <p:column sortBy="#{userFile.owner.loginName}" filterBy="#{userFile.owner.loginName}" filterMatchMode="contains">
+                                    <f:facet name="header">Owner</f:facet>
+                                    <ci:userLoginNameLink value="#{userFile.owner.loginName}"/>
+                                </p:column>
+                                <p:column style="width: 140px; text-align: center;">
+                                    <f:facet name="header">Actions</f:facet>
+                                    <p:commandLink ajax="false">
+                                        <h:graphicImage id="downloadIcon" value="/resources/images/box.png" styleClass="actionButton"/>
+                                        <p:fileDownload value="#{userFileStreamBean.getFileStream(userFile.uuid)}" contentDisposition="attachment"/>
+                                        <pe:tooltip for="downloadIcon" value="Download file" myPosition="top right" atPosition="bottom center"/>
+                                    </p:commandLink>
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
+                    </p:tab>
+                </p:tabView>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+        <ui:composition>
+            <div id="top">
+                <div id="logo">
+                </div>
+                <ci:pageTutorial step="3" position="left" id="userInfo" rendered="#{httpSessionBean.loggedIn}"
+                                 value="This is personal menu. By clicking it you can access your settings and files and log out of the system.">
+                    <h:panelGroup layout="block" id="userImage" styleClass="userImageSmall">
+                        <p:graphicImage value="#{request.contextPath}/resources/images/userDefaultImage.png"
+                                        rendered="#{empty httpSessionBean.sysUser.userImage.fileUuid or not httpSessionBean.uploadingEnabled}"/>
+                        <p:graphicImage value="#{userFileStreamBean.getFileStream(httpSessionBean.sysUser.userImage.fileUuid)}" width="24" height="24"
+                                        rendered="#{not empty httpSessionBean.sysUser.userImage.fileUuid and httpSessionBean.uploadingEnabled}"/>
+                    </h:panelGroup>
+                    <div id="downArrow"/>
+
+                    <pe:tooltip for="userImage" value="#{httpSessionBean.sysUser.realName}" myPosition="top right" atPosition="bottom center"
+                                hideDelay="0"/>
+                </ci:pageTutorial>
+
+                <ci:pageTutorial step="2" position="left" id="searchInput"
+                                 value="This is the search bar which allows you to search any content (users, commits, projects, jobs..) from CI UI.">
+                    <ci:searchInput/>
+                </ci:pageTutorial>
+                <div id="userMenu">
+                    <h:link outcome="/secure/pages/userSettings.xhtml" styleClass="settings" value="My settings"/>
+                    <h:form>
+                        <h:commandLink action="#{loginBean.logout}" styleClass="logout" value="Logout"/>
+                    </h:form>
+                </div>
+            </div>
+        </ui:composition>
+    </body>
+</html>

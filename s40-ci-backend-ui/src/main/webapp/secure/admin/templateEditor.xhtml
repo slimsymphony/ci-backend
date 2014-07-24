@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+    <body>
+
+        <ui:composition template="../template/editorLayout.xhtml">
+            <ui:define name="contentTitle">Template #{templateBean.template.name}</ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="Admin" outcome="admin"/>
+                <h:link value="Templates" outcome="templates"/>
+                <h:link value="Edit #{templateBean.template.name}" outcome="templateEditor" styleClass="active"
+                        rendered="#{not empty templateBean.template.id}">
+                    <f:param name="templateId" value="#{templateBean.template.id}"/>
+                </h:link>
+                <h:link value="Add new template" outcome="templateEditor" styleClass="active" rendered="#{empty templateBean.template.id}"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="templateEditorForm">
+                    <h:panelGrid id="templateEditorTable" columns="1">
+                        <h:panelGrid id="templateEditTable" columns="2">
+                            <h:outputLabel for="nameInput" value="Name"/>
+                            <p:inputText id="nameInput" value="#{templateBean.template.name}" label="Name"/>
+                            <h:outputLabel for="descriptionInput" value="Description"/>
+                            <p:inputText id="descriptionInput" value="#{templateBean.template.description}" label="Description"/>
+                        </h:panelGrid>
+                        <p:pickList id="productsPickList" value="#{templateBean.products}" var="product"
+                                    converter="ProductConverter"
+                                    itemLabel="#{product.displayName}" itemValue="#{product}"
+                                    onTransfer="updateVerificationConfTable()">
+                            <f:facet name="sourceCaption">Available Products</f:facet>
+                            <f:facet name="targetCaption">Selected Products</f:facet>
+                        </p:pickList>
+                        <p:pickList id="verificationsPickList" value="#{templateBean.verifications}" var="verification"
+                                    converter="VerificationConverter"
+                                    itemLabel="#{verification.displayName}" itemValue="#{verification}"
+                                    onTransfer="updateVerificationConfTable()">
+                            <f:facet name="sourceCaption">Available Verifications</f:facet>
+                            <f:facet name="targetCaption">Selected Verifications</f:facet>
+                        </p:pickList>
+                        <h:panelGrid columns="2">
+                            <p:commandButton value="Select all" ajax="true" actionListener="#{templateBean.selectAllVerifications}" process="@this"
+                                             update="templateVerificationConf"/>
+                            <p:commandButton value="Clear all" ajax="true" actionListener="#{templateBean.clearAllVerifications}" process="@this"
+                                             update="templateVerificationConf"/>
+                        </h:panelGrid>
+
+                        <h:panelGrid id="configurationMatrix" columns="1">
+                            <ci:verificationConfMatrix id="templateVerificationConf" products="#{templateBean.products.target}"
+                                                       verificationConfRows="#{templateBean.verificationConfRows}" deleteListener="#{templateBean.deleteCustomVerification(row)}"
+                                                       deleteUpdate=":templateEditorForm" editListener="#{templateBean.selectCustomVerification(row)}" editOnComplete="customVerificationDlg.show();"
+                                                       editUpdate=":customVerificationDialogForm" optionalMandatory="true" deleteOnComplete="updateVerificationConfs()"/>
+                        </h:panelGrid>
+                        <h:panelGrid columns="1">
+                            <p:commandLink id="showDialogLink" value="Add Custom Verification" oncomplete="customVerificationDlg.show();"
+                                           actionListener="#{templateBean.addCustomVerification()}" update=":customVerificationDialogForm"/>
+                        </h:panelGrid>
+
+                        <f:facet name="footer">
+                            <p:commandButton id="templateSaveButton" value="Save" action="#{templateBean.save}" ajax="false"/>
+                            <p:commandButton id="templateCancelButton" value="Cancel" action="#{templateBean.cancelEdit}" ajax="false" immediate="true"/>
+                        </f:facet>
+                    </h:panelGrid>
+                    <p:remoteCommand name="updateVerificationConfTable"
+                                     actionListener="#{templateBean.updateVerificationConfTable}"
+                                     process="@this,productsPickList,verificationsPickList" update="templateVerificationConf"/>
+                </h:form>
+                <script type="text/javascript" src="#{request.contextPath}/secure/resources/js/verifications.js"/>
+            </ui:define>
+            <ui:define name="hidden">
+                <p:dialog id="customVerificationDialog" header="Custom Verification" widgetVar="customVerificationDlg" resizable="false" modal="true">
+                    <h:form id="customVerificationDialogForm">
+                        <h:panelGrid id="customVerificationDialogTable" columns="1" style="margin-bottom:10px" rendered="#{templateBean.selectedCustomVerification != null}">
+                            <h:outputLabel for="verificationSelectInput" value="Verification:"/>
+                            <p:selectOneMenu id="verificationSelectInput" value="#{templateBean.selectedCustomVerification.verification}" converter="VerificationConverter">
+                                <f:selectItems value="#{templateBean.verifications.target}" var="verification" itemLabel="#{verification.displayName}" itemValue="#{verification}"/>
+                                <p:ajax listener="#{templateBean.verificationChanged}" update="customParamTable"/>
+                            </p:selectOneMenu>
+                            <h:outputLabel for="customVerificationDescription" value="Description:"/>
+                            <h:inputText id="customVerificationDescription" value="#{templateBean.selectedCustomVerification.description}"/>
+                            <p:dataTable id="customParamTable" value="#{templateBean.selectedCustomVerification.customVerificationParams}" var="customVerificationParam">
+                                <f:facet name="header">
+                                    <h:outputText value="Parameters"/>
+                                </f:facet>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Key"/>
+                                    </f:facet>
+                                    <h:outputLabel for="parameterValueInput" value="#{customVerificationParam.customParam.displayName}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Value"/>
+                                    </f:facet>
+                                    <p:selectOneMenu id="parameterValueInput" value="#{customVerificationParam.paramValue}" editable="true">
+                                        <f:selectItems value="#{templateBean.fetchCustomParamValueItems(customVerificationParam)}"/>
+                                    </p:selectOneMenu>
+                                </p:column>
+                            </p:dataTable>
+                        </h:panelGrid>
+                        <p:commandButton id="saveCustomVerificationButton" value="Save" update=":templateEditorForm" onsuccess="customVerificationDlg.hide();"
+                                         actionListener="#{templateBean.saveCustomVerification()}" oncomplete="updateVerificationConfs()"/>
+                        <p:commandButton id="cancelCustomVerificationButton" value="Cancel" onclick="customVerificationDlg.hide();"/>
+                    </h:form>
+                </p:dialog>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

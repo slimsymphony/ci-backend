@@ -1,0 +1,182 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+        <ui:composition template="../template/layout.xhtml">
+
+            <ui:define name="contentTitle">Change #{changeBean.change.commitId}</ui:define>
+
+            <ui:define name="contentMenu">
+                <ci:helpButton id="helpButton" page="changeDetails"/>
+                <ci:backButton href="#{changeBean.refererUrl}" tooltip="Back" rendered="#{not empty changeBean.refererUrl}"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:outputText value="You do not have permission to the requested resource. However, this might be due to access control information synchronization delay from Gerrit. Please refresh the page approximately after one minute. If the problem persists, please contact I_EXT_S40_CI20_SUPPORT@nokia.com." rendered="#{changeBean.change == null}"/>
+
+                <!-- Basic change information -->
+                <p:panelGrid id="changeDetailsTable" columns="2" rendered="#{changeBean.change != null}">
+                    <h:outputLabel for="changeCommitId" value="Commit ID:"/>
+                    <h:panelGroup layout="block">
+                        <h:outputText id="changeCommitId" value="#{changeBean.change.commitId}"/>
+                        <h:outputLink value="#{changeBean.change.url}" rendered="#{changeBean.change.url != null}" target="_blank">
+                            <h:graphicImage id="gerritIcon" value="/resources/images/gerrit.png" styleClass="actionButton"/>
+                            <pe:tooltip for="gerritIcon" value="Link to change in Gerrit" />
+                        </h:outputLink>
+                    </h:panelGroup>
+                    <h:outputLabel for="changeAuthor" value="Author:"/>
+                    <h:outputText id="changeAuthor" value="#{changeBean.change.authorName} (#{changeBean.change.authorEmail})"/>
+                    <h:outputLabel for="changeCommitTime" value="Commit time:"/>
+                    <h:outputText id="changeCommitTime" value="#{changeBean.change.commitTime}"/>
+                    <h:outputLabel for="changeStatus" value="Status:"/>
+                    <h:outputText id="changeStatus" value="#{changeBean.change.status}"/>
+                    <h:outputLabel for="changeSubject" value="Subject:"/>
+                    <h:outputText id="changeSubject" value="#{changeBean.change.subject}"/>
+                    <h:outputLabel for="changeMessage" value="Message:"/>
+                    <h:outputText id="changeMessage" style="white-space: pre;" value="#{changeBean.change.message}"/>
+                </p:panelGrid>
+
+                <!-- Build information -->
+                <h:form id="buildGroupsForm" rendered="#{changeBean.change != null}">
+                    <p:poll id="buildsPoller" interval="10" update="buildGroupsTable" process="@this"  widgetVar="buildGroupsPollerVar"
+                            onerror="window.location.reload()"/>
+
+                    <p:dataTable id="buildGroupsTable" value="#{changeBean.buildGroups}" var="buildGroup">
+                        <f:facet name="header">
+                            <h:outputText value="Verifications containing change"/>
+                        </f:facet>
+                        <p:column>
+                            <f:facet name="header">Verification</f:facet>
+                            <h:link value="#{empty buildGroup.jobDisplayName ? buildGroup.jobName : buildGroup.jobDisplayName}" outcome="/secure/pages/buildDetails">
+                                <f:param name="buildId" value="#{buildGroup.id}"/>
+                            </h:link>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Type</f:facet>
+                            <h:outputText value="#{buildGroup.branchType}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Start Time</f:facet>
+                            <ci:outputTextTimeStamp styleClass="buildStartTimeSpacing" id="buildStartTime" value="#{buildGroup.startTime}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Status</f:facet>
+                            <ci:buildInfo id="buildInfo" status="#{buildGroup.status}" phase="#{buildGroup.phase}"/>
+                        </p:column>
+                        <p:column styleClass="actionColumn" style="width: 110px; text-align: center;">
+                            <f:facet name="header">Actions</f:facet>
+                            <h:outputLink value="/secure/pages/buildDetails.xhtml">
+                                <h:graphicImage id="buildDetails" value="/resources/images/page_go.png" styleClass="actionButton"/>
+                                <f:param name="buildId" value="#{buildGroup.id}"/>
+                                <pe:tooltip for="buildDetails" value="Show build details" myPosition="top right" atPosition="bottom center"/>
+                            </h:outputLink>
+                            <p:commandLink id="triggerBuild" oncomplete="triggerDlg.show();" update=":displayToolboxJobsForm" actionListener="#{changeBean.updateSelectedBuildGroup(buildGroup)}">
+                                <h:graphicImage value="/resources/images/control_play.png" styleClass="actionButton"/>
+                                <pe:tooltip for="triggerBuild" value="Trigger a toolbox verification at this delivery chain phase" myPosition="top right" atPosition="bottom center"/>
+                            </p:commandLink>
+                        </p:column>
+                    </p:dataTable>
+
+                </h:form>
+
+                <!-- Change files -->
+                <p:dataTable id="changeFilesTable" value="#{changeBean.changeFiles}" var="changeFile" rendered="#{changeBean.change != null}">
+                    <f:facet name="header">
+                        <h:outputText value="Files"/>
+                    </f:facet>
+                    <p:column>
+                        <f:facet name="header">File Path</f:facet>
+                        <h:outputText value="#{changeFile.filePath}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Type</f:facet>
+                        <h:outputText value="#{changeFile.fileType}"/>
+                    </p:column>
+                </p:dataTable>
+
+                <!-- Parent changes -->
+                <p:dataTable id="parentChangesTable" value="#{changeBean.parentChanges}" var="parent"
+                             rendered="#{(changeBean.change != null) and (not empty changeBean.parentChanges)}">
+                    <f:facet name="header">
+                        <h:outputText value="Parent Commits"/>
+                    </f:facet>
+                    <p:column>
+                        <f:facet name="header">Subject</f:facet>
+                        <h:outputLink value="/secure/pages/changeDetails.xhtml">
+                            <h:outputText value="#{parent.subject}"/>
+                            <f:param name="commitId" value="#{parent.commitId}"/>
+                        </h:outputLink>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Commit ID</f:facet>
+                        <h:outputLink value="/secure/pages/changeDetails.xhtml">
+                            <h:outputText value="#{parent.commitId}"/>
+                            <f:param name="commitId" value="#{parent.commitId}"/>
+                        </h:outputLink>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Actions</f:facet>
+                        <h:outputLink value="#{parent.url}" rendered="#{parent.url != null}" target="_blank">
+                            <h:graphicImage id="gerritParentActionIcon" value="/resources/images/gerrit.png" styleClass="actionButton"/>
+                            <pe:tooltip for="gerritParentActionIcon" value="Link to change in Gerrit" />
+                        </h:outputLink>
+                    </p:column>
+                </p:dataTable>
+
+                <!-- Child changes -->
+                <p:dataTable id="childChangesTable" value="#{changeBean.childChanges}" var="child"
+                             rendered="#{(changeBean.change != null) and (not empty changeBean.childChanges)}">
+                    <f:facet name="header">
+                        <h:outputText value="Child Commits"/>
+                    </f:facet>
+                    <p:column>
+                        <f:facet name="header">Subject</f:facet>
+                        <h:outputLink value="/secure/pages/changeDetails.xhtml">
+                            <h:outputText value="#{child.subject}"/>
+                            <f:param name="commitId" value="#{child.commitId}"/>
+                        </h:outputLink>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Commit ID</f:facet>
+                        <h:outputLink value="/secure/pages/changeDetails.xhtml">
+                            <h:outputText value="#{child.commitId}"/>
+                            <f:param name="commitId" value="#{child.commitId}"/>
+                        </h:outputLink>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Actions</f:facet>
+                        <h:outputLink value="#{child.url}" rendered="#{child.url != null}" target="_blank">
+                            <h:graphicImage id="gerritChildActionIcon" value="/resources/images/gerrit.png" styleClass="actionButton"/>
+                            <pe:tooltip for="gerritChildActionIcon" value="Link to change in Gerrit" />
+                        </h:outputLink>
+                    </p:column>
+                </p:dataTable>
+            </ui:define>
+            <ui:define name="hidden">
+                <p:dialog id="displayTriggerBuild" header="Choose a toolbox job to trigger" widgetVar="triggerDlg" resizable="false" modal="true">
+                    <h:form id="displayToolboxJobsForm">
+                        <h:panelGrid id="panelGrid" columns="2" style="margin-bottom:10px">
+                            <h:outputText value="Toolbox Jobs:"/>
+                            <br/>
+                            <h:selectOneMenu id="toolboxJobs" value="#{changeBean.selectedToolboxJob}" style="width: 350px;">
+                                <f:selectItem itemValue="" itemLabel=""/>
+                                <f:selectItems value="#{changeBean.toolboxJobs}" var="toolboxJob" itemLabel="#{toolboxJob.displayName}" itemValue="#{toolboxJob.id}"/>
+                                <f:ajax event="change" render="panelGrid" update="@form"/>
+                            </h:selectOneMenu>
+                            <br/>
+                            <p:commandButton id="triggerVerificationButton" value="OK" action="#{changeBean.triggerBuild}"
+                                             disabled="#{changeBean.selectedToolboxJob == null or changeBean.selectedToolboxJob == ''}"/>
+                        </h:panelGrid>
+                    </h:form>
+                </p:dialog>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

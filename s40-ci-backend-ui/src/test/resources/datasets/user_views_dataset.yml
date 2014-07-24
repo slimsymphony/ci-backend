@@ -1,0 +1,106 @@
+## YAML Template.
+---
+gerrit:
+  - id: 1
+    url: localhost
+    port: 1338
+    privatekeypath: ../../../../../s40-ci-backend-mock/keys/id_dsa
+    sshusername: account
+    listenstream: true
+
+project_group:
+  - id: 1
+    name: pgroup1
+  - id: 2
+    name: pgroup2
+
+project:
+  - id: 1
+    name: project_1
+    displayname: Project 1
+    projectgroup_id: 1
+    gerrit_id: 1
+  - id: 2
+    name: project_2
+    displayname: Project 2
+    projectgroup_id: 2
+    gerrit_id: 1
+
+branch:
+  - id: 1
+    name: branch1
+    project_id: 1
+    type: SINGLE_COMMIT
+  - id: 2
+    name: branch2
+    project_id: 2
+    type: DEVELOPMENT
+
+job:
+  - id: 1
+    owner_id: 2
+    name: job1
+    branch_id: 1
+  - id: 2
+    name: job2
+    branch_id: 2
+
+build_group:
+  - id: 1
+    job_id: 1
+  - id: 2
+    job_id: 1
+
+build_group_ciserver:
+  - id: 1
+    url: https://some.domain.com
+    port: 8080
+    buildgroup_id: 1
+
+build:
+  - id: 1
+    buildgroup_id: 1
+    buildnumber: 1
+    startnode: 1
+  - id: 2
+    buildgroup_id: 1
+    buildnumber: 2
+    startnode: 0
+  - id: 3
+    buildgroup_id: 1
+    buildnumber: 3
+    startnode: 0
+  - id: 4
+    buildgroup_id: 2
+    buildnumber: 1
+    startnode: 1
+
+build_verification_conf:
+  - id: 1
+    build_id: 1
+  - id: 2
+    build_id: 2
+  - id: 3
+    build_id: 3
+  
+build_result_details_param:
+  - id: 1
+    buildverificationconf_id: 1
+    paramkey: CODE_REVIEWERS
+    paramvalue: User 1, User 2
+    displayname: Gerrit Code Reviewers
+  - id: 2
+    buildverificationconf_id: 1
+    paramkey: SOME_RESULT
+    displayname: Some Result
+  - id: 3
+    buildverificationconf_id: 2
+    paramkey: CODE_REVIEWERS
+    paramvalue: User 3, User 4
+    displayname: Gerrit Code Reviewers
+        
+cihelptopic:
+  - id: 1
+    topic: Projects Topic
+    page: projects
+    content: Project listing page.

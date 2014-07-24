@@ -1,0 +1,432 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+        <ui:composition template="../template/editorLayout.xhtml">
+            <ui:define name="contentTitle">Verifications</ui:define>
+
+            <ui:define name="contentMenu">
+                <ci:helpButton id="helpButton" page="verificationEditor"/>
+            </ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="#{jobEditorBean.project.displayName}" outcome="projectDetails">
+                    <f:param name="projectId" value="#{jobEditorBean.project.id}"/>
+                </h:link>
+                <h:link value="#{jobEditorBean.job.displayName}" outcome="verificationDetails"
+                        rendered="#{not empty jobEditorBean.job.id}">
+                    <f:param name="verificationId" value="#{jobEditorBean.job.id}"/>
+                </h:link>
+                <h:link value="Edit" outcome="verificationEditor"
+                        styleClass="active" rendered="#{not empty jobEditorBean.job.id}">
+                    <f:param name="verificationId" value="#{jobEditorBean.job.id}"/>
+                </h:link>
+                <h:link value="Add new verification" outcome="verificationEditor" rendered="#{empty jobEditorBean.job.id}"
+                        styleClass="active">
+                    <f:param name="projectId" value="#{jobEditorBean.projectId}"/>
+                </h:link>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:outputLink styleClass="block" target="_blank" value="http://wikis.in.nokia.com/S40CI/Toolbox"
+                              rendered="#{jobEditorBean.toolboxBranch}">
+                    How to use toolbox verification?
+                </h:outputLink>
+
+                <h:form id="verificationEditorForm" rendered="#{jobEditorBean.toolboxOrDraftBranch || httpSessionBean.projectAdmin}">
+                    <p:tabView id="viewSelect">
+                        <p:tab id="configurationView" title="Configuration">
+                            <h:outputText value="You don't have permission to edit this job" rendered="#{!(jobEditorBean.toolboxOrDraftBranch || httpSessionBean.projectAdmin)}" />
+                            <h:panelGrid id="verificationEditTable" columns="2">
+                                <h:outputLabel for="jobBranchInput" value="Branch"/>
+                                <p:selectOneMenu id="jobBranchInput" value="#{jobEditorBean.selectedBranch}"
+                                                 converter="BranchConverter" style="width: 300px;">
+                                    <f:selectItems value="#{jobEditorBean.availableBranches}" var="branch"
+                                                   itemLabel="#{( branch.displayName == null || branch.displayName == '' ) ? branch.name : branch.displayName}"
+                                                   itemValue="#{branch}"/>
+                                    <p:ajax process="verificationDisplayNameInput,verificationNameInput,jobBranchInput" event="change" listener="#{jobEditorBean.branchChanged}"
+                                            update="@form"/>
+                                </p:selectOneMenu>
+                                <h:outputLabel for="verificationDisplayNameInput" value="Name"/>
+                                <p:inputText maxlength="255" id="verificationDisplayNameInput" value="#{jobEditorBean.job.displayName}" label="displayName"/>
+                                <h:outputLabel for="verificationNameInput" value="Monitor job name" rendered="#{httpSessionBean.isAdmin and not jobEditorBean.toolboxOrDraftBranch}"/>
+                                <p:inputText maxlength="255" id="verificationNameInput" value="#{jobEditorBean.job.name}" label="name" rendered="#{httpSessionBean.isAdmin and not jobEditorBean.toolboxOrDraftBranch}"/>
+                                <h:outputLabel for="jobContactPersonInput" value="Contact person"/>
+                                <p:inputText maxlength="255" id="jobContactPersonInput" value="#{jobEditorBean.job.contactPerson}" label="ContactPerson"/>
+                                <h:outputLabel for="jobLifespanInput" value="Estimated lifespan"/>
+                                <p:calendar id="jobLifespanInput" value="#{jobEditorBean.job.lifespan}" pattern="dd.mm.yyyy"/>
+                                <h:outputLabel for="jobOwnerOutput" value="Owner"/>
+                                <h:outputText id="jobOwnerOutput" value="#{jobEditorBean.job.owner.realName}"/>
+                                <h:outputLabel for="jobDisabledInput" value="Job Status"/>
+                                <p:selectOneButton id="jobDisabledInput" value="#{jobEditorBean.enabled}">
+                                    <f:selectItem itemLabel="Enabled" itemValue="true" />
+                                    <f:selectItem itemLabel="Disabled" itemValue="false" />
+                                </p:selectOneButton>
+                            </h:panelGrid>
+                        </p:tab>
+                        <p:tab id="triggerView" title="Triggering">
+                            <h:panelGroup rendered="#{jobEditorBean.selectedBranch == null}">
+                                <h:outputText value="Please select branch first"/>
+                            </h:panelGroup>
+                            <h:panelGrid columns="1">
+                                <p:selectOneMenu id="jobTriggerSelect" value="#{jobEditorBean.job.triggerType}"
+                                                 rendered="#{jobEditorBean.selectedBranch != null}" style="width: 300px;">
+                                    <f:selectItem itemValue="MANUAL" itemLabel="Manual triggering"/>
+                                    <f:selectItem itemValue="AUTOMATIC" itemLabel="Automatic from gerrit change" itemDisabled="#{jobEditorBean.repositoryTypeGit}"/>
+                                    <f:selectItem itemValue="POLL" itemLabel="Poll SCM for new changes" itemDisabled="#{!httpSessionBean.projectAdmin || !jobEditorBean.repositoryTypeGit}"/>
+                                    <f:selectItem itemValue="SCHEDULE" itemLabel="Schedule trigger for new changes" itemDisabled="#{!httpSessionBean.projectAdmin || !jobEditorBean.repositoryTypeGit}"/>
+                                    <p:ajax event="change" update="verificationTriggering advancedOptions"/>
+                                </p:selectOneMenu>
+                                <h:panelGrid id="verificationTriggering" columns="1" rendered="#{jobEditorBean.selectedBranch != null}">
+                                    <h:selectOneRadio value="#{jobEditorBean.job.triggerScope}" required="true" requiredMessage="Please specify trigger scope!" rendered="#{jobEditorBean.job.triggerType == 'AUTOMATIC'}">
+                                        <f:selectItem itemValue="ALL" itemLabel="For all" itemDisabled="#{!httpSessionBean.projectAdmin}"/>
+                                        <f:selectItem itemValue="USER" itemLabel="For my changes"/>
+                                    </h:selectOneRadio>
+                                    <h:outputLabel value="Poll interval in minutes" rendered="#{jobEditorBean.job.triggerType == 'POLL' and httpSessionBean.projectAdmin}"/>
+                                    <h:inputText required="true" value="#{jobEditorBean.job.pollInterval}"
+                                                 rendered="#{jobEditorBean.job.triggerType == 'POLL' and httpSessionBean.projectAdmin}">
+                                        <f:validateLongRange minimum="1" maximum="1440"/>
+                                    </h:inputText>
+                                    <h:panelGrid columns="2" rendered="#{jobEditorBean.job.triggerType == 'SCHEDULE' and httpSessionBean.projectAdmin}">
+                                        <h:outputLabel value="Cron expression for schedule"/>
+                                        <h:inputText required="true" value="#{jobEditorBean.job.cronExpression}" validator="#{jobEditorBean.validateCronExpression}"/>
+                                        <h:outputLabel for="timezoneSelect" value="Timezone:"/>
+                                        <p:selectOneMenu id="timezoneSelect" value="#{jobEditorBean.job.cronTimezone}">
+                                            <f:selectItem itemLabel="Default (#{httpSessionBean.sysUser.timezone})" itemValue="#{httpSessionBean.sysUser.timezone}" />
+                                            <f:selectItems value="#{jobEditorBean.getTimezones()}" var="tz"
+                                                           itemLabel="#{tz}"
+                                                           itemValue="#{tz}"/>
+                                        </p:selectOneMenu>
+                                    </h:panelGrid>
+                                    <h:outputText value="Cron expression must be in following format: (Example * 0 0 * * ?)"
+                                                  rendered="#{jobEditorBean.job.triggerType == 'SCHEDULE' and httpSessionBean.projectAdmin}"/>
+                                    <p:panelGrid columns="3" rendered="#{jobEditorBean.job.triggerType == 'SCHEDULE' and httpSessionBean.projectAdmin}">
+                                        <h:outputText value="Field Name"/>
+                                        <h:outputText value="Allowed Values"/>
+                                        <h:outputText value="Allowed Special Characters"/>
+                                        <h:outputText value="Seconds"/>
+                                        <h:outputText value="0-59"/>
+                                        <h:outputText value=", - * /"/>
+                                        <h:outputText value="Minutes"/>
+                                        <h:outputText value="0-59"/>
+                                        <h:outputText value="M, - * /"/>
+                                        <h:outputText value="Hours"/>
+                                        <h:outputText value="0-23"/>
+                                        <h:outputText value=", - * /"/>
+                                        <h:outputText value="Day-of-month"/>
+                                        <h:outputText value="1-31"/>
+                                        <h:outputText value=", - * ? / L W"/>
+                                        <h:outputText value="Month"/>
+                                        <h:outputText value="1-12 or JAN-DEC"/>
+                                        <h:outputText value=", - * /"/>
+                                        <h:outputText value="Day-of-Week"/>
+                                        <h:outputText value="1-7 or SUN-SAT"/>
+                                        <h:outputText value=", - * ? / L #"/>
+                                        <h:outputText value="Year [Optional]"/>
+                                        <h:outputText value="empty, 1970-2099"/>
+                                        <h:outputText value=", - * /"/>
+                                    </p:panelGrid>
+                                </h:panelGrid>
+                            </h:panelGrid>
+                            <h:panelGroup layout="block" id="advancedOptions" styleClass="advancedTriggeringOptionsPanel">
+                                <p:panel collapsed="true" toggleable="true" header="Advanced triggering options" style="border:0; padding:0;"
+                                         rendered="#{jobEditorBean.job.triggerType != null and jobEditorBean.job.triggerType != 'MANUAL'}">
+                                    <h:panelGrid id="fileTriggerContent" columns="1">
+                                        <h:panelGroup id="newFileTriggerPatternGroup" layout="block">
+                                            <h:panelGrid id="newFileTriggerPattern" columns="1" columnClasses="formColumn">
+                                                <h:outputText value="Trigger only if changes under file path"/>
+                                                <h:inputText id="fileTriggerPattern" value="#{jobEditorBean.newFileTrigger.filepath}" label="file trigger pattern" maxlength="255"/>
+                                            </h:panelGrid>
+                                            <p:commandButton id="addNewFilePath" value="Add file path" actionListener="#{jobEditorBean.addFileTriggerPattern}"
+                                                             style="margin-top: 10px;" icon="ui-icon-plusthick" update="filePathDataTable"/>
+                                        </h:panelGroup>
+                                        <p:dataTable id="filePathDataTable" var="fileTrigger" style="margin-top: 20px;"
+                                                     value="#{jobEditorBean.fileTriggerPatterns}">
+                                            <p:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="Trigger file path"/>
+                                                </f:facet>
+                                                <h:outputText value="#{fileTrigger.filepath}"/>
+                                            </p:column>
+                                            <p:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="Actions"/>
+                                                </f:facet>
+                                                <p:commandLink id="deleteLink"
+                                                               actionListener="#{jobEditorBean.deleteFileTriggerPattern(fileTrigger)}"
+                                                               type="button" update="filePathDataTable" immediate="true">
+                                                    <h:graphicImage id="deleteImg" value="/resources/images/bin_closed.png"
+                                                                    styleClass="actionButton"/>
+                                                    <pe:tooltip for="deleteImg" value="Remove file path" myPosition="top right"
+                                                                atPosition="bottom center"/>
+                                                </p:commandLink>
+                                            </p:column>
+                                        </p:dataTable>
+                                    </h:panelGrid>
+                                </p:panel>
+                            </h:panelGroup>
+                        </p:tab>
+                        <p:tab id="verificationView" title="Verifications">
+                            <h:panelGroup rendered="#{jobEditorBean.selectedBranch == null}">
+                                <h:outputText value="Please select branch first"/>
+                            </h:panelGroup>
+                            <h:panelGrid id="preBuildVerifications" columns="1" rendered="#{jobEditorBean.selectedBranch != null}">
+                                <h:panelGrid rendered="#{!jobEditorBean.toolboxOrDraftBranch}" columns="1">
+                                    <h4>Pre-build verifications</h4>
+                                </h:panelGrid>
+                                <h:outputText value="Pre-build verifications are run in order of Selected verifications" rendered="#{!jobEditorBean.toolboxOrDraftBranch}"/>
+                                <p:pickList id="preBuildPickList" value="#{jobEditorBean.preBuildVerifications}" var="verification"
+                                            converter="VerificationConverter" showTargetControls="true" rendered="#{!jobEditorBean.toolboxOrDraftBranch}"
+                                            itemLabel="#{verification.displayName}" itemValue="#{verification}">
+                                    <f:facet name="sourceCaption">Available Verifications</f:facet>
+                                    <f:facet name="targetCaption">Selected Verifications</f:facet>
+                                </p:pickList>
+                            </h:panelGrid>
+
+                            <h:panelGrid id="buildVerifications" columns="1" rendered="#{jobEditorBean.selectedBranch != null}">
+                                <h4>Build verifications</h4>
+                                <ci:verificationConfMatrix id="jobVerificationConfTable" products="#{jobEditorBean.products}"
+                                                           verificationConfRows="#{jobEditorBean.verificationConfRows}" deleteListener="#{jobEditorBean.selectVerificationConfRow(row)}"
+                                                           deleteUpdate=":deleteCustomVerificationDialogForm" editListener="#{jobEditorBean.selectCustomVerification(row)}" editOnComplete="customVerificationDlg.show();"
+                                                           editUpdate=":customVerificationDialogForm" optionsListener="#{jobEditorBean.selectConfForOptions(row, cell)}" optionsOnComplete="optionsDlg.show();"
+                                                           optionsUpdate=":deviceOptionsForm" optionalMandatory="true" deleteOnComplete="deleteCustomVerificationDlg.show();"/>
+                            </h:panelGrid>
+                            <h:panelGrid columns="1" rendered="#{jobEditorBean.selectedBranch != null}">
+                                <p:commandLink id="showDialogLink" value="Add Custom Verification" oncomplete="customVerificationDlg.show();"
+                                               actionListener="#{jobEditorBean.addCustomVerification()}" update=":customVerificationDialogForm"/>
+                            </h:panelGrid>
+
+                            <h:panelGrid id="postBuildVerifications" columns="1" rendered="#{jobEditorBean.selectedBranch != null}">
+                                <h:panelGrid rendered="#{!jobEditorBean.toolboxOrDraftBranch}" columns="1">
+                                    <h4>Post-build verifications</h4>
+                                </h:panelGrid>
+                                <h:outputText value="Post-build verifications are run in order of Selected verifications" rendered="#{!jobEditorBean.toolboxOrDraftBranch}"/>
+                                <p:pickList id="postBuildPickList" value="#{jobEditorBean.postBuildVerifications}" var="verification"
+                                            converter="VerificationConverter" showTargetControls="true" rendered="#{!jobEditorBean.toolboxOrDraftBranch}"
+                                            itemLabel="#{verification.displayName}" itemValue="#{verification}">
+                                    <f:facet name="sourceCaption">Available Verifications</f:facet>
+                                    <f:facet name="targetCaption">Selected Verifications</f:facet>
+                                </p:pickList>
+                            </h:panelGrid>
+                            <h:panelGrid columns="1" rendered="#{httpSessionBean.projectAdmin}">
+                                <h:panelGrid columns="1">
+                                    <h4>Custom Parameters</h4>
+                                </h:panelGrid>
+                                <p:dataTable id="customParametersTable" var="customParameter" value="#{jobEditorBean.customParameters}">
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Key"/>
+                                        </f:facet>
+                                        <h:outputText value="#{customParameter.paramKey}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Value"/>
+                                        </f:facet>
+                                        <h:outputText value="#{customParameter.paramValue}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Actions"/>
+                                        </f:facet>
+                                        <p:commandLink id="editLink"
+                                                       actionListener="#{jobEditorBean.setCustomParameter(customParameter)}"
+                                                       type="button" update=":customParameterDialogForm" oncomplete="customParameterDlg.show();">
+                                            <h:graphicImage id="editImg" value="/resources/images/wrench.png" styleClass="actionButton"/>
+                                            <pe:tooltip for="editImg" value="Edit custom parameter" myPosition="top right"
+                                                        atPosition="bottom center"/>
+                                        </p:commandLink>
+
+                                        <p:commandLink id="deleteLink"
+                                                       actionListener="#{jobEditorBean.deleteCustomParameter(customParameter)}"
+                                                       type="button" update="customParametersTable" immediate="true">
+                                            <h:graphicImage id="deleteImg" value="/resources/images/bin_closed.png" styleClass="actionButton"/>
+                                            <pe:tooltip for="deleteImg" value="Remove custom parameter" myPosition="top right"
+                                                        atPosition="bottom center"/>
+                                        </p:commandLink>
+                                    </p:column>
+                                </p:dataTable>
+                                <p:commandButton id="addNewCustomParameter" value="Add Custom Parameter" actionListener="#{jobEditorBean.createCustomParameter()}"
+                                                 oncomplete="customParameterDlg.show();" style="margin-top: 20px;" icon="ui-icon-plusthick" update=":customParameterDialogForm"/>
+                            </h:panelGrid>
+                        </p:tab>
+                        <p:tab id="reportingView" title="Reporting">
+                            <h:panelGroup rendered="#{jobEditorBean.selectedBranch == null}">
+                                <h:outputText value="Please select branch first"/>
+                            </h:panelGroup>
+                            <h:panelGrid id="reportingGroup" columns="1" rendered="#{jobEditorBean.selectedBranch != null}">
+                                <ci:emailReportActions rendered="#{jobEditorBean.emailReports.size() > 0}" reports="#{jobEditorBean.emailReports}"/>
+                                <ci:gerritReportActions rendered="#{jobEditorBean.gerritReports.size() > 0}" reports="#{jobEditorBean.gerritReports}"
+                                                        showScoreInput="#{!jobEditorBean.toolboxOrDraftBranch}" minInt="#{jobEditorBean.minInt}"/>
+                                <ci:notificationReportActions rendered="#{jobEditorBean.notificationReports.size() > 0}" reports="#{jobEditorBean.notificationReports}"/>
+                            </h:panelGrid>
+                        </p:tab>
+                        <p:tab id="buildStatusHandlerView" title="Build status handler" rendered="#{httpSessionBean.projectAdmin and not jobEditorBean.toolboxOrDraftBranch}">
+                            <h:panelGroup rendered="#{jobEditorBean.selectedBranch == null}">
+                                <h:outputText value="Please select branch first"/>
+                            </h:panelGroup>
+                            <h:panelGrid columns="2">
+                                <h:panelGroup id="newStatusTriggerPatternGroup" layout="block" style="margin-right: 20px;">
+                                    <h:panelGrid id="newStatusTriggerPattern" columns="1" columnClasses="formColumn">
+                                        <h:outputText value="Status trigger pattern e.g. SFFFF or SSFS"/>
+                                        <h:inputText maxlength="255" id="statusTriggerPattern" value="#{jobEditorBean.newStatusTrigger.pattern}" label="Status trigger pattern"/>
+                                        <pe:keyFilter regEx="/[SF]/" for="statusTriggerPattern"/>
+                                    </h:panelGrid>
+                                    <p:commandButton id="addNewSequence" value="Add status trigger" actionListener="#{jobEditorBean.addStatusTriggerPattern}"
+                                                     style="margin-top: 20px;" icon="ui-icon-plusthick" update="patternsDataTable"/>
+                                </h:panelGroup>
+                                <p:dataTable id="patternsDataTable" var="trigger"
+                                             value="#{jobEditorBean.statusTriggerPatterns}">
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Pattern"/>
+                                        </f:facet>
+                                        <h:outputText value="#{trigger.pattern}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Actions"/>
+                                        </f:facet>
+                                        <p:commandLink id="deleteLink"
+                                                       actionListener="#{jobEditorBean.deleteStatusTriggerPattern(trigger)}"
+                                                       type="button" update="patternsDataTable" immediate="true">
+                                            <h:graphicImage id="deleteImg" value="/resources/images/bin_closed.png"
+                                                            styleClass="actionButton"/>
+                                            <pe:tooltip for="deleteImg" value="Remove pattern" myPosition="top right"
+                                                        atPosition="bottom center"/>
+                                        </p:commandLink>
+                                    </p:column>
+                                </p:dataTable>
+                            </h:panelGrid>
+                        </p:tab>
+                    </p:tabView>
+
+                    <h:panelGrid columns="1">
+                        <f:facet name="footer">
+                            <p:commandButton id="verificationSaveButton" value="Save" action="#{jobEditorBean.save}" ajax="false" disabled="#{jobEditorBean.selectedBranch == null}"/>
+                            <p:commandButton id="verificationCancelButton" value="Cancel" action="#{jobEditorBean.cancelEdit}" ajax="false" immediate="true"/>
+                        </f:facet>
+                    </h:panelGrid>
+                </h:form>
+                <script type="text/javascript" src="#{request.contextPath}/secure/resources/js/verifications.js"/>
+            </ui:define>
+
+            <ui:define name="hidden">
+                <p:dialog id="customVerificationDialog" header="Custom Verification" widgetVar="customVerificationDlg" resizable="false" modal="true">
+                    <h:form id="customVerificationDialogForm">
+                        <h:panelGrid id="customVerificationDialogTable" columns="1" style="margin-bottom:10px" rendered="#{jobEditorBean.selectedCustomVerification != null}">
+                            <h:outputLabel for="verificationSelectInput" value="Verification:"/>
+                            <p:selectOneMenu id="verificationSelectInput" value="#{jobEditorBean.selectedCustomVerification.verification}" converter="VerificationConverter">
+                                <f:selectItems value="#{jobEditorBean.verifications}" var="verification" itemLabel="#{verification.displayName}" itemValue="#{verification}"/>
+                                <p:ajax listener="#{jobEditorBean.verificationChanged}" update="customParamTable"/>
+                            </p:selectOneMenu>
+                            <h:outputLabel for="customVerificationDescription" value="Description:"/>
+                            <h:inputText id="customVerificationDescription" value="#{jobEditorBean.selectedCustomVerification.description}"/>
+                            <p:dataTable id="customParamTable" value="#{jobEditorBean.selectedCustomVerification.customVerificationParams}" var="customVerificationParam">
+                                <f:facet name="header">
+                                    <h:outputText value="Parameters"/>
+                                </f:facet>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Key"/>
+                                    </f:facet>
+                                    <h:outputLabel for="parameterValueInput" value="#{customVerificationParam.customParam.displayName}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Value"/>
+                                    </f:facet>
+                                    <p:selectOneMenu id="parameterValueInput" value="#{customVerificationParam.paramValue}" editable="true"
+                                                     rendered="#{not empty jobEditorBean.fetchCustomParamValueItems(customVerificationParam)}">
+                                        <f:selectItems value="#{jobEditorBean.fetchCustomParamValueItems(customVerificationParam)}"/>
+                                    </p:selectOneMenu>
+                                    <h:outputText value="No value" rendered="#{empty jobEditorBean.fetchCustomParamValueItems(customVerificationParam)}"/>
+                                </p:column>
+                            </p:dataTable>
+                        </h:panelGrid>
+                        <p:commandButton id="saveCustomVerificationButton" value="Save" update=":verificationEditorForm" onsuccess="customVerificationDlg.hide();"
+                                         actionListener="#{jobEditorBean.saveCustomVerification()}" oncomplete="updateVerificationConfs()"/>
+                        <p:commandButton id="cancelCustomVerificationButton" value="Cancel" onclick="customVerificationDlg.hide();"/>
+                    </h:form>
+                </p:dialog>
+
+                <p:confirmDialog id="deleteCustomVerificationDialog" header="Confirmation" message="Delete custom verification?" widgetVar="deleteCustomVerificationDlg">
+                    <h:form id="deleteCustomVerificationDialogForm">
+                        <p:commandButton value="Delete" actionListener="#{jobEditorBean.deleteCustomVerification(jobEditorBean.selectedVerificationConfRow)}" update=":verificationEditorForm" oncomplete="updateVerificationConfs()" onsuccess="deleteCustomVerificationDlg.hide();"/>
+                        <p:commandButton value="Cancel" onclick="deleteCustomVerificationDlg.hide();"/>
+                    </h:form>
+                </p:confirmDialog>
+
+                <p:dialog id="customParameterDialog" header="Custom Parameter" widgetVar="customParameterDlg" resizable="false" modal="true">
+                    <h:form id="customParameterDialogForm">
+                        <h:panelGrid id="customParameterDialogTable" columns="1" style="margin-bottom:10px" rendered="#{jobEditorBean.customParameter != null}">
+                            <h:outputLabel for="customParameterParamKeyInput" value="Key:"/>
+                            <h:inputText maxlength="255" id="customParameterParamKeyInput" value="#{jobEditorBean.customParameter.paramKey}"/>
+                            <h:outputLabel for="customParameterParamValueInput" value="Value:"/>
+                            <h:inputText maxlength="255" id="customParameterParamValueInput" value="#{jobEditorBean.customParameter.paramValue}"/>
+                        </h:panelGrid>
+                        <p:commandButton id="saveCustomParameterButton" value="Save" update=":verificationEditorForm:viewSelect:customParametersTable" onsuccess="customParameterDlg.hide();"
+                                         actionListener="#{jobEditorBean.storeCustomParameter()}"/>
+                        <p:commandButton id="cancelCustomParameterButton" value="Cancel" onclick="customParameterDlg.hide();"/>
+                    </h:form>
+                </p:dialog>
+
+
+                <p:dialog id="optionsDialog" header="In-device Options" widgetVar="optionsDlg" dynamic="true" resizable="false" modal="true">
+                    <p:messages id="optionsDialogMessages" for="optionsDialog" autoUpdate="true" showDetail="true" closable="true"/>
+                    <h:form id="deviceOptionsForm"  enctype="multipart/form-data">
+                        <p:tabView id="optionsTabView">
+                            <p:tab title="Device options">
+                                <h:panelGrid id="optionsDialogTable" columns="1" style="margin-bottom:10px">
+                                    <h:outputLabel for="optionsFilterInput" value="Device Filter"/>
+                                    <h:panelGrid id="optionsFilterInput" columns="2">
+                                        <p:inputText value="#{jobEditorBean.optionsFilter}"/>
+                                        <p:commandButton value="Filter" update="@form" actionListener="#{jobEditorBean.updateMatchingTasDevices()}"/>
+                                    </h:panelGrid>
+                                    <h:outputLabel for="optionsListBox" value="Available Devices"/>
+                                    <p:selectOneListbox id="optionsListBox" value="#{jobEditorBean.selectedTasDevice}" style="height:300px;width:500px">
+                                        <f:selectItem itemValue="#{null}" itemLabel="Any Device"/>
+                                        <f:selectItems value="#{jobEditorBean.matchingTasDevices}" var="device" itemLabel="IMEI:#{device.imei} - TAS:#{device.tasHostname}:#{device.tasPort}" itemValue="#{device.imei}"/>
+                                        <p:ajax event="change" update="@form"/>
+                                    </p:selectOneListbox>
+                                    <h:outputText value="Found #{jobEditorBean.matchingTasDevices.size()} devices for product #{jobEditorBean.selectedCellForOptions.rmCode}" />
+                                </h:panelGrid>
+                            </p:tab>
+                            <p:tab title="Test files" rendered="#{httpSessionBean.uploadingEnabled}">
+                                <h:panelGrid id="relateFileDialogTable" columns="1" style="margin-bottom:10px">
+                                    <h:outputLabel for="relatedUserFiles" value="File relations:"/>
+                                    <p:pickList id="relatedUserFiles" value="#{jobEditorBean.userFileRelationDualList}" var="userFile" itemLabel="#{userFile.name}" itemValue="#{userFile}"
+                                                converter="UserFileConverter" showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains">
+                                        <f:facet name="sourceCaption">Available</f:facet>
+                                        <f:facet name="targetCaption">Selected</f:facet>
+                                    </p:pickList>
+                                </h:panelGrid>
+
+                                <h:panelGrid id="uploadFileDialogTable" columns="1" style="margin-bottom:5px">
+                                    <h:outputLabel value="File to upload:"/>
+                                    <p:fileUpload fileUploadListener="#{jobEditorBean.handleFileUpload}" mode="advanced"
+                                                  auto="true" update="relateFileDialogTable"/>
+                                    <h:outputLabel for="ownershipScope" value="Ownership scope"/>
+                                    <p:selectOneMenu id="ownershipScope" value="#{jobEditorBean.selectedOwnershipScope}"
+                                                     valueChangeListener="#{jobEditorBean.changeOwnershipScope}">
+                                        <f:selectItems value="#{jobEditorBean.ownershipScopeValues}"/>
+                                    </p:selectOneMenu>
+                                </h:panelGrid>
+                            </p:tab>
+                        </p:tabView>
+                        <p:commandButton id="saveOptionsButton" value="Save" onsuccess="optionsDlg.hide();"
+                                         actionListener="#{jobEditorBean.storeDeviceInfo()}"/>
+                        <p:commandButton id="cancelOptionsButton" value="Cancel" onclick="optionsDlg.hide();"/>
+                    </h:form>
+                </p:dialog>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

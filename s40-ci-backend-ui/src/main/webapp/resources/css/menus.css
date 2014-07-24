@@ -1,0 +1,350 @@
+#userMenu {
+    display: none;
+    min-width: 140px;
+    position: absolute;
+    top: 53px;
+    right: 0;
+    z-index: 16000;
+    padding: 10px;
+    padding-bottom: 0;
+    border: 1px solid #d2d2d2;
+    border-right-width: 0;
+    border-top-width: 0;
+    background-color: #e4e4e4;
+}
+
+#userMenu a {
+    color: black;
+    text-decoration: none;
+    font-weight: normal;
+    padding-right: 25px;
+    display: block;
+    margin-bottom: 18px;
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+
+#userMenu a:hover {
+    color: #464646;
+    font-weight: normal;
+}
+
+#userMenu a.settings {
+    background-image: url('../images/iconic/gray_dark/wrench_16x16.png');
+}
+
+#userMenu a.settings:hover {
+    background-image: url('../images/iconic/blue/wrench_16x16.png');
+}
+
+#userMenu a.bookmarks {
+    background-image: url('../images/iconic/gray_dark/star_16x16.png');
+}
+
+#userMenu a.bookmarks:hover {
+    background-image: url('../images/iconic/blue/star_16x16.png');
+}
+
+#userMenu a.verifications {
+    background-image: url('../images/iconic/gray_dark/list_16x14.png');
+}
+
+#userMenu a.verifications:hover {
+    background-image: url('../images/iconic/blue/list_16x14.png');
+}
+
+#userMenu a.logout {
+    background-image: url('../images/iconic/gray_dark/lock_stroke_12x16.png');
+}
+
+#userMenu a.logout:hover {
+    background-image: url('../images/iconic/blue/lock_stroke_12x16.png');
+}
+
+#contentmenu {
+    margin-left: 101px;
+    overflow: hidden;
+    position: absolute;
+    right: 0px;
+    top: 54px;
+    padding: 15px 20px 17px 10px;
+    height: 32px;
+    background-color: white;
+    overflow:hidden
+}
+
+#contentmenu a {
+    height: 100%;
+    display: inline-block;
+    background-image: url('../images/mainmenuDefault.png');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: #f7f7f7;
+    width: 60px;
+    border: 1px solid #d2d2d2;
+    margin-left: 10px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+
+#contentmenu form {
+    display: inline-block;
+    *display: inline;
+    height: 100%;
+    width: 60px;
+    margin: 0;
+    margin-left: 2px;
+    margin-top: 2px;
+    padding: 0;
+    font-size: 0;
+}
+
+#contentmenu form a {
+    margin-left: 0px;
+    margin-top: -2px;
+}
+
+#contentmenu a:hover, #contentmenu a:active {
+    background-image: url('../images/mainmenuDefaultHover.png');
+}
+
+#contentmenu a.contentmenuConfigure {
+    background-image: url('../images/iconic/gray_light/wrench_24x24.png');
+}
+
+#contentmenu a.contentmenuConfigure:hover, #contentmenu a.contentmenuConfigure:active {
+    background-image: url('../images/iconic/blue/wrench_24x24.png');
+}
+
+#contentmenu a.contentmenuAdd {
+    background-image: url('../images/iconic/gray_light/plus_24x24.png');
+}
+
+#contentmenu a.contentmenuAdd:hover, #contentmenu a.contentmenuAdd:active {
+    background-image: url('../images/iconic/blue/plus_24x24.png');
+}
+
+#contentmenu a.contentmenuBack {
+    background-image: url('../images/iconic/gray_light/curved_arrow_left_24x18.png');
+}
+
+#contentmenu a.contentmenuBack:hover, #contentmenu a.contentmenuBack:active {
+    background-image: url('../images/iconic/blue/curved_arrow_left_24x18.png');
+}
+
+#contentmenu a.contentmenuPlay {
+    background-image: url('../images/iconic/gray_light/play_alt_24x24.png');
+}
+
+#contentmenu a.contentmenuPlay:hover, #contentmenu a.contentmenuPlay:active {
+    background-image: url('../images/iconic/blue/play_alt_24x24.png');
+}
+
+#contentmenu a.contentmenuShare {
+    background-image: url('../images/iconic/gray_light/share_24x24.png');
+}
+
+#contentmenu a.contentmenuShare:hover, #contentmenu a.contentmenuShare:active {
+    background-image: url('../images/iconic/blue/share_24x24.png');
+}
+
+#contentmenu a.contentmenuBookmark {
+    background-image: url('../images/iconic/gray_light/star_24x24.png');
+}
+
+#contentmenu a.contentmenuBookmark:hover, #contentmenu a.contentmenuBookmark:active {
+    background-image: url('../images/iconic/blue/star_24x24.png');
+}
+
+#contentmenu a.contentmenuRelease {
+    background-image: url('../images/iconic/gray_light/pin_24x24.png');
+}
+
+#contentmenu a.contentmenuRelease:hover, #contentmenu a.contentmenuRelease:active {
+    background-image: url('../images/iconic/blue/pin_24x24.png');
+}
+
+#contentmenu a.contentmenuToolbox {
+    background-image: url('../images/iconic/gray_light/list_24x21.png');
+}
+
+#contentmenu a.contentmenuToolbox:hover, #contentmenu a.contentmenuToolbox:active {
+    background-image: url('../images/iconic/blue/list_24x21.png');
+}
+
+#contentmenu a.contentmenuOrder {
+    background-image: url('../images/iconic/gray_light/move_vertical_9x24.png');
+}
+
+#contentmenu a.contentmenuOrder:hover, #contentmenu a.contentmenuOrder:active {
+    background-image: url('../images/iconic/blue/move_vertical_9x24.png');
+}
+
+#contentmenu a.contentmenuUpdate {
+    background-image: url('../images/iconic/gray_light/loop_24x24.png');
+}
+
+#contentmenu a.contentmenuUpdate:hover, #contentmenu a.contentmenuUpdate:active {
+    background-image: url('../images/iconic/blue/loop_24x24.png');
+}
+
+#contentmenu a.contentmenuMetrics {
+    background-image: url('../images/iconic/gray_light/chart_alt_23x24.png');
+}
+
+#contentmenu a.contentmenuMetrics:hover, #contentmenu a.contentmenuMetrics:active {
+    background-image: url('../images/iconic/blue/chart_alt_23x24.png');
+}
+
+#contentmenu a.contentmenuInfo {
+    background-image: url('../images/iconic/gray_light/info_12x24.png');
+}
+
+#contentmenu a.contentmenuInfo:hover, #contentmenu a.contentmenuInfo:active {
+    background-image: url('../images/iconic/blue/info_12x24.png');
+}
+
+#contentmenu a.contentmenuDownload {
+    background-image: url('../images/iconic/gray_light/download_18x24.png');
+}
+
+#contentmenu a.contentmenuDownload:hover, #contentmenu a.contentmenuDownload:active {
+    background-image: url('../images/iconic/blue/download_18x24.png');
+}
+
+#contentmenu a.contentmenuRss {
+    background-image: url('../images/iconic/gray_light/rss_alt_24x24.png');
+}
+
+#contentmenu a.contentmenuRss:hover, #contentmenu a.contentmenuRss:active {
+    background-image: url('../images/iconic/blue/rss_alt_24x24.png');
+}
+
+#contentmenu a.contentmenuUnlock {
+    background-image: url('../images/iconic/gray_light/unlock_fill_18x24.png');
+}
+
+#contentmenu a.contentmenuUnlock:hover, #contentmenu a.contentmenuUnlock:active {
+    background-image: url('../images/iconic/blue/unlock_fill_18x24.png');
+}
+
+#contentmenu a.contentmenuDenied {
+    background-image: url('../images/iconic/gray_light/denied_24x24.png');
+}
+
+#contentmenu a.contentmenuDenied:hover, #contentmenu a.contentmenuDenied:active {
+    background-image: url('../images/iconic/blue/denied_24x24.png');
+}
+
+#contentmenu a.contentmenuHelp {
+    background-image: url('../images/iconic/gray_light/question_mark_12x24.png');
+}
+
+#contentmenu a.contentmenuHelp:hover, #contentmenu a.contentmenuHelp:active {
+    background-image: url('../images/iconic/blue/question_mark_12x24.png');
+}
+
+#contentmenu a.contentmenuHelpAdd {
+    background-image: url('../images/iconic/gray_light/question_mark_add_24x24.png');
+}
+
+#contentmenu a.contentmenuHelpAdd:hover, #contentmenu a.contentmenuHelpAdd:active {
+    background-image: url('../images/iconic/blue/question_mark_add_24x24.png');
+}
+
+#contentmenu a.contentmenuRetrigger {
+    background-image: url('../images/iconic/gray_light/loop_alt1_24x18.png');
+}
+
+#contentmenu a.contentmenuRetrigger:hover, #contentmenu a.contentmenuRetrigger:active {
+    background-image: url('../images/iconic/blue/loop_alt1_24x18.png');
+}
+
+#contentmenu a.contentmenuReport {
+    background-image: url('../images/iconic/gray_light/article_24x24.png');
+}
+
+#contentmenu a.contentmenuReport:hover, #contentmenu a.contentmenuReport:active {
+    background-image: url('../images/iconic/blue/article_24x24.png');
+}
+
+#contentmenu .tutorial {
+    height: 100%;
+}
+
+#mainmenuContainer {
+    float: left;
+    width: 100px;
+    height: 100%;
+    display: block;
+    padding-top: 20px;
+}
+
+#mainmenu a {
+    display: block;
+    width: 100%;
+    padding-top: 45px;
+    background-image: url('../images/mainmenuDefault.png');
+    background-repeat: no-repeat;
+    background-position: 50% 8px;
+    text-align: center;
+    height: 1.3em;
+    margin-bottom: 20px;
+    color: #585858;
+}
+
+#mainmenu a:hover, #mainmenu a:active {
+    color: #484848;
+    text-decoration: none;
+    background-image: url('../images/mainmenuDefaultHover.png');
+}
+
+#mainmenu a.mainmenuProjects {
+    background-image: url('../images/iconic/gray_dark/layers_32x28.png');
+}
+
+#mainmenu a.mainmenuProjects:hover, #mainmenu a.mainmenuProjects.active {
+    background-image: url('../images/iconic/green/layers_32x28.png');
+}
+
+#mainmenu a.mainmenuMetrics {
+    background-image: url('../images/iconic/gray_dark/chart_32x32.png');
+}
+
+#mainmenu a.mainmenuMetrics:hover, #mainmenu a.mainmenuMetrics.active {
+    background-image: url('../images/iconic/orange/chart_32x32.png');
+}
+
+#mainmenu a.mainmenuInfo {
+    background-image: url('../images/iconic/gray_dark/info_16x32.png');
+}
+
+#mainmenu a.mainmenuInfo:hover, #mainmenu a.mainmenuInfo.active {
+    background-image: url('../images/iconic/blue/info_16x32.png');
+}
+
+#mainmenu a.mainmenuAdmin {
+    background-image: url('../images/iconic/gray_dark/cog_32x32.png');
+}
+
+#mainmenu a.mainmenuAdmin:hover, #mainmenu a.mainmenuAdmin.active {
+    background-image: url('../images/iconic/red/cog_32x32.png');
+}
+
+#mainmenu a.mainmenuHome {
+    background-image: url('../images/iconic/gray_dark/home_32x32.png');
+}
+
+#mainmenu a.mainmenuHome:hover, #mainmenu a.mainmenuHome.active {
+    background-image: url('../images/iconic/cyan/home_32x32.png');
+}
+
+#mainmenu a.mainmenuHelp {
+    background-image: url('../images/iconic/gray_dark/question_mark_16x32.png');
+}
+
+#mainmenu a.mainmenuHelp:hover, #mainmenu a.mainmenuHelp.active {
+    background-image: url('../images/iconic/cyan/question_mark_16x32.png');
+}
+

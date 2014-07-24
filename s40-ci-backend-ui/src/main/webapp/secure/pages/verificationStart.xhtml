@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+
+        <ui:composition template="../template/layout.xhtml">
+            <ui:define name="contentTitle">Start verification</ui:define>
+
+            <ui:define name="contentMenu">
+                <ci:helpButton id="helpButton" page="verificationStart"/>
+            </ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="#{jobStartBean.project.displayName}" outcome="projectDetails">
+                    <f:param name="projectId" value="#{jobStartBean.project.id}"/>
+                </h:link>
+                <h:link value="#{jobStartBean.verification.displayName}" outcome="verificationDetails">
+                    <f:param name="verificationId" value="#{jobStartBean.verification.id}"/>
+                </h:link>
+                <h:link value="Start" outcome="verificationStart"
+                        styleClass="active">
+                    <f:param name="verificationId" value="#{jobStartBean.verification.id}"/>
+                </h:link>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:outputLink styleClass="block" target="_blank" value="http://wikis.in.nokia.com/S40CI/Toolbox">
+                    How to use toolbox verification?
+                </h:outputLink>
+
+                <h3 class="contentTitleText">My open commits</h3>
+                <h:form id="detailsForm">
+                    <p:dataTable id="detailsTable" var="detail" value="#{jobStartBean.gerritData}">
+
+                        <f:facet name="header">
+                            Select push for verification
+                        </f:facet>
+
+                        <p:column headerText="Id">
+                            #{detail.id}
+                        </p:column>
+
+                        <p:column headerText="Subject">
+                            #{detail.subject}
+                        </p:column>
+
+                        <p:column headerText="Latest Revision">
+                            #{detail.currentPatchSet.revision}
+                        </p:column>
+
+                        <p:column headerText="Ref">
+                            #{detail.currentPatchSet.ref}
+                        </p:column>
+
+                        <p:column headerText="Actions"  style="width: 60px; text-align: center;">
+                            <h:commandLink id="jobStart" action="#{jobStartBean.start(detail)}"
+                                           rendered="#{jobStartBean.isJobEnabled()}">
+                                <h:graphicImage value="/resources/images/control_play.png" styleClass="actionButton"/>
+                            </h:commandLink>
+                            <h:outputLink value="#{detail.url}">
+                                <h:graphicImage value="/resources/images/gerrit.png" styleClass="actionButton"/>
+                            </h:outputLink>
+                        </p:column>
+
+                    </p:dataTable>
+
+                </h:form>
+                <h3 class="contentTitleText">Search gerrit commit</h3>
+                <h:form id="gerritDetailsForm">
+                    <h:panelGrid id="gerritTriggerTable" columns="2">
+                        <h:outputLabel for="selectedGerrit" value="Gerrit"/>
+                        <h:outputLabel id="selectedGerrit" value="#{jobStartBean.selectedGerrit.url}"/>
+
+                        <h:outputLabel for="queryString" value="Search"/>
+                        <h:inputText id="queryString" value="#{jobStartBean.query}" size="250"/>
+
+                        <f:facet name="footer">
+                            <p:commandButton id="gerritSearchButton" value="Search" actionListener="#{jobStartBean.search}" ajax="true"
+                                             update="queryResults"/>
+                        </f:facet>
+                    </h:panelGrid>
+
+                    <p:dataTable id="queryResults" var="result" value="#{jobStartBean.details}" rowKey="#{result.id}"
+                                 selection="#{jobStartBean.selectedDetails}" selectionMode="multiple" style="margin-top:20px;">
+
+                        <f:facet name="header">Results</f:facet>
+
+                        <p:column headerText="Change Nr.">
+                            #{result.number}
+                        </p:column>
+
+                        <p:column headerText="Patch Set">
+                            #{result.currentPatchSet.number}
+                        </p:column>
+
+                        <p:column headerText="Subject" >
+                            #{result.subject}
+                        </p:column>
+
+                        <p:column headerText="Owner">
+                            #{result.owner.name}
+                        </p:column>
+
+                        <p:column headerText="Revision">
+                            #{result.currentPatchSet.revision}
+                        </p:column>
+
+                        <p:column headerText="Project">
+                            #{result.project}
+                        </p:column>
+
+                        <p:column headerText="Branch">
+                            #{result.branch}
+                        </p:column>
+
+                        <p:column headerText="Updated">
+                            <ci:outputTextTimeStamp id="changeLastUpdated" value="#{result.lastUpdated}"/>
+                        </p:column>
+
+                        <f:facet name="footer">
+                            <p:commandButton value="Trigger Selected" action="#{jobStartBean.trigger}" ajax="true"
+                                             update="queryResults"/>
+                        </f:facet>
+
+                    </p:dataTable>
+                </h:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

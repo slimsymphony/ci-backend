@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+    <persistence-unit name="NokiaCI-PU" transaction-type="JTA">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <jta-data-source>java:/jdbc/H2TestDS</jta-data-source>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <properties>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.default_schema" value="S40CICORE"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.jdbc.batch_size" value="100"/>
+            <property name="hibernate.order_inserts" value="true"/>
+            <!-- For tests it is easier to use filesystem indexies because you can use Luke for inspecting indexes -->
+            <property name="hibernate.search.default.directory_provider" value="filesystem"/>
+            <!-- File is located under project target directory -->
+            <property name="hibernate.search.default.indexBase" value="../../../lucene/indexes"/>
+        </properties>
+    </persistence-unit>
+</persistence>

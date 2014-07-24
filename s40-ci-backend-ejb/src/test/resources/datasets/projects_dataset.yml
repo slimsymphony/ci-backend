@@ -1,0 +1,31 @@
+## YAML Template.
+---
+project:
+  - id: 1
+    name: project_1
+    displayname: Project 1
+  - id: 2
+    name: project_2
+    displayname: Project 2
+  - id: 3
+    name: project_3
+    displayname: Project 3
+  - id: 4
+    name: project_4
+    displayname: Project 4
+    
+change_tracker:
+  - id: 1
+    commitid: linked1
+  - id: 2
+    commitid: linked2
+  - id: 3
+    commitid: unlinked1
+  - id: 4
+    commitid: unlinked2
+
+project_change_tracker:
+  - projects_id: 1
+    changetrackers_id: 1    
+  - projects_id: 1
+    changetrackers_id: 2

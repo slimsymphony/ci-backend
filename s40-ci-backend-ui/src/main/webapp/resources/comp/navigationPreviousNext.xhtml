@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <composite:attribute name="nextTarget"/>
+        <composite:attribute name="nextText"/>
+        <composite:attribute name="nextRendered"/>
+        <composite:attribute name="prevTarget"/>
+        <composite:attribute name="prevText"/>
+        <composite:attribute name="prevRendered"/>
+    </cc:interface>
+
+    <cc:implementation xmlns:ci="http://java.sun.com/jsf/composite/comp">
+        <h:panelGroup layout="block" style="display: block; width: 500px; height: 50px; float:right;"
+                      rendered="#{cc.attrs.nextRendered or cc.attrs.prevRendered}">
+            <h:panelGroup layout="block" style="max-width: 250px; text-align: center; float: right;" rendered="#{cc.attrs.nextRendered}">
+                <h:outputLink value="#{cc.attrs.nextTarget}">
+                    <h:outputText value="#{cc.attrs.nextText}"/>
+                    <h:graphicImage id="nextTargetIcon" value="/resources/images/iconic/orange/arrow_right_12x12.png"
+                                    styleClass="actionButton"/>
+                </h:outputLink>
+            </h:panelGroup>
+            <h:panelGroup layout="block" style="max-width: 250px; text-align: center; float:right;" rendered="#{cc.attrs.prevRendered}">
+                <h:outputLink value="#{cc.attrs.prevTarget}">
+                    <h:graphicImage id="prevTargetIcon" value="/resources/images/iconic/orange/arrow_left_12x12.png"
+                                    styleClass="actionButton"/>
+                    <h:outputText value="#{cc.attrs.prevText}"/>
+                </h:outputLink>
+            </h:panelGroup>
+        </h:panelGroup>
+    </cc:implementation>
+</html>

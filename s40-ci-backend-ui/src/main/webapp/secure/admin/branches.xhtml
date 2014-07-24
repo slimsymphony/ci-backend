@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+
+        <ui:composition template="./../template/adminLayout.xhtml">
+
+            <ui:define name="contentTitle">Branches</ui:define>
+
+            <ui:define name="contentMenu">
+                <ci:addButton page="/secure/admin/branchEditor.xhtml" tooltip="Add new branch"/>
+            </ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="Admin" outcome="admin"/>
+                <h:link value="Branches" outcome="branches" styleClass="active"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="branchesTableForm" onkeypress="return event.keyCode !== 13;">
+                    <p:dataTable id="branchesTable" value="#{branchesBean.branches}" var="b"
+                                 filteredValue="#{branchesBean.filteredValues}"  paginator="true" rows="20"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,20,50" >
+                        <p:column sortBy="#{b.displayName}" filterBy="#{b.displayName}" filterMatchMode="contains">
+                            <f:facet name="header">Display Name</f:facet>
+                            <h:outputLink value="/secure/admin/branchEditor.xhtml">
+                                <h:outputText value="#{b.displayName}"/>
+                                <f:param name="branchId" value="#{b.id}"/>
+                            </h:outputLink>
+                        </p:column>
+                        <p:column sortBy="#{b.name}" filterBy="#{b.name}" filterMatchMode="contains">
+                            <f:facet name="header">Name</f:facet>
+                            <h:outputText value="#{b.name}"/>
+                        </p:column>
+                        <p:column sortBy="#{b.project.displayName}" filterBy="#{b.project.displayName}" filterMatchMode="contains">
+                            <f:facet name="header">Project</f:facet>
+                            <h:outputText value="#{b.project.displayName}"/>
+                        </p:column>
+                        <p:column sortBy="#{b.type}" filterBy="#{b.type}" filterMatchMode="contains">
+                            <f:facet name="header">Type</f:facet>
+                            <h:outputText value="#{b.type}"/>
+                        </p:column>
+                        <p:column sortBy="#{b.created}">
+                            <f:facet name="header">Created</f:facet>
+                            <ci:outputTextTimeStamp value="#{b.created}"/>
+                        </p:column>
+                        <p:column sortBy="#{b.createdBy}">
+                            <f:facet name="header">Created by</f:facet>
+                            <ci:userLoginNameLink id="createdBy" value="#{b.createdBy}"/>
+                        </p:column>
+                        <p:column sortBy="#{b.modified}">
+                            <f:facet name="header">Modified</f:facet>
+                            <ci:outputTextTimeStamp value="#{b.modified}"/>
+                        </p:column>
+                        <p:column sortBy="#{b.modifiedBy}">
+                            <f:facet name="header">Modified by</f:facet>
+                            <ci:userLoginNameLink id="modifiedBy" value="#{b.modifiedBy}"/>
+                        </p:column>
+                        <p:column styleClass="actionColumn">
+                            <f:facet name="header">Actions</f:facet>
+                            <h:outputLink value="/secure/admin/branchEditor.xhtml">
+                                <h:graphicImage id="editBranch" value="/resources/images/wrench.png" styleClass="actionButton"/>
+                                <f:param name="branchId" value="#{b.id}"/>
+                                <pe:tooltip for="editBranch" value="Edit branch" myPosition="top right" atPosition="bottom center"/>
+                            </h:outputLink>
+                            <ci:deleteBtnWithConfirmDlg id="deleteBranch" actionListener="#{branchesBean.delete(b)}"
+                                                        entityLabel="#{b.displayName}" tooltip="Delete branch"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

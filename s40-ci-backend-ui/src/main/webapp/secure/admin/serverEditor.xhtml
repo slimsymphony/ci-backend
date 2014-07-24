@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+
+    <body>
+
+        <ui:composition template="../template/editorLayout.xhtml">
+            <ui:define name="contentTitle">Server #{serverBean.server.url}</ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="Admin" outcome="admin"/>
+                <h:link value="Servers" outcome="servers"/>
+                <h:link value="Edit #{serverBean.server.url}" outcome="serverEditor" styleClass="active"
+                        rendered="#{not empty serverBean.server.id}">
+                    <f:param name="serverId" value="#{serverBean.server.id}"/>
+                </h:link>
+                <h:link value="Add new server" outcome="serverEditor" styleClass="active" rendered="#{empty serverBean.server.id}"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <h:panelGrid id="serverEditTable" columns="2">
+                        <h:outputLabel for="serverUrlInput" value="Url"/>
+                        <p:inputText id="serverUrlInput" value="#{serverBean.server.url}" label="url"/>
+                        <h:outputLabel for="serverPortInput" value="Port"/>
+                        <p:inputText id="serverPortInput" value="#{serverBean.server.port}" label="port"/>
+                        <h:outputLabel for="serverUsername" value="Username"/>
+                        <p:inputText id="serverUsername" value="#{serverBean.server.username}" label="username" autocomplete="off"/>
+                        <h:outputLabel for="serverPassword" value="Password"/>
+                        <p:password id="serverPassword" value="#{serverBean.server.password}" label="password" redisplay="true" autocomplete="off"/>
+                        <h:outputLabel for="serverTestResultStorage" value="Test result storage path"/>
+                        <p:inputText id="serverTestResultStorage" value="#{serverBean.server.testResultStorage}" label="testResultStorage"/>
+                        <h:outputLabel for="serverProxyServerUrl" value="Proxy server URL"/>
+                        <p:inputText id="serverProxyServerUrl" value="#{serverBean.server.proxyServerUrl}" label="proxyServerUrl"/>
+                        <h:outputLabel for="serverInUse" value="Use this CI Server for builds"/>
+                        <p:selectOneButton id="serverInUse" value="#{serverBean.server.disabled}">
+                            <f:selectItem itemLabel="Enabled" itemValue="false" />
+                            <f:selectItem itemLabel="Disabled" itemValue="true" />
+                        </p:selectOneButton>
+                        <f:facet name="footer">
+                            <p:commandButton id="serverSaveButton" value="Save" action="#{serverBean.save}" ajax="false"/>
+                            <p:commandButton id="serverCancelButton" value="Cancel" action="#{serverBean.cancelEdit}" ajax="false" immediate="true"/>
+                        </f:facet>
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

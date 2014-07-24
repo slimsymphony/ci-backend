@@ -1,0 +1,1669 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+    <testsuite name="TimeServerTestSuite">
+        <properties>
+            <property name="organization" value="S40_CI_2.0_TEAM"/>
+            <property name="testlevel" value="UNITTEST"/>
+            <property name="testtool" value="S40CPPUNIT"/>
+            <property name="baseline" value="NO_BASELINE"/>
+            <property name="target" value="WIN_NOSE"/>
+            <property name="hostname" value="oucis018.europe.nokia.com"/>
+            <property name="timestamp" value="2013-01-30T09:58:60+0200"/>
+        </properties>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_2" name="TimeServerTestSuite::Time_Server_Test_2" time="0.000">
+            <failure message="testing.." type="fatal"></failure>
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_3" name="TimeServerTestSuite::Time_Server_Test_3" time="0.000">
+            <failure type="fatal">testing this shit out</failure>
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_4" name="TimeServerTestSuite::Time_Server_Test_4" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_4"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_6" name="TimeServerTestSuite::Time_Server_Test_6" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_6"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_7" name="TimeServerTestSuite::Time_Server_Test_7" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_7"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_8" name="TimeServerTestSuite::Time_Server_Test_8" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_8"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_9" name="TimeServerTestSuite::Time_Server_Test_9" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_9"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_10" name="TimeServerTestSuite::Time_Server_Test_10" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_10"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_11" name="TimeServerTestSuite::Time_Server_Test_11" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_11"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_12" name="TimeServerTestSuite::Time_Server_Test_12" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_12"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_13" name="TimeServerTestSuite::Time_Server_Test_13" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_13"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_14" name="TimeServerTestSuite::Time_Server_Test_14" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_14"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_15" name="TimeServerTestSuite::Time_Server_Test_15" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_15"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_16" name="TimeServerTestSuite::Time_Server_Test_16" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_16"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_10" name="TimeServerTestSuite::Time_Server_Test_10" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_10"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_11" name="TimeServerTestSuite::Time_Server_Test_11" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_11"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_12" name="TimeServerTestSuite::Time_Server_Test_12" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_12"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_13" name="TimeServerTestSuite::Time_Server_Test_13" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_13"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_14" name="TimeServerTestSuite::Time_Server_Test_14" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_14"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_15" name="TimeServerTestSuite::Time_Server_Test_15" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_15"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_16" name="TimeServerTestSuite::Time_Server_Test_16" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_16"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_1" name="TimeServerTestSuite::Time_Server_Test_SB_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_2" name="TimeServerTestSuite::Time_Server_Test_SB_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_3" name="TimeServerTestSuite::Time_Server_Test_SB_3" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_4" name="TimeServerTestSuite::Time_Server_Test_SB_4" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_4"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_5" name="TimeServerTestSuite::Time_Server_Test_SB_5" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_5"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_6" name="TimeServerTestSuite::Time_Server_Test_SB_6" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_6"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_1" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_2" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_3" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_3" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_4" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_4" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_4"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_5" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_5" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_5"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_1" name="TimeServerTestSuite::Time_Server_Alarm_Register_Handle_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_2" name="TimeServerTestSuite::Time_Server_Alarm_Register_Handle_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_3" name="TimeServerTestSuite::Time_Server_Alarm_Register_Handle_3" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_1" name="TimeServerTestSuite::Time_Server_Alarm_UnRegister_Handle_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_2" name="TimeServerTestSuite::Time_Server_Alarm_UnRegister_Handle_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_3" name="TimeServerTestSuite::Time_Server_Alarm_UnRegister_Handle_3" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Register_SecondInd_Validate" name="TimeServerTestSuite::Time_Server_Register_SecondInd_Validate" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Register_SecondInd_Validate"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_UnRegister_SecondInd_Validate" name="TimeServerTestSuite::Time_Server_UnRegister_SecondInd_Validate" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_UnRegister_SecondInd_Validate"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Register_SecondInd_Handle" name="TimeServerTestSuite::Time_Server_Register_SecondInd_Handle" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Register_SecondInd_Handle"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_UnRegister_SecondInd_Handle" name="TimeServerTestSuite::Time_Server_UnRegister_SecondInd_Handle" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_UnRegister_SecondInd_Handle"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Query_Handle" name="TimeServerTestSuite::Time_Server_Alarm_Query_Handle" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Query_Handle"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Service_Test_1" name="TimeServerTestSuite::Time_Server_Service_Test_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Service_Test_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Service_Test_2" name="TimeServerTestSuite::Time_Server_Service_Test_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Service_Test_2"/>
+            </properties>
+        </testcase>
+    </testsuite>
+    <testsuite name="TimeServerTestSuite3">
+        <properties>
+            <property name="organization" value="S40_CI_2.0_TEAM"/>
+            <property name="testlevel" value="UNITTEST"/>
+            <property name="testtool" value="S40CPPUNIT"/>
+            <property name="baseline" value="NO_BASELINE"/>
+            <property name="target" value="NOSE"/>
+            <property name="hostname" value="oucis017.europe.nokia.com"/>
+            <property name="timestamp" value="2013-01-30T09:58:58+0200"/>
+        </properties>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_2" name="TimeServerTestSuite::Time_Server_Test_2" time="0.000">
+            <failure message="testing.." type="fatal"></failure>
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_3" name="TimeServerTestSuite::Time_Server_Test_3" time="0.000">
+            <failure type="fatal">testing this shit out</failure>
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_4" name="TimeServerTestSuite::Time_Server_Test_4" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_4"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_6" name="TimeServerTestSuite::Time_Server_Test_6" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_6"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_7" name="TimeServerTestSuite::Time_Server_Test_7" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_7"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_8" name="TimeServerTestSuite::Time_Server_Test_8" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_8"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_9" name="TimeServerTestSuite::Time_Server_Test_9" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_9"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_10" name="TimeServerTestSuite::Time_Server_Test_10" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_10"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_11" name="TimeServerTestSuite::Time_Server_Test_11" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_11"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_12" name="TimeServerTestSuite::Time_Server_Test_12" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_12"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_13" name="TimeServerTestSuite::Time_Server_Test_13" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_13"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_14" name="TimeServerTestSuite::Time_Server_Test_14" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_14"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_15" name="TimeServerTestSuite::Time_Server_Test_15" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_15"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_16" name="TimeServerTestSuite::Time_Server_Test_16" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_16"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_10" name="TimeServerTestSuite::Time_Server_Test_10" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_10"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_11" name="TimeServerTestSuite::Time_Server_Test_11" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_11"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_12" name="TimeServerTestSuite::Time_Server_Test_12" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_12"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_13" name="TimeServerTestSuite::Time_Server_Test_13" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_13"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_14" name="TimeServerTestSuite::Time_Server_Test_14" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_14"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_15" name="TimeServerTestSuite::Time_Server_Test_15" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_15"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_16" name="TimeServerTestSuite::Time_Server_Test_16" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_16"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_1" name="TimeServerTestSuite::Time_Server_Test_SB_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_2" name="TimeServerTestSuite::Time_Server_Test_SB_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_3" name="TimeServerTestSuite::Time_Server_Test_SB_3" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_4" name="TimeServerTestSuite::Time_Server_Test_SB_4" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_4"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_5" name="TimeServerTestSuite::Time_Server_Test_SB_5" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_5"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_6" name="TimeServerTestSuite::Time_Server_Test_SB_6" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_6"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_1" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_2" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_3" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_3" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_4" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_4" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_4"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_5" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_5" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_5"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_1" name="TimeServerTestSuite::Time_Server_Alarm_Register_Handle_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_2" name="TimeServerTestSuite::Time_Server_Alarm_Register_Handle_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_3" name="TimeServerTestSuite::Time_Server_Alarm_Register_Handle_3" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_1" name="TimeServerTestSuite::Time_Server_Alarm_UnRegister_Handle_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_2" name="TimeServerTestSuite::Time_Server_Alarm_UnRegister_Handle_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_3" name="TimeServerTestSuite::Time_Server_Alarm_UnRegister_Handle_3" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Register_SecondInd_Validate" name="TimeServerTestSuite::Time_Server_Register_SecondInd_Validate" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Register_SecondInd_Validate"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_UnRegister_SecondInd_Validate" name="TimeServerTestSuite::Time_Server_UnRegister_SecondInd_Validate" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_UnRegister_SecondInd_Validate"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Register_SecondInd_Handle" name="TimeServerTestSuite::Time_Server_Register_SecondInd_Handle" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Register_SecondInd_Handle"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_UnRegister_SecondInd_Handle" name="TimeServerTestSuite::Time_Server_UnRegister_SecondInd_Handle" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_UnRegister_SecondInd_Handle"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Query_Handle" name="TimeServerTestSuite::Time_Server_Alarm_Query_Handle" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Query_Handle"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Service_Test_1" name="TimeServerTestSuite::Time_Server_Service_Test_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Service_Test_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Service_Test_2" name="TimeServerTestSuite::Time_Server_Service_Test_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Service_Test_2"/>
+            </properties>
+        </testcase>
+    </testsuite>
+    <testsuite name="TimeServerTestSuite4">
+        <properties>
+            <property name="organization" value="S40_CI_2.0_TEAM"/>
+            <property name="testlevel" value="UNITTEST"/>
+            <property name="testtool" value="S40CPPUNIT"/>
+            <property name="baseline" value="NO_BASELINE"/>
+            <property name="target" value="NOSE"/>
+            <property name="hostname" value="oucis017.europe.nokia.com"/>
+            <property name="timestamp" value="2013-01-30T09:58:58+0200"/>
+        </properties>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_2" name="TimeServerTestSuite::Time_Server_Test_2" time="0.000">
+            <failure message="testing.." type="fatal"></failure>
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_3" name="TimeServerTestSuite::Time_Server_Test_3" time="0.000">
+            <failure type="fatal">testing this shit out</failure>
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_4" name="TimeServerTestSuite::Time_Server_Test_4" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_4"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_6" name="TimeServerTestSuite::Time_Server_Test_6" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_6"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_7" name="TimeServerTestSuite::Time_Server_Test_7" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_7"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_8" name="TimeServerTestSuite::Time_Server_Test_8" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_8"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_9" name="TimeServerTestSuite::Time_Server_Test_9" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_9"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_10" name="TimeServerTestSuite::Time_Server_Test_10" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_10"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_11" name="TimeServerTestSuite::Time_Server_Test_11" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_11"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_12" name="TimeServerTestSuite::Time_Server_Test_12" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_12"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_13" name="TimeServerTestSuite::Time_Server_Test_13" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_13"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_14" name="TimeServerTestSuite::Time_Server_Test_14" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_14"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_15" name="TimeServerTestSuite::Time_Server_Test_15" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_15"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_16" name="TimeServerTestSuite::Time_Server_Test_16" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_16"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_10" name="TimeServerTestSuite::Time_Server_Test_10" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_10"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_11" name="TimeServerTestSuite::Time_Server_Test_11" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_11"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_12" name="TimeServerTestSuite::Time_Server_Test_12" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_12"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_13" name="TimeServerTestSuite::Time_Server_Test_13" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_13"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_14" name="TimeServerTestSuite::Time_Server_Test_14" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_14"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_15" name="TimeServerTestSuite::Time_Server_Test_15" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_15"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_16" name="TimeServerTestSuite::Time_Server_Test_16" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_16"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_1" name="TimeServerTestSuite::Time_Server_Test_SB_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_2" name="TimeServerTestSuite::Time_Server_Test_SB_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_3" name="TimeServerTestSuite::Time_Server_Test_SB_3" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_4" name="TimeServerTestSuite::Time_Server_Test_SB_4" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_4"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_5" name="TimeServerTestSuite::Time_Server_Test_SB_5" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_5"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_6" name="TimeServerTestSuite::Time_Server_Test_SB_6" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_6"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_1" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_2" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_3" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_3" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_4" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_4" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_4"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_5" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_5" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_5"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_1" name="TimeServerTestSuite::Time_Server_Alarm_Register_Handle_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_2" name="TimeServerTestSuite::Time_Server_Alarm_Register_Handle_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_3" name="TimeServerTestSuite::Time_Server_Alarm_Register_Handle_3" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_1" name="TimeServerTestSuite::Time_Server_Alarm_UnRegister_Handle_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_2" name="TimeServerTestSuite::Time_Server_Alarm_UnRegister_Handle_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_3" name="TimeServerTestSuite::Time_Server_Alarm_UnRegister_Handle_3" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Register_SecondInd_Validate" name="TimeServerTestSuite::Time_Server_Register_SecondInd_Validate" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Register_SecondInd_Validate"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_UnRegister_SecondInd_Validate" name="TimeServerTestSuite::Time_Server_UnRegister_SecondInd_Validate" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_UnRegister_SecondInd_Validate"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Register_SecondInd_Handle" name="TimeServerTestSuite::Time_Server_Register_SecondInd_Handle" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Register_SecondInd_Handle"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_UnRegister_SecondInd_Handle" name="TimeServerTestSuite::Time_Server_UnRegister_SecondInd_Handle" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_UnRegister_SecondInd_Handle"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Query_Handle" name="TimeServerTestSuite::Time_Server_Alarm_Query_Handle" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Query_Handle"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Service_Test_1" name="TimeServerTestSuite::Time_Server_Service_Test_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Service_Test_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Service_Test_2" name="TimeServerTestSuite::Time_Server_Service_Test_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Service_Test_2"/>
+            </properties>
+        </testcase>
+    </testsuite>
+    <testsuite name="TimeServerTestSuite5">
+        <properties>
+            <property name="organization" value="S40_CI_2.0_TEAM"/>
+            <property name="testlevel" value="UNITTEST"/>
+            <property name="testtool" value="S40CPPUNIT"/>
+            <property name="baseline" value="NO_BASELINE"/>
+            <property name="target" value="NOSE"/>
+            <property name="hostname" value="oucis017.europe.nokia.com"/>
+            <property name="timestamp" value="2013-01-30T09:58:58+0200"/>
+        </properties>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_2" name="TimeServerTestSuite::Time_Server_Test_2" time="0.000">
+            <failure message="testing.." type="fatal"></failure>
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_3" name="TimeServerTestSuite::Time_Server_Test_3" time="0.000">
+            <failure type="fatal">testing this shit out</failure>
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_4" name="TimeServerTestSuite::Time_Server_Test_4" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_4"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_6" name="TimeServerTestSuite::Time_Server_Test_6" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_6"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_7" name="TimeServerTestSuite::Time_Server_Test_7" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_7"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_8" name="TimeServerTestSuite::Time_Server_Test_8" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_8"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_9" name="TimeServerTestSuite::Time_Server_Test_9" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_9"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_10" name="TimeServerTestSuite::Time_Server_Test_10" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_10"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_11" name="TimeServerTestSuite::Time_Server_Test_11" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_11"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_12" name="TimeServerTestSuite::Time_Server_Test_12" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_12"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_13" name="TimeServerTestSuite::Time_Server_Test_13" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_13"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_14" name="TimeServerTestSuite::Time_Server_Test_14" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_14"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_15" name="TimeServerTestSuite::Time_Server_Test_15" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_15"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_16" name="TimeServerTestSuite::Time_Server_Test_16" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_16"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_10" name="TimeServerTestSuite::Time_Server_Test_10" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_10"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_11" name="TimeServerTestSuite::Time_Server_Test_11" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_11"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_12" name="TimeServerTestSuite::Time_Server_Test_12" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_12"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_13" name="TimeServerTestSuite::Time_Server_Test_13" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_13"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_14" name="TimeServerTestSuite::Time_Server_Test_14" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_14"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_15" name="TimeServerTestSuite::Time_Server_Test_15" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_15"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_16" name="TimeServerTestSuite::Time_Server_Test_16" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_16"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_1" name="TimeServerTestSuite::Time_Server_Test_SB_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_2" name="TimeServerTestSuite::Time_Server_Test_SB_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_3" name="TimeServerTestSuite::Time_Server_Test_SB_3" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_4" name="TimeServerTestSuite::Time_Server_Test_SB_4" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_4"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_5" name="TimeServerTestSuite::Time_Server_Test_SB_5" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_5"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_6" name="TimeServerTestSuite::Time_Server_Test_SB_6" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_6"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_1" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_2" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_3" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_3" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_4" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_4" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_4"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_5" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_5" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_5"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_1" name="TimeServerTestSuite::Time_Server_Alarm_Register_Handle_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_2" name="TimeServerTestSuite::Time_Server_Alarm_Register_Handle_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_3" name="TimeServerTestSuite::Time_Server_Alarm_Register_Handle_3" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_1" name="TimeServerTestSuite::Time_Server_Alarm_UnRegister_Handle_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_2" name="TimeServerTestSuite::Time_Server_Alarm_UnRegister_Handle_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_3" name="TimeServerTestSuite::Time_Server_Alarm_UnRegister_Handle_3" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Register_SecondInd_Validate" name="TimeServerTestSuite::Time_Server_Register_SecondInd_Validate" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Register_SecondInd_Validate"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_UnRegister_SecondInd_Validate" name="TimeServerTestSuite::Time_Server_UnRegister_SecondInd_Validate" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_UnRegister_SecondInd_Validate"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Register_SecondInd_Handle" name="TimeServerTestSuite::Time_Server_Register_SecondInd_Handle" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Register_SecondInd_Handle"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_UnRegister_SecondInd_Handle" name="TimeServerTestSuite::Time_Server_UnRegister_SecondInd_Handle" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_UnRegister_SecondInd_Handle"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Query_Handle" name="TimeServerTestSuite::Time_Server_Alarm_Query_Handle" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Query_Handle"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Service_Test_1" name="TimeServerTestSuite::Time_Server_Service_Test_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Service_Test_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Service_Test_2" name="TimeServerTestSuite::Time_Server_Service_Test_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Service_Test_2"/>
+            </properties>
+        </testcase>
+    </testsuite>
+    <testsuite name="TimeServerTestSuite6">
+        <properties>
+            <property name="organization" value="S40_CI_2.0_TEAM"/>
+            <property name="testlevel" value="UNITTEST"/>
+            <property name="testtool" value="S40CPPUNIT"/>
+            <property name="baseline" value="NO_BASELINE"/>
+            <property name="target" value="NOSE"/>
+            <property name="hostname" value="oucis017.europe.nokia.com"/>
+            <property name="timestamp" value="2013-01-30T09:58:58+0200"/>
+        </properties>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_2" name="TimeServerTestSuite::Time_Server_Test_2" time="0.000">
+            <failure message="testing.." type="fatal"></failure>
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_3" name="TimeServerTestSuite::Time_Server_Test_3" time="0.000">
+            <failure type="fatal">testing this shit out</failure>
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_4" name="TimeServerTestSuite::Time_Server_Test_4" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_4"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_6" name="TimeServerTestSuite::Time_Server_Test_6" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_6"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_7" name="TimeServerTestSuite::Time_Server_Test_7" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_7"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_8" name="TimeServerTestSuite::Time_Server_Test_8" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_8"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_9" name="TimeServerTestSuite::Time_Server_Test_9" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_9"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_10" name="TimeServerTestSuite::Time_Server_Test_10" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_10"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_11" name="TimeServerTestSuite::Time_Server_Test_11" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_11"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_12" name="TimeServerTestSuite::Time_Server_Test_12" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_12"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_13" name="TimeServerTestSuite::Time_Server_Test_13" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_13"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_14" name="TimeServerTestSuite::Time_Server_Test_14" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_14"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_15" name="TimeServerTestSuite::Time_Server_Test_15" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_15"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_16" name="TimeServerTestSuite::Time_Server_Test_16" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_16"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_10" name="TimeServerTestSuite::Time_Server_Test_10" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_10"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_11" name="TimeServerTestSuite::Time_Server_Test_11" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_11"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_12" name="TimeServerTestSuite::Time_Server_Test_12" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_12"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_13" name="TimeServerTestSuite::Time_Server_Test_13" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_13"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_14" name="TimeServerTestSuite::Time_Server_Test_14" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_14"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_15" name="TimeServerTestSuite::Time_Server_Test_15" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_15"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_16" name="TimeServerTestSuite::Time_Server_Test_16" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_16"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_1" name="TimeServerTestSuite::Time_Server_Test_SB_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_2" name="TimeServerTestSuite::Time_Server_Test_SB_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_3" name="TimeServerTestSuite::Time_Server_Test_SB_3" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_4" name="TimeServerTestSuite::Time_Server_Test_SB_4" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_4"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_5" name="TimeServerTestSuite::Time_Server_Test_SB_5" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_5"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_6" name="TimeServerTestSuite::Time_Server_Test_SB_6" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_6"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_1" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_2" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_3" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_3" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_4" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_4" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_4"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_5" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_5" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_5"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_1" name="TimeServerTestSuite::Time_Server_Alarm_Register_Handle_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_2" name="TimeServerTestSuite::Time_Server_Alarm_Register_Handle_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_3" name="TimeServerTestSuite::Time_Server_Alarm_Register_Handle_3" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_1" name="TimeServerTestSuite::Time_Server_Alarm_UnRegister_Handle_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_2" name="TimeServerTestSuite::Time_Server_Alarm_UnRegister_Handle_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_3" name="TimeServerTestSuite::Time_Server_Alarm_UnRegister_Handle_3" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Register_SecondInd_Validate" name="TimeServerTestSuite::Time_Server_Register_SecondInd_Validate" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Register_SecondInd_Validate"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_UnRegister_SecondInd_Validate" name="TimeServerTestSuite::Time_Server_UnRegister_SecondInd_Validate" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_UnRegister_SecondInd_Validate"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Register_SecondInd_Handle" name="TimeServerTestSuite::Time_Server_Register_SecondInd_Handle" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Register_SecondInd_Handle"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_UnRegister_SecondInd_Handle" name="TimeServerTestSuite::Time_Server_UnRegister_SecondInd_Handle" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_UnRegister_SecondInd_Handle"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Query_Handle" name="TimeServerTestSuite::Time_Server_Alarm_Query_Handle" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Query_Handle"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Service_Test_1" name="TimeServerTestSuite::Time_Server_Service_Test_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Service_Test_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Service_Test_2" name="TimeServerTestSuite::Time_Server_Service_Test_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Service_Test_2"/>
+            </properties>
+        </testcase>
+    </testsuite>
+    <testsuite name="TimeServerTestSuite7">
+        <properties>
+            <property name="organization" value="S40_CI_2.0_TEAM"/>
+            <property name="testlevel" value="UNITTEST"/>
+            <property name="testtool" value="S40CPPUNIT"/>
+            <property name="baseline" value="NO_BASELINE"/>
+            <property name="target" value="NOSE"/>
+            <property name="hostname" value="oucis017.europe.nokia.com"/>
+            <property name="timestamp" value="2013-01-30T09:58:58+0200"/>
+        </properties>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_2" name="TimeServerTestSuite::Time_Server_Test_2" time="0.000">
+            <failure message="testing.." type="fatal"></failure>
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_3" name="TimeServerTestSuite::Time_Server_Test_3" time="0.000">
+            <failure type="fatal">testing this shit out</failure>
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_4" name="TimeServerTestSuite::Time_Server_Test_4" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_4"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_6" name="TimeServerTestSuite::Time_Server_Test_6" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_6"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_7" name="TimeServerTestSuite::Time_Server_Test_7" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_7"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_8" name="TimeServerTestSuite::Time_Server_Test_8" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_8"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_9" name="TimeServerTestSuite::Time_Server_Test_9" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_9"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_10" name="TimeServerTestSuite::Time_Server_Test_10" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_10"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_11" name="TimeServerTestSuite::Time_Server_Test_11" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_11"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_12" name="TimeServerTestSuite::Time_Server_Test_12" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_12"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_13" name="TimeServerTestSuite::Time_Server_Test_13" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_13"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_14" name="TimeServerTestSuite::Time_Server_Test_14" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_14"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_15" name="TimeServerTestSuite::Time_Server_Test_15" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_15"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_16" name="TimeServerTestSuite::Time_Server_Test_16" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_16"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_10" name="TimeServerTestSuite::Time_Server_Test_10" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_10"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_11" name="TimeServerTestSuite::Time_Server_Test_11" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_11"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_12" name="TimeServerTestSuite::Time_Server_Test_12" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_12"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_13" name="TimeServerTestSuite::Time_Server_Test_13" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_13"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_14" name="TimeServerTestSuite::Time_Server_Test_14" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_14"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_15" name="TimeServerTestSuite::Time_Server_Test_15" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_15"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_16" name="TimeServerTestSuite::Time_Server_Test_16" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_16"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_1" name="TimeServerTestSuite::Time_Server_Test_SB_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_2" name="TimeServerTestSuite::Time_Server_Test_SB_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_3" name="TimeServerTestSuite::Time_Server_Test_SB_3" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_4" name="TimeServerTestSuite::Time_Server_Test_SB_4" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_4"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_5" name="TimeServerTestSuite::Time_Server_Test_SB_5" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_5"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_6" name="TimeServerTestSuite::Time_Server_Test_SB_6" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_6"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_1" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_2" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_3" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_3" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_4" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_4" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_4"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_5" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_5" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_5"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_1" name="TimeServerTestSuite::Time_Server_Alarm_Register_Handle_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_2" name="TimeServerTestSuite::Time_Server_Alarm_Register_Handle_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_3" name="TimeServerTestSuite::Time_Server_Alarm_Register_Handle_3" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_1" name="TimeServerTestSuite::Time_Server_Alarm_UnRegister_Handle_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_2" name="TimeServerTestSuite::Time_Server_Alarm_UnRegister_Handle_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_3" name="TimeServerTestSuite::Time_Server_Alarm_UnRegister_Handle_3" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Register_SecondInd_Validate" name="TimeServerTestSuite::Time_Server_Register_SecondInd_Validate" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Register_SecondInd_Validate"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_UnRegister_SecondInd_Validate" name="TimeServerTestSuite::Time_Server_UnRegister_SecondInd_Validate" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_UnRegister_SecondInd_Validate"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Register_SecondInd_Handle" name="TimeServerTestSuite::Time_Server_Register_SecondInd_Handle" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Register_SecondInd_Handle"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_UnRegister_SecondInd_Handle" name="TimeServerTestSuite::Time_Server_UnRegister_SecondInd_Handle" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_UnRegister_SecondInd_Handle"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Query_Handle" name="TimeServerTestSuite::Time_Server_Alarm_Query_Handle" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Query_Handle"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Service_Test_1" name="TimeServerTestSuite::Time_Server_Service_Test_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Service_Test_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Service_Test_2" name="TimeServerTestSuite::Time_Server_Service_Test_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Service_Test_2"/>
+            </properties>
+        </testcase>
+    </testsuite>
+    <testsuite name="TimeServerTestSuite8">
+        <properties>
+            <property name="organization" value="S40_CI_2.0_TEAM"/>
+            <property name="testlevel" value="UNITTEST"/>
+            <property name="testtool" value="S40CPPUNIT"/>
+            <property name="baseline" value="NO_BASELINE"/>
+            <property name="target" value="NOSE"/>
+            <property name="hostname" value="oucis017.europe.nokia.com"/>
+            <property name="timestamp" value="2013-01-30T09:58:58+0200"/>
+        </properties>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_2" name="TimeServerTestSuite::Time_Server_Test_2" time="0.000">
+            <failure message="testing.." type="fatal"></failure>
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_3" name="TimeServerTestSuite::Time_Server_Test_3" time="0.000">
+            <failure type="fatal">testing this shit out</failure>
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_4" name="TimeServerTestSuite::Time_Server_Test_4" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_4"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_6" name="TimeServerTestSuite::Time_Server_Test_6" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_6"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_7" name="TimeServerTestSuite::Time_Server_Test_7" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_7"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_8" name="TimeServerTestSuite::Time_Server_Test_8" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_8"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_9" name="TimeServerTestSuite::Time_Server_Test_9" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_9"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_10" name="TimeServerTestSuite::Time_Server_Test_10" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_10"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_11" name="TimeServerTestSuite::Time_Server_Test_11" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_11"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_12" name="TimeServerTestSuite::Time_Server_Test_12" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_12"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_13" name="TimeServerTestSuite::Time_Server_Test_13" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_13"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_14" name="TimeServerTestSuite::Time_Server_Test_14" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_14"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_15" name="TimeServerTestSuite::Time_Server_Test_15" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_15"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_16" name="TimeServerTestSuite::Time_Server_Test_16" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_16"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_10" name="TimeServerTestSuite::Time_Server_Test_10" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_10"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_11" name="TimeServerTestSuite::Time_Server_Test_11" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_11"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_12" name="TimeServerTestSuite::Time_Server_Test_12" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_12"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_13" name="TimeServerTestSuite::Time_Server_Test_13" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_13"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_14" name="TimeServerTestSuite::Time_Server_Test_14" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_14"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_15" name="TimeServerTestSuite::Time_Server_Test_15" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_15"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_16" name="TimeServerTestSuite::Time_Server_Test_16" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_16"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_1" name="TimeServerTestSuite::Time_Server_Test_SB_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_2" name="TimeServerTestSuite::Time_Server_Test_SB_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_3" name="TimeServerTestSuite::Time_Server_Test_SB_3" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_4" name="TimeServerTestSuite::Time_Server_Test_SB_4" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_4"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_5" name="TimeServerTestSuite::Time_Server_Test_SB_5" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_5"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Test_SB_6" name="TimeServerTestSuite::Time_Server_Test_SB_6" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Test_SB_6"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_1" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_2" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_3" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_3" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_4" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_4" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_4"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_5" name="TimeServerTestSuite::Time_Server_Alarm_Register_Validate_5" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Validate_5"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_1" name="TimeServerTestSuite::Time_Server_Alarm_Register_Handle_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_2" name="TimeServerTestSuite::Time_Server_Alarm_Register_Handle_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_3" name="TimeServerTestSuite::Time_Server_Alarm_Register_Handle_3" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Register_Handle_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_1" name="TimeServerTestSuite::Time_Server_Alarm_UnRegister_Handle_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_2" name="TimeServerTestSuite::Time_Server_Alarm_UnRegister_Handle_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_2"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_3" name="TimeServerTestSuite::Time_Server_Alarm_UnRegister_Handle_3" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_UnRegister_Handle_3"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Register_SecondInd_Validate" name="TimeServerTestSuite::Time_Server_Register_SecondInd_Validate" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Register_SecondInd_Validate"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_UnRegister_SecondInd_Validate" name="TimeServerTestSuite::Time_Server_UnRegister_SecondInd_Validate" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_UnRegister_SecondInd_Validate"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Register_SecondInd_Handle" name="TimeServerTestSuite::Time_Server_Register_SecondInd_Handle" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Register_SecondInd_Handle"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_UnRegister_SecondInd_Handle" name="TimeServerTestSuite::Time_Server_UnRegister_SecondInd_Handle" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_UnRegister_SecondInd_Handle"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Alarm_Query_Handle" name="TimeServerTestSuite::Time_Server_Alarm_Query_Handle" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Alarm_Query_Handle"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Service_Test_1" name="TimeServerTestSuite::Time_Server_Service_Test_1" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Service_Test_1"/>
+            </properties>
+        </testcase>
+        <testcase classname="TimeServerTestSuite.Time_Server_Service_Test_2" name="TimeServerTestSuite::Time_Server_Service_Test_2" time="0.000">
+            <properties>
+                <property name="testcaseid" value="TimeServerTestSuite.Time_Server_Service_Test_2"/>
+            </properties>
+        </testcase>
+    </testsuite>
+</testsuites>

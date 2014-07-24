@@ -1,0 +1,136 @@
+## YAML Template.
+---
+
+sys_config:
+  - id: 1
+    configkey: USAGE_SAMPLING_TIMEOUT
+    configvalue: '1'
+  - id: 2
+    configkey: SYSTEM_LOAD_STACK_SAMPLING_SIZE
+    configvalue: '15'
+  - id: 3
+    configkey: MEM_USAGE_STACK_SAMPLING_SIZE
+    configvalue: '15'
+  - id: 4
+    configkey: SYSTEM_LOAD_THRESHOLD_IN_PERCENT
+    configvalue: '200'
+  - id: 5
+    configkey: MEM_USAGE_THRESHOLD_IN_PERCENT
+    configvalue: '200'
+  - id: 6
+    configkey: GIT_FETCH_FAILURE_THRESHOLD
+    configvalue: '1'
+  - id: 7
+    configkey: GIT_TIMER_TIMEOUT
+    configvalue: '2'
+
+gerrit:
+  - id: 1
+    url: localhost
+    port: 1338
+
+project:
+  - id: 1
+    name: project_1
+    displayname: Project 1
+    gerrit_id: 1
+    gerritproject: project_1
+
+branch:
+  - id: 1
+    name: branch_1
+    displayname: Branch 1
+    project_id: 1
+  - id: 2
+    name: branch_2
+    displayname: Branch 2
+    project_id: 1
+    type: DEVELOPMENT
+  - id: 3
+    name: branch_3
+    displayname: Branch 3
+    project_id: 1
+    type: SINGLE_COMMIT
+
+job:
+  - id: 1
+    name: job_1
+    displayname: Job 1
+    branch_id: 1
+  - id: 2
+    name: job_2
+    displayname: Job 2
+    branch_id: 2
+  - id: 3
+    name: job_3
+    displayname: Job 3
+    branch_id: 3
+
+build_group:
+  - id: 1
+    job_id: 1
+    status: FAILURE
+    phase: FINISHED
+    starttime: '2013-01-01 12:00:00'
+  - id: 2
+    job_id: 1
+    status: FAILURE
+    phase: FINISHED
+    starttime: '2013-01-02 12:00:00'
+  - id: 3
+    job_id: 1
+    status: FAILURE
+    phase: FINISHED
+    starttime: '2013-01-03 12:00:00'
+  - id: 4
+    job_id: 1
+    status: FAILURE
+    phase: FINISHED
+    starttime: '2013-01-04 12:00:00'
+  - id: 5
+    job_id: 1
+    status: SUCCESS
+    phase: STARTED
+    starttime: '2013-01-05 12:00:00'
+
+build:
+  - id: 1
+    buildgroup_id: 5
+    buildnumber: 1
+    status: SUCCESS
+    phase: FINISHED
+  - id: 2
+    buildgroup_id: 5
+    buildnumber: 2
+    status: SUCCESS
+    phase: FINISHED
+  - id: 3
+    buildgroup_id: 5
+    buildnumber: 3
+    status: SUCCESS
+    phase: STARTED
+
+build_verification_conf:
+  - id: 1
+    build_id: 1
+    verificationdisplayname: verification1
+    productdisplayname: product1
+    cardinality: MANDATORY
+  - id: 2
+    build_id: 2
+    verificationdisplayname: verification2
+    productdisplayname: product2
+    cardinality: MANDATORY
+  - id: 3
+    build_id: 3
+    verificationdisplayname: verification3
+    productdisplayname: product3
+    cardinality: MANDATORY
+
+sys_user:
+  - id: 1
+    loginname: admin
+    realname: Admin Man
+    userrole: SYSTEM_ADMIN
+    systemmetricsallowed: 1
+    failedlogins: 4

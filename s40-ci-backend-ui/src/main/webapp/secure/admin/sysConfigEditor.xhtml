@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+
+    <body>
+
+        <ui:composition template="../template/editorLayout.xhtml">
+            <ui:define name="contentTitle">System config #{sysConfigBean.sysConfig.configKey}</ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="Admin" outcome="admin"/>
+                <h:link value="System configuration" outcome="sysConfigs"/>
+                <h:link value="Edit #{sysConfigBean.sysConfig.configKey}" outcome="sysConfigEditor" styleClass="active"
+                        rendered="#{not empty sysConfigBean.sysConfig.id}">
+                    <f:param name="sysConfigId" value="#{sysConfigBean.sysConfig.id}"/>
+                </h:link>
+                <h:link value="Add new system configuration" outcome="sysConfigEditor" styleClass="active" rendered="#{empty sysConfigBean.sysConfig.id}"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <h:panelGrid id="sysConfigEditTable" columns="2">
+
+                        <h:outputLabel for="sysConfKey" value="Key"/>
+                        <p:selectOneMenu id="sysConfKey" value="#{sysConfigBean.sysConfig.configKey}" editable="false">
+                            <f:selectItem itemLabel="Select Key" itemValue="" />
+                            <f:selectItems value="#{sysConfigBean.keys}" />
+                            <p:ajax event="change" update="sysConfDesc"/>
+                        </p:selectOneMenu>
+
+                        <h:outputLabel for="sysConfVal" value="Value"/>
+                        <p:inputText id="sysConfVal" value="#{sysConfigBean.sysConfig.configValue}" label="value"/>
+
+                        <h:outputLabel for="sysConfDesc" value="Description"/>
+                        <p:inputTextarea id="sysConfDesc" value="#{sysConfigBean.sysConfigDesc}" rows="4" cols="45" readonly="true"/>
+
+                        <f:facet name="footer">
+                            <p:commandButton id="productSaveButton" value="Save" action="#{sysConfigBean.save}" ajax="false"/>
+                            <p:commandButton id="productCancelButton" value="Cancel" action="#{sysConfigBean.cancelEdit}" ajax="false" immediate="true"/>
+                        </f:facet>
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

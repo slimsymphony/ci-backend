@@ -1,0 +1,4 @@
+{"type":"row","columns":{"external_id":"gerrit:admin","name":"s40_developer"}}
+{"type":"row","columns":{"external_id":"gerrit:admin","name":"s40_admin"}}
+{"type":"row","columns":{"external_id":"gerrit:admin","name":"s40_ci"}}
+{"type":"row","columns":{"external_id":"gerrit:user","name":"s40_developer"}}

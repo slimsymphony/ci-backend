@@ -1,0 +1,142 @@
+## YAML Template.
+---
+slave_machine:
+  - id: 1
+    url: localhost.1
+    port: 22
+    workspace: /local/groups/workspace/
+    startscript: /scripts/start_script.sh
+    endscript: /scripts/end_script.sh
+    maxslaveinstanceamount: 6
+
+  - id: 2
+    url: localhost.2
+    port: 22
+    workspace: /local/groups/workspace/
+    startscript: /scripts/start_script.sh
+    endscript: /scripts/end_script.sh
+    maxslaveinstanceamount: 6
+
+  - id: 3
+    url: localhost.3
+    port: 22
+    workspace: /local/groups/workspace/
+    startscript: /scripts/start_script.sh
+    endscript: /scripts/end_script.sh
+    maxslaveinstanceamount: 6
+
+slave_pool:
+  - id: 1
+    name: pool_1
+  - id: 2
+    name: pool_2
+
+slave_label:
+  - id: 1
+    name: label_1
+  - id: 2
+    name: label_2
+  - id: 3
+    name: label_3
+
+slave_instance:
+  - id: 1
+    slavemachine_id: 1
+    version: 1
+  - id: 2
+    currentmaster: http://localhost:8081
+    slavemachine_id: 1
+    version: 1
+  - id: 3
+    slavemachine_id: 1
+    version: 1
+  - id: 4
+    slavemachine_id: 1
+    version: 1
+  - id: 5
+    slavemachine_id: 1
+    version: 1
+  - id: 6
+    slavemachine_id: 2
+    version: 1
+  - id: 7
+    currentmaster: http://localhost:8081
+    slavemachine_id: 2
+    version: 1
+  - id: 8
+    slavemachine_id: 2
+    version: 1
+  - id: 9
+    slavemachine_id: 2
+    version: 1
+  - id: 10
+    slavemachine_id: 2
+    version: 1
+  - id: 11
+    slavemachine_id: 3
+    version: 1
+  - id: 12
+    currentmaster: http://localhost:8081
+    slavemachine_id: 3
+    version: 1
+  - id: 13
+    slavemachine_id: 3
+    version: 1
+  - id: 14
+    slavemachine_id: 3
+    version: 1
+  - id: 15
+    slavemachine_id: 3
+    version: 1
+
+
+slave_pool_slave_instance:
+  - slavepools_id: 1
+    slaveinstances_id: 1
+  - slavepools_id: 1
+    slaveinstances_id: 2
+  - slavepools_id: 1
+    slaveinstances_id: 3
+  - slavepools_id: 1
+    slaveinstances_id: 4
+  - slavepools_id: 1
+    slaveinstances_id: 5
+  - slavepools_id: 2
+    slaveinstances_id: 6
+  - slavepools_id: 1
+    slaveinstances_id: 7
+  - slavepools_id: 2
+    slaveinstances_id: 8
+  - slavepools_id: 1
+    slaveinstances_id: 9
+  - slavepools_id: 2
+    slaveinstances_id: 10
+  - slavepools_id: 1
+    slaveinstances_id: 11
+  - slavepools_id: 1
+    slaveinstances_id: 12
+  - slavepools_id: 1
+    slaveinstances_id: 13
+  - slavepools_id: 1
+    slaveinstances_id: 14
+  - slavepools_id: 1
+    slaveinstances_id: 15
+    
+slave_instance_slave_label:
+  - slaveinstances_id: 1
+    slavelabels_id: 1
+  - slaveinstances_id: 2
+    slavelabels_id: 2
+  - slaveinstances_id: 3
+    slavelabels_id: 3
+  - slaveinstances_id: 6
+    slavelabels_id: 1
+  - slaveinstances_id: 7
+    slavelabels_id: 2
+  - slaveinstances_id: 8
+    slavelabels_id: 3
+  - slaveinstances_id: 11
+    slavelabels_id: 1
+  - slaveinstances_id: 13
+    slavelabels_id: 3
+    

@@ -1,0 +1,209 @@
+## YAML Template.
+---
+sys_config:
+  - id: 1
+    configkey: ALLOW_LOGIN
+    configvalue: TRUE
+  - id: 2
+    configkey: ALLOW_NEXT_USERS
+    configvalue: FALSE
+
+gerrit: 
+  - id: 1
+    URL: localhost
+    port: 1338
+    privatekeypath: ../../../../../s40-ci-backend-mock/keys/id_dsa
+    sshusername: account
+    listenstream: 0
+    projectaccesshost: localhost
+    projectaccessport: 1340
+    
+project:
+  - id: 1
+    name: project_x
+    displayname: Project X
+    gerritproject: test/x_project
+    description: X Project is very simple secret project.
+    gerrit_id: 1
+  - id: 2
+    name: project_y
+    displayname: Project Y
+    gerritproject: test/y_project
+    description: Y Project is fairly complex secret project.
+    gerrit_id: 1
+  - id: 3
+    name: project_z
+    displayname: Project Z
+    gerritproject: test/z_project
+    description: Z Project is extremely complex secret project.
+    gerrit_id: 1
+    
+branch:
+  - id: 1
+    name: branch_x
+    displayname: Branch X
+    project_id: 1
+  - id: 2
+    name: branch_y
+    displayname: Branch Y
+    project_id: 2
+  - id: 3
+    name: branch_z
+    displayname: Branch Z
+    project_id: 3
+
+job:
+  - id: 1
+    name: job_x
+    displayname: Job X
+    lastfetchhead: xx1234xxABCD
+    lastsuccesfullfetchhead: xx123xxABC
+    branch_id: 1
+    projectid: 1
+  - id: 2
+    name: job_y
+    displayname: Job Y
+    lastfetchhead: yy1234yyABCD
+    lastsuccesfullfetchhead: yy123yyABC
+    branch_id: 2
+    projectid: 2
+  - id: 3
+    name: job_z
+    displayname: Job Z
+    lastfetchhead: zz1234zzABCD
+    lastsuccesfullfetchhead: zz123zzABC
+    branch_id: 3
+    projectid: 3
+    
+build_group:
+  # Job 1 build groups
+  - id: 1
+    url: http://build_group_x/1
+    gerritrefspec: refs/changes/1/1/1
+    gerritpatchsetrevision: xxPatchxxRev
+    gerriturl: http://localhost/1
+    gerritbranch: master
+    gerritproject: test/x_project
+    job_id: 1
+    projectid: 1
+  # Job 2 build groups
+  - id: 2
+    url: http://build_group_y/2
+    gerritrefspec: refs/changes/2/2/1
+    gerritpatchsetrevision: yyPatchyyRev
+    gerriturl: http://localhost/2
+    gerritbranch: master
+    gerritproject: test/y_project
+    job_id: 2
+    projectid: 2
+  # Job 3 build groups
+  - id: 3
+    url: http://build_group_z/3
+    gerritrefspec: refs/changes/3/3/1
+    gerritpatchsetrevision: zzPatchzzRev
+    gerriturl: http://localhost/3
+    gerritbranch: master
+    gerritproject: test/z_project
+    job_id: 3
+    projectid: 3
+    
+change:
+  # Normal User changes
+  - id: 1
+    commitid: I24265e32f9b877c2c0fe0f7bf967344821bdea58
+    authorname: Normal User
+    authoremail: normal.user@test.email
+    subject: Changed some testing devices
+    url: http://change/1
+    message: Normal user message
+    projectid: 1
+  - id: 2
+    commitid: dfd01f34202caba083f7ac3bded333e502dea09f
+    authorname: Normal User
+    authoremail: normal.user@test.email
+    subject: Changed some files
+    url: http://change/2
+    message: Normal user message 2
+    projectid: 2
+  # Foo Bar changes
+  - id: 3
+    commitid: e58f9d1b00a8263b983d42bf66469c3eee29834f
+    authorname: Foo Bar
+    authoremail: foo.bar@test.email
+    subject: Fixed bug 2343
+    url: http://change/2
+    message: Bug fixing message 1
+    projectid: 3
+    
+change_file:
+  # Change 1 files
+  - id: 1
+    change_id: 1
+    filepath: /base/folder/camera/info.txt
+  - id: 2
+    change_id: 1
+    filepath: /base/folder/camera/src/sensor.cpp
+  # Change 2 files
+  - id: 3
+    change_id: 2
+    filepath: /base/folder/voicecall/src/dialer.cpp
+  - id: 4
+    change_id: 2
+    filepath: /base/folder/voicecall/src/speechemulation.cpp
+  # Change 3 files
+  - id: 5
+    change_id: 3
+    filepath: /base/folder/voicecall/src/dialer.cpp
+  - id: 6
+    change_id: 3
+    filepath: /base/folder/games/src/worm.cpp
+    
+build_group_change:
+  - buildgroups_id: 1
+    changes_id: 1
+  - buildgroups_id: 2
+    changes_id: 2
+  - buildgroups_id: 3
+    changes_id: 3
+    
+sys_user:
+  # Admin user
+  - id: 1
+    loginname: admin
+    realname: Admin Man
+    email: admin.man@test.email
+    userrole: SYSTEM_ADMIN
+    systemmetricsallowed: 1
+  # Normal user with project access 1,2,3
+  - id: 2
+    loginname: user
+    realname: Normal User
+    email: normal.user@test.email
+    userrole: USER
+    systemmetricsallowed: 0
+  # Normal user with project access 1,3
+  - id: 3
+    loginname: foo
+    realname: Foo Bar
+    email: foo.bar@test.email
+    userrole: USER
+    systemmetricsallowed: 0
+  # Next user without project access
+  - id: 4
+    loginname: e1234next
+    realname: Mister Next Worm
+    email: mister.next@test.email
+    userrole: USER
+    systemmetricsallowed: 0
+    
+project_user_access:
+  # User 2 access
+  - projectaccess_id: 1
+    useraccess_id: 2
+  - projectaccess_id: 2
+    useraccess_id: 2
+  # User 3 access
+  - projectaccess_id: 1
+    useraccess_id: 3
+  - projectaccess_id: 3
+    useraccess_id: 3

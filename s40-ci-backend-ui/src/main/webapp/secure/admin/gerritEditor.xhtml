@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+
+    <body>
+
+        <ui:composition template="../template/editorLayout.xhtml">
+            <ui:define name="contentTitle">Gerrit #{gerritBean.gerrit.url}</ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="Admin" outcome="admin"/>
+                <h:link value="Gerrits" outcome="gerrits"/>
+                <h:link value="Edit #{gerritBean.gerrit.url}" outcome="gerritEditor" styleClass="active"
+                        rendered="#{not empty gerritBean.gerritId}">
+                    <f:param name="gerritId" value="#{gerritBean.gerritId}"/>
+                </h:link>
+                <h:link value="Add new gerrit" outcome="gerritEditor" styleClass="active" rendered="#{empty gerritBean.gerritId}"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <h:panelGrid id="gerritEditTable" columns="2">
+                        <h:outputLabel for="gerritUrl" value="Url"/>
+                        <p:inputText id="gerritUrl" value="#{gerritBean.gerrit.url}" label="url"/>
+                        <h:outputLabel for="gerritPortInput" value="Port"/>
+                        <p:inputText id="gerritPortInput" value="#{gerritBean.gerrit.port}" label="port"/>
+                        <h:outputLabel for="gerritSshPrivateKeyPathInput" value="SSH private key path"/>
+                        <p:inputText id="gerritSshPrivateKeyPathInput" value="#{gerritBean.gerrit.privateKeyPath}" label="SSH private key path"/>
+                        <h:outputLabel for="gerritSshUserNameInput" value="SSH user name"/>
+                        <p:inputText id="gerritSshUserNameInput" value="#{gerritBean.gerrit.sshUserName}" label="SSH user name"/>
+                        <h:outputLabel for="gerritProjectAccessHost" value="Project access check host"/>
+                        <p:inputText id="gerritProjectAccessHost" value="#{gerritBean.gerrit.projectAccessHost}" label="Project access host"/>
+                        <h:outputLabel for="gerritProjectAccessPort" value="Project access check port (default = 22)"/>
+                        <p:inputText id="gerritProjectAccessPort" value="#{gerritBean.gerrit.projectAccessPort}" label="Project access port"/>
+                        <h:outputLabel for="gerritListenStream" value="Listen gerrit stream"/>
+                        <p:selectOneButton id="gerritListenStream" value="#{gerritBean.gerrit.listenStream}">
+                            <f:selectItem itemLabel="Enabled" itemValue="true" />
+                            <f:selectItem itemLabel="Disabled" itemValue="false" />
+                        </p:selectOneButton>
+                        <f:facet name="footer">
+                            <p:commandButton id="gerritSaveButton" value="Save" action="#{gerritBean.save}" ajax="false"/>
+                            <p:commandButton id="gerritCancelButton" value="Cancel" action="#{gerritBean.cancelEdit}" ajax="false" immediate="true"/>
+                        </f:facet>
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

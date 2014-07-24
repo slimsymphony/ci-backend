@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+
+        <ui:composition template="../template/layout.xhtml">
+
+            <ui:define name="contentTitle">#{buildArtifactBean.build.buildVerificationConf.productDisplayName} #{buildArtifactBean.build.buildVerificationConf.verificationDisplayName} artifacts</ui:define>
+
+            <ui:define name="contentMenu">
+                <h:link id="testResults" value="" outcome="buildTestResults" styleClass="contentmenuReport"
+                        rendered="#{buildArtifactBean.buildGroupId != null and not empty buildArtifactBean.build.buildVerificationConf.testResultTypes}">
+                    <f:param name="buildGroupId" value="#{buildArtifactBean.buildGroupId}"/>
+                    <f:param name="buildId" value="#{buildArtifactBean.build.id}"/>
+                    <pe:tooltip for="testResults" value="Build test results" myPosition="top right" atPosition="bottom center"/>
+                </h:link>
+                <ci:helpButton id="helpButton" page="buildArtifacts"/>
+            </ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="#{buildArtifactBean.project.displayName}" outcome="projectDetails">
+                    <f:param name="projectId" value="#{buildArtifactBean.project.id}"/>
+                </h:link>
+                <h:link value="#{buildArtifactBean.job.displayName}" outcome="verificationDetails">
+                    <f:param name="verificationId" value="#{buildArtifactBean.job.id}"/>
+                </h:link>
+                <h:link value="Build #{buildArtifactBean.bg.id}" outcome="buildDetails">
+                    <f:param name="buildId" value="#{buildArtifactBean.bg.id}"/>
+                </h:link>
+                <h:link value="Artifacts #{buildArtifactBean.build.id}" outcome="buildArtifacts" styleClass="active">
+                    <f:param name="buildId" value="#{buildArtifactBean.build.id}"/>
+                    <f:param name="buildGroupId" value="#{buildArtifactBean.buildGroupId}"
+                             rendered="#{not empty buildArtifactBean.buildGroupId}"/>
+                    <f:param name="verificationId" value="#{buildArtifactBean.verificationId}"
+                             rendered="#{not empty buildArtifactBean.verificationId}"/>
+                </h:link>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:outputText value="There are no artifacts for this build, please try again later!" rendered="#{!buildArtifactBean.hasArtifacts()}"
+                              style="margin-top: 1.5em;"/>
+                <p:treeTable value="#{buildArtifactBean.root}" var="artifact" rendered="#{buildArtifactBean.hasArtifacts()}">
+                    <p:column>
+                        <f:facet name="header">Name</f:facet>
+                        <h:outputText value="#{artifact.name}" rendered="#{artifact.url == null}"/>
+                        <h:outputLink target="_blank" value="#{artifact.url}" rendered="#{artifact.url != null}">
+                            <h:outputText value="#{artifact.name}" />
+                        </h:outputLink>
+                    </p:column>
+
+                    <!-- TODO: Add more info like filetype, size etc. -->
+
+                    <p:column style="width:20px">
+                        <h:outputLink value="#{artifact.url}" target="_blank" title="Download" styleClass="ui-icon ui-icon-disk"
+                                      rendered="#{artifact.url != null}"/>
+                    </p:column>
+                </p:treeTable>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

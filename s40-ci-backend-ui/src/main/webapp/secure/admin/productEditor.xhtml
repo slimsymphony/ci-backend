@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+
+    <body>
+
+        <ui:composition template="../template/editorLayout.xhtml">
+            <ui:define name="contentTitle">Product #{productBean.product.displayName}</ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="Admin" outcome="admin"/>
+                <h:link value="Products" outcome="products"/>
+                <h:link value="Edit #{productBean.product.displayName}" outcome="productEditor" styleClass="active"
+                        rendered="#{not empty productBean.product.id}">
+                    <f:param name="prodcutId" value="#{productBean.product.id}"/>
+                </h:link>
+                <h:link value="Add new product" outcome="productEditor" styleClass="active" rendered="#{empty productBean.product.id}"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="productEditForm">
+                    <h:panelGrid id="productEditTable" columns="2">
+                        <h:outputLabel for="productDisplayNameInput" value="Display name"/>
+                        <p:inputText id="productDisplayNameInput" value="#{productBean.product.displayName}" label="displayName"/>
+                        <h:outputLabel for="productNameInput" value="Name"/>
+                        <p:inputText id="productNameInput" value="#{productBean.product.name}" label="name"/>
+                        <h:outputLabel for="productRmCodeInput" value="RM-Code"/>
+                        <p:inputText id="productRmCodeInput" value="#{productBean.product.rmCode}" label="rmCode"/>
+                        <f:facet name="footer">
+                            <p:commandButton id="productSaveButton" value="Save" action="#{productBean.save}" ajax="false"/>
+                            <p:commandButton id="productCancelButton" value="Cancel" action="#{productBean.cancelEdit}" ajax="false" immediate="true"/>
+                        </f:facet>
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

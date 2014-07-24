@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+        <ui:composition template="./../template/adminLayout.xhtml">
+            <ui:define name="contentTitle">Users</ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="Admin" outcome="admin"/>
+                <h:link value="Users" outcome="users" styleClass="active"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <p:dataTable id="usersTable" value="#{usersBean.users}" var="u" paginator="true" rows="20"
+                                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                                 rowsPerPageTemplate="5,10,20,50" lazy="true">
+                        <p:column sortBy="#{u.loginName}" filterBy="#{u.loginName}" filterMatchMode="contains">
+                            <f:facet name="header">Username</f:facet>
+                            <h:outputLink value="/secure/admin/userEditor.xhtml">
+                                <h:outputText value="#{u.loginName}"/>
+                                <f:param name="userId" value="#{u.id}"/>
+                            </h:outputLink>
+                        </p:column>
+                        <p:column sortBy="#{u.realName}" filterBy="#{u.realName}" filterMatchMode="contains">
+                            <f:facet name="header">Name</f:facet>
+                            <h:outputText value="#{u.realName}"/>
+                        </p:column>
+                        <p:column sortBy="#{u.email}" filterBy="#{u.email}" filterMatchMode="contains">
+                            <f:facet name="header">Email</f:facet>
+                            <h:outputText value="#{u.email}"/>
+                        </p:column>
+                        <p:column sortBy="#{u.userRole}">
+                            <f:facet name="header">Role</f:facet>
+                            <h:outputText value="#{u.userRole.label}"/>
+                        </p:column>
+                        <p:column sortBy="#{u.nextUser}">
+                            <f:facet name="header">Account Type</f:facet>
+                            <h:outputText value="#{u.nextUser ? 'Nokia External' : 'Nokia Internal'}"/>
+                        </p:column>
+                        <p:column sortBy="#{u.lastLogin}">
+                            <f:facet name="header">Last login</f:facet>
+                            <ci:outputTextTimeStamp value="#{u.lastLogin}"/>
+                        </p:column>
+                        <p:column styleClass="actionColumn">
+                            <f:facet name="header">Actions</f:facet>
+                            <h:outputLink value="/secure/admin/userEditor.xhtml">
+                                <h:graphicImage id="editUser" value="/resources/images/wrench.png" styleClass="actionButton"/>
+                                <f:param name="userId" value="#{u.id}"/>
+                                <p:tooltip for="editUser" value="Edit user" />
+                            </h:outputLink>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,205 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+
+    <body>
+        <ui:composition template="../template/editorLayout.xhtml">
+            <ui:define name="contentTitle">Project #{projectEditorBean.project.displayName}</ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="Admin" outcome="admin"/>
+                <h:link value="Projects" outcome="projects"/>
+                <h:link value="Edit #{projectEditorBean.project.displayName}" outcome="projectEditor" styleClass="active"
+                        rendered="#{not empty projectEditorBean.project.id}">
+                    <f:param name="projectId" value="#{projectEditorBean.project.id}"/>
+                </h:link>
+                <h:link value="Add new project" outcome="projectEditor" styleClass="active" rendered="#{empty projectEditorBean.project.id}"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="projectEditorForm">
+                    <h:panelGrid id="projectEditorTable" columns="1">
+                        <h:panelGrid id="projectEditTable" columns="2">
+                            <h:outputLabel for="projectDisplayNameInput" value="Display Name"/>
+                            <p:inputText id="projectDisplayNameInput" value="#{projectEditorBean.project.displayName}"
+                                         label="displayName"/>
+                            <h:outputLabel for="projectNameInput" value="Name"/>
+                            <p:inputText id="projectNameInput" value="#{projectEditorBean.project.name}" label="name"/>
+                            <h:outputLabel for="projectConfigurationResponsibleInput" value="CI configuration responsible"/>
+                            <p:inputText id="projectConfigurationResponsibleInput"
+                                         value="#{projectEditorBean.project.configurationResponsible}"
+                                         label="configurationResponsible"/>
+                            <h:outputLabel for="projectTestingResponsibleInput" value="CI testing responsible"/>
+                            <p:inputText id="projectTestingResponsibleInput"
+                                         value="#{projectEditorBean.project.testingResponsible}" label="testingResponsible"/>
+                            <h:outputLabel for="projectContactListInput" value="Contact list for info sharing"/>
+                            <p:inputTextarea id="projectContactListInput" value="#{projectEditorBean.project.contactList}"
+                                             label="contactList" rows="5" cols="40"/>
+                            <h:outputLabel for="projectDescriptionInput" value="Description"/>
+                            <p:editor id="projectDescriptionInput" value="#{projectEditorBean.project.description}"
+                                      controls="bold italic underline | bullets numbering | link unlink" width="305"
+                                      height="150"/>
+                            <h:outputLabel for="projectGroupInput" value="Project Group"/>
+                            <p:selectOneMenu id="projectGroupInput" value="#{projectEditorBean.selectedProjectGroup}"
+                                             converter="ProjectGroupConverter">
+                                <f:selectItem itemLabel="Not Set" itemValue=""/>
+                                <f:selectItems value="#{projectEditorBean.projectGroups}" var="projectGroup"
+                                               itemLabel="#{projectGroup.name}"
+                                               itemValue="#{projectGroup}"/>
+                            </p:selectOneMenu>
+                            <h:outputLabel for="projectGerritInput" value="Gerrit"/>
+                            <p:selectOneMenu id="projectGerritInput" value="#{projectEditorBean.selectedGerrit}"
+                                             converter="GerritConverter">
+                                <f:selectItem itemLabel="Not Set" itemValue=""/>
+                                <f:selectItems value="#{projectEditorBean.gerrits}" var="gerrit"
+                                               itemLabel="#{gerrit.url}:#{gerrit.port}"
+                                               itemValue="#{gerrit}"/>
+                            </p:selectOneMenu>
+                            <h:outputLabel for="projectGerritProjectInput" value="Gerrit Project"/>
+                            <p:inputText id="projectGerritProjectInput"
+                                         value="#{projectEditorBean.project.gerritProject}"/>
+                            <h:outputText value=""/>
+                        </h:panelGrid>
+                        <p:dataTable id="externalLinkTable" value="#{projectEditorBean.links}" var="link">
+                            <f:facet name="header">
+                                <h:outputText value="External links"/>
+                            </f:facet>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Description"/>
+                                </f:facet>
+                                <h:outputText id="linkDescription" value="#{link.description}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="URL"/>
+                                </f:facet>
+                                <h:outputLink value="#{link.url}" target="_blank">
+                                    <h:outputText id="linkURL" value="#{link.url}"/>
+                                </h:outputLink>
+                            </p:column>
+                            <p:column styleClass="actionColumn">
+                                <f:facet name="header">Actions</f:facet>
+                                <p:commandLink actionListener="#{projectEditorBean.deleteLink(link)}" update="@form">
+                                    <h:graphicImage value="/resources/images/bin_closed.png" styleClass="actionButton"/>
+                                </p:commandLink>
+                            </p:column>
+                            <f:facet name="footer">
+                                <p:commandLink id="showDialogButton" value="Add New Link" oncomplete="addLinkDlg.show();"
+                                               update=":addLinkDialog"/>
+                            </f:facet>
+                        </p:dataTable>
+                        <p:pickList id="branchesPickList" value="#{projectEditorBean.branches}" var="branch"
+                                    converter="BranchConverter"
+                                    itemLabel="#{branch.displayName}" itemValue="#{branch}" rendered="#{httpSessionBean.admin}">
+                            <f:facet name="sourceCaption">Available Branches</f:facet>
+                            <f:facet name="targetCaption">Selected Branches</f:facet>
+                            <p:column style="width:75%">#{branch.displayName}</p:column>
+                            <p:column style="width:25%">
+                                <h:outputLink value="/secure/admin/branchEditor.xhtml">
+                                    <h:graphicImage id="editBranch" value="/resources/images/wrench.png" styleClass="actionButton"/>
+                                    <f:param name="branchId" value="#{branch.id}"/>
+                                    <f:param name="projectId" value="#{projectEditorBean.project.id}"/>
+                                    <p:tooltip for="editBranch" value="Edit branch" />
+                                </h:outputLink>
+                                <ci:deleteBtnWithConfirmDlg id="deleteBranch" actionListener="#{projectEditorBean.deleteBranch}"
+                                                            entityLabel="#{branch.displayName}" tooltip="Delete branch" update="branchesPickList">
+                                    <f:param name="branchId" value="#{branch.id}"/>
+                                </ci:deleteBtnWithConfirmDlg>
+                            </p:column>
+                        </p:pickList>
+                        <p:orderList id="branches" value="#{projectEditorBean.branches.target}" var="branch"
+                                     converter="BranchConverter" itemLabel="#{branch.displayName}" itemValue="#{branch}"
+                                     rendered="#{!httpSessionBean.admin}" controlsLocation="none">
+                            <f:facet name="caption">Branches</f:facet>
+                            <p:column style="width:70%">#{branch.displayName}</p:column>
+                            <p:column style="width:25%">
+                                <h:outputLink value="/secure/admin/branchEditor.xhtml">
+                                    <h:graphicImage id="editBranchPA" value="/resources/images/wrench.png" styleClass="actionButton"/>
+                                    <f:param name="branchId" value="#{branch.id}"/>
+                                    <f:param name="projectId" value="#{projectEditorBean.project.id}"/>
+                                    <p:tooltip for="editBranch" value="Edit branch" />
+                                </h:outputLink>
+                                <ci:deleteBtnWithConfirmDlg id="deleteBranchPA" actionListener="#{projectEditorBean.deleteBranch}"
+                                                            entityLabel="#{branch.displayName}" tooltip="Delete branch" update="branches">
+                                    <f:param name="branchId" value="#{branch.id}"/>
+                                </ci:deleteBtnWithConfirmDlg>
+                            </p:column>
+                        </p:orderList>
+
+                        <h:outputLink value="/secure/admin/branchEditor.xhtml">
+                            <f:param name="projectId" value="#{projectEditorBean.project.id}"/>
+                            <f:verbatim>Add New Branch</f:verbatim>
+                        </h:outputLink>
+                        <p:pickList id="productsPickList" value="#{projectEditorBean.products}" var="product"
+                                    converter="ProductConverter"
+                                    itemLabel="#{product.displayName}" itemValue="#{product}"
+                                    onTransfer="updateVerificationConfTable()">
+                            <f:facet name="sourceCaption">Available Products</f:facet>
+                            <f:facet name="targetCaption">Selected Products</f:facet>
+                        </p:pickList>
+                        <p:pickList id="verificationsPickList" value="#{projectEditorBean.verifications}" var="verification"
+                                    converter="VerificationConverter"
+                                    itemLabel="#{verification.displayName}" itemValue="#{verification}"
+                                    onTransfer="updateVerificationConfTable()">
+                            <f:facet name="sourceCaption">Available Verifications</f:facet>
+                            <f:facet name="targetCaption">Selected Verifications</f:facet>
+                        </p:pickList>
+                        <p:pickList id="adminsPickList" value="#{projectEditorBean.admins}" var="user" rendered="#{httpSessionBean.admin}"
+                                    converter="SysUserConverter" showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains"
+                                    itemLabel="#{user.realName}" itemValue="#{user}"
+                                    onTransfer="updateVerificationConfTable()">
+                            <f:facet name="sourceCaption">All users</f:facet>
+                            <f:facet name="targetCaption">Project admins</f:facet>
+                        </p:pickList>
+                        <h4>Enabled verifications</h4>
+                        <h:panelGrid columns="2">
+                            <p:commandButton value="Select all" ajax="true" actionListener="#{projectEditorBean.selectAllVerifications}" process="@this"
+                                             update="projectVerificationConf"/>
+                            <p:commandButton value="Clear all" ajax="true" actionListener="#{projectEditorBean.clearAllVerifications}" process="@this"
+                                             update="projectVerificationConf"/>
+                        </h:panelGrid>
+                        <ci:verificationConfMatrix id="projectVerificationConf" products="#{projectEditorBean.products.target}"
+                                                   verificationConfRows="#{projectEditorBean.verificationConfRows}" optionalMandatory="false"/>
+                        <f:facet name="footer">
+                            <p:commandButton id="projectSaveButton" value="Save" action="#{projectEditorBean.save}"
+                                             ajax="false"/>
+                            <p:commandButton id="projectApplyButton" value="Apply" action="#{projectEditorBean.apply}"
+                                             ajax="false"/>
+                            <p:commandButton id="projectCancelButton" value="Cancel" action="#{projectEditorBean.cancelEdit}"
+                                             ajax="false" immediate="true"/>
+                        </f:facet>
+                    </h:panelGrid>
+                    <p:remoteCommand name="updateVerificationConfTable"
+                                     actionListener="#{projectEditorBean.updateVerificationConfTable}"
+                                     process="@this,productsPickList,verificationsPickList" update="projectVerificationConf"/>
+                </h:form>
+
+                <p:dialog id="addLinkDialog" header="Add link" widgetVar="addLinkDlg" resizable="false" modal="true">
+                    <h:form id="addLinkDialogForm">
+                        <h:panelGrid id="addLinkDialogTable" columns="2" style="margin-bottom:10px">
+                            <h:outputLabel for="paramProjectLinkDescription" value="Description:"/>
+                            <p:inputText id="paramProjectLinkDescription" value="#{projectEditorBean.newLink.description}"
+                                         required="true"/>
+                            <h:outputLabel for="paramProjectLinkURL" value="Link URL:"/>
+                            <p:inputText id="paramProjectLinkURL" value="#{projectEditorBean.newLink.url}" required="true"/>
+                            <h:outputText value=""/>
+                        </h:panelGrid>
+                        <p:commandButton id="saveLinkButton" value="Add" update=":projectEditorForm:externalLinkTable"
+                                         oncomplete="addLinkDlg.hide();"
+                                         actionListener="#{projectEditorBean.saveLink}"/>
+                        <p:commandButton id="cancelLinkButton" value="Cancel" onclick="addLinkDlg.hide();"/>
+                    </h:form>
+                </p:dialog>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

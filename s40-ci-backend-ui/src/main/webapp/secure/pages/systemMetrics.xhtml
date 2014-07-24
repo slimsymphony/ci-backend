@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+
+    <body>
+        <ui:composition template="../template/layout.xhtml">
+            <ui:define name="contentTitle">Cross project metrics</ui:define>
+
+            <ui:define name="head">
+                <script type="text/javascript" src="#{request.contextPath}/secure/resources/js/metricsUIUtils.js"/>
+                <script type="text/javascript">
+                    window.onload = initWindowParams;
+                    window.onresize = updateMetricsUnits;
+                </script>
+            </ui:define>
+
+            <ui:define name="content">
+                <ci:announcement model="#{globalAnnouncementsBean.getAnnouncementModel()}"/>
+
+                <h:outputText value="You do not have permission to system metrics" rendered="#{httpSessionBean.sysUser.systemMetricsAllowed == false}"/>
+
+                <h:form id="dashboardForm" rendered="#{httpSessionBean.sysUser.systemMetricsAllowed == true}">
+                    <p:remoteCommand name="updateChartSize" update="@(.jobMetricsChart)" />
+                </h:form>
+
+                <p:dashboard id="metricsDashboard" model="#{sysMetricsDashboardBean.model}" style="min-height: 1000px;">
+                    <p:ajax event="reorder"/>
+
+                    <p:panel id="#{sysMetricsCommitTrendBean.renderDiv}" styleClass="metricsPanel" header="#{sysMetricsCommitTrendBean.header}" closable="false" toggleable="true"
+                             rendered="#{sysMetricsCommitTrendBean.isRendered and httpSessionBean.sysUser.systemMetricsAllowed == true}">
+                        <ci:sysCommitTrendChart id="sysCommitTrendChart" pinCommand="#{sysMetricsCommitTrendBean.pinToMyToolbox}"/>
+                    </p:panel>
+
+                    <p:panel id="#{sysMetricsSubveriTrendBean.renderDiv}" styleClass="metricsPanel" header="#{sysMetricsSubveriTrendBean.header}" closable="false" toggleable="true"
+                             rendered="#{sysMetricsSubveriTrendBean.isRendered and httpSessionBean.sysUser.systemMetricsAllowed == true}">
+                        <ci:sysSubveriTrendChart id="sysSubveriTrendChart" pinCommand="#{sysMetricsSubveriTrendBean.pinToMyToolbox}"/>
+                    </p:panel>
+
+                    <p:panel id="#{sysMetricsHangtimeBean.renderDiv}" styleClass="metricsPanel" header="#{sysMetricsHangtimeBean.header}" closable="false" toggleable="true"
+                             rendered="#{sysMetricsHangtimeBean.isRendered and httpSessionBean.sysUser.systemMetricsAllowed == true}">
+                        <ci:sysHangtimeChart id="sysHangtimeChart" pinCommand="#{sysMetricsHangtimeBean.pinToMyToolbox}"/>
+                    </p:panel>
+
+                    <p:panel id="#{sysMetricsSlaveTrendBean.renderDiv}" styleClass="metricsPanel" header="#{sysMetricsSlaveTrendBean.header}" closable="false" toggleable="true"
+                             rendered="#{sysMetricsSlaveTrendBean.isRendered and httpSessionBean.sysUser.systemMetricsAllowed == true}">
+                        <ci:sysSlaveTrendChart id="sysSlaveTrendChart" pinCommand="#{sysMetricsSlaveTrendBean.pinToMyToolbox}"/>
+                    </p:panel>
+
+                </p:dashboard>
+
+                <script type="text/javascript" src="#{request.contextPath}/secure/resources/js/jqplotExport.js"/>
+                <script type="text/javascript" src="#{request.contextPath}/secure/resources/js/fullscreenMetrics.js"/>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+
+    <body>
+
+        <ui:composition template="../template/editorLayout.xhtml">
+            <ui:define name="contentTitle">Help topic</ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="Admin" outcome="admin"/>
+                <h:link value="CI Info" outcome="info"/>
+                <h:link value="Edit #{helpTopicBean.pageId}" outcome="helpTopicEditor" styleClass="active"
+                        rendered="#{not empty helpTopicBean.pageId}">
+                    <f:param name="id" value="#{helpTopicBean.pageId}"/>
+                </h:link>
+                <h:link value="Add new help topic" outcome="helpTopicEditor" styleClass="active" rendered="#{empty helpTopicBean.pageId}"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="helpTopicEditorForm">
+                    <h:panelGrid id="helpTopicEditTable" columns="2">
+                        <h:outputLabel for="pageName" value="Page" rendered="#{not empty helpTopicBean.helpTopic.page}"/>
+                        <p:inputText id="pageName" value="#{helpTopicBean.helpTopic.page}"
+                                     label="pageName" rendered="#{not empty helpTopicBean.helpTopic.page}"
+                                     disabled="true"/>
+                        <h:outputLabel for="pageTopic" value="Topic"/>
+                        <p:inputText id="pageTopic" value="#{helpTopicBean.helpTopic.topic}"
+                                     label="pageTopic" required="true" requiredMessage="You must type topic!"/>
+                        <h:outputLabel for="pageContent" value="Content"/>
+                        <p:editor id="pageContent" value="#{helpTopicBean.helpTopic.content}" width="600" height="500"
+                                  required="true" requiredMessage="Please give content!"/>
+
+                        <f:facet name="footer">
+                            <p:commandButton id="helpTopicSaveButton" value="Save" action="#{helpTopicBean.save}"
+                                             ajax="false"/>
+                            <p:commandButton id="helpTopicCancelButton" value="Cancel" action="#{helpTopicBean.cancelEdit}"
+                                             ajax="false" immediate="true"/>
+                        </f:facet>
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

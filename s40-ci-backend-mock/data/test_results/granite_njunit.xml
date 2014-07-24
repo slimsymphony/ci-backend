@@ -1,0 +1,1352 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuites>
+    <testsuite name="yapas [ sx_dbv ]">
+        <testcase classname="" name="platform-settings-test1_string-settings" time="9.862 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_1/html/platform-settings-test1_string-settings.html"/>
+        </testcase>
+        <testcase classname="" name="platform-settings-test2_bool" time="9.354 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_1/html/platform-settings-test2_bool.html"/>
+        </testcase>
+        <testcase classname="" name="platform-settings-test3_enum" time="9.139 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_1/html/platform-settings-test3_enum.html"/>
+        </testcase>
+        <testcase classname="" name="lcd-manager-test1_screen-rotation" time="6.225 s">
+            <na detail="No 3g SUPPORT" message="NO 3G SUPPORT"/>
+            <report relativePath="test_results_1/html/lcd-manager-test1_screen-rotation.html"/>
+        </testcase>
+        <testcase classname="" name="lcd-manager-test2_backlight" time="6.192 s">
+            <report relativePath="test_results_1/html/lcd-manager-test2_backlight.html"/>
+        </testcase>
+        <testcase classname="" name="lcd-manager-test4_standby" time="6.223 s">
+            <report relativePath="test_results_1/html/lcd-manager-test4_standby.html"/>
+        </testcase>
+        <testcase classname="" name="lcd-manager-test5_start-test-sequence" time="8.298 s">
+            <report relativePath="test_results_1/html/lcd-manager-test5_start-test-sequence.html"/>
+        </testcase>
+        <testcase classname="" name="lcd-manager-test6_video-overlay" time="6.393 s">
+            <report relativePath="test_results_1/html/lcd-manager-test6_video-overlay.html"/>
+        </testcase>
+        <testcase classname="" name="lcd-manager-test7_keylock-lights" time="9.241 s">
+            <report relativePath="test_results_1/html/lcd-manager-test7_keylock-lights.html"/>
+        </testcase>
+        <testcase classname="" name="lcd-manager-test8_secondary-screen" time="6.273 s">
+            <report relativePath="test_results_1/html/lcd-manager-test8_secondary-screen.html"/>
+        </testcase>
+        <testcase classname="" name="lcd-manager-test1_screen-rotation" time="9.261 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_1/html/lcd-manager-test1_screen-rotation.html"/>
+        </testcase>
+        <testcase classname="" name="lcd-manager-test2_backlight" time="9.3 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_1/html/lcd-manager-test2_backlight.html"/>
+        </testcase>
+        <testcase classname="" name="lcd-manager-test4_standby" time="9.282 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="SX ERROR"/>
+            <report relativePath="test_results_1/html/lcd-manager-test4_standby.html"/>
+        </testcase>
+        <testcase classname="" name="lcd-manager-test5_start-test-sequence" time="11.31 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="SX ERROR"/>
+            <report relativePath="test_results_1/html/lcd-manager-test5_start-test-sequence.html"/>
+        </testcase>
+        <testcase classname="" name="lcd-manager-test6_video-overlay" time="9.302 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_1/html/lcd-manager-test6_video-overlay.html"/>
+        </testcase>
+        <testcase classname="" name="lcd-manager-test7_keylock-lights" time="9.253 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_1/html/lcd-manager-test7_keylock-lights.html"/>
+        </testcase>
+        <testcase classname="" name="lcd-manager-test8_secondary-screen" time="9.24 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_1/html/lcd-manager-test8_secondary-screen.html"/>
+        </testcase>
+        <testcase classname="" name="certificate-manager-test__Get_all_certificates" time="8.229 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="SX ERROR"/>
+            <report relativePath="test_results_1/html/certificate-manager-test__Get_all_certificates.html"/>
+        </testcase>
+        <testcase classname="" name="phone-lock-test1_get-phone-lock-status-change" time="6.723 s">
+            <report relativePath="test_results_1/html/phone-lock-test1_get-phone-lock-status-change.html"/>
+        </testcase>
+        <testcase classname="" name="phone-lock-test2_get-phone-lock-state-change" time="8.9 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="SX ERROR"/>
+            <report relativePath="test_results_1/html/phone-lock-test2_get-phone-lock-state-change.html"/>
+        </testcase>
+        <testcase classname="" name="phone-lock-test3_phone-lock-code-change" time="5 m 6.75 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="TIMEOUT"/>
+            <report relativePath="test_results_1/html/phone-lock-test3_phone-lock-code-change.html"/>
+        </testcase>
+        <testcase classname="" name="phone-lock-test4_phone-lock-reset" time="5 m 7.29 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="TIMEOUT"/>
+            <report relativePath="test_results_1/html/phone-lock-test4_phone-lock-reset.html"/>
+        </testcase>
+        <testcase classname="" name="xml-builder-negative-test1" time="4.413 s">
+            <report relativePath="test_results_1/html/xml-builder-negative-test1.html"/>
+        </testcase>
+        <testcase classname="" name="xml-builder-negative-test2" time="4.388 s">
+            <report relativePath="test_results_1/html/xml-builder-negative-test2.html"/>
+        </testcase>
+        <testcase classname="" name="test-wlan-connect-public" time="10.307 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_1/html/test-wlan-connect-public.html"/>
+        </testcase>
+        <testcase classname="" name="test-wlan-connect-public-wrong-password" time="10.293 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_1/html/test-wlan-connect-public-wrong-password.html"/>
+        </testcase>
+        <testcase classname="" name="test-wlan-connect-wep" time="10.247 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_1/html/test-wlan-connect-wep.html"/>
+        </testcase>
+        <testcase classname="" name="test-wlan-connect-wep-wrong-password" time="10.239 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_1/html/test-wlan-connect-wep-wrong-password.html"/>
+        </testcase>
+        <testcase classname="" name="test-wlan-connect-wpa" time="10.249 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_1/html/test-wlan-connect-wpa.html"/>
+        </testcase>
+        <testcase classname="" name="test-wlan-connect-wpa2" time="10.288 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_1/html/test-wlan-connect-wpa2.html"/>
+        </testcase>
+        <testcase classname="" name="test-wlan-connect-wpa2-wrong-password" time="10.547 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_1/html/test-wlan-connect-wpa2-wrong-password.html"/>
+        </testcase>
+        <testcase classname="" name="test-wlan-connect-wpa-wrong-password" time="10.28 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_1/html/test-wlan-connect-wpa-wrong-password.html"/>
+        </testcase>
+        <testcase classname="" name="test-wlan-scan" time="13.255 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_1\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_1/html/test-wlan-scan.html"/>
+        </testcase>
+        <testcase classname="" name="YCopyManager___Copyright" time="4.485 s">
+            <report relativePath="test_results_1/html/YCopyManager___Copyright.html"/>
+        </testcase>
+        <testcase classname="" name="YCopyManager___Core_Version" time="4.453 s">
+            <report relativePath="test_results_1/html/YCopyManager___Core_Version.html"/>
+        </testcase>
+        <testcase classname="" name="YCopyManager___Hardware_Version" time="4.504 s">
+            <report relativePath="test_results_1/html/YCopyManager___Hardware_Version.html"/>
+        </testcase>
+        <testcase classname="" name="YCopyManager___Platform_Short_Version" time="4.557 s">
+            <report relativePath="test_results_1/html/YCopyManager___Platform_Short_Version.html"/>
+        </testcase>
+        <testcase classname="" name="YCopyManager___Platform_Version" time="4.44 s">
+            <report relativePath="test_results_1/html/YCopyManager___Platform_Version.html"/>
+        </testcase>
+        <testcase classname="" name="YCopyManager___Product_Name" time="4.397 s">
+            <report relativePath="test_results_1/html/YCopyManager___Product_Name.html"/>
+        </testcase>
+        <testcase classname="" name="YCopyManager___Serial_Number" time="4.363 s">
+            <report relativePath="test_results_1/html/YCopyManager___Serial_Number.html"/>
+        </testcase>
+        <testcase classname="" name="cypto-test" time="7.537 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_2\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_2\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_2/html/cypto-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-logger-blacklist-test" time="4.367 s">
+            <report relativePath="test_results_2/html/analytics-logger-blacklist-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-logger-event-test" time="4.893 s">
+            <report relativePath="test_results_2/html/analytics-logger-event-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-logger-quota-full-event-test" time="4.778 s">
+            <report relativePath="test_results_2/html/analytics-logger-quota-full-event-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-logger-set-opted-in-test" time="4.713 s">
+            <report relativePath="test_results_2/html/analytics-logger-set-opted-in-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-logger-stop-session-test" time="4.51 s">
+            <report relativePath="test_results_2/html/analytics-logger-stop-session-test.html"/>
+        </testcase>
+        <testcase classname="" name="voice-call-create-and-accept-and-mt-reject" time="19.029 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_2\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_2\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_2/html/voice-call-create-and-accept-and-mt-reject.html"/>
+        </testcase>
+        <testcase classname="" name="voice-call-create-and-accept-and-reject" time="18.588 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_2\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_2\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_2/html/voice-call-create-and-accept-and-reject.html"/>
+        </testcase>
+        <testcase classname="" name="voice-call-create-and-mt-reject" time="18.079 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_2\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_2\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_2/html/voice-call-create-and-mt-reject.html"/>
+        </testcase>
+        <testcase classname="" name="voice-call-create-and-reject" time="18.689 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_2\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_2\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_2/html/voice-call-create-and-reject.html"/>
+        </testcase>
+        <testcase classname="" name="voice-call-incoming-and-answer-and-mt-reject" time="5 m 7.109 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_2\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_2\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="TIMEOUT"/>
+            <report relativePath="test_results_2/html/voice-call-incoming-and-answer-and-mt-reject.html"/>
+        </testcase>
+        <testcase classname="" name="voice-call-incoming-and-answer-and-reject" time="5 m 7.145 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_2\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_2\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="TIMEOUT"/>
+            <report relativePath="test_results_2/html/voice-call-incoming-and-answer-and-reject.html"/>
+        </testcase>
+        <testcase classname="" name="voice-call-incoming-and-mt-reject" time="5 m 7.04 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_2\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_2\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="TIMEOUT"/>
+            <report relativePath="test_results_2/html/voice-call-incoming-and-mt-reject.html"/>
+        </testcase>
+        <testcase classname="" name="voice-call-incoming-and-reject" time="5 m 6.66 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_2\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_2\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="TIMEOUT"/>
+            <report relativePath="test_results_2/html/voice-call-incoming-and-reject.html"/>
+        </testcase>
+        <testcase classname="" name="database-blob-test" time="5.252 s">
+            <report relativePath="test_results_2/html/database-blob-test.html"/>
+        </testcase>
+        <testcase classname="" name="database-clean-test" time="4.553 s">
+            <report relativePath="test_results_2/html/database-clean-test.html"/>
+        </testcase>
+        <testcase classname="" name="database-datatype-test" time="8.012 s">
+            <report relativePath="test_results_2/html/database-datatype-test.html"/>
+        </testcase>
+        <testcase classname="" name="database-datatype-with-default-value-test" time="8.186 s">
+            <report relativePath="test_results_2/html/database-datatype-with-default-value-test.html"/>
+        </testcase>
+        <testcase classname="" name="database-insert-data-into-nonexistent-table-test" time="5.436 s">
+            <report relativePath="test_results_2/html/database-insert-data-into-nonexistent-table-test.html"/>
+        </testcase>
+        <testcase classname="" name="database-no-record-return-test" time="7.441 s">
+            <report relativePath="test_results_2/html/database-no-record-return-test.html"/>
+        </testcase>
+        <testcase classname="" name="database-populate-test" time="5.884 s">
+            <report relativePath="test_results_2/html/database-populate-test.html"/>
+        </testcase>
+        <testcase classname="" name="database-query-with-wrong-sql-test" time="5.41 s">
+            <report relativePath="test_results_2/html/database-query-with-wrong-sql-test.html"/>
+        </testcase>
+        <testcase classname="" name="database-read-write-test" time="5.526 s">
+            <report relativePath="test_results_2/html/database-read-write-test.html"/>
+        </testcase>
+        <testcase classname="" name="database-select-delete-concurrency-test" time="11.764 s">
+            <report relativePath="test_results_2/html/database-select-delete-concurrency-test.html"/>
+        </testcase>
+        <testcase classname="" name="sound-recorder-test1__record-pause-stop-keeprecorder" time="10.274 s">
+            <report relativePath="test_results_2/html/sound-recorder-test1__record-pause-stop-keeprecorder.html"/>
+        </testcase>
+        <testcase classname="" name="sound-recorder-test2__record-pause-getstreamposition-stop-keeprecorder" time="10.337 s">
+            <report relativePath="test_results_2/html/sound-recorder-test2__record-pause-getstreamposition-stop-keeprecorder.html"/>
+        </testcase>
+        <testcase classname="" name="sound-recorder-test3__record-stop-delrecorder" time="8.239 s">
+            <report relativePath="test_results_2/html/sound-recorder-test3__record-stop-delrecorder.html"/>
+        </testcase>
+        <testcase classname="" name="sound-recorder-test4__record-pause-resume-stop-delrecorder" time="8.344 s">
+            <report relativePath="test_results_2/html/sound-recorder-test4__record-pause-resume-stop-delrecorder.html"/>
+        </testcase>
+        <testcase classname="" name="observed-id-test" time="4.848 s">
+            <report relativePath="test_results_2/html/observed-id-test.html"/>
+        </testcase>
+        <testcase classname="" name="datetime-parse-test" time="8.078 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_2\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_2\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_2/html/datetime-parse-test.html"/>
+        </testcase>
+        <testcase classname="" name="util-test" time="4.432 s">
+            <report relativePath="test_results_2/html/util-test.html"/>
+        </testcase>
+        <testcase classname="" name="1__delete_IAP_App" time="4.758 s">
+            <report relativePath="test_results_3/html/1__delete_IAP_App.html"/>
+        </testcase>
+        <testcase classname="" name="1__get_children_of_App_IAP_root" time="7.752 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_3/html/1__get_children_of_App_IAP_root.html"/>
+        </testcase>
+        <testcase classname="" name="1__get_default_IAP_App_uid" time="7.708 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_3/html/1__get_default_IAP_App_uid.html"/>
+        </testcase>
+        <testcase classname="" name="1__set_default_IAP_App_uid" time="7.469 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_3/html/1__set_default_IAP_App_uid.html"/>
+        </testcase>
+        <testcase classname="" name="1__test_exists" time="7.461 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_3/html/1__test_exists.html"/>
+        </testcase>
+        <testcase classname="" name="2__get_children_of_App_IAP_item_root" time="7.284 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_3/html/2__get_children_of_App_IAP_item_root.html"/>
+        </testcase>
+        <testcase classname="" name="2__get_IAP_App_list" time="7.403 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_3/html/2__get_IAP_App_list.html"/>
+        </testcase>
+        <testcase classname="" name="2__set_IAP_App_setting_or_sub-setting" time="7.925 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_3/html/2__set_IAP_App_setting_or_sub-setting.html"/>
+        </testcase>
+        <testcase classname="" name="2__test_is-leaf" time="7.578 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_3/html/2__test_is-leaf.html"/>
+        </testcase>
+        <testcase classname="" name="3__get_children_of_App_IAP_sub-setting" time="7.361 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_3/html/3__get_children_of_App_IAP_sub-setting.html"/>
+        </testcase>
+        <testcase classname="" name="3__get_IAP_App_setting_or_sub-setting" time="7.676 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_3/html/3__get_IAP_App_setting_or_sub-setting.html"/>
+        </testcase>
+        <testcase classname="" name="4__get_children_of_sim" time="7.307 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="SX ERROR"/>
+            <report relativePath="test_results_3/html/4__get_children_of_sim.html"/>
+        </testcase>
+        <testcase classname="" name="4__Invalid_path" time="4.386 s">
+            <report relativePath="test_results_3/html/4__Invalid_path.html"/>
+        </testcase>
+        <testcase classname="" name="5__get_children_of_invalid_path" time="4.484 s">
+            <report relativePath="test_results_3/html/5__get_children_of_invalid_path.html"/>
+        </testcase>
+        <testcase classname="" name="test-imei" time="7.313 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_3/html/test-imei.html"/>
+        </testcase>
+        <testcase classname="" name="wait-test" time="4.722 s">
+            <report relativePath="test_results_3/html/wait-test.html"/>
+        </testcase>
+        <testcase classname="" name="wait-test-bind" time="6.188 s">
+            <report relativePath="test_results_3/html/wait-test-bind.html"/>
+        </testcase>
+        <testcase classname="" name="http-authenticate" time="11.452 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_3/html/http-authenticate.html"/>
+        </testcase>
+        <testcase classname="" name="http-bad-host-name" time="4.863 s">
+            <report relativePath="test_results_3/html/http-bad-host-name.html"/>
+        </testcase>
+        <testcase classname="" name="http-cancel" time="8.449 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_3/html/http-cancel.html"/>
+        </testcase>
+        <testcase classname="" name="http-data-connection-denied" time="9.632 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_3/html/http-data-connection-denied.html"/>
+        </testcase>
+        <testcase classname="" name="http-hello" time="6.113 s">
+            <report relativePath="test_results_3/html/http-hello.html"/>
+        </testcase>
+        <testcase classname="" name="http-multi-chunked-request" time="5 m 7.494 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="TIMEOUT"/>
+            <report relativePath="test_results_3/html/http-multi-chunked-request.html"/>
+        </testcase>
+        <testcase classname="" name="http-multiple-one-fail" time="7.25 s">
+            <report relativePath="test_results_3/html/http-multiple-one-fail.html"/>
+        </testcase>
+        <testcase classname="" name="http-multi-request" time="7.806 s">
+            <report relativePath="test_results_3/html/http-multi-request.html"/>
+        </testcase>
+        <testcase classname="" name="http-polling-without-reuse" time="36.23 s">
+            <report relativePath="test_results_3/html/http-polling-without-reuse.html"/>
+        </testcase>
+        <testcase classname="" name="http-polling-without-reuse2" time="39.439 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_3/html/http-polling-without-reuse2.html"/>
+        </testcase>
+        <testcase classname="" name="http-polling-with-reuse" time="11.01 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_3/html/http-polling-with-reuse.html"/>
+        </testcase>
+        <testcase classname="" name="http-post" time="5.91 s">
+            <report relativePath="test_results_3/html/http-post.html"/>
+        </testcase>
+        <testcase classname="" name="http-post-form-data" time="6.001 s">
+            <report relativePath="test_results_3/html/http-post-form-data.html"/>
+        </testcase>
+        <testcase classname="" name="https-data-connection-denied" time="9.198 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_3/html/https-data-connection-denied.html"/>
+        </testcase>
+        <testcase classname="" name="https-status-callback-error" time="4.85 s">
+            <report relativePath="test_results_3/html/https-status-callback-error.html"/>
+        </testcase>
+        <testcase classname="" name="http-status" time="4.701 s">
+            <report relativePath="test_results_3/html/http-status.html"/>
+        </testcase>
+        <testcase classname="" name="http-status-callback-error" time="4.672 s">
+            <report relativePath="test_results_3/html/http-status-callback-error.html"/>
+        </testcase>
+        <testcase classname="" name="http-streaming1" time="5 m 7.229 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="TIMEOUT"/>
+            <report relativePath="test_results_3/html/http-streaming1.html"/>
+        </testcase>
+        <testcase classname="" name="http-timeout" time="1 m 4.378 s">
+            <report relativePath="test_results_3/html/http-timeout.html"/>
+        </testcase>
+        <testcase classname="" name="http-user-agent" time="5.857 s">
+            <report relativePath="test_results_3/html/http-user-agent.html"/>
+        </testcase>
+        <testcase classname="" name="xml-builder-test" time="4.567 s">
+            <report relativePath="test_results_3/html/xml-builder-test.html"/>
+        </testcase>
+        <testcase classname="" name="json-stream-test" time="7.335 s">
+            <report relativePath="test_results_3/html/json-stream-test.html"/>
+        </testcase>
+        <testcase classname="" name="json-test" time="4.551 s">
+            <report relativePath="test_results_3/html/json-test.html"/>
+        </testcase>
+        <testcase classname="" name="sql-_json-streaming-test" time="4.602 s">
+            <report relativePath="test_results_3/html/sql-_json-streaming-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-utils-app-event-parameter-test" time="4.878 s">
+            <report relativePath="test_results_3/html/analytics-utils-app-event-parameter-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-utils-application-crash-event-parameter-test" time="4.564 s">
+            <report relativePath="test_results_3/html/analytics-utils-application-crash-event-parameter-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-utils-app-stack-test" time="7.749 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_3\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_3/html/analytics-utils-app-stack-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-utils-cached-sort-test" time="4.543 s">
+            <report relativePath="test_results_3/html/analytics-utils-cached-sort-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-utils-charger-event-parameter-test" time="4.557 s">
+            <report relativePath="test_results_3/html/analytics-utils-charger-event-parameter-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-utils-data-traffic-event-parameter-test" time="4.627 s">
+            <report relativePath="test_results_3/html/analytics-utils-data-traffic-event-parameter-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-utils-device-crash-test" time="4.568 s">
+            <report relativePath="test_results_3/html/analytics-utils-device-crash-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-utils-device-event-parameter-test" time="4.576 s">
+            <report relativePath="test_results_3/html/analytics-utils-device-event-parameter-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-utils-get-files-test" time="4.755 s">
+            <report relativePath="test_results_3/html/analytics-utils-get-files-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-utils-installer-event-parameter-test" time="4.633 s">
+            <report relativePath="test_results_3/html/analytics-utils-installer-event-parameter-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-utils-json-escaping-test" time="4.853 s">
+            <report relativePath="test_results_3/html/analytics-utils-json-escaping-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-utils-quota-test" time="4.673 s">
+            <report relativePath="test_results_3/html/analytics-utils-quota-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-utils-sim-event-parameter-test" time="4.547 s">
+            <report relativePath="test_results_3/html/analytics-utils-sim-event-parameter-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-utils-sim-info-manager-test" time="4.564 s">
+            <report relativePath="test_results_3/html/analytics-utils-sim-info-manager-test.html"/>
+        </testcase>
+        <testcase classname="" name="keytone-player-test1__play-stop" time="6.34 s">
+            <report relativePath="test_results_3/html/keytone-player-test1__play-stop.html"/>
+        </testcase>
+        <testcase classname="" name="keytone-player-test2__set-reset_function" time="8.333 s">
+            <report relativePath="test_results_3/html/keytone-player-test2__set-reset_function.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_0-2_play_3gp_video" time="33.442 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_0-2_play_3gp_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_0-1_play_3gp_video" time="47.52 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_0-1_play_3gp_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_1-3_play_H263_SQCIF_(Video_and_AAC_audio)_video" time="32.535 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_1-3_play_H263_SQCIF_(Video_and_AAC_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_1-1_play_H263_SQCIF_(Video_and_AMR_audio)_video" time="32.388 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_1-1_play_H263_SQCIF_(Video_and_AMR_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_1-2_play_H263_SQCIF_(Video_and_AWB_(AMR_wideband)_audio)_video" time="32.457 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_1-2_play_H263_SQCIF_(Video_and_AWB_(AMR_wideband)_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_2-3_play_H263_QCIF_(Video_and_AAC_audio)_video" time="32.551 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_2-3_play_H263_QCIF_(Video_and_AAC_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_2-4_play_H263_QCIF_(Video_and_AACPlus_audio)_video" time="32.63 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_2-4_play_H263_QCIF_(Video_and_AACPlus_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_2-2_play_H263_QCIF_(Video_and_AWB_(AMR_wideband)_audio)_video" time="32.974 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_2-2_play_H263_QCIF_(Video_and_AWB_(AMR_wideband)_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_2-5_play_H263_QCIF_(Video_and_eAACPlus_audio)_video" time="32.395 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_2-5_play_H263_QCIF_(Video_and_eAACPlus_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_2-6_play_H263_QCIF_(Video)_video" time="32.412 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_2-6_play_H263_QCIF_(Video)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_2-1play_H263_QCIF_(Video_and_AMR_audio)_video" time="32.409 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_2-1play_H263_QCIF_(Video_and_AMR_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_3-3_play_MPEG4_SQCIF_(Video_and_AAC_audio)_video" time="32.451 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_3-3_play_MPEG4_SQCIF_(Video_and_AAC_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_3-1_play_MPEG4_SQCIF_(Video_and_AMR_audio)_video" time="32.556 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_3-1_play_MPEG4_SQCIF_(Video_and_AMR_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_3-2_play_MPEG4_SQCIF_(Video_and_AWB_(AMR_wideband)_audio)_video" time="32.545 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_3-2_play_MPEG4_SQCIF_(Video_and_AWB_(AMR_wideband)_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_4-3_play_MPEG4_QCIF_(Video_and_AAC_audio)_video" time="32.651 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_4-3_play_MPEG4_QCIF_(Video_and_AAC_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_4-4_play_MPEG4_QCIF_(Video_and_AACPlus_audio)_video" time="32.588 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_4-4_play_MPEG4_QCIF_(Video_and_AACPlus_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_4-1_play_MPEG4_QCIF_(Video_and_AMR_audio)_video" time="32.663 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_4-1_play_MPEG4_QCIF_(Video_and_AMR_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_4-2_play_MPEG4_QCIF_(Video_and_AWB_(AMR_wideband)_audio)_video" time="32.488 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_4-2_play_MPEG4_QCIF_(Video_and_AWB_(AMR_wideband)_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_4-5_play_MPEG4_QCIF_(Video_and_eAACPlus_audio)_video" time="32.484 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_4-5_play_MPEG4_QCIF_(Video_and_eAACPlus_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_4-6_play_MPEG4_QCIF_(Video_only)_video" time="32.549 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_4-6_play_MPEG4_QCIF_(Video_only)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_5-3_play_AAC_video" time="32.569 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_5-3_play_AAC_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_5-4_play_AACPlus_video" time="1 m 16.531 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_5-4_play_AACPlus_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_5-6_play_AMR_Silence_Detection_video" time="32.397 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_5-6_play_AMR_Silence_Detection_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_5-1_play_AMR-nb_video" time="32.464 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_5-1_play_AMR-nb_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_5-2_play_AMR-wb_video" time="32.993 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_5-2_play_AMR-wb_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_5-5_play_eAACPlus_video" time="32.441 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_5-5_play_eAACPlus_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_6-1_play_Frame_Test_video" time="33.302 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_6-1_play_Frame_Test_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_7-1_play_Advanced_options_(Helix_H263_and_Mpeg-4)_video" time="32.518 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_7-1_play_Advanced_options_(Helix_H263_and_Mpeg-4)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_7-2_play_Advanced_options_(Helix_Mpeg-4_only)_video" time="32.401 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_7-2_play_Advanced_options_(Helix_Mpeg-4_only)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_7-3_play_Advanced_options_(Packet_Video_Advanced)_video" time="32.561 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_7-3_play_Advanced_options_(Packet_Video_Advanced)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_8-2_play_Long_Content_on_Darwin_Streaming_Server_video" time="35.363 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_8-2_play_Long_Content_on_Darwin_Streaming_Server_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_8-1_play_Long_Content_on_Real_Mobile_Server_video" time="32.44 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_8-1_play_Long_Content_on_Real_Mobile_Server_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_9-1_play_Live_Streaming_video" time="32.319 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_9-1_play_Live_Streaming_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_10-4_play_(Real_media_audio_8)_video" time="32.385 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_10-4_play_(Real_media_audio_8)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_10-2_play_(Real_media_audio_5)_video" time="32.461 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_10-2_play_(Real_media_audio_5)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_10-3_play_(Real_media_audio_6)_video" time="32.384 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_10-3_play_(Real_media_audio_6)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_10-1_play_(Real_media_audio_4)_video" time="32.367 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_10-1_play_(Real_media_audio_4)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_10-5_play_(Real_media_audio_10)_video" time="32.339 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_10-5_play_(Real_media_audio_10)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_11-4_play_(Real_media_video_10)_video" time="32.384 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_11-4_play_(Real_media_video_10)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_11-2_play_(Real_media_video_8)_video" time="32.364 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_11-2_play_(Real_media_video_8)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_11-1_play_(Real_media_video_7)_video" time="32.345 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_11-1_play_(Real_media_video_7)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_11-3_play_(Real_media_video_9)_video" time="32.341 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_11-3_play_(Real_media_video_9)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_12-1_play_(Real_media_video_and_audio_7)_video" time="32.291 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_12-1_play_(Real_media_video_and_audio_7)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_12-4_play_(Real_media_video_and_audio_10)_video" time="32.346 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_12-4_play_(Real_media_video_and_audio_10)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_12-3_play_(Real_media_video_and_audio_9)_video" time="32.834 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_12-3_play_(Real_media_video_and_audio_9)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_12-2_play_(Real_media_video_and_audio_8)_video" time="32.564 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_12-2_play_(Real_media_video_and_audio_8)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_13-3_play_HSDPA_(1500kbps_target_bitrate)_video" time="32.324 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_13-3_play_HSDPA_(1500kbps_target_bitrate)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_13-2_play_HSDPA_(1000kbps_target_bitrate)_video" time="32.313 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_13-2_play_HSDPA_(1000kbps_target_bitrate)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_13-4_play_HSDPA_(2000kbps_target_bitrate)_video" time="33.114 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_13-4_play_HSDPA_(2000kbps_target_bitrate)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_13-1_play_HSDPA_(500kbps_target_bitrate)_video" time="35.314 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_13-1_play_HSDPA_(500kbps_target_bitrate)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_13-6_play_HSDPA_(Mpeg-4_high_bitrate_streaming)_video" time="34.784 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_13-6_play_HSDPA_(Mpeg-4_high_bitrate_streaming)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_13-5_play_HSDPA_(Real_10_video_at_640x360_resolution)_video" time="32.331 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_13-5_play_HSDPA_(Real_10_video_at_640x360_resolution)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_0-2_play_3gp_video" time="32.368 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_0-2_play_3gp_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_0-1_play_3gp_video" time="47.391 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_0-1_play_3gp_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_1-3_play_H263_SQCIF_(Video_and_AAC_audio)_video" time="32.535 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_1-3_play_H263_SQCIF_(Video_and_AAC_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_1-1_play_H263_SQCIF_(Video_and_AMR_audio)_video" time="32.491 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_1-1_play_H263_SQCIF_(Video_and_AMR_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_1-2_play_H263_SQCIF_(Video_and_AWB_(AMR_wideband)_audio)_video" time="32.668 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_1-2_play_H263_SQCIF_(Video_and_AWB_(AMR_wideband)_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_2-3_play_H263_QCIF_(Video_and_AAC_audio)_video" time="32.426 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_2-3_play_H263_QCIF_(Video_and_AAC_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_2-4_play_H263_QCIF_(Video_and_AACPlus_audio)_video" time="32.738 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_2-4_play_H263_QCIF_(Video_and_AACPlus_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_2-2_play_H263_QCIF_(Video_and_AWB_(AMR_wideband)_audio)_video" time="32.41 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_2-2_play_H263_QCIF_(Video_and_AWB_(AMR_wideband)_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_2-5_play_H263_QCIF_(Video_and_eAACPlus_audio)_video" time="33.346 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_2-5_play_H263_QCIF_(Video_and_eAACPlus_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_2-6_play_H263_QCIF_(Video)_video" time="32.384 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_2-6_play_H263_QCIF_(Video)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_2-1play_H263_QCIF_(Video_and_AMR_audio)_video" time="32.536 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_2-1play_H263_QCIF_(Video_and_AMR_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_3-3_play_MPEG4_SQCIF_(Video_and_AAC_audio)_video" time="33.95 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_3-3_play_MPEG4_SQCIF_(Video_and_AAC_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_3-1_play_MPEG4_SQCIF_(Video_and_AMR_audio)_video" time="36.705 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_3-1_play_MPEG4_SQCIF_(Video_and_AMR_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_3-2_play_MPEG4_SQCIF_(Video_and_AWB_(AMR_wideband)_audio)_video" time="32.459 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_3-2_play_MPEG4_SQCIF_(Video_and_AWB_(AMR_wideband)_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_4-3_play_MPEG4_QCIF_(Video_and_AAC_audio)_video" time="32.415 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_4-3_play_MPEG4_QCIF_(Video_and_AAC_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_4-4_play_MPEG4_QCIF_(Video_and_AACPlus_audio)_video" time="32.421 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_4-4_play_MPEG4_QCIF_(Video_and_AACPlus_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_4-1_play_MPEG4_QCIF_(Video_and_AMR_audio)_video" time="32.48 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_4-1_play_MPEG4_QCIF_(Video_and_AMR_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_4-2_play_MPEG4_QCIF_(Video_and_AWB_(AMR_wideband)_audio)_video" time="33.084 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_4-2_play_MPEG4_QCIF_(Video_and_AWB_(AMR_wideband)_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_4-5_play_MPEG4_QCIF_(Video_and_eAACPlus_audio)_video" time="32.605 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_4-5_play_MPEG4_QCIF_(Video_and_eAACPlus_audio)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_4-6_play_MPEG4_QCIF_(Video_only)_video" time="32.33 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_4-6_play_MPEG4_QCIF_(Video_only)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_5-3_play_AAC_video" time="32.502 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_5-3_play_AAC_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_5-4_play_AACPlus_video" time="32.653 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_5-4_play_AACPlus_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_5-6_play_AMR_Silence_Detection_video" time="1 m 14.764 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_5-6_play_AMR_Silence_Detection_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_5-1_play_AMR-nb_video" time="32.339 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_5-1_play_AMR-nb_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_5-2_play_AMR-wb_video" time="32.502 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_5-2_play_AMR-wb_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_5-5_play_eAACPlus_video" time="32.462 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_5-5_play_eAACPlus_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_6-1_play_Frame_Test_video" time="39.535 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_6-1_play_Frame_Test_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_7-1_play_Advanced_options_(Helix_H263_and_Mpeg-4)_video" time="32.569 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_7-1_play_Advanced_options_(Helix_H263_and_Mpeg-4)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_7-2_play_Advanced_options_(Helix_Mpeg-4_only)_video" time="32.499 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_7-2_play_Advanced_options_(Helix_Mpeg-4_only)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_7-3_play_Advanced_options_(Packet_Video_Advanced)_video" time="39.208 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_7-3_play_Advanced_options_(Packet_Video_Advanced)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_8-2_play_Long_Content_on_Darwin_Streaming_Server_video" time="32.576 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_8-2_play_Long_Content_on_Darwin_Streaming_Server_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_8-1_play_Long_Content_on_Real_Mobile_Server_video" time="32.444 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_8-1_play_Long_Content_on_Real_Mobile_Server_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_9-1_play_Live_Streaming_video" time="32.314 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_9-1_play_Live_Streaming_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_10-4_play_(Real_media_audio_8)_video" time="35.506 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_10-4_play_(Real_media_audio_8)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_10-2_play_(Real_media_audio_5)_video" time="32.254 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_10-2_play_(Real_media_audio_5)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_10-3_play_(Real_media_audio_6)_video" time="32.347 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_10-3_play_(Real_media_audio_6)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_10-1_play_(Real_media_audio_4)_video" time="32.424 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_10-1_play_(Real_media_audio_4)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_10-5_play_(Real_media_audio_10)_video" time="32.337 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_10-5_play_(Real_media_audio_10)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_11-4_play_(Real_media_video_10)_video" time="32.319 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_11-4_play_(Real_media_video_10)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_11-2_play_(Real_media_video_8)_video" time="32.332 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_11-2_play_(Real_media_video_8)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_11-1_play_(Real_media_video_7)_video" time="32.342 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_11-1_play_(Real_media_video_7)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_11-3_play_(Real_media_video_9)_video" time="32.55 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_11-3_play_(Real_media_video_9)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_12-1_play_(Real_media_video_and_audio_7)_video" time="32.696 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_12-1_play_(Real_media_video_and_audio_7)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_12-4_play_(Real_media_video_and_audio_10)_video" time="33.01 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_12-4_play_(Real_media_video_and_audio_10)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_12-3_play_(Real_media_video_and_audio_9)_video" time="35.68 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_12-3_play_(Real_media_video_and_audio_9)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_12-2_play_(Real_media_video_and_audio_8)_video" time="32.595 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_12-2_play_(Real_media_video_and_audio_8)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_13-3_play_HSDPA_(1500kbps_target_bitrate)_video" time="32.337 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_13-3_play_HSDPA_(1500kbps_target_bitrate)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_13-2_play_HSDPA_(1000kbps_target_bitrate)_video" time="32.371 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_13-2_play_HSDPA_(1000kbps_target_bitrate)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_13-4_play_HSDPA_(2000kbps_target_bitrate)_video" time="32.349 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_13-4_play_HSDPA_(2000kbps_target_bitrate)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_13-1_play_HSDPA_(500kbps_target_bitrate)_video" time="32.349 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_13-1_play_HSDPA_(500kbps_target_bitrate)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_13-6_play_HSDPA_(Mpeg-4_high_bitrate_streaming)_video" time="34.795 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_13-6_play_HSDPA_(Mpeg-4_high_bitrate_streaming)_video.html"/>
+        </testcase>
+        <testcase classname="" name="video-player-test_13-5_play_HSDPA_(Real_10_video_at_640x360_resolution)_video" time="32.336 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/video-player-test_13-5_play_HSDPA_(Real_10_video_at_640x360_resolution)_video.html"/>
+        </testcase>
+        <testcase classname="" name="sim-manager-test-1__Test_the_sim_manager__get_general_information_from_sim_manager" time="7.709 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/sim-manager-test-1__Test_the_sim_manager__get_general_information_from_sim_manager.html"/>
+        </testcase>
+        <testcase classname="" name="sim-manager-test-2__Test_the_sim_manager__get_pin_state_by_enter_the_leagal_illegal_params" time="8.623 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/sim-manager-test-2__Test_the_sim_manager__get_pin_state_by_enter_the_leagal_illegal_params.html"/>
+        </testcase>
+        <testcase classname="" name="sim-manager-test-3__Test_the_sim_manager__get_pin_remaining_time_by_enter_the_leagal_illegal_params" time="8.981 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/sim-manager-test-3__Test_the_sim_manager__get_pin_remaining_time_by_enter_the_leagal_illegal_params.html"/>
+        </testcase>
+        <testcase classname="" name="sim-manager-test-4__Test_the_sim_manager__change-pin_related_methods_by_enter_the_leagal_illegal_params" time="9.526 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/sim-manager-test-4__Test_the_sim_manager__change-pin_related_methods_by_enter_the_leagal_illegal_params.html"/>
+        </testcase>
+        <testcase classname="" name="ical-recurrence-test" time="36.341 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="NO RESPONSE"/>
+            <report relativePath="test_results_4/html/ical-recurrence-test.html"/>
+        </testcase>
+        <testcase classname="" name="filesystem-test-1_write_read_txt_mode" time="4.618 s">
+            <report relativePath="test_results_4/html/filesystem-test-1_write_read_txt_mode.html"/>
+        </testcase>
+        <testcase classname="" name="filesystem-test-2_write_read_bin_mode" time="4.612 s">
+            <report relativePath="test_results_4/html/filesystem-test-2_write_read_bin_mode.html"/>
+        </testcase>
+        <testcase classname="" name="filesystem-test-3_seek_positive_value_in_bin_mode" time="4.882 s">
+            <report relativePath="test_results_4/html/filesystem-test-3_seek_positive_value_in_bin_mode.html"/>
+        </testcase>
+        <testcase classname="" name="filesystem-test-4_tell_positive_in_bin_mode" time="4.66 s">
+            <report relativePath="test_results_4/html/filesystem-test-4_tell_positive_in_bin_mode.html"/>
+        </testcase>
+        <testcase classname="" name="filesystem-test-5_rename_a_file" time="4.622 s">
+            <report relativePath="test_results_4/html/filesystem-test-5_rename_a_file.html"/>
+        </testcase>
+        <testcase classname="" name="filesystem-test-6_filesystem-manager_manager" time="4.596 s">
+            <report relativePath="test_results_4/html/filesystem-test-6_filesystem-manager_manager.html"/>
+        </testcase>
+        <testcase classname="" name="filesystem-test-7_filesystem-manager__get_permissions" time="4.608 s">
+            <report relativePath="test_results_4/html/filesystem-test-7_filesystem-manager__get_permissions.html"/>
+        </testcase>
+        <testcase classname="" name="filesystem-test-8_filesystem-manager__get_file_list" time="4.619 s">
+            <report relativePath="test_results_4/html/filesystem-test-8_filesystem-manager__get_file_list.html"/>
+        </testcase>
+        <testcase classname="" name="filesystem-test-9_filesystem_make_and_delete_a_directory" time="9.367 s">
+            <report relativePath="test_results_4/html/filesystem-test-9_filesystem_make_and_delete_a_directory.html"/>
+        </testcase>
+        <testcase classname="" name="filesystem-test-11_filesystem_create_and_delete_a_directory" time="28.806 s">
+            <report relativePath="test_results_4/html/filesystem-test-11_filesystem_create_and_delete_a_directory.html"/>
+        </testcase>
+        <testcase classname="" name="filesystem-test-12_copy_a_picture" time="4.656 s">
+            <report relativePath="test_results_4/html/filesystem-test-12_copy_a_picture.html"/>
+        </testcase>
+        <testcase classname="" name="filesystem-test-13_file_rights_set_set_permissions_and_copy_file" time="4.658 s">
+            <report relativePath="test_results_4/html/filesystem-test-13_file_rights_set_set_permissions_and_copy_file.html"/>
+        </testcase>
+        <testcase classname="" name="filesystem-test-14_clear_test_data" time="4.666 s">
+            <report relativePath="test_results_4/html/filesystem-test-14_clear_test_data.html"/>
+        </testcase>
+        <testcase classname="" name="equal_assertions" time="4.957 s">
+            <report relativePath="test_results_4/html/equal_assertions.html"/>
+        </testcase>
+        <testcase classname="" name="sxtest-property-test" time="4.629 s">
+            <report relativePath="test_results_4/html/sxtest-property-test.html"/>
+        </testcase>
+        <testcase classname="" name="test_assertions" time="4.631 s">
+            <report relativePath="test_results_4/html/test_assertions.html"/>
+        </testcase>
+        <testcase classname="" name="test_suite_nested" time="4.644 s">
+            <report relativePath="test_results_4/html/test_suite_nested.html"/>
+        </testcase>
+        <testcase classname="" name="test_suite_outer_test_case_2" time="4.621 s">
+            <report relativePath="test_results_4/html/test_suite_outer_test_case_2.html"/>
+        </testcase>
+        <testcase classname="" name="test_suite_test_case_1" time="4.611 s">
+            <report relativePath="test_results_4/html/test_suite_test_case_1.html"/>
+        </testcase>
+        <testcase classname="" name="user_defined_assertions" time="7.492 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/user_defined_assertions.html"/>
+        </testcase>
+        <testcase classname="" name="socket-ipv6-early-close" time="10.527 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_4\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_4/html/socket-ipv6-early-close.html"/>
+        </testcase>
+        <testcase classname="" name="uri-test" time="4.617 s">
+            <report relativePath="test_results_4/html/uri-test.html"/>
+        </testcase>
+        <testcase classname="" name="dns-host-not-found" time="7.987 s">
+            <report relativePath="test_results_5/html/dns-host-not-found.html"/>
+        </testcase>
+        <testcase classname="" name="dns-request-ok" time="5.251 s">
+            <report relativePath="test_results_5/html/dns-request-ok.html"/>
+        </testcase>
+        <testcase classname="" name="phonebook-manager-test-1__Test_the_phonebook_manager__get_phonebook_by_type_with_the_leagal_illegal_params" time="4.816 s">
+            <report relativePath="test_results_5/html/phonebook-manager-test-1__Test_the_phonebook_manager__get_phonebook_by_type_with_the_leagal_illegal_params.html"/>
+        </testcase>
+        <testcase classname="" name="phonebook-manager-test-2__Test_the_phonebook_manager__check_the_suppported_phonebook_type" time="4.778 s">
+            <report relativePath="test_results_5/html/phonebook-manager-test-2__Test_the_phonebook_manager__check_the_suppported_phonebook_type.html"/>
+        </testcase>
+        <testcase classname="" name="phonebook-recorder-test-1__Test_the_phonebook_recorder__check_phonebook-recorder_new_delete_record_functions" time="44.524 s">
+            <report relativePath="test_results_5/html/phonebook-recorder-test-1__Test_the_phonebook_recorder__check_phonebook-recorder_new_delete_record_functions.html"/>
+        </testcase>
+        <testcase classname="" name="phonebook-recorder-test-2__Test_the_phonebook_recorder__check_phonebook-recorder_functions_related_to_field" time="4.571 s">
+            <report relativePath="test_results_5/html/phonebook-recorder-test-2__Test_the_phonebook_recorder__check_phonebook-recorder_functions_related_to_field.html"/>
+        </testcase>
+        <testcase classname="" name="phonebook-scene-test-1__Test_the_phonebook__create_new_record_and_save_it_SIM,_then_read_it_from_SIM" time="14.482 s">
+            <report relativePath="test_results_5/html/phonebook-scene-test-1__Test_the_phonebook__create_new_record_and_save_it_SIM,_then_read_it_from_SIM.html"/>
+        </testcase>
+        <testcase classname="" name="phonebook-test-1__Test_the_phonebook__go_through_adn_phonebook_and_check_all_informations" time="4.531 s">
+            <report relativePath="test_results_5/html/phonebook-test-1__Test_the_phonebook__go_through_adn_phonebook_and_check_all_informations.html"/>
+        </testcase>
+        <testcase classname="" name="phonebook-test-2__Test_the_phonebook__check_phonebook_functions_related_to_field" time="4.495 s">
+            <report relativePath="test_results_5/html/phonebook-test-2__Test_the_phonebook__check_phonebook_functions_related_to_field.html"/>
+        </testcase>
+        <testcase classname="" name="audio-manager-test-input" time="4.453 s">
+            <report relativePath="test_results_5/html/audio-manager-test-input.html"/>
+        </testcase>
+        <testcase classname="" name="audio-manager-test-on_refused_audio_path" time="4.426 s">
+            <report relativePath="test_results_5/html/audio-manager-test-on_refused_audio_path.html"/>
+        </testcase>
+        <testcase classname="" name="audio-manager-test-output" time="4.473 s">
+            <report relativePath="test_results_5/html/audio-manager-test-output.html"/>
+        </testcase>
+        <testcase classname="" name="audio-manager-test-pending-replaces-pending-ao" time="4.705 s">
+            <report relativePath="test_results_5/html/audio-manager-test-pending-replaces-pending-ao.html"/>
+        </testcase>
+        <testcase classname="" name="audio-manager-test-play-tone" time="4.52 s">
+            <report relativePath="test_results_5/html/audio-manager-test-play-tone.html"/>
+        </testcase>
+        <testcase classname="" name="audio-manager-test-relese-low-prio-audio-object-while-high-priority-being-released" time="4.463 s">
+            <report relativePath="test_results_5/html/audio-manager-test-relese-low-prio-audio-object-while-high-priority-being-released.html"/>
+        </testcase>
+        <testcase classname="" name="audio-manager-test-relese-pending-audio-object" time="4.433 s">
+            <report relativePath="test_results_5/html/audio-manager-test-relese-pending-audio-object.html"/>
+        </testcase>
+        <testcase classname="" name="audio-manager-test-request-release-audio-path" time="4.46 s">
+            <report relativePath="test_results_5/html/audio-manager-test-request-release-audio-path.html"/>
+        </testcase>
+        <testcase classname="" name="audio-manager-test-states" time="12.101 s">
+            <report relativePath="test_results_5/html/audio-manager-test-states.html"/>
+        </testcase>
+        <testcase classname="" name="vcal-recurrence-test" time="5.626 s">
+            <report relativePath="test_results_5/html/vcal-recurrence-test.html"/>
+        </testcase>
+        <testcase classname="" name="cppunit-tests" time="4.564 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_5\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_5\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 136&#10;" message="cppunit-test.sx does not contain cppunit-tests"/>
+            <report relativePath="test_results_5/html/cppunit-tests.html"/>
+        </testcase>
+        <testcase classname="" name="mds-manager-test1__basic_check" time="4.475 s">
+            <report relativePath="test_results_5/html/mds-manager-test1__basic_check.html"/>
+        </testcase>
+        <testcase classname="" name="mds-manager-test2__database-update-copy-move-delete" time="25.209 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_5\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_5\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_5/html/mds-manager-test2__database-update-copy-move-delete.html"/>
+        </testcase>
+        <testcase classname="" name="property-dependent-test" time="7.39 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_5\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_5\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_5/html/property-dependent-test.html"/>
+        </testcase>
+        <testcase classname="" name="property-dynamic-test" time="7.24 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_5\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_5\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_5/html/property-dynamic-test.html"/>
+        </testcase>
+        <testcase classname="" name="property-loop-test" time="4.409 s">
+            <report relativePath="test_results_5/html/property-loop-test.html"/>
+        </testcase>
+        <testcase classname="" name="property-simple-test" time="7.299 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_5\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_5\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_5/html/property-simple-test.html"/>
+        </testcase>
+        <testcase classname="" name="drm-context-test1__Test_the_drm-context_basic_method_on_illegal_drm_file" time="4.404 s">
+            <report relativePath="test_results_5/html/drm-context-test1__Test_the_drm-context_basic_method_on_illegal_drm_file.html"/>
+        </testcase>
+        <testcase classname="" name="drm-context-test2__Test_the_mime,_scheme,_content,_drm-context_related_basic_method" time="7.424 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_5\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_5\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_5/html/drm-context-test2__Test_the_mime,_scheme,_content,_drm-context_related_basic_method.html"/>
+        </testcase>
+        <testcase classname="" name="vibrator-manager-test-case1" time="6.457 s">
+            <report relativePath="test_results_6/html/vibrator-manager-test-case1.html"/>
+        </testcase>
+        <testcase classname="" name="vibrator-manager-test-case2" time="4.328 s">
+            <report relativePath="test_results_6/html/vibrator-manager-test-case2.html"/>
+        </testcase>
+        <testcase classname="" name="vibrator-manager-test-case3" time="4.379 s">
+            <report relativePath="test_results_6/html/vibrator-manager-test-case3.html"/>
+        </testcase>
+        <testcase classname="" name="vibrator-manager-test-case4" time="4.287 s">
+            <report relativePath="test_results_6/html/vibrator-manager-test-case4.html"/>
+        </testcase>
+        <testcase classname="" name="vibrator-manager-test-case5" time="4.493 s">
+            <report relativePath="test_results_6/html/vibrator-manager-test-case5.html"/>
+        </testcase>
+        <testcase classname="" name="vibrator-manager-test-case6" time="4.366 s">
+            <report relativePath="test_results_6/html/vibrator-manager-test-case6.html"/>
+        </testcase>
+        <testcase classname="" name="vibrator-manager-test-case7" time="4.317 s">
+            <report relativePath="test_results_6/html/vibrator-manager-test-case7.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-packager-file-packaged-chronologically-test" time="22.225 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_6/html/analytics-packager-file-packaged-chronologically-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-packager-package-empty-log-test" time="17.331 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_6/html/analytics-packager-package-empty-log-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-packager-package-large-log-test" time="19.718 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_6/html/analytics-packager-package-large-log-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-packager-package-test" time="17.311 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_6/html/analytics-packager-package-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-packager-start-stop-test" time="14.285 s">
+            <report relativePath="test_results_6/html/analytics-packager-start-stop-test.html"/>
+        </testcase>
+        <testcase classname="" name="file-copy" time="12.888 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_6/html/file-copy.html"/>
+        </testcase>
+        <testcase classname="" name="file-move" time="5 m 6.628 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="TIMEOUT"/>
+            <report relativePath="test_results_6/html/file-move.html"/>
+        </testcase>
+        <testcase classname="" name="file-stop" time="7.307 s">
+            <report relativePath="test_results_6/html/file-stop.html"/>
+        </testcase>
+        <testcase classname="" name="concurrent-test-1" time="4.382 s">
+            <report relativePath="test_results_6/html/concurrent-test-1.html"/>
+        </testcase>
+        <testcase classname="" name="concurrent-test-2" time="4.364 s">
+            <report relativePath="test_results_6/html/concurrent-test-2.html"/>
+        </testcase>
+        <testcase classname="" name="concurrent-test-3" time="4.364 s">
+            <report relativePath="test_results_6/html/concurrent-test-3.html"/>
+        </testcase>
+        <testcase classname="" name="concurrent-test-4" time="4.352 s">
+            <report relativePath="test_results_6/html/concurrent-test-4.html"/>
+        </testcase>
+        <testcase classname="" name="radio-test1__set-get_max_frequency_function" time="5.267 s">
+            <report relativePath="test_results_6/html/radio-test1__set-get_max_frequency_function.html"/>
+        </testcase>
+        <testcase classname="" name="radio-test2__set-get_min_frequency_function" time="5.238 s">
+            <report relativePath="test_results_6/html/radio-test2__set-get_min_frequency_function.html"/>
+        </testcase>
+        <testcase classname="" name="radio-test3__check_signal_rds_af-jump_function" time="4.706 s">
+            <report relativePath="test_results_6/html/radio-test3__check_signal_rds_af-jump_function.html"/>
+        </testcase>
+        <testcase classname="" name="xml-parse-test1" time="4.401 s">
+            <report relativePath="test_results_6/html/xml-parse-test1.html"/>
+        </testcase>
+        <testcase classname="" name="xml-parse-test2" time="4.409 s">
+            <report relativePath="test_results_6/html/xml-parse-test2.html"/>
+        </testcase>
+        <testcase classname="" name="tar-test_archive" time="4.761 s">
+            <report relativePath="test_results_6/html/tar-test_archive.html"/>
+        </testcase>
+        <testcase classname="" name="tar-test_compressed-extract" time="12.261 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_6/html/tar-test_compressed-extract.html"/>
+        </testcase>
+        <testcase classname="" name="tar-test_extract" time="4.522 s">
+            <report relativePath="test_results_6/html/tar-test_extract.html"/>
+        </testcase>
+        <testcase classname="" name="tar-test_stop-extract" time="4.428 s">
+            <report relativePath="test_results_6/html/tar-test_stop-extract.html"/>
+        </testcase>
+        <testcase classname="" name="player-test__audio-path-required" time="13.135 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_6/html/player-test__audio-path-required.html"/>
+        </testcase>
+        <testcase classname="" name="player-test__check-progress-percentage-1" time="12.572 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_6/html/player-test__check-progress-percentage-1.html"/>
+        </testcase>
+        <testcase classname="" name="player-test__check-progress-percentage-2" time="15.156 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_6/html/player-test__check-progress-percentage-2.html"/>
+        </testcase>
+        <testcase classname="" name="player-test__forward-to-the-end" time="18.514 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_6/html/player-test__forward-to-the-end.html"/>
+        </testcase>
+        <testcase classname="" name="player-test__forward-zero" time="16.505 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_6/html/player-test__forward-zero.html"/>
+        </testcase>
+        <testcase classname="" name="player-test__get-video-widget" time="5.605 s">
+            <report relativePath="test_results_6/html/player-test__get-video-widget.html"/>
+        </testcase>
+        <testcase classname="" name="player-test__on-got-and-lost-audio-path" time="16.499 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_6/html/player-test__on-got-and-lost-audio-path.html"/>
+        </testcase>
+        <testcase classname="" name="player-test__open-invalid-file" time="6.526 s">
+            <report relativePath="test_results_6/html/player-test__open-invalid-file.html"/>
+        </testcase>
+        <testcase classname="" name="player-test__pause-without-release-auto-path" time="18.5 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_6/html/player-test__pause-without-release-auto-path.html"/>
+        </testcase>
+        <testcase classname="" name="player-test__play-pause-stop" time="1 m 13.554 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_6/html/player-test__play-pause-stop.html"/>
+        </testcase>
+        <testcase classname="" name="player-test__play-stop" time="37.464 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_6/html/player-test__play-stop.html"/>
+        </testcase>
+        <testcase classname="" name="player-test__rewind-to-the-begining" time="16.476 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_6/html/player-test__rewind-to-the-begining.html"/>
+        </testcase>
+        <testcase classname="" name="player-test__rewind-zero" time="16.475 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_6/html/player-test__rewind-zero.html"/>
+        </testcase>
+        <testcase classname="" name="player-test__set-mute" time="43.552 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_6/html/player-test__set-mute.html"/>
+        </testcase>
+        <testcase classname="" name="player-test__set-release-on-end" time="19.464 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_6/html/player-test__set-release-on-end.html"/>
+        </testcase>
+        <testcase classname="" name="player-test__set-stream-position" time="24.447 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_6/html/player-test__set-stream-position.html"/>
+        </testcase>
+        <testcase classname="" name="player-test__set-volume-by-step" time="15.095 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_6/html/player-test__set-volume-by-step.html"/>
+        </testcase>
+        <testcase classname="" name="player-test__set-volume-with-boundary-value" time="6.527 s">
+            <report relativePath="test_results_6/html/player-test__set-volume-with-boundary-value.html"/>
+        </testcase>
+        <testcase classname="" name="player-test__set-volume-with-percentage" time="6.534 s">
+            <report relativePath="test_results_6/html/player-test__set-volume-with-percentage.html"/>
+        </testcase>
+        <testcase classname="" name="player-test__stop-without-release" time="21.558 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_6\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_6/html/player-test__stop-without-release.html"/>
+        </testcase>
+        <testcase classname="" name="subscription-test1" time="4.559 s">
+            <report relativePath="test_results_7/html/subscription-test1.html"/>
+        </testcase>
+        <testcase classname="" name="subscription-test2" time="4.36 s">
+            <report relativePath="test_results_7/html/subscription-test2.html"/>
+        </testcase>
+        <testcase classname="" name="config-test-backup-restore" time="4.972 s">
+            <report relativePath="test_results_7/html/config-test-backup-restore.html"/>
+        </testcase>
+        <testcase classname="" name="config-test-leaf" time="7.549 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_7\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_7\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_7/html/config-test-leaf.html"/>
+        </testcase>
+        <testcase classname="" name="config-test-permissions" time="4.57 s">
+            <report relativePath="test_results_7/html/config-test-permissions.html"/>
+        </testcase>
+        <testcase classname="" name="config-test-simple" time="4.411 s">
+            <report relativePath="test_results_7/html/config-test-simple.html"/>
+        </testcase>
+        <testcase classname="" name="config-test-subscribe-new" time="4.427 s">
+            <report relativePath="test_results_7/html/config-test-subscribe-new.html"/>
+        </testcase>
+        <testcase classname="" name="config-test-subscriptions" time="4.518 s">
+            <report relativePath="test_results_7/html/config-test-subscriptions.html"/>
+        </testcase>
+        <testcase classname="" name="gc-test" time="4.558 s">
+            <report relativePath="test_results_7/html/gc-test.html"/>
+        </testcase>
+        <testcase classname="" name="socket-fail-hostname" time="8.139 s">
+            <report relativePath="test_results_7/html/socket-fail-hostname.html"/>
+        </testcase>
+        <testcase classname="" name="socket-fail-port" time="7.957 s">
+            <report relativePath="test_results_7/html/socket-fail-port.html"/>
+        </testcase>
+        <testcase classname="" name="socket-secure-early-close" time="5 m 6.425 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_7\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_7\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="TIMEOUT"/>
+            <report relativePath="test_results_7/html/socket-secure-early-close.html"/>
+        </testcase>
+        <testcase classname="" name="socket-secure-no-close" time="5 m 6.894 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_7\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_7\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="TIMEOUT"/>
+            <report relativePath="test_results_7/html/socket-secure-no-close.html"/>
+        </testcase>
+        <testcase classname="" name="string-bytevector-base64-test" time="4.324 s">
+            <report relativePath="test_results_7/html/string-bytevector-base64-test.html"/>
+        </testcase>
+        <testcase classname="" name="reset-recovery-normal-test1" time="4.288 s">
+            <report relativePath="test_results_7/html/reset-recovery-normal-test1.html"/>
+        </testcase>
+        <testcase classname="" name="reset-recovery-normal-test2" time="4.282 s">
+            <report relativePath="test_results_7/html/reset-recovery-normal-test2.html"/>
+        </testcase>
+        <testcase classname="" name="reset-recovery-normal-test3" time="4.334 s">
+            <report relativePath="test_results_7/html/reset-recovery-normal-test3.html"/>
+        </testcase>
+        <testcase classname="" name="reset-recovery-normal-test4" time="4.347 s">
+            <report relativePath="test_results_7/html/reset-recovery-normal-test4.html"/>
+        </testcase>
+        <testcase classname="" name="reset-recovery-reset-test1" time="4.692 s">
+            <report relativePath="test_results_7/html/reset-recovery-reset-test1.html"/>
+        </testcase>
+        <testcase classname="" name="reset-recovery-reset-test2" time="4.3 s">
+            <report relativePath="test_results_7/html/reset-recovery-reset-test2.html"/>
+        </testcase>
+        <testcase classname="" name="reset-recovery-normal-test1" time="4.58 s">
+            <report relativePath="test_results_7/html/reset-recovery-normal-test1.html"/>
+        </testcase>
+        <testcase classname="" name="reset-recovery-normal-test2" time="4.363 s">
+            <report relativePath="test_results_7/html/reset-recovery-normal-test2.html"/>
+        </testcase>
+        <testcase classname="" name="reset-recovery-normal-test3" time="4.286 s">
+            <report relativePath="test_results_7/html/reset-recovery-normal-test3.html"/>
+        </testcase>
+        <testcase classname="" name="reset-recovery-normal-test4" time="4.279 s">
+            <report relativePath="test_results_7/html/reset-recovery-normal-test4.html"/>
+        </testcase>
+        <testcase classname="" name="reset-recovery-reset-test1" time="4.309 s">
+            <report relativePath="test_results_7/html/reset-recovery-reset-test1.html"/>
+        </testcase>
+        <testcase classname="" name="reset-recovery-reset-test2" time="4.353 s">
+            <report relativePath="test_results_7/html/reset-recovery-reset-test2.html"/>
+        </testcase>
+        <testcase classname="" name="psnetwork-manager-test-1__Changes_attachment_state_and_verify_it" time="7.248 s">
+            <report relativePath="test_results_7/html/psnetwork-manager-test-1__Changes_attachment_state_and_verify_it.html"/>
+        </testcase>
+        <testcase classname="" name="vcalendar-sync-test_sx" time="2.73 s">
+            <report relativePath="test_results_8/html/vcalendar-sync-test_sx.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-sender-data-sending-failure-test" time="8.131 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_8\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_8\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="SX ERROR"/>
+            <report relativePath="test_results_8/html/analytics-sender-data-sending-failure-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-sender-data-sent-test" time="7.958 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_8\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_8\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="SX ERROR"/>
+            <report relativePath="test_results_8/html/analytics-sender-data-sent-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-sender-file-sent-chronologically-test" time="11.273 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_8\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_8\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_8/html/analytics-sender-file-sent-chronologically-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-sender-local-config-test" time="7.867 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_8\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_8\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="SX ERROR"/>
+            <report relativePath="test_results_8/html/analytics-sender-local-config-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-sender-localconfig-unchanged-if-unexpired-test" time="7.747 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_8\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_8\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_8/html/analytics-sender-localconfig-unchanged-if-unexpired-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-sender-localconfig-unchanged-when-expired-and-no-data-test" time="7.695 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_8\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_8\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_8/html/analytics-sender-localconfig-unchanged-when-expired-and-no-data-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-sender-localconfig-updated-when-expired-and-data-test" time="7.907 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_8\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_8\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_8/html/analytics-sender-localconfig-updated-when-expired-and-data-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-sender-localconfig-updated-when-expired-and-logging-disabled-and-data-test" time="9.724 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_8\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_8\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_8/html/analytics-sender-localconfig-updated-when-expired-and-logging-disabled-and-data-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-sender-localconfig-updated-when-expired-and-logging-disabled-test" time="8.871 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_8\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_8\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_8/html/analytics-sender-localconfig-updated-when-expired-and-logging-disabled-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-sender-non-roaming-connection-test" time="8.742 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_8\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_8\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="SX ERROR"/>
+            <report relativePath="test_results_8/html/analytics-sender-non-roaming-connection-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-sender-resend-on-sim-connection-test" time="8.265 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_8\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_8\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_8/html/analytics-sender-resend-on-sim-connection-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-sender-roaming-connection-test" time="8.14 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_8\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_8\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_8/html/analytics-sender-roaming-connection-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-sender-sending-empty-file-test" time="8.013 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_8\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_8\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_8/html/analytics-sender-sending-empty-file-test.html"/>
+        </testcase>
+        <testcase classname="" name="analytics-sender-wifi-connection-test" time="8.254 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_8\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_8\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="ASSERTION FAILED"/>
+            <report relativePath="test_results_8/html/analytics-sender-wifi-connection-test.html"/>
+        </testcase>
+        <testcase classname="" name="http-streaming1" time="5 m 6.442 s">
+            <failure detail="C:\TAS\workspace\aqua-ds---granite #1138_8\granite\framework\core\testcase.py, logApply, line: 96&#10;  C:\TAS\workspace\aqua-ds---granite #1138_8\granite\framework\core\sxtest_runner.py, _runSxTestCase, line: 148&#10;" message="TIMEOUT"/>
+            <report relativePath="test_results_8/html/http-streaming1.html"/>
+        </testcase>
+    </testsuite>
+</testsuites>

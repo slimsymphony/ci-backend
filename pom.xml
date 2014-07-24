@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.nokia.ci</groupId>
+    <artifactId>s40-ci-backend</artifactId>
+    <version>2.6.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>s40-ci-backend</name>
+
+    <properties>
+        <seam.version>3.1.0.Final</seam.version>
+        <gson.version>2.1</gson.version>
+        <resteasy.version>2.2.1.GA</resteasy.version>
+        <jboss.version>7.1.1.Final</jboss.version>
+        <javaee6.spec.version>3.0.0.Final</javaee6.spec.version>
+        <log4j.version>1.2.16</log4j.version>
+        <slf4j.version>1.6.4</slf4j.version>
+        <h2.version>1.3.170</h2.version>
+        <h2.plugin.version>1.1</h2.plugin.version>
+        <commons-lang3.version>3.1</commons-lang3.version>
+        <commons-io.version>2.4</commons-io.version>
+        <apache-httpclient.version>4.2.5</apache-httpclient.version>
+        <apache-httpcore.version>4.2.4</apache-httpcore.version>
+        <failsafe-plugin.version>2.12</failsafe-plugin.version>
+        <war-plugin.version>2.3</war-plugin.version>
+        <!-- ARQUILLIAN properties -->
+        <shrinkwrap-resolver.version>2.0.0-beta-2</shrinkwrap-resolver.version>
+        <arquillian.version>1.0.3.Final</arquillian.version>
+        <arquillian-persistence.version>1.0.0.Alpha5</arquillian-persistence.version>
+        <!-- CARGO Properties -->
+        <cargo.version>1.2.2</cargo.version>
+        <cargoContainerId>jboss71x</cargoContainerId>
+        <cargoServletPort>8888</cargoServletPort>
+        <cargoRmiPort>1199</cargoRmiPort>
+        <cargoPingUrl>http://localhost:${cargoServletPort}</cargoPingUrl>
+        <!-- TEST DATABASE Properties -->
+        <testDBBindAddress>localhost</testDBBindAddress>
+        <testDBPort>9020</testDBPort>
+        <testDBJdbcUrl>jdbc:h2:tcp://${testDBBindAddress}:${testDBPort}/mem:testDB</testDBJdbcUrl>
+        <testDBSchema>S40CICORE</testDBSchema>
+        <transport-guarantee>NONE</transport-guarantee>
+    </properties>
+
+    <profiles>
+        <profile>
+            <!-- Skip tests by default for debug profile -->
+            <id>debug</id>
+            <properties>
+                <skipTests>true</skipTests>
+            </properties>
+        </profile>
+        <profile>
+            <!-- Skip tests by default for deploy-ear profile -->
+            <id>deploy-ear</id>
+            <properties>
+                <skipTests>true</skipTests>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <transport-guarantee>NONE</transport-guarantee>
+            </properties>
+        </profile>
+        <profile>
+            <id>release</id>
+            <properties>
+                <transport-guarantee>NONE</transport-guarantee>
+            </properties>
+        </profile>
+        <profile>
+            <id>it-test</id>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>emma-maven-plugin</artifactId>
+                <version>1.0-alpha-3</version>
+                <inherited>true</inherited>
+                <configuration>
+                    <verbose>true</verbose>
+                    <filters>
+                        <filter>-com.nokia.ci.ejb.model.*_*</filter>
+                        <filter>-com.nokia.ci.ui.*</filter>
+                    </filters>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.2.2</version>
+                <configuration>
+                    <tagNameFormat>v@{project.version}</tagNameFormat>
+                    <releaseProfiles>release</releaseProfiles>
+                    <goals>deploy</goals>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.8.1</version>
+                <configuration>
+                    <show>private</show>
+                    <nohelp>true</nohelp>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.1.2</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.7</version>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.9.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <modules>
+        <module>s40-ci-backend-client</module>
+        <module>s40-ci-backend-ear</module>
+        <module>s40-ci-backend-ejb</module>
+        <module>s40-ci-backend-it</module>
+        <module>s40-ci-backend-web</module>
+        <module>s40-ci-backend-ui</module>
+        <module>s40-ci-backend-mock</module>
+        <module>s40-ci-backend-uitest</module>
+
+    </modules>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus.snapshot</id>
+            <name>Nexus Snapshot Repository</name>
+            <url>http://oulci01.europe.nokia.com:8081/nexus/content/repositories/ci20snapshot</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus.release</id>
+            <name>Nexus Release Repository</name>
+            <url>http://oulci01.europe.nokia.com:8081/nexus/content/repositories/ci20release</url>
+        </repository>
+    </distributionManagement>
+
+    <scm>
+        <connection>scm:git:ssh://gerrit04.nokia.com:29418/s40ci/s40-ci-backend</connection>
+        <developerConnection>scm:git:ssh://gerrit04.nokia.com:29418/s40ci/s40-ci-backend</developerConnection>
+    </scm>
+
+</project>

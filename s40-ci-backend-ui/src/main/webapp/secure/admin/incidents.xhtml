@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+
+        <ui:composition template="./../template/adminLayout.xhtml">
+
+            <ui:define name="contentTitle">Incidents</ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="Admin" outcome="admin"/>
+                <h:link value="Incidents" outcome="incidents" styleClass="active"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="incidentsTableForm" onkeypress="return event.keyCode !== 13;">
+                    <h:outputText styleClass="contentTitleText" value="Unchecked incidents"/>
+                    <p:accordionPanel value="#{incidentsBean.uncheckedIncidentTypes}" var="key">
+                        <p:tab title="#{key} incidents">
+                            <p:dataTable id="incidentsTable" value="#{incidentsBean.uncheckedIncidents[key]}" var="i"
+                                         style="margin-top: 10px; margin-bottom: 20px;" paginator="true" rows="10"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,15">
+                                <p:column sortBy="#{i.time}">
+                                    <f:facet name="header">Time</f:facet>
+                                    <ci:outputTextTimeStamp value="#{i.time}"/>
+                                </p:column>
+                                <p:column sortBy="#{i.description}">
+                                    <f:facet name="header">Description</f:facet>
+                                    <h:outputText value="#{i.description}"/>
+                                </p:column>
+                                <p:column styleClass="actionColumn">
+                                    <f:facet name="header">Actions</f:facet>
+                                    <h:commandLink actionListener="#{incidentsBean.markAsChecked(i)}">
+                                        <p:panel id="markAsChecked" style="display:inline-block; border:none">
+                                            <div class="ui-state-error ui-corner-all" style="display:inline-block">
+                                                <span class="ui-icon ui-icon-alert"></span>
+                                            </div>
+                                            <pe:tooltip for="markAsChecked" value="Mark incident as checked" myPosition="top left"
+                                                        atPosition="bottom center"/>
+                                        </p:panel>
+                                    </h:commandLink>
+                                </p:column>
+                            </p:dataTable>
+                        </p:tab>
+                    </p:accordionPanel>
+                </h:form>
+
+                <h:outputText styleClass="contentTitleText" style="display: block;" value="Checked incidents"/>
+
+                <p:accordionPanel activeIndex="-1" value="#{incidentsBean.checkedIncidentTypes}" var="key">
+                    <p:tab title="#{key} incidents">
+                        <p:dataTable id="incidentsTable" value="#{incidentsBean.checkedIncidents[key]}" var="i"
+                                     style="margin-top: 10px; margin-bottom: 20px;" paginator="true" rows="10"
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="5,10,15">
+                            <p:column sortBy="#{i.time}">
+                                <f:facet name="header">Time</f:facet>
+                                <ci:outputTextTimeStamp value="#{i.time}"/>
+                            </p:column>
+                            <p:column sortBy="#{i.description}">
+                                <f:facet name="header">Description</f:facet>
+                                <h:outputText value="#{i.description}"/>
+                            </p:column>
+                            <p:column sortBy="#{i.checkUser}">
+                                <f:facet name="header">Checked by</f:facet>
+                                <ci:userLoginNameLink value="#{i.checkUser}"/>
+                            </p:column>
+                            <p:column sortBy="#{i.time}">
+                                <f:facet name="header">Checked time</f:facet>
+                                <ci:outputTextTimeStamp value="#{i.checkTime}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </p:tab>
+                </p:accordionPanel>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+
+    <body>
+
+        <ui:composition template="../template/editorLayout.xhtml">
+            <ui:define name="contentTitle">User #{userBean.user.realName}</ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="Admin" outcome="admin"/>
+                <h:link value="Users" outcome="users"/>
+                <h:link value="Edit #{userBean.user.id}" outcome="userEditor" styleClass="active"
+                        rendered="#{not empty userBean.user.id}">
+                    <f:param name="userId" value="#{userBean.user.id}"/>
+                </h:link>
+                <h:link value="Add new user" outcome="userEditor" styleClass="active" rendered="#{empty userBean.user.id}"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <h:panelGrid id="userEditTable" columns="2">
+                        <h:outputLabel for="userNameInput" value="Username"/>
+                        <p:inputText id="userNameInput" value="#{userBean.user.loginName}" label="username" disabled="true"/>
+                        <h:outputLabel for="realNameInput" value="Name"/>
+                        <p:inputText id="realNameInput" value="#{userBean.user.realName}" label="realname" disabled="true"/>
+                        <h:outputLabel for="userEmailInput" value="Email"/>
+                        <p:inputText id="userEmailInput" value="#{userBean.user.email}" label="email" disabled="true"/>
+                        <h:outputLabel for="userRoleInput" value="Role"/>
+                        <p:selectOneMenu id="userRoleInput" value="#{userBean.user.userRole}" label="role">
+                            <f:selectItems value="#{userBean.roles}" var="userRole" itemValue="#{userRole}" itemLabel="#{userRole.label}"/>
+                            <p:ajax event="change" update="@form"/>
+                        </p:selectOneMenu>
+                        <h:outputLabel for="nextUserInput" value="Account type"/>
+                        <p:inputText id="nextUserInput" value="#{userBean.user.nextUser ? 'Nokia External' : 'Nokia Internal'}" label="nextUser" disabled="true"/>
+                        <h:outputLabel for="systemMetricsAllowedInput" value="Allow system metrics"/>
+                        <p:selectBooleanCheckbox id="systemMetricsAllowedInput" value="#{userBean.user.systemMetricsAllowed}" label="rights for system metrics"/>
+                        <h:outputLabel for="buildClassificationAllowedInput" value="Allow build classification"/>
+                        <p:selectBooleanCheckbox id="buildClassificationAllowedInput" value="#{userBean.user.buildClassificationAllowed}" label="rights for build classification"/>
+                    </h:panelGrid>
+                    <h:panelGrid id="userProjectAdminTable" columns="1">
+                        <p:pickList id="projectsPickList" value="#{userBean.adminRights}" var="project"
+                                    converter="ProjectConverter" showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains"
+                                    itemLabel="#{project.displayName}" itemValue="#{project}" rendered="#{userBean.user.userRole == 'PROJECT_ADMIN'}">
+                            <f:facet name="sourceCaption">All projects</f:facet>
+                            <f:facet name="targetCaption">Administrated projects</f:facet>
+                        </p:pickList>
+                        <f:facet name="footer">
+                            <p:commandButton id="userSaveButton" value="Save" action="#{userBean.save}" ajax="false"/>
+                            <p:commandButton id="userCancelButton" value="Cancel" action="#{userBean.cancelEdit}" ajax="false" immediate="true"/>
+                        </f:facet>
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+        <ui:composition template="./../template/adminLayout.xhtml">
+            <ui:define name="contentTitle">Templates</ui:define>
+
+            <ui:define name="contentMenu">
+                <ci:addButton page="/secure/admin/templateEditor.xhtml" tooltip="Add new template"/>
+            </ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="Admin" outcome="admin"/>
+                <h:link value="Templates" outcome="templates" styleClass="active"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="templatesTableForm" onkeypress="return event.keyCode !== 13;">
+                    <p:dataTable id="templatesTable" value="#{templatesBean.templates}" var="t"
+                                 filteredValue="#{templatesBean.filteredValues}" paginator="true" rows="20"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,20,50">
+                        <p:column sortBy="#{t.name}" filterBy="#{t.name}" filterMatchMode="contains">
+                            <f:facet name="header">Name</f:facet>
+                            <h:outputLink value="/secure/admin/templateEditor.xhtml">
+                                <h:outputText value="#{t.name}"/>
+                                <f:param name="templateId" value="#{t.id}"/>
+                            </h:outputLink>
+                        </p:column>
+                        <p:column sortBy="#{t.description}" filterBy="#{t.description}" filterMatchMode="contains">
+                            <f:facet name="header">Description</f:facet>
+                            <h:outputText value="#{t.description}"/>
+                        </p:column>
+                        <p:column sortBy="#{t.created}">
+                            <f:facet name="header">Created</f:facet>
+                            <ci:outputTextTimeStamp value="#{t.created}"/>
+                        </p:column>
+                        <p:column sortBy="#{t.modified}">
+                            <f:facet name="header">Modified</f:facet>
+                            <ci:outputTextTimeStamp value="#{t.modified}"/>
+                        </p:column>
+                        <p:column styleClass="actionColumn">
+                            <f:facet name="header">Actions</f:facet>
+                            <h:outputLink value="/secure/admin/templateEditor.xhtml">
+                                <h:graphicImage id="editTemplate" value="/resources/images/wrench.png" styleClass="actionButton"/>
+                                <f:param name="templateId" value="#{t.id}"/>
+                                <pe:tooltip for="editTemplate" value="Edit template" myPosition="top right" atPosition="bottom center"/>
+                            </h:outputLink>
+                            <ci:deleteBtnWithConfirmDlg id="deleteTemplate" actionListener="#{templatesBean.delete(t)}"
+                                                        entityLabel="#{t.name}" tooltip="Delete template"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

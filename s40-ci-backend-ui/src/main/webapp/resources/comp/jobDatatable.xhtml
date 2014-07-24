@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <composite:attribute name="model" required="true"/>
+        <composite:attribute name="pinCommand" method-signature="void pinToMyToolbox()"/>
+        <composite:attribute name="id" default="jobsTable"/>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation xmlns:ci="http://java.sun.com/jsf/composite/comp">
+        <h:form id="jobDatatableForm">
+            <p:dataTable id="jobDatatable_#{cc.attrs.id}" value="#{cc.attrs.model}" var="job">
+                <f:facet name="header">
+                    <h:outputText value="Verifications"/>
+                    <p:commandLink actionListener="#{cc.attrs.pinCommand}" style="float: right;" rendered="#{cc.attrs.pinCommand != null}">
+                        <h:graphicImage id="pinIcon" value="/resources/images/iconic/gray_light/pin_12x12.png" styleClass="actionButton"/>
+                        <pe:tooltip for="pinIcon" value="Pin to My toolbox" myPosition="top right" atPosition="bottom center"/>
+                    </p:commandLink>
+                </f:facet>
+                <p:column>
+                    <f:facet name="header">Name</f:facet>
+                    <h:link value="#{job.displayName}" outcome="/secure/pages/verificationDetails">
+                        <f:param name="verificationId" value="#{job.id}"/>
+                    </h:link>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">Contact person</f:facet>
+                    <h:outputText id="contactPerson" value="#{job.contactPerson}"/>
+                </p:column>
+                <p:column style="width: 150px;">
+                    <f:facet name="header">Branch Type</f:facet>
+                    <h:outputText value="#{job.branch.type}"/>
+                </p:column>
+                <p:column styleClass="actionColumn" style="width: 160px; text-align: center;">
+                    <f:facet name="header">Actions</f:facet>
+                    <h:outputLink value="/secure/pages/verificationDetails.xhtml">
+                        <h:graphicImage id="verificationDetails" value="/resources/images/page_go.png" styleClass="actionButton"/>
+                        <f:param name="verificationId" value="#{job.id}"/>
+                        <pe:tooltip for="verificationDetails" value="Show verification details" myPosition="top right" atPosition="bottom center"/>
+                    </h:outputLink>
+                    <h:outputLink value="/secure/pages/verificationMetrics.xhtml">
+                        <h:graphicImage id="metrics" value="/resources/images/chart_bar.png" styleClass="actionButton"/>
+                        <f:param name="verificationId" value="#{job.id}"/>
+                        <pe:tooltip for="metrics" value="Show metrics" myPosition="top right" atPosition="bottom center"/>
+                    </h:outputLink>
+                    <h:outputLink value="/secure/pages/verificationEditor.xhtml"
+                                  rendered="#{httpSessionBean.admin or job.branch.type == 'TOOLBOX' or
+                                              httpSessionBean.hasAdminAccessToProject(job.branch.project.id)}">
+                        <h:graphicImage id="editVerification" value="/resources/images/wrench.png" styleClass="actionButton"/>
+                        <f:param name="verificationId" value="#{job.id}"/>
+                        <pe:tooltip for="editVerification" value="Edit verification" myPosition="top right" atPosition="bottom center"/>
+                    </h:outputLink>
+                    <composite:renderFacet name="deleteBtnWithConfirmDlg" />
+                    <ci:deleteBtnWithConfirmDlg id="deleteVerification" actionListener="#{jobDatatableBean.delete(job)}"
+                                                entityLabel="#{job.displayName}" tooltip="Delete verification"
+                                                rendered="#{httpSessionBean.admin or job.branch.type == 'TOOLBOX' or
+                                                            httpSessionBean.hasAdminAccessToProject(job.branch.project.id)}"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </cc:implementation>
+</html>

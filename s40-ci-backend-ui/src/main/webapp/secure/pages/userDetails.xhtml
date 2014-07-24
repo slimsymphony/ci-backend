@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+        <ui:composition template="../template/layout.xhtml">
+
+            <ui:define name="contentTitle">User #{userBean.userName}</ui:define>
+
+            <ui:define name="contentMenu">
+                <ci:configureButton page="/secure/admin/userEditor.xhtml?userId=#{userBean.user.id}"
+                                    tooltip="Edit user" rendered="#{httpSessionBean.admin and userBean.user != null}"/>
+            </ui:define>
+
+            <ui:define name="content">
+
+                <p:graphicImage value="#{request.contextPath}/resources/images/userDefaultImage_big.png" cache="true"
+                                rendered="#{empty userBean.userImageUuid or empty userBean.user or not httpSessionBean.uploadingEnabled}"
+                                styleClass="userImageBig" style="float:none; margin-bottom: 0;"/>
+                <p:graphicImage value="#{userFileStreamBean.getFileStreamParam}" cache="false"
+                                rendered="#{not empty userBean.userImageUuid and not empty userBean.user and httpSessionBean.uploadingEnabled}"
+                                styleClass="userImageBig" style="float:none; margin-bottom: 0;">
+                    <f:param name="uuid" value="#{userBean.userImageUuid}"/>
+                </p:graphicImage>
+                <h:outputText value="Could not find user!" rendered="#{userBean.user == null}"/>
+
+                <p:panelGrid id="userDetailsTable" columns="2" rendered="#{userBean.user != null}">
+                    <h:outputLabel for="userLoginName" value="Login name:"/>
+                    <h:outputText id="userLoginName" value="#{userBean.user.loginName}"/>
+                    <h:outputLabel for="userEmail" value="Email:"/>
+                    <h:outputText id="userEmail" value="#{userBean.user.email}"/>
+                    <h:outputLabel for="userLastLogin" value="Last login:" rendered="#{userBean.user.lastLogin != null}"/>
+                    <ci:outputTextTimeStamp id="userLastLogin" value="#{userBean.user.lastLogin}" rendered="#{userBean.user.lastLogin != null}"/>
+                    <h:outputLabel for="userTimezone" value="Timezone:" rendered="#{userBean.user.timezone != null}"/>
+                    <h:outputText id="userTimezone" value="#{userBean.user.timezone}" rendered="#{userBean.user.timezone != null}"/>
+                </p:panelGrid>
+                <ci:buildDatatable model="#{userBean.userBuilds}" rendered="#{userBean.user != null}"
+                                   pinCommand="#{userBean.pinBuildsToMyToolbox()}"/>
+
+                <ci:changeDatatable model="#{userBean.userChanges}" rendered="#{userBean.user != null}"
+                                    pinCommand="#{userBean.pinChangesToMyToolbox()}"/>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

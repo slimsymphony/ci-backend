@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+
+    <body>
+
+        <ui:composition template="../template/editorLayout.xhtml">
+            <ui:define name="contentTitle">Slave machine #{slaveMachineEditorBean.editedSlaveMachine.id}</ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="Admin" outcome="admin"/>
+                <h:link value="Slaves" outcome="slaves"/>
+                <h:link value="Edit #{slaveMachineEditorBean.editedSlaveMachine.url}" outcome="slaveMachineEditor" styleClass="active"
+                        rendered="#{not empty slaveMachineEditorBean.editFromSlaveMachine}">
+                    <f:param name="editFromSlaveInstanceId" value="#{slaveMachineEditorBean.editFromSlaveMachine}"/>
+                </h:link>
+                <h:link value="Add new slave machine" outcome="slaveMachineEditor" styleClass="active"
+                        rendered="#{empty slaveMachineEditorBean.editFromSlaveMachine}">
+                    <f:param name="copyFromSlaveMachineId" value="#{slaveMachineEditorBean.copyFromSlaveMachine}"/>
+                </h:link>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="slaveMachinesEditorForm">
+                    <h:panelGrid id="slaveMachinesEditorTable" columns="1">
+                        <h:panelGrid columns="2" style="margin-bottom: 10px">
+                            <h:graphicImage id="addSlaveInstance" value="/resources/images/iconic/green/list_nested_24x21.png" styleClass="actionButton"/>
+                            <h:outputText style="font-weight: bold" id="selectedActionTxt" value="#{slaveMachineEditorBean.selectedActionTxt}" />
+                        </h:panelGrid>
+                        <h:panelGrid id="slaveMachinesEditTable" columns="2">
+                            <h:outputLabel for="hostName" value="Hostname"/>
+                            <p:inputText id="hostName" value="#{slaveMachineEditorBean.editedSlaveMachine.url}" label="Hostname" required="true"/>
+                            <h:outputLabel for="hostPort" value="Port"/>
+                            <p:inputText id="hostPort" value="#{slaveMachineEditorBean.editedSlaveMachine.port}" label="Port" maxlength="5" required="true">
+                                <f:validateLength minimum="2"/>
+                            </p:inputText>
+
+                            <h:outputLabel for="slaveInstanceCount" value="Max amount of Slave instances"/>
+                            <p:inputText id="slaveInstanceCount" value="#{slaveMachineEditorBean.editedSlaveMachine.maxSlaveInstanceAmount}" label="Instances">
+                                <f:validateLength maximum="3"/>
+                            </p:inputText>
+
+                            <h:outputLabel for="workspace" value="Workspace"/>
+                            <p:inputText id="workspace" value="#{slaveMachineEditorBean.editedSlaveMachine.workspace}" label="Workspace"/>
+                            <h:outputLabel for="startScript" value="Startscript"/>
+                            <p:inputText id="startScript" value="#{slaveMachineEditorBean.editedSlaveMachine.startScript}" label="StartScript"/>
+                            <h:outputLabel for="endScript" value="Endscript"/>
+                            <p:inputText id="endScript" value="#{slaveMachineEditorBean.editedSlaveMachine.endScript}" label="EndScript"/>
+
+                            <h:outputLabel for="slaveMachineDisabledInput" value="Slave machine status"/>
+                            <p:selectOneButton id="slaveMachineDisabledInput" value="#{slaveMachineEditorBean.disabled}">
+                                <f:selectItem itemLabel="Enabled" itemValue="false" />
+                                <f:selectItem itemLabel="Disabled" itemValue="true" />
+                            </p:selectOneButton>
+
+                            <h:outputLabel for="slaveInstanceCreated" value="Created"/>
+                            <p:inputText id="slaveInstanceCreated" value="#{slaveMachineEditorBean.editedSlaveMachine.created}" label="Created" disabled="true" />
+                            <h:outputLabel for="slaveInstanceModified" value="Modified"/>
+                            <p:inputText id="slaveInstanceModified" value="#{slaveMachineEditorBean.editedSlaveMachine.modified}" label="Modified" disabled="true" />
+                        </h:panelGrid>
+
+                        <p:focus for="hostName"/>
+
+                        <f:facet name="footer">
+                            <p:commandButton id="slaveMachineSaveButton" value="Save" action="#{slaveMachineEditorBean.saveEditedSlaveMachine}" ajax="false"/>
+                            <p:commandButton id="slaveMachineCancelButton" value="Cancel" action="#{slaveMachineEditorBean.cancelEdit}" ajax="false" immediate="true"/>
+                        </f:facet>
+
+                    </h:panelGrid>
+                </h:form>
+
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

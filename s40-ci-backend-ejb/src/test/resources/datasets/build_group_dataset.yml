@@ -1,0 +1,276 @@
+## YAML Template.
+---
+project:
+  - id: 1
+    name: project_1
+    displayname: Project 1
+
+branch:
+  - id: 1
+    name: branch_1
+    displayname: Branch 1
+    project_id: 1
+  - id: 2
+    name: branch_2
+    displayname: Branch 2
+    project_id: 1
+    type: DEVELOPMENT
+  - id: 3
+    name: branch_3
+    displayname: Branch 3
+    project_id: 1
+    type: SINGLE_COMMIT
+
+job:
+  - id: 1
+    name: job_1
+    displayname: Job 1
+    branch_id: 1
+  - id: 2
+    name: job_2
+    displayname: Job 2
+    branch_id: 2
+  - id: 3
+    name: job_3
+    displayname: Job 3
+    branch_id: 3
+    
+report_action:
+  - id: 1
+    status: SUCCESS
+    job_id: 1
+  - id: 2
+    status: UNSTABLE
+    job_id: 1
+  - id: 3
+    status: FAILURE
+    job_id: 1
+  - id: 4
+    status: STARTED
+    job_id: 2
+    
+    
+email_report_action:
+  - id: 1
+    recipients: some@test.mail
+    subject: Subject 1
+    message: Message 1
+    sendonlyifstatuschanged: true
+    usecommitauthors: false
+  - id: 2
+    recipients: some@test.mail
+    subject: Subject 2
+    message: Message 2
+    sendonlyifstatuschanged: true
+    usecommitauthors: false
+  - id: 3
+    recipients: some@test.mail
+    subject: Subject 3
+    message: Message 3
+    sendonlyifstatuschanged: true
+    usecommitauthors: false
+    
+notification_report_action:
+  - id: 4
+    recipients: some@test.mail
+    subject: Subject 4
+    message: Message 4
+    usechangeauthors: false
+
+build_group:
+  - id: 1
+    job_id: 1
+    status: SUCCESS
+    phase: FINISHED
+  - id: 2
+    job_id: 1
+    status: FAILURE
+    phase: FINISHED
+  - id: 3
+    job_id: 1
+    status: FAILURE
+    phase: STARTED
+  - id: 4
+    job_id: 1
+    status: SUCCESS
+    phase: STARTED
+  # Build groups for notification test
+  - id: 5
+    job_id: 2
+    status: SUCCESS
+    phase: STARTED
+    branchtype: DEVELOPMENT
+  - id: 6
+    job_id: 2
+    status: SUCCESS
+    phase: STARTED
+    branchtype: DEVELOPMENT
+  - id: 7
+    job_id: 3
+    status: SUCCESS
+    phase: FINISHED
+    branchtype: SINGLE_COMMIT
+  - id: 8
+    job_id: 3
+    status: UNSTABLE
+    phase: FINISHED
+    branchtype: SINGLE_COMMIT
+    
+change:
+    # good change
+  - id: 1
+    subject: Change 1
+    commitid: abcdefghijklmnopqrstu1
+    # unstable change
+  - id: 2
+    subject: Change 2
+    commitid: abcdefghijklmnopqrstu2
+    
+build_group_change:
+  - buildgroups_id: 5
+    changes_id: 1
+  - buildgroups_id: 7
+    changes_id: 1
+  - buildgroups_id: 6
+    changes_id: 2
+  - buildgroups_id: 8
+    changes_id: 2
+
+build_group_ciserver:
+  - id: 1
+    url: https://some.domain.com
+    port: 8080
+    buildgroup_id: 1
+
+build:
+  # Start node build
+  - id: 1
+    buildgroup_id: 1
+    buildnumber: 1
+    startnode: 1
+    status: SUCCESS
+    phase: FINISHED
+  # Child build
+  - id: 2
+    buildgroup_id: 1
+    buildnumber: 2
+    startnode: 0
+    status: SUCCESS
+    phase: FINISHED
+  # Child build
+  - id: 3
+    buildgroup_id: 1
+    buildnumber: 3
+    startnode: 0
+    status: SUCCESS
+    phase: FINISHED
+  # Start node build
+  - id: 4
+    buildgroup_id: 2
+    buildnumber: 4
+    startnode: 1
+    status: FAILURE
+    phase: FINISHED
+  # Child build
+  - id: 5
+    buildgroup_id: 2
+    buildnumber: 5
+    startnode: 0
+    status: FAILURE
+    phase: FINISHED
+  # Child build
+  - id: 6
+    buildgroup_id: 2
+    buildnumber: 6
+    startnode: 0
+    status: FAILURE
+    phase: FINISHED
+  # Flat builds for build group 4
+  - id: 7
+    buildgroup_id: 4
+    buildnumber: 7
+    startnode: 1
+    status: SUCCESS
+    phase: FINISHED
+  - id: 8
+    buildgroup_id: 4
+    buildnumber: 8
+    startnode: 1
+    status: SUCCESS
+    phase: FINISHED
+  - id: 9
+    buildgroup_id: 4
+    buildnumber: 9
+    startnode: 1
+    status: SUCCESS
+    phase: STARTED
+
+build_build:
+  - parentbuilds_id: 1
+    childbuilds_id: 2
+  - parentbuilds_id: 1
+    childbuilds_id: 3
+  - parentbuilds_id: 4
+    childbuilds_id: 5
+  - parentbuilds_id: 4
+    childbuilds_id: 6
+
+build_verification_conf:
+  - id: 1
+    build_id: 1
+    verificationdisplayname: verification1
+    productdisplayname: product1
+  - id: 2
+    build_id: 2
+    verificationdisplayname: verification2
+    productdisplayname: product2
+  - id: 3
+    build_id: 3
+    verificationdisplayname: verification3
+    productdisplayname: product3
+  - id: 4
+    build_id: 4
+    verificationdisplayname: verification4
+    productdisplayname: product4
+  - id: 5
+    build_id: 5
+    verificationdisplayname: verification5
+    productdisplayname: product5
+  - id: 6
+    build_id: 6
+    verificationdisplayname: verification6
+    productdisplayname: product6
+  - id: 7
+    build_id: 7
+    verificationdisplayname: verification7
+    productdisplayname: product7
+  - id: 8
+    build_id: 8
+    verificationdisplayname: verification8
+    productdisplayname: product8
+  - id: 9
+    build_id: 9  
+    verificationdisplayname: verification9
+    productdisplayname: product9
+  
+build_result_details_param:
+  - id: 1
+    buildverificationconf_id: 1
+    paramkey: CODE_REVIEWERS
+    paramvalue: User 1, User 2
+    displayname: Gerrit Code Reviewers
+  - id: 2
+    buildverificationconf_id: 1
+    paramkey: SOME_RESULT
+    paramvalue: Some Value
+    displayname: Some Result
+  - id: 3
+    buildverificationconf_id: 2
+    paramkey: CODE_REVIEWERS
+    paramvalue: User 3, User 4
+    displayname: Gerrit Code Reviewers
+  - id: 4
+    buildverificationconf_id: 2
+    paramkey: SOME_RESULT_NO_VALUE
+    displayname: Some Result
+    

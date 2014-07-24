@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp">
+
+    <body>
+
+        <ui:composition template="../template/layout.xhtml">
+            <ui:define name="contentTitle">Copy/share verifications</ui:define>
+            <ui:define name="contentMenu">
+                <ci:helpButton id="helpButton" page="verificationShare"/>
+            </ui:define>
+
+            <ui:define name="breadCrumbMenu">
+                <h:link value="#{jobShareBean.project.displayName}" outcome="projectDetails">
+                    <f:param name="projectId" value="#{jobShareBean.project.id}"/>
+                </h:link>
+                <h:link value="#{jobShareBean.job.displayName}" outcome="verificationDetails">
+                    <f:param name="verificationId" value="#{jobShareBean.job.id}"/>
+                </h:link>
+                <h:link value="Share" outcome="verificationShare"
+                        styleClass="active">
+                    <f:param name="verificationId" value="#{jobShareBean.job.id}"/>
+                </h:link>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:outputText value="You do not have permission to the requested resource. However, this might be due to access control information synchronization delay from Gerrit. Please refresh the page approximately after one minute. If the problem persists, please contact I_EXT_S40_CI20_SUPPORT@nokia.com." rendered="#{jobShareBean.job == null}"/>
+                <h:form id="verificationShareForm" rendered="#{jobShareBean.job != null and jobShareBean.shareableJob}">
+                    <h:panelGrid id="verificationShareTable" columns="2">
+                        <h:outputLabel for="verificationNameInput" value="Name"/>
+                        <p:inputText maxlength="255" id="verificationNameInput" value="#{jobShareBean.jobDisplayName}" label="name" required="true"/>
+                        <h:outputLabel for="verificationShareUser" value="User to share"/>
+                        <p:autoComplete id="verificationShareUser" value="#{jobShareBean.userToShare}" completeMethod="#{jobShareBean.searchUser}"
+                                        var="user" itemLabel="#{user.realname}" itemValue="#{user}" forceSelection="true" converter="LDAPUserConverter"/>
+
+                        <h:outputLabel for="verificationShareCopy" value="Create copy"/>
+                        <h:selectBooleanCheckbox id="verificationShareCopy" value="#{jobShareBean.createCopy}" disabled="true"/>
+                    </h:panelGrid>
+
+                    <p:commandButton id="saveVerificationShareButton" value="Share" action="#{jobShareBean.share()}" ajax="false"/>
+                    <p:commandButton id="canceVerificationShareButton" value="Cancel" action="#{jobShareBean.cancelEdit()}" ajax="false" immediate="true"/>
+                </h:form>
+                <h:outputText value="You cannot share jobs that are not type toolbox or draft" rendered="#{!jobShareBean.shareableJob}" />
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
+

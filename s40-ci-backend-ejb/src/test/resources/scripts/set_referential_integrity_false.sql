@@ -1,0 +1,2 @@
+-- CLEAR DATA --
+set REFERENTIAL_INTEGRITY false;

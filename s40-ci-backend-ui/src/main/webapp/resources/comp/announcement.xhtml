@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <composite:attribute name="model"/>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <div class="ui-messages ui-widget">
+            <ui:param name="model" value="#{cc.attrs.model}" />
+            <ui:repeat var="severity" value="#{model.getTypes()}">
+                <h:panelGroup layout="block" class="ui-messages-#{model.getCssMessageType(severity)} ui-corner-all" rendered="#{not empty model.getMessages(severity)}">
+                    <span class="ui-messages-#{model.getCssMessageType(severity)}-icon"/>
+                    <ul>
+                        <ui:repeat var="msg" value="#{model.getMessages(severity)}">
+                            <li>
+                                 <span class="ui-messages-#{model.getCssMessageType(severity)}-detail">
+                                     #{msg}
+                                 </span>
+                            </li>
+                        </ui:repeat>
+                    </ul>
+                </h:panelGroup>
+            </ui:repeat>
+        </div>
+    </cc:implementation>
+</html>

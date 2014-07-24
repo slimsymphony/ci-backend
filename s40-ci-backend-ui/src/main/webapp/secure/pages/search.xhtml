@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ci="http://java.sun.com/jsf/composite/comp"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+        <ui:composition template="../template/layout.xhtml">
+            <ui:define name="contentTitle">Search results</ui:define>
+
+            <ui:define name="contentMenu">
+                <ci:helpButton id="helpButton" page="search"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="searchResultForm">
+                    <h:outputText value="Could not find anything with given query" rendered="#{!searchBean.hasResults}"
+                                  style="margin-top: 1.5em;"/>
+                    <h:panelGroup layout="block" id="searchResults" rendered="#{searchBean.hasResults}">
+                        <ui:repeat value="#{searchBean.searchResults}" var="result">
+                            <div class="searchResult">
+                                <h2><h:outputLink value="#{result.url}">
+                                        <h:outputText value="#{result.header}"/>
+                                    </h:outputLink>
+                                </h2>
+                                <h:panelGroup rendered="#{result.created != null or result.modified != null}" layout="block" style="width: 100%;">
+                                    <ci:outputTextTimeStamp value="#{result.created}" styleClass="created" rendered="#{result.created != null}"/>
+                                    <ci:outputTextTimeStamp value="#{result.modified}" styleClass="modified" rendered="#{result.modified != null}"/>
+                                </h:panelGroup>
+                                <h:outputText value="#{result.description}" styleClass="searchResultDescription"/>
+                            </div>
+                        </ui:repeat>
+                    </h:panelGroup>
+
+                    <p:remoteCommand name="loadMoreResults" process="@this"
+                                     update="searchResults" actionListener="#{searchBean.find()}" />
+
+                    <h:panelGroup rendered="#{searchBean.hasMoreResults}" layout="block" id="waypointDiv">
+                        <pe:waypoint id="waypoint" widgetVar="waypointWidget"
+                                     offset="function(){return $.waypoints('viewportHeight') - $(this).outerHeight()}">
+                            <pe:javascript event="reached" execute="loadMoreResults()"/>
+                        </pe:waypoint>
+                    </h:panelGroup>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <composite:attribute name="value"/>
+        <composite:attribute name="styleClass"/>
+        <composite:attribute name="type" default="both"/>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <h:outputText styleClass="#{cc.attrs.styleClass}" value="#{cc.attrs.value}">
+            <f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" timeZone="#{httpSessionBean.sysUser.timezone}"
+                               type="#{cc.attrs.type}"/>
+        </h:outputText>
+    </cc:implementation>
+</html>

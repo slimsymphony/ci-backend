@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+
+    <cc:interface componentType="deleteBtnWithConfirmDlg">
+        <composite:attribute name="id"/>
+        <composite:attribute name="entityId" default="100"/>
+        <composite:attribute name="entityLabel" />
+        <composite:attribute name="update" default="@form"/>
+        <composite:attribute name="tooltip"/>
+        <composite:attribute name="actionListener" targets="confirm"/>
+        <composite:attribute name="myKey" default="100"/>
+    </cc:interface>
+
+    <cc:implementation>
+        <p:commandLink id="deleteLink" onclick="#{cc.dlgWidgetVar}.show()" type="button">
+            <h:graphicImage id="deleteImg" value="/resources/images/bin_closed.png"
+                            styleClass="actionButton"/>
+            <pe:tooltip for="deleteImg" value="#{cc.attrs.tooltip}" myPosition="top right" atPosition="bottom center"/>
+        </p:commandLink>
+
+        <p:confirmDialog binding="#{cc.confirmDialog}" message="Are you sure about deleting '#{cc.attrs.entityLabel}' ?"
+                         header="Delete confirmation dialog" severity="alert" widgetVar="#{cc.dlgWidgetVar}">
+            <p:commandButton id="confirm" style="display: inline-block" value="Yes" oncomplete="#{cc.dlgWidgetVar}.hide()"
+                             update="#{cc.parentUpdate}">
+                <cc:insertChildren/>
+            </p:commandButton>
+            <p:commandButton id="decline" style="display: inline-block" value="No" onclick="#{cc.dlgWidgetVar}.hide()" type="button"/>
+        </p:confirmDialog>
+
+    </cc:implementation>
+</html>

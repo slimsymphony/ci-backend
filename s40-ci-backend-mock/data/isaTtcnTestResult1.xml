@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+<testsuite name ="ipl_common" tests = "1" failures="0">
+	<properties>
+		<property name ="baseline" value="baseline"/>
+		<property name ="hostname" value="http://oucim008.europe.nokia.com:8083/"/>
+		<property name ="organization" value="not-available"/>
+		<property name ="product" value="aqua_ds"/>
+		<property name ="target" value="WORKSTATION"/>
+		<property name ="testlevel" value="UNITTEST"/>
+		<property name ="testtool" value="ISA_TTCN"/>
+		<property name ="timestamp" value="2013-02-12T10:29:36"/>
+	</properties>
+	<testcase classname="ipl_common.00001-00100" name="Main_1.Main_2.DataStoreCreate_1.CreateIPLDataStoreFail_1.CreateIPLDataStoreFail_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreCreate_2.CreateIPLDataStoreFail_1.CreateIPLDataStoreFail_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreCreate_3.CreateIPLDataStoreFail_1.CreateIPLDataStoreFail_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreCreate_4.CreateIPLDataStoreFail_1.CreateIPLDataStoreFail_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreCreate_5.CreateIPLDataStoreFail_1.CreateIPLDataStoreFail_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreCreate_6.CreateIPLDataStoreFail_1.CreateIPLDataStoreFail_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreCreate_7.CreateIPLDataStoreFail_1.CreateIPLDataStoreFail_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="Main_3.DataStoreDelete_1.DataStoreDelete_2.CreateIPLDataStore_1.CreateIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreDelete_3.AddDataToIPLDataStore_1.AddDataToIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreDelete_4.AddDataToIPLDataStore_1.AddDataToIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreDelete_5.DeleteIPLDataStore_1">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="Main_4.DataStoreAddData_1.DataStoreAddData_2.CreateIPLDataStore_1.CreateIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreAddData_3.AddDataToIPLDataStore_1.AddDataToIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreAddData_4.AddDataToIPLDataStore_1.AddDataToIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreAddData_5.GetSizeOfIPLDataStore_1">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreAddData_6.AddDataToIPLDataStore_1.AddDataToIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreAddData_7.DeleteIPLDataStore_1">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="Main_5.DataStoreGetData_1.DataStoreGetData_2.CreateIPLDataStore_1.CreateIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreGetData_3.AddDataToIPLDataStore_1.AddDataToIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreGetData_4.AddDataToIPLDataStore_1.AddDataToIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreGetData_5.GetDataFromIPLDataStore_1.GetDataFromIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="GetDataFromIPLDataStore_3.GetDataFromIPLDataStore_4.GetDataFromIPLDataStore_5.DataStoreGetData_6.DeleteIPLDataStore_1">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreGetData_7.CreateIPLDataStore_1.CreateIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreGetData_8.GetDataFromIPLDataStore_1.GetDataFromIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="GetDataFromIPLDataStore_3.GetDataFromIPLDataStore_5....GetDataFromIPLDataStore_5.DataStoreGetData_9.DeleteIPLDataStore_1">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreGetData_10.DataStoreGetData_11.CreateIPLDataStore_1.CreateIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreGetData_12.AddDataToIPLDataStore_1.AddDataToIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreGetData_13.AddDataToIPLDataStore_1.AddDataToIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreGetData_14.AddDataToIPLDataStore_1.AddDataToIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreGetData_15.GetDataFromIPLDataStore_1.GetDataFromIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="GetDataFromIPLDataStore_3.GetDataFromIPLDataStore_4.GetDataFromIPLDataStore_5.DataStoreGetData_16.DeleteIPLDataStore_1">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreGetData_17.DataStoreGetData_18.CreateIPLDataStore_1.CreateIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreGetData_19.AddDataToIPLDataStore_1.AddDataToIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreGetData_20.AddDataToIPLDataStore_1.AddDataToIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreGetData_21.GetDataFromIPLDataStore_1.GetDataFromIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="GetDataFromIPLDataStore_3.GetDataFromIPLDataStore_5....GetDataFromIPLDataStore_5.DataStoreGetData_22.DeleteIPLDataStore_1">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="Main_6.DataStoreStaticTests_1.DataStoreStaticTests_2.CreateIPLDataStore_1.CreateIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreStaticTests_3.AddDataToIPLDataStore_1.AddDataToIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreStaticTests_4.AddDataToIPLDataStore_1.AddDataToIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreStaticTests_5.GetDataFromIPLDataStore_1.GetDataFromIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="GetDataFromIPLDataStore_3.GetDataFromIPLDataStore_4.GetDataFromIPLDataStore_5.DataStoreStaticTests_6.DeleteIPLDataStore_1">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreStaticTests_7.DataStoreStaticTests_8.CreateIPLDataStore_1.CreateIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreStaticTests_9.AddDataToIPLDataStore_1.AddDataToIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreStaticTests_10.AddDataToIPLDataStore_1.AddDataToIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreStaticTests_11.DeleteIPLDataStore_1">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreStaticTests_12.DataStoreStaticTests_13.CreateIPLDataStore_1.CreateIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreStaticTests_14.AddDataToIPLDataStore_1.AddDataToIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreStaticTests_15.AddDataToIPLDataStore_1.AddDataToIPLDataStore_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="DataStoreStaticTests_16.DeleteIPLDataStore_1">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="Main_7.Main_8.AsciiConversion_1.ConvertAsciiToUint32_1">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="AsciiConversion_2.ConvertAsciiToUint32_1">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="AsciiConversion_3.ConvertAsciiToUint32_1">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="AsciiConversion_4.ConvertAsciiToUint32_1">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="AsciiConversion_5.ConvertAsciiToUint32_1">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="AsciiConversion_6.ConvertAsciiToUint32_1">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="AsciiConversion_7.ConvertAsciiToUint32_1">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="AsciiConversion_8.ConvertAsciiToUint32_1">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="Main_9.Events_1.CreateAndDeleteEvent_1.CreateAndDeleteEvent_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="CreateAndDeleteEvent_3">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="CreateAndDeleteEvent_4">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="Events_2.CreateISIEvent_1.CreateISIEvent_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="CreateISIEvent_3">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="CreateISIEvent_4">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="Main_10.Address_1.Address_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="Address_3">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="Address_4">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="Address_5">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="Address_6">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="Address_7.Address_8">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="Address_9">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="Address_10">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="Address_11.Address_12">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="Address_13">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="Address_14.Address_15">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="Address_16">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="Address_17">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="Address_18">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="Address_19">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="Address_20">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="Address_21.Main_11.EventBuffer_1.EventBuffer_2">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="EventBuffer_3">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="EventBuffer_4">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="EventBuffer_5">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="EventBuffer_6">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="EventBuffer_7">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="EventBuffer_8">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="EventBuffer_9">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="EventBuffer_10">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="EventBuffer_11">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="EventBuffer_12.EventBuffer_13">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="EventBuffer_14">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="EventBuffer_15">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="EventBuffer_16">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="EventBuffer_17">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="EventBuffer_18">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="EventBuffer_19">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="EventBuffer_20">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="EventBuffer_21">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="EventBuffer_22">
+	</testcase>
+	<testcase classname="ipl_common.00001-00100" name="EventBuffer_23">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="EventBuffer_24.Main_12.ReservedPorts_1.TestReservedPorts_1">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="ReservedPorts_2.TestReservedPorts_1">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="ReservedPorts_3.TestReservedPorts_1">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="Main_13.DataRefTests_1.DataRefTests_2">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataRefTests_3">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataRefTests_4">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="Main_14.DataRefTests2_1.DataRefTests2_2">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataRefTests2_3">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataRefTests2_4">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataRefTests2_5">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataRefTests2_6">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="Main_15.DataRefTests3_1.DataRefTests3_2">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataRefTests3_3">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataRefTests3_4">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataRefTests3_5">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataRefTests3_6">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataRefTests3_7">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataRefTests3_8">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataRefTests3_9">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataRefTests3_10">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataRefTests3_11">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataRefTests3_12">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="Main_16.DataBufferTests_1.DataBufferBasicTests_1.DataBufferCreate_1">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataBufferBasicTests_2.DataBufferAppend_1.DataBufferAppend_2">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataBufferBasicTests_3.DataBufferAppend_1.DataBufferAppend_2">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataBufferBasicTests_4.DataBufferConsume_1.DataBufferBasicTests_5.DataBufferAppend_1.DataBufferAppend_2">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataBufferBasicTests_6.DataBufferConsume_1.DataBufferBasicTests_7.DataBufferFreeUsed_1.DataBufferFreeUsed_2">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataBufferBasicTests_8.DataBufferConsume_1.DataBufferBasicTests_9.DataBufferFreeUsed_1.DataBufferFreeUsed_2">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataBufferBasicTests_10.DataBufferDelete_1">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataBufferTests_2.DataBufferOutOfMemTests_1.DataBufferOutOfMemTests_2">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataBufferOutOfMemTests_3.DataBufferOutOfMemTests_4.DataBufferCreate_1">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataBufferOutOfMemTests_5.DataBufferAppend_1.DataBufferAppend_2">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataBufferOutOfMemTests_6.DataBufferAppend_1.DataBufferAppend_2">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataBufferOutOfMemTests_7.DataBufferDelete_1">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataBufferOutOfMemTests_8.DataBufferOutOfMemTests_9.DataBufferCreate_1">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataBufferOutOfMemTests_10.DataBufferAppend_1.DataBufferAppend_2">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataBufferOutOfMemTests_11.DataBufferConsume_1.DataBufferOutOfMemTests_12.DataBufferFreeUsed_1.DataBufferFreeUsed_2">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="DataBufferOutOfMemTests_13.DataBufferDelete_1">
+	</testcase>
+	<testcase classname="ipl_common.00101-00200" name="Main_17">
+	</testcase>
+</testsuite>
+</testsuites>
